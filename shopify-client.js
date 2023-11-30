@@ -13,6 +13,24 @@ const client = createStorefrontClient({
   storeDomain: `https://${process.env.PUBLIC_STORE_DOMAIN}`,
   storefrontApiVersion: "2023-10",
 });
-
 export const getStorefrontApiUrl = client.getStorefrontApiUrl;
 export const getPrivateTokenHeaders = client.getPrivateTokenHeaders;
+
+// // lib/client.js
+// import { ShopifyProvider, CartProvider } from '@shopify/hydrogen-react';
+
+// export function wrapRootElement({ element }) {
+//   return (
+//     <ShopifyProvider
+//       storeDomain={process.env.NEXT_PUBLIC_PUBLIC_STORE_DOMAIN}
+//       storefrontToken={process.env.NEXT_PUBLIC_PUBLIC_STOREFRONT_API_TOKEN}
+//       storefrontApiVersion="2023-10"
+//       countryIsoCode="NL"
+//       languageIsoCode="NL"
+//     >
+//       <CartProvider>
+//         {element}
+//       </CartProvider>
+//     </ShopifyProvider>
+//   );
+// }
