@@ -76,6 +76,7 @@ function Product() {
                     variant="outlined"
                     size="medium"
                     className="lowercase border-black hover:border-black text-black hover:text-black"
+                    key={optionSet.name + "-" + option}
                   >
                     {option}
                   </Button>
@@ -87,6 +88,7 @@ function Product() {
                     size="medium"
                     className="lowercase border-gray-300 text-black hover:border-gray-600 hover:text-black"
                     onClick={() => setSelectedOption(optionSet.name, option)}
+                    key={optionSet.name + "-" + option}
                   >
                     {option}
                   </Button>
