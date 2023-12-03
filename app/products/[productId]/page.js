@@ -1,15 +1,16 @@
-import HeroContent from "./HeroContent";
+import ProductPage from "@/components/ProductPage";
 
-export const metadata = {
-  title: "hero page",
-  description: "hero page description",
-};
 import {
   getStorefrontApiUrl,
   getPrivateTokenHeaders,
-} from "../lib/shopify-client";
+} from "@/lib/shopify-client";
 
-export default async function Hero() {
+export const metadata = {
+  title: "Product page",
+  description: "product page description",
+};
+
+export default async function Product() {
   const productResponse = await fetch(getStorefrontApiUrl(), {
     body: JSON.stringify({
       // A Storefront API query
@@ -22,11 +23,7 @@ export default async function Hero() {
 
   const productJson = await productResponse.json();
 
-  return (
-    <div>
-      <HeroContent product={productJson.data.productByHandle} />
-    </div>
-  );
+  return <ProductPage product={productJson.data.productByHandle} />;
 }
 
 const GRAPHQL_PRODUCT_QUERY = `
@@ -41,6 +38,7 @@ const GRAPHQL_PRODUCT_QUERY = `
     }
     tags
     title
+    vendor
     priceRange {
       maxVariantPrice {
         amount

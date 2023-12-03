@@ -13,7 +13,6 @@ import { useState } from "react";
 export default function HeroContent({ product }) {
   return (
     <div>
-      <p>Hero client content</p>
       <ProductProvider
         data={product}
         initialVariantId="gid://shopify/ProductVariant/47247984722262"
@@ -42,8 +41,16 @@ function Product() {
 
   const { linesAdd } = useCart();
 
-  //   const [extraOptions, setExtraOptions] = useState(null);
-  const [extraOptions, setExtraOptions] = useState([{ ringmaat: 43 }]);
+  const [extraOptions, setExtraOptions] = useState([
+    {
+      key: "Ringmaat",
+      value: "43",
+    },
+    {
+      key: "Harskleur",
+      value: "Aqua",
+    },
+  ]);
   return (
     <div className="container mx-auto">
       <h1 className="text-2xl font-bold">{product?.title}</h1>
@@ -67,40 +74,27 @@ function Product() {
         className="bg-pink-500 px-3 py-2 mt-4"
         variantId={selectedVariant.id}
         onClick={(e) => {
+          return null;
           if (extraOptions) {
             e.preventDefault();
-            console.log("create variant based on options");
-            // const createdProductVariant = createProductVariant(
-            //   product,
-            //   extraOptions,
-            //   selectedVariant.id
-            // );
             const createdProductVariant = createProductVariant(
               product,
               extraOptions,
               selectedVariant.id
             )
               .then((createdProductVariant) => {
-                console.log("createdProductVariant", createdProductVariant);
-                console.log("call extra function");
-                // Call your function here or perform any other actions
                 const newVariantId = `gid://shopify/ProductVariant/${createdProductVariant.succes.variant.id}`;
-                console.log(newVariantId);
-
                 linesAdd([
                   {
                     merchandiseId: newVariantId,
                     quantity: 1,
+                    attributes: extraOptions,
                   },
                 ]);
-
-                // For example: yourFunction(createdProductVariant);
               })
               .catch((error) => {
                 console.error("Error creating product variant:", error);
-                // Handle errors here
               });
-            // console.log("createdProductVariant", createdProductVariant);
           }
         }}
       >
