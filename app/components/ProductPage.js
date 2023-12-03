@@ -86,7 +86,7 @@ function Product() {
                   <Button
                     variant="outlined"
                     size="medium"
-                    // className="lowercase border-gray-300 text-black hover:border-gray-600 hover:text-black"
+                    className="lowercase border-gray-300 text-black hover:border-gray-600 hover:text-black !important"
                     sx={{
                       textTransform: "lowercase",
                       borderColor: "#d2e920", // Use the desired border color
