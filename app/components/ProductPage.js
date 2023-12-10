@@ -6,18 +6,25 @@ import {
   Image,
   useCart,
   ProductPrice,
+  getClientBrowserParameters,
 } from "@shopify/hydrogen-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import * as OptionSets from "./productOptions/optionSets";
 
 import Button from "@mui/material/Button";
+import ExtraProductOptions from "@/components/ExtraProductOptions";
 
 export default function ProductPage({ product }) {
+  console.log("product");
+  console.log(product);
   return (
     <div className="container mt-20">
       <ProductProvider
         data={product}
-        initialVariantId="gid://shopify/ProductVariant/47247984722262"
+        initialVariantId={product?.variant?.edges[0]?.node?.id}
       >
+        {/* To do image gallery */}
         <div className="max-w-[500px]">
           <Image
             data={product.media.nodes[0].image}
@@ -37,25 +44,24 @@ function Product() {
     setSelectedOption,
     selectedVariant,
     selectedOptions,
+    options,
   } = useProduct();
 
+  console.log("selectedVariant");
+  console.log(selectedVariant.price.amount);
+
   const { linesAdd } = useCart();
-  const [extraOptions, setExtraOptions] = useState([
-    {
-      key: "Ringmaat",
-      value: "43",
-    },
-    {
-      key: "Harskleur",
-      value: "Aqua",
-    },
-  ]);
+  const [extraOptions, setExtraOptions] = useState([]);
+
+  // const tags = product.tags
+  // const tags = ["creool", "hars", "positie", "ringmaat", "vingerafdruk"];
+  const tags = ["creool", "aspakket", "hars", "tekst"];
   return (
     <div className="container mx-auto flex flex-col gap-6">
       <h2 className="text-3xl">{product.title}</h2>
-      <div className="flex items-center text-md">
+      <div className="flex items-center text-sm">
         <span className="font-bold min-w-[140px]">Prijs:</span>
-        <ProductPrice data={product} className="font-normal" as="span" />
+        <span>€ {selectedVariant.price.amount}</span>
       </div>
       <div className="flex gap-6 flex-wrap">
         {product.options.map((optionSet) => (
@@ -68,7 +74,7 @@ function Product() {
               if (option.includes("WD options")) {
                 return null;
               }
-              // Check is selectedoption is current option
+              // Selectedoption
               const isSelected = selectedOptions[optionSet.name] === option;
               if (isSelected) {
                 return (
@@ -87,14 +93,6 @@ function Product() {
                     variant="outlined"
                     size="medium"
                     className="lowercase border-gray-300 text-black hover:border-gray-600 hover:text-black !important"
-                    sx={{
-                      textTransform: "lowercase",
-                      borderColor: "#d2e920", // Use the desired border color
-                      "&:hover": {
-                        borderColor: "#d2e920", // Use the desired hover border color
-                        color: "black",
-                      },
-                    }}
                     onClick={() => setSelectedOption(optionSet.name, option)}
                     key={optionSet.name + "-" + option}
                   >
@@ -106,6 +104,11 @@ function Product() {
           </div>
         ))}
       </div>
+      <ExtraProductOptions
+        tags={tags}
+        extraOptions={extraOptions}
+        setExtraOptions={setExtraOptions}
+      />
       <div className="flex flex-wrap items-center text-sm">
         <span className="font-bold min-w-[140px]">Merk/collectie:</span>
         <span className="font-normal">{product.vendor}</span>
@@ -141,14 +144,27 @@ function Product() {
                 console.error("Error creating product variant:", error);
               });
           } else {
-            linesAdd([
-              {
-                merchandiseId: selectedVariant.id,
-                quantity: 1,
-                // Remove attributes on production
-                attributes: extraOptions,
-              },
-            ]);
+            const outputArray = extraOptions.flatMap((item) =>
+              Array.isArray(item.value)
+                ? item.value.map((nestedItem) => ({
+                    key: nestedItem.key,
+                    value: nestedItem.value,
+                  }))
+                : [{ key: item.key, value: item.value }]
+            );
+            console.log(extraOptions);
+            const totalPrice = calculatePrice(extraOptions, OptionSets);
+            console.log("totalPrice");
+            console.log(totalPrice);
+
+            // linesAdd([
+            //   {
+            //     merchandiseId: selectedVariant.id,
+            //     quantity: 1,
+            //     // Remove attributes on production
+            //     // attributes: extraOptions,
+            //   },
+            // ]);
           }
         }}
       >
@@ -185,8 +201,55 @@ const createProductVariant = async (
 
   const final = await res.json();
 
-  console.log("finalData: ", final);
+  // console.log("finalData: ", final);
 
-  console.log("fetch after");
+  // console.log("fetch after");
   return final;
 };
+
+function calculatePrice(selectedOptions, optionSets) {
+  let totalPrice = 0;
+
+  for (let i = 0; i < selectedOptions.length; i++) {
+    const optionKey = selectedOptions[i].key + "Options";
+    const currentOptionSet = findOptionSet(optionSets, optionKey);
+
+    const selectedTargetValue = selectedOptions[i].value;
+    if (typeof selectedTargetValue == "string") {
+      const selectedOptionSet = currentOptionSet.find(
+        (option) => option.value === selectedTargetValue
+      );
+      totalPrice += selectedOptionSet.price || 0;
+    } else {
+      selectedTargetValue.forEach((selectedTarget) => {
+        const price = findPriceByValue(
+          optionSets,
+          selectedTarget.key,
+          selectedTarget.value
+        );
+        totalPrice += price || 0;
+      });
+    }
+  }
+  return totalPrice;
+}
+
+function findOptionSet(optionSets, optionSetKey) {
+  return optionSets[optionSetKey] || null;
+}
+
+function findPriceByValue(optionSets, targetKey, targetValue) {
+  const optionSet = optionSets[targetKey + "Options"];
+
+  if (optionSet && Array.isArray(optionSet)) {
+    const foundOption = optionSet.find(
+      (option) => option.value === targetValue
+    );
+
+    if (foundOption && typeof foundOption.price !== "undefined") {
+      return foundOption.price;
+    }
+  }
+
+  return null;
+}

@@ -10,25 +10,23 @@ export const metadata = {
   description: "product page description",
 };
 
-export default async function Product() {
+export default async function Product({ params }) {
   const productResponse = await fetch(getStorefrontApiUrl(), {
     body: JSON.stringify({
-      // A Storefront API query
       query: GRAPHQL_PRODUCT_QUERY,
+      variables: { productId: params.productId },
     }),
-    // When possible, add the 'buyerIp' property.
     headers: getPrivateTokenHeaders({ buyerIp: "..." }),
     method: "POST",
   });
 
   const productJson = await productResponse.json();
-
   return <ProductPage product={productJson.data.productByHandle} />;
 }
 
 const GRAPHQL_PRODUCT_QUERY = `
-{
-  productByHandle(handle: "testproduct") {
+query productByHandle($productId: String!) {
+  productByHandle(handle: $productId) {
     description
     id
     handle
@@ -50,23 +48,46 @@ const GRAPHQL_PRODUCT_QUERY = `
       }
     }
     variants(first: 25) {
-      edges {
-        node {
+      nodes {
+        id
+        title
+        sku
+        unitPrice {
+          amount
+          currencyCode
+        }
+        image {
+          altText
+          height
           id
-          title
-          sku
-          selectedOptions {
-            value
-            name
-          }
-          image {
-            id
-            src
-            width
-            url
-            height
-            altText
-          }
+          src
+          url
+          width
+        }
+        selectedOptions {
+          name
+          value
+        }
+        compareAtPriceV2 {
+          amount
+          currencyCode
+        }
+        compareAtPrice {
+          amount
+          currencyCode
+        }
+        currentlyNotInStock
+        priceV2 {
+          currencyCode
+          amount
+        }
+        price {
+          amount
+          currencyCode
+        }
+        unitPrice {
+          amount
+          currencyCode
         }
       }
     }
