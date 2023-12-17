@@ -10,7 +10,7 @@ export default function InputSelect({ value, onChange, title, options }) {
         id={title + "-option_select"}
         value={value == "" ? "Placeholder" : value}
         onChange={(e) => onChange(e.target.value)}
-        className="min-w-[140px]"
+        className="min-w-[140px] max-w-full"
         displayEmpty
         size="small"
         variant="outlined"

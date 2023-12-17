@@ -5,40 +5,41 @@ import { Money, Image } from "@shopify/hydrogen-react";
 
 export default function ProductGridItem({ product }) {
   return (
-    <div className="p-8">
-      <Link href={`/products/${product.handle}`} className="group">
-        <div className="relative">
-          <Image
-            data={product.images.nodes[0]}
-            width={150}
-            height={150}
-            className={`h-auto ${
-              product.images.nodes[1]?.src != undefined
-                ? "group-hover:opacity-0 transition-all duration-500"
-                : ""
-            }`}
-          />
-          {product.images.nodes[1]?.src && (
-            <div className="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-all duration-500">
-              <Image
-                data={product.images.nodes[1]}
-                width={150}
-                className="h-auto"
-                height={150}
-              />
-            </div>
-          )}
-        </div>
-        <div className="text-center">
-          <span className="text-sm font-light">{product.vendor}</span>
-          <h3 className="text-lg mt-6 mb-4 font-light group-hover:text-primary transition-colors">
-            {product.title}
-          </h3>
-          <span className="text-xl mt-4 font-light text-primary">
-            <Money data={product.priceRange.minVariantPrice} />
-          </span>
-        </div>
-      </Link>
-    </div>
+    <Link
+      href={`/products/${product.handle}`}
+      className="group p-8 hover:shadow-xl animation-all duration-500"
+    >
+      <div className="relative flex justify-center">
+        <Image
+          data={product.images.nodes[0]}
+          width={150}
+          height={150}
+          className={`h-auto ${
+            product.images.nodes[1]?.src != undefined
+              ? "group-hover:opacity-0 transition-all duration-500"
+              : ""
+          }`}
+        />
+        {product.images.nodes[1]?.src && (
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-0 group-hover:opacity-100 transition-all duration-500 flex justify-center">
+            <Image
+              data={product.images.nodes[1]}
+              width={150}
+              className="h-auto"
+              height={150}
+            />
+          </div>
+        )}
+      </div>
+      <div className="text-center mt-2">
+        <span className="text-xs font-light">{product.vendor}</span>
+        <h3 className="text-5xl font-tangerine mt-4 mb-4 group-hover:text-primary transition-colors">
+          {product.title}
+        </h3>
+        <span className="text-xl mt-4 font-light text-primary">
+          <Money data={product.priceRange.minVariantPrice} />
+        </span>
+      </div>
+    </Link>
   );
 }

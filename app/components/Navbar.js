@@ -26,6 +26,10 @@ import IconButton from "@mui/material/IconButton";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import InputBase from "@mui/material/InputBase";
 
+import CartDrawer from "@/components/drawers/Cart";
+import MenuDrawer from "@/components/drawers/Menu";
+import MenuItemDrawer from "@/components/drawers/MenuItem";
+
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -79,19 +83,19 @@ export default function Navbar({ menu }) {
     setCartDrawerIsOpen(!cartDrawerIsOpen);
   };
 
-  const [navbarScrolled, setNavbarScrolled] = useState(false);
-  const changeBackground = () => {
-    if (window.scrollY >= 100) {
-      setNavbarScrolled(true);
-    } else {
-      setNavbarScrolled(false);
-    }
-  };
+  // const [navbarScrolled, setNavbarScrolled] = useState(false);
+  // const changeBackground = () => {
+  //   if (window.scrollY >= 10) {
+  //     setNavbarScrolled(true);
+  //   } else {
+  //     setNavbarScrolled(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    changeBackground();
-    window.addEventListener("scroll", changeBackground);
-  });
+  // useEffect(() => {
+  //   changeBackground();
+  //   window.addEventListener("scroll", changeBackground);
+  // });
 
   const [menuDrawerIsOpen, setMenuDrawerIsOpen] = useState(false);
   const toggleMenuDrawerIsOpen = () => {
@@ -116,25 +120,22 @@ export default function Navbar({ menu }) {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full h-auto z-30 ${
-          navbarScrolled ? "bg-primary text-white" : "bg-transparent text-black"
-        }`}
+        className={`absolute top-0 left-0 w-full z-30 text-white `}
+        // ${
+        //   navbarScrolled ? "bg-primary" : "bg-transparent"
+        // }
       >
         <div className="container">
-          <Link href="/" className="flex justify-center py-3">
+          <Link href="/" className="flex justify-center py-3 px-2 mt-2">
             <Image
               src={"/images/logo-groot-wit.svg"}
               width={275}
               height={80}
               alt="=Logo gedenk-sieraad.nl"
-              className="h-auto"
+              className="w-auto"
             />
           </Link>
-          <hr
-            className={`my-2 h-[1px-] ${
-              navbarScrolled ? "bg-white" : "bg-primary"
-            }`}
-          />
+          <hr className="my-2 h-[1px-] bg-white" />
           <div className="flex felx-row justify-center gap-4">
             <IconButton
               onClick={toggleMenuDrawerIsOpen}
@@ -172,9 +173,7 @@ export default function Navbar({ menu }) {
             >
               <ShoppingBagRoundedIcon fontSize="40px" />
               <span
-                className={`absolute text-center top-0 right-0 w-[18px] h-[18px] text-[8px] rounded-full bg-transparent border-[1px] flex justify-center items-center ${
-                  navbarScrolled ? "border-white" : "border-black"
-                }`}
+                className={`absolute text-center top-0 right-0 w-[18px] h-[18px] text-[8px] rounded-full bg-transparent border-[1px] flex justify-center items-center border-white`}
               >
                 {totalQuantity}
               </span>
@@ -201,250 +200,3 @@ export default function Navbar({ menu }) {
     </>
   );
 }
-
-const CartDrawer = ({ cartDrawerIsOpen, onClose }) => {
-  const { cost, checkoutUrl, cartCreate, lines, status, linesAdd } = useCart();
-  return (
-    <Drawer anchor="right" open={cartDrawerIsOpen} onClose={onClose}>
-      <div className="h-screen flex flex-col w-full max-w-sm">
-        <div className="mb-8 bg-primary text-white">
-          <div className="flex container h-16 items-center justify-between">
-            <h2 className="text-lg font-medium">Winkelwagen</h2>
-            <div className="flex items-center z-40">
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="close drawer"
-                sx={{ mr: -1 }}
-                onClick={() => onClose()}
-              >
-                <CloseRoundedIcon />
-              </IconButton>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-          <ul role="list" className="-my-6 divide-y divide-gray-200">
-            {lines?.map((line) => (
-              <div key={"cart_line" + line.id}>
-                <CartLineProvider line={line}>
-                  <li className="flex py-6">
-                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                      <HydrogenImage
-                        data={line.merchandise.image}
-                        width={100}
-                        height={100}
-                      />
-                    </div>
-                    <div className="ml-4 flex flex-1 flex-col">
-                      <div>
-                        <div className="flex justify-between text-base font-medium text-gray-900">
-                          <h3>
-                            <a href="#">{line.merchandise.product.handle}</a>
-                          </h3>
-                          <p className="ml-4">
-                            €{line.cost.totalAmount.amount}
-                          </p>
-                        </div>
-                        {line.merchandise.selectedOptions.map((option) => (
-                          <p
-                            key={"selectedOptions_" + option.value}
-                            className="mt-1 text-sm text-gray-500 font-bold"
-                          >
-                            {option.name}:{" "}
-                            <span className="font-normal">{option.value}</span>
-                          </p>
-                        ))}
-                        {line.attributes?.map((attribute) => (
-                          <p
-                            key={"selectedAttributes_" + attribute.value}
-                            className="mt-1 text-sm text-gray-500 font-bold"
-                          >
-                            {attribute.key}:{" "}
-                            <span className="font-normal">
-                              {attribute.value}
-                            </span>
-                          </p>
-                        ))}
-                      </div>
-                      <div className="flex flex-1 items-end justify-between text-sm">
-                        <p className="text-gray-500 font-bold">
-                          Aantal:{" "}
-                          <span className="font-normal">
-                            <CartLineQuantity />
-                          </span>
-                        </p>
-
-                        <CartLineQuantityAdjustButton
-                          adjust="remove"
-                          className="text-gray-600 hover:text-gray-500"
-                        >
-                          <DeleteRoundedIcon />
-                        </CartLineQuantityAdjustButton>
-                      </div>
-                    </div>
-                  </li>
-                </CartLineProvider>
-              </div>
-            ))}
-          </ul>
-        </div>
-
-        <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-          <div className="flex justify-between text-base font-medium text-gray-900">
-            <p>Subtotaal:</p>
-            <p>€{cost?.subtotalAmount?.amount}</p>
-          </div>
-
-          <Button
-            size="large"
-            href={checkoutUrl}
-            variant="contained"
-            className="w-full mt-6 py-3 lowercase text-lg text-white"
-          >
-            Ga door naar de kassa
-          </Button>
-          <div className="flex justify-center text-center text-sm text-gray-500">
-            <p>
-              of{" "}
-              <Button
-                size="large"
-                href={checkoutUrl}
-                variant="text"
-                className="py-3 pl-0 lowercase"
-              >
-                Ga door met shoppen
-              </Button>
-            </p>
-          </div>
-        </div>
-      </div>
-    </Drawer>
-  );
-};
-
-const MenuDrawer = ({ menuDrawerIsOpen, onClose, menu, openMenuItem }) => {
-  // const [menuItemDrawerIsOpen, setMenuItemDrawerIsOpen] = useState(false);
-  // const [menuItem, setMenuItem] = useState(null);
-
-  // const openMenuItem = (menuItemId) => {
-  //   const newMenuItem = menu.items.find((item) => item.id === menuItemId);
-
-  //   setMenuItem(newMenuItem);
-  //   setMenuItemDrawerIsOpen(!menuItemDrawerIsOpen);
-  // };
-
-  return (
-    <Drawer anchor="right" open={menuDrawerIsOpen} onClose={onClose}>
-      <div className="h-screen flex flex-col w-max-w-sm w-[384px]">
-        <div className="mb-2 bg-primary text-white">
-          <div className="flex container h-16 items-center justify-end">
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="close drawer"
-              onClick={() => onClose()}
-            >
-              <CloseRoundedIcon />
-            </IconButton>
-          </div>
-        </div>
-        <div className="flex-1 overflow-y-auto px-2 sm:px-6">
-          <ul role="list" className="">
-            {menu?.items.map((menuItem, index) => {
-              if (menuItem.items[0] == undefined) {
-                return (
-                  <div
-                    key={"cart_line" + menuItem.id}
-                    className={`w-full text-left ${
-                      index !== 0
-                        ? "border-t-[1px] border-gray-200"
-                        : "border-none"
-                    }`}
-                  >
-                    <Link href={"#"} className="py-3 px-2 flex">
-                      <div>{menuItem.title}</div>
-                    </Link>
-                  </div>
-                );
-              } else {
-                return (
-                  <button
-                    onClick={() => openMenuItem(menuItem.id)}
-                    key={"cart_line" + menuItem.id}
-                    className={`block w-full relative ${
-                      index !== 0
-                        ? "border-t-[1px] border-gray-200"
-                        : "border-none"
-                    }`}
-                  >
-                    <Link href={"#"} className="flex justify-between py-3 px-2">
-                      <div>{menuItem.title}</div>
-                      <ChevronRightRoundedIcon className="text-gray-600" />
-                    </Link>
-                  </button>
-                );
-              }
-            })}
-          </ul>
-        </div>
-      </div>
-    </Drawer>
-  );
-};
-
-const MenuItemDrawer = ({
-  menuItemDrawerIsOpen,
-  onClose,
-  menuItem,
-  onCloseAll,
-}) => {
-  return (
-    <Drawer anchor="right" open={menuItemDrawerIsOpen} onClose={onClose}>
-      <div className="h-screen flex flex-col w-[384px] max-w-sm">
-        <div className="mb-2 bg-primary text-white">
-          <div className="flex container h-16 items-center justify-between">
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="close drawer"
-              onClick={() => onClose()}
-            >
-              <ChevronLeftRoundedIcon />
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="close all drawers"
-              onClick={() => onCloseAll()}
-            >
-              <CloseRoundedIcon />
-            </IconButton>
-          </div>
-        </div>
-        <div className="flex-1 overflow-y-auto px-2 sm:px-6">
-          {/* To do add menu item parent with link */}
-          <ul role="list" className="">
-            {menuItem?.items.map((menuChildItem, index) => (
-              <div
-                key={"cart_line" + menuChildItem.id}
-                className={`w-full text-left ${
-                  index !== 0 ? "border-t-[1px] border-gray-200" : "border-none"
-                }`}
-              >
-                <Link href={"#"} className="py-3 px-2 flex">
-                  <div>{menuChildItem.title}</div>
-                </Link>
-              </div>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </Drawer>
-  );
-};

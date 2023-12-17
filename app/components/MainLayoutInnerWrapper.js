@@ -17,11 +17,26 @@ const theme = createTheme({
         },
       },
     },
+    MuiBreadcrumbs: {
+      styleOverrides: {
+        ol: {
+          justifyContent: "center",
+        },
+      },
+    },
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          boxShadow: "none",
+        },
+      },
+    },
   },
 });
 
 import Navbar from "./Navbar";
 import Footer from "@/components/Footer";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export default function RootLayout({ shopData, children }) {
   return (
@@ -43,7 +58,7 @@ export default function RootLayout({ shopData, children }) {
         >
           <ThemeProvider theme={theme}>
             <Navbar menu={shopData.menu} />
-
+            <Breadcrumb />
             {children}
           </ThemeProvider>
         </CartProvider>

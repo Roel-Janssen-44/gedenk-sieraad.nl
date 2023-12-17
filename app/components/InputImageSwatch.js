@@ -27,10 +27,10 @@ export default function InputImageSwatch({ value, onChange, title, options }) {
                   src={option.image.url}
                   width={32}
                   height={32}
-                  alt={option.image.altText}
+                  alt={option.image.altTekst}
                   priority={false}
                   loading="lazy"
-                  className="h-auto"
+                  // className="h-auto w-auto"
                 />
               </div>
             </IconButton>

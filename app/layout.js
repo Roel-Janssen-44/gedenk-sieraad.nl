@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 
 import {
@@ -8,7 +8,7 @@ import {
 
 import MainLayoutInnerWrapper from "@/components/MainLayoutInnerWrapper";
 
-const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 export default async function RootLayout({ children }) {
   const shopDataResponse = await fetch(getStorefrontApiUrl(), {
@@ -22,7 +22,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="nl">
-      <body className={`${inter.className} pt-20`}>
+      <body className={`${montserrat.className}`}>
         <MainLayoutInnerWrapper shopData={shopDataJson.data}>
           {children}
         </MainLayoutInnerWrapper>

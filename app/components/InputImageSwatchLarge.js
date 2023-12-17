@@ -32,7 +32,7 @@ export default function InputImageSwatchLarge({
                 alt={option.image.altText}
                 priority={false}
                 loading="lazy"
-                className="h-auto"
+                // className="h-auto"
               />
             </Button>
           </Tooltip>

@@ -22,8 +22,8 @@ const options = [
 ];
 export default function SortCollection({}) {
   return (
-    <div className="flex justify-end items-center">
-      <span className="font-bold mr-4">Sorteren:</span>
+    <div className="flex justify-center items-center bg-gray-200 p-8 py-4">
+      <span className="font-medium mr-4">Sorteren:</span>
       <div className="-mt-2">
         <InputSelect
           value={"Aanbevolen"}

@@ -16,10 +16,8 @@ import Button from "@mui/material/Button";
 import ExtraProductOptions from "@/components/ExtraProductOptions";
 
 export default function ProductPage({ product }) {
-  console.log("product");
-  console.log(product);
   return (
-    <div className="container mt-20">
+    <div className="container">
       <ProductProvider
         data={product}
         initialVariantId={product?.variant?.edges[0]?.node?.id}
@@ -47,9 +45,6 @@ function Product() {
     options,
   } = useProduct();
 
-  console.log("selectedVariant");
-  console.log(selectedVariant.price.amount);
-
   const { linesAdd } = useCart();
   const [extraOptions, setExtraOptions] = useState([]);
 
@@ -58,7 +53,7 @@ function Product() {
   const tags = ["creool", "aspakket", "hars", "tekst"];
   return (
     <div className="container mx-auto flex flex-col gap-6">
-      <h2 className="text-3xl">{product.title}</h2>
+      <h1 className="text-6xl font-tangerine">{product.title}</h1>
       <div className="flex items-center text-sm">
         <span className="font-bold min-w-[140px]">Prijs:</span>
         <span>€ {selectedVariant.price.amount}</span>
@@ -117,6 +112,8 @@ function Product() {
         <span className="font-bold min-w-[140px]">Artikelnr:</span>
         <span className="font-normal">{selectedVariant.sku}</span>
       </div>
+      {/* To do verzending */}
+
       <Button
         size="large"
         variant="contained"
@@ -168,8 +165,10 @@ function Product() {
           }
         }}
       >
-        Add to cart
+        Voeg toe aan winkelmandje
       </Button>
+
+      {/* To do product beschrijving */}
     </div>
   );
 }

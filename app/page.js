@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Hero from "@/components/Hero";
 
 export const metadata = {
   title: "Home page",
@@ -7,10 +8,8 @@ export const metadata = {
 
 export default async function Home() {
   return (
-    <>
-      <div className="text-center text-3xl my-20">Home page</div>
-      {/* <Hero /> */}
-      <Link href={`/products/testproduct`}>Testproduct</Link>
-    </>
+    <div className="pb-[3000px] ">
+      <Hero />
+    </div>
   );
 }

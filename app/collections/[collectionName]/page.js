@@ -24,15 +24,16 @@ export default async function Collection({ params }) {
 
   const collectionJson = await collectionResponse.json();
   return (
-    <div>
-      <CollectionPage collection={collectionJson.data.collectionByHandle} />
-    </div>
+    <CollectionPage
+      collection={collectionJson.data.collectionData}
+      filterMenu={collectionJson.data.shopData}
+    />
   );
 }
 
 const GRAPHQL_COLLECTION_QUERY = `
 query CollectionByHandle($collectionName: String!) {
-  collectionByHandle(handle: $collectionName) {
+  collectionData: collection(handle: $collectionName) {
     handle
     title
     description
@@ -50,54 +51,3 @@ query CollectionByHandle($collectionName: String!) {
   }
 }
 `;
-// const GRAPHQL_COLLECTION_QUERY = `
-// query CollectionByHandle($collectionName: String!) {
-//   collectionByHandle(handle: $collectionName) {
-//     description
-//     handle
-//     image {
-//       altText
-//       height
-//       url
-//       width
-//       src
-//     }
-//     seo {
-//       description
-//       title
-//     }
-//     title
-//     products(first: 10) {
-//       pageInfo {
-//         hasNextPage
-//         hasPreviousPage
-//       }
-//       nodes {
-//         title
-//         id
-//         handle
-//         images(first: 2) {
-//           nodes {
-//             altText
-//             height
-//             url
-//             width
-//             src
-//           }
-//         }
-//         priceRange {
-//           maxVariantPrice {
-//             amount
-//             currencyCode
-//           }
-//           minVariantPrice {
-//             amount
-//             currencyCode
-//           }
-//         }
-//         vendor
-//       }
-//     }
-//   }
-// }
-// `;
