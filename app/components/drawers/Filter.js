@@ -210,7 +210,7 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
                 <AccordionDetails className="border-[1px] border-gray-200 p-0">
                   <ul className="list-disc pl-8">
                     {menuSet.items.map((item, index) => (
-                      <li key={`menuItem-${item.label}-${index * 10}${index}`}>
+                      <li key={`menuItem-${item.label}-${item.link}`}>
                         <Link
                           href="/collections/all"
                           className="py-2 px-4 w-full block"
@@ -232,7 +232,7 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
             }));
 
             return (
-              <div className="px-4 mt-10">
+              <div className="px-4 mt-10" key={`facet-${index}`}>
                 <h5 className="font-semibold mb-2">{facet.label}</h5>
                 <div className="mb-2">
                   <hr className="h-[3px] rounded-full bg-gray-800" />
