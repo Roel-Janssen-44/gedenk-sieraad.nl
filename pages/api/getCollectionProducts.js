@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     productVendor,
     minPrijs,
     maxPrijs,
-    cursor,
+    newFetchCursor,
   } = req.body;
 
   try {
@@ -24,6 +24,7 @@ export default async function handler(req, res) {
       productVendor,
       minPrijs,
       maxPrijs,
+      newFetchCursor,
     });
 
     const collectionResponse = await fetch(getStorefrontApiUrl(), {
@@ -50,6 +51,7 @@ const generateGraphQLQuery = ({
   productVendor,
   minPrijs,
   maxPrijs,
+  newFetchCursor,
 }) => {
   let vendorFilter;
   if (productVendor != null) {
@@ -60,11 +62,24 @@ const generateGraphQLQuery = ({
     materiaalFilter = `{ variantOption: { name: "Materiaal", value: "${materiaal}" } }`;
   }
 
+  let cursorFilter;
+  if (newFetchCursor != null) {
+    cursorFilter = `${newFetchCursor.direction}: "${newFetchCursor.cursor}"`;
+  }
+
+  let fetchDirection;
+  if (newFetchCursor?.direction == "after") {
+    fetchDirection = "first";
+  } else if (newFetchCursor?.direction == "before") {
+    fetchDirection = "last";
+  }
+
   return `
     query CollectionByHandle {
       collection(handle: "${collectionName}") {
         products(
-          first: 10
+          ${fetchDirection || "first"}: 2
+          ${cursorFilter || ""}
           filters: [
             {available: true}, 
             { price: { min: ${parseFloat(minPrijs) || 0.0}, max: ${
@@ -77,6 +92,8 @@ const generateGraphQLQuery = ({
           pageInfo {
             hasNextPage
             hasPreviousPage
+            endCursor
+            startCursor
           }
           nodes {
             title

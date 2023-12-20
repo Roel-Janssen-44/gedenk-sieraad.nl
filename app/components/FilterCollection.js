@@ -21,7 +21,7 @@ export default function FilterCollection({ facets }) {
       >
         <PlayArrowRoundedIcon fontSize="32px" />
       </IconButton>
-      <div className="hidde">filter menu</div>
+      <div className="hidden">filter menu</div>
       <FilterDrawer
         filterDrawerIsOpen={filterDrawerIsOpen}
         onClose={toggleFilterDrawerIsOpen}

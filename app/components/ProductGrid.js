@@ -5,25 +5,27 @@ import { flattenConnection } from "@shopify/hydrogen-react";
 import { getClientBrowserParameters } from "@shopify/hydrogen-react";
 import { useSearchParams } from "next/navigation";
 
+import Button from "@mui/material/Button";
+import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
+import Stack from "@mui/material/Stack";
+
 import Grid from "./Grid";
 import ProductGridItem from "./ProductGridItem";
 
 export default function ProductGrid({ collection, collectionName }) {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
+  const [pageInfo, setPageInfo] = useState(null);
+  const [newFetchCursor, setNewFetchCursor] = useState(null);
 
   const searchParams = useSearchParams();
   const materiaalParam = searchParams.get("Materiaal");
   const materiaal = materiaalParam
     ? materiaalParam.replace(/\s*\(\d+\)\s*/, "")
     : null;
-
-  console.log(materiaalParam);
-  console.log(materiaal);
   const merkParam = searchParams.get("Merk");
   const merk = merkParam ? merkParam.replace(/\s*\(\d+\)\s*/, "") : null;
-  console.log("merk");
-  console.log(merk);
   const minPrijs = searchParams.get("minprijs");
   const maxPrijs = searchParams.get("maxprijs");
   const sort = searchParams.get("sorteer");
@@ -43,7 +45,7 @@ export default function ProductGrid({ collection, collectionName }) {
             minPrijs,
             maxPrijs,
             sortKey: sort,
-            // cursor: 5,
+            newFetchCursor: newFetchCursor,
           }),
         });
 
@@ -52,27 +54,69 @@ export default function ProductGrid({ collection, collectionName }) {
         }
 
         const data = await response.json();
-        console.log("data");
-        console.log(data);
-        console.log(data.nodes);
-        setProducts(data);
+        setProducts(data.nodes);
+        setPageInfo(data.pageInfo);
       } catch (error) {
         setError(error.message || "An error occurred while fetching data.");
       }
     };
 
     fetchData();
-  }, [collection]);
+  }, [collection, newFetchCursor]);
 
   if (error) {
     return <div>Error: {error}</div>;
   }
 
+  const handleNewFetch = (direction, cursor) => {
+    setNewFetchCursor({ direction, cursor });
+  };
+
   return (
     <Grid>
-      {products?.nodes?.map((product) => {
+      {/* To do lege pagina melding maken */}
+      {/* {!products[0] && <h2>Geen producten gevonden probeer een andere pagina</h2>} */}
+      {products.map((product) => {
         return <ProductGridItem key={product.id} product={product} />;
       })}
+      <div className="flex flex-row justify-center gap-12 mt-8">
+        {pageInfo?.hasPreviousPage && (
+          <Button
+            variant="contained"
+            className={`text-gray-700 ${
+              pageInfo?.hasPreviousPage
+                ? "bg-primary text-white"
+                : "border-2 border-black"
+            }`}
+            onClick={() => handleNewFetch("before", pageInfo.startCursor)}
+          >
+            <ChevronLeftRoundedIcon fontSize="large" color="inherit" />
+          </Button>
+        )}
+        {!pageInfo?.hasPreviousPage && (
+          <Button variant="contained" disabled className={`text-gray-700 `}>
+            <ChevronLeftRoundedIcon fontSize="large" color="inherit" />
+          </Button>
+        )}
+        {pageInfo?.hasNextPage && (
+          <Button
+            variant="contained"
+            className={`text-gray-700  ${
+              pageInfo?.hasNextPage
+                ? "bg-primary text-white"
+                : "border-2 border-black"
+            }`}
+            onClick={() => handleNewFetch("after", pageInfo.endCursor)}
+          >
+            <ChevronRightRoundedIcon fontSize="large" color="inherit" />
+          </Button>
+        )}
+        {!pageInfo?.hasNextPage && (
+          <Button variant="contained" disabled className={`text-gray-700 `}>
+            <ChevronRightRoundedIcon fontSize="large" color="inherit" />
+          </Button>
+        )}
+      </div>
     </Grid>
   );
 }

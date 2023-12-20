@@ -16,8 +16,10 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import InputRadio from "../InputRadio";
+import { TextField } from "@mui/material";
 
 const menu = [
   {
@@ -162,12 +164,11 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
     replace(`${pathname}?${params.toString()}`);
   };
 
+  const price = JSON.parse(facets.productFilters[2].values[0].input).price;
+
   return (
     <Drawer anchor="left" open={filterDrawerIsOpen} onClose={onClose}>
       <div className="h-screen flex flex-col w-full max-w-[325px]">
-        {/* <div className="p-8 font-medium mb-8 bg-primary text-white">
-          filter producten
-        </div> */}
         <div className="mb-8 bg-primary text-white">
           <div className="flex container h-16 items-center justify-between">
             <h2 className="text-lg font-medium">filter producten</h2>
@@ -246,13 +247,40 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
             );
           })}
         </div>
-        <div className="px-8 mt-10 pb-10">
+        <div className="px-8 mt-10 pb-8">
           <h5 className="font-semibold mb-2">Prijs:</h5>
           <div className="mb-2">
             <hr className="h-[3px] rounded-full bg-gray-800" />
           </div>
           {/* Prijs opties */}
-          <div>Prijs opties</div>
+          <div className="flex flex-wrap items-center text-sm mb-2 mt-4">
+            <span className="font-bold min-w-[140px]">Van €0.-</span>
+          </div>
+          <TextField
+            type="number"
+            value={price.min}
+            variant="outlined"
+            // To do handle change
+            // onChange={(e) => onChange(e.target.value)}
+          />
+          <div className="flex flex-wrap items-center text-sm mb-2 mt-4">
+            <span className="font-bold min-w-[140px]">Tot €{price.max}.-</span>
+          </div>
+          <TextField
+            type="number"
+            max={price.max}
+            value={price.max}
+            variant="outlined"
+            // onChange={(e) => onChange(e.target.value)}
+          />
+          <Button
+            className="bg-primary w-full mt-8"
+            variant="contained"
+            size="large"
+            onClick={onClose}
+          >
+            Producten zoeken
+          </Button>
         </div>
       </div>
     </Drawer>
