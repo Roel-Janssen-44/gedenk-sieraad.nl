@@ -19,7 +19,9 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import InputRadio from "../InputRadio";
-import { TextField } from "@mui/material";
+import { TextField, Input } from "@mui/material";
+import { RadioGroup, FormControlLabel, Radio } from "@mui/material";
+import InputAdornment from "@mui/material/InputAdornment";
 
 const menu = [
   {
@@ -154,17 +156,33 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
   const pathname = usePathname();
   const { replace } = useRouter();
 
+  const price = JSON.parse(facets.productFilters[2].values[0].input).price;
+
+  const [materiaal, setMateriaal] = useState(searchParams.get("Materiaal"));
+  const [merk, setMerk] = useState(searchParams.get("Merk"));
+  const [minPrijs, setMinPrijs] = useState(searchParams.get("MinPrijs") || 0);
+  const [maxPrijs, setMaxPrijs] = useState(
+    searchParams.get("MaxPrijs") || price.max
+  );
+
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
+  const stateSetters = {
+    Materiaal: setMateriaal,
+    Merk: setMerk,
+    MinPrijs: setMinPrijs,
+    MaxPrijs: setMaxPrijs,
+  };
+
   const handleFacetChange = (facetLabel, value) => {
+    stateSetters[facetLabel](value);
+
     const params = new URLSearchParams(searchParams);
     params.set(facetLabel, value);
     replace(`${pathname}?${params.toString()}`);
   };
-
-  const price = JSON.parse(facets.productFilters[2].values[0].input).price;
 
   return (
     <Drawer anchor="left" open={filterDrawerIsOpen} onClose={onClose}>
@@ -229,7 +247,8 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
           {facets.productFilters.map((facet, index) => {
             if (index > 1) return null;
             const options = facet.values.map(({ label, count }) => ({
-              value: `${label} (${count})`,
+              value: label,
+              count,
             }));
 
             return (
@@ -238,11 +257,36 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
                 <div className="mb-2">
                   <hr className="h-[3px] rounded-full bg-gray-800" />
                 </div>
-                <InputRadio
+                {/* <InputRadio
                   onChange={(value) => handleFacetChange(facet.label, value)}
                   title={""}
                   options={options}
-                />
+                /> */}
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  name="radio-buttons-group"
+                  value={index == 0 ? materiaal : merk}
+                >
+                  {options.map((option) => {
+                    if (option.value.includes("MWS")) return null;
+                    return (
+                      <FormControlLabel
+                        key={
+                          facet.label + "-" + option.value + "-" + option.count
+                        }
+                        value={option.value}
+                        control={
+                          <Radio sx={{ "&.Mui-checked": { color: "#222" } }} />
+                        }
+                        label={option.value + ` (${option.count})`}
+                        className="mb-1.5 last:mb-0 "
+                        onChange={(e) =>
+                          handleFacetChange(facet.label, e.target.value)
+                        }
+                      />
+                    );
+                  })}
+                </RadioGroup>
               </div>
             );
           })}
@@ -258,10 +302,14 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
           </div>
           <TextField
             type="number"
-            value={price.min}
+            value={minPrijs}
             variant="outlined"
-            // To do handle change
-            // onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => handleFacetChange("MinPrijs", e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">€</InputAdornment>
+              ),
+            }}
           />
           <div className="flex flex-wrap items-center text-sm mb-2 mt-4">
             <span className="font-bold min-w-[140px]">Tot €{price.max}.-</span>
@@ -269,10 +317,22 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
           <TextField
             type="number"
             max={price.max}
-            value={price.max}
+            value={maxPrijs}
             variant="outlined"
-            // onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => handleFacetChange("MaxPrijs", e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">€</InputAdornment>
+              ),
+            }}
           />
+          {/* <TextField
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">kg</InputAdornment>
+              ),
+            }}
+          /> */}
           <Button
             className="bg-primary w-full mt-8"
             variant="contained"

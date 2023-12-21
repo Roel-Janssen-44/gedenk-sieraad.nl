@@ -26,8 +26,8 @@ export default function ProductGrid({ collection, collectionName }) {
     : null;
   const merkParam = searchParams.get("Merk");
   const merk = merkParam ? merkParam.replace(/\s*\(\d+\)\s*/, "") : null;
-  const minPrijs = searchParams.get("minprijs");
-  const maxPrijs = searchParams.get("maxprijs");
+  const minPrijs = searchParams.get("MinPrijs");
+  const maxPrijs = searchParams.get("MaxPrijs");
   const sort = searchParams.get("sorteer");
 
   useEffect(() => {
