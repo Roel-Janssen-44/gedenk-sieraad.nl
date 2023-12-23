@@ -25,67 +25,67 @@ import InputAdornment from "@mui/material/InputAdornment";
 
 const menu = [
   {
-    label: "Sieraden met as/haar",
+    label: "Gedenksieraden as/haar",
     items: [
       {
-        link: "/collection/ashangers",
-        label: "Sieraden met as/haar",
+        link: "/collections/assieraden",
+        label: "Gedenksieraden as/haar",
       },
       {
-        link: "/collection/ashangers",
-        label: "Ashangers",
+        link: "/collections/ashangers",
+        label: "Ashanger",
       },
       {
-        link: "/collection/all",
-        label: "Ashanger met gravure",
+        link: "/collections/ashanger-met-vingerprint-gravure",
+        label: "Ashangers met gravure",
       },
       {
-        link: "/collection/asringen",
+        link: "/collections/asringen",
         label: "Asringen",
       },
       {
-        link: "/collection/armband-met-as",
+        link: "/collections/armband-met-as",
         label: "Armbanden met as",
       },
       {
-        link: "/collection/oorsieraden",
+        link: "/collections/oorsieraden",
         label: "Oorsieraden",
       },
       {
-        link: "/collection/asbedels",
+        link: "/collections/asbedels",
         label: "Asbedels",
       },
       {
-        link: "/collection/manchetknopen",
+        link: "/collections/as-manchetknopen",
         label: "Manchetknopen",
       },
     ],
   },
   {
-    label: "Sieraden met vingerprint/gravure",
+    label: "Gedenkieraden vingerprint/gravure",
     items: [
       {
-        link: "/collection/ashangers",
-        label: "Sieraden met vingerprint/gravure",
+        link: "/collections/sieraden-met-vingerprint",
+        label: "Gedenkieraden vingerprint/gravure",
       },
       {
-        link: "/collection/ashangers",
+        link: "/collections/hangers",
         label: "Hangers",
       },
       {
-        link: "/collection/all",
+        link: "/collections/ringen",
         label: "Ringern",
       },
       {
-        link: "/collection/asringen",
+        link: "/collections/armband-met-vingerprint",
         label: "Armbanden",
       },
       {
-        link: "/collection/armband-met-as",
+        link: "/collections/bedels",
         label: "Bedels",
       },
       {
-        link: "/collection/oorsieraden",
+        link: "/collections/manchetknopen",
         label: "Manchetknopen",
       },
     ],
@@ -94,36 +94,36 @@ const menu = [
     label: "Assortiment",
     items: [
       {
-        link: "/collection/ashangers",
+        link: "/collections/assortiment",
         label: "Assortiment",
       },
       {
-        link: "/collection/ashangers",
-        label: "Specials mannen",
-      },
-      {
-        link: "/collection/all",
-        label: "Geboortesieraden",
-      },
-      {
-        link: "/collection/asringen",
-        label: "Initialen/letter sieraden",
-      },
-      {
-        link: "/collection/armband-met-as",
-        label: "Knuffelkeitjes/mini urnen",
-      },
-      {
-        link: "/collection/oorsieraden",
-        label: "Aanschuifringen",
-      },
-      {
-        link: "/collection/oorsieraden",
+        link: "/collections/colliers-kettingen",
         label: "Colliers/kettingen",
       },
       {
-        link: "/collection/oorsieraden",
-        label: "Accessoires/gedenkbonnen",
+        link: "/collections/specials-mannen",
+        label: "Specials mannen",
+      },
+      {
+        link: "/collections/initials",
+        label: "Initials",
+      },
+      {
+        link: "/collections/knuffelkeien",
+        label: "Knuffelkeien/mini urnen",
+      },
+      {
+        link: "/collections/geboortesieraden",
+        label: "geboortesieraden",
+      },
+      {
+        link: "/collections/siders",
+        label: "Aanschuifringen",
+      },
+      {
+        link: "/collections/accespores",
+        label: "Accessoires",
       },
     ],
   },
@@ -131,19 +131,19 @@ const menu = [
     label: "Herinnering dieren",
     items: [
       {
-        link: "/collection/ashangers",
+        link: "/collections/dieren",
         label: "Herinnering dieren",
       },
       {
-        link: "/collection/ashangers",
-        label: "Hangers",
+        link: "/collections/hangers-1",
+        label: "Hangers dieren",
       },
       {
-        link: "/collection/all",
+        link: "/collections/bedels-1",
         label: "Bedels",
       },
       {
-        link: "/collection/asringen",
+        link: "/collections/mini-urnen-1",
         label: "Mini urnen",
       },
     ],
@@ -231,12 +231,13 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
                     {menuSet.items.map((item, index) => (
                       <li key={`menuItem-${item.label}-${item.link}`}>
                         <Link
-                          href="/collections/all"
-                          className="py-2 px-4 w-full block"
+                          href={item.link}
+                          className={`py-2 px-4 w-full block ${
+                            pathname == item.link ? "text-primary" : ""
+                          }`}
                         >
                           {item.label}
                         </Link>
-                        {/* To do active link checken & links in menu array invullen */}
                       </li>
                     ))}
                   </ul>
@@ -257,11 +258,6 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
                 <div className="mb-2">
                   <hr className="h-[3px] rounded-full bg-gray-800" />
                 </div>
-                {/* <InputRadio
-                  onChange={(value) => handleFacetChange(facet.label, value)}
-                  title={""}
-                  options={options}
-                /> */}
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
                   name="radio-buttons-group"

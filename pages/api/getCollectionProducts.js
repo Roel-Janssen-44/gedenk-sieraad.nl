@@ -15,6 +15,7 @@ export default async function handler(req, res) {
     minPrijs,
     maxPrijs,
     newFetchCursor,
+    sortKey,
   } = req.body;
 
   try {
@@ -25,6 +26,7 @@ export default async function handler(req, res) {
       minPrijs,
       maxPrijs,
       newFetchCursor,
+      sortKey,
     });
 
     const collectionResponse = await fetch(getStorefrontApiUrl(), {
@@ -52,6 +54,7 @@ const generateGraphQLQuery = ({
   minPrijs,
   maxPrijs,
   newFetchCursor,
+  sortKey,
 }) => {
   let vendorFilter;
   if (productVendor != null) {
@@ -74,12 +77,39 @@ const generateGraphQLQuery = ({
     fetchDirection = "last";
   }
 
+  let sort;
+  if (sortKey != null) {
+    switch (sortKey) {
+      case "bestsellers":
+        console.log("best selling");
+        sort = "sortKey: BEST_SELLING";
+        break;
+      case "aanbevolen":
+        console.log("relevance");
+        sort = "sortKey: RELEVANCE";
+        break;
+      case "laag naar hoog":
+        console.log("laag naar hoog");
+        sort = "sortKey: PRICE";
+        break;
+      case "hoog naar laag":
+        console.log("hoog naar laag");
+        sort = "sortKey: PRICE, reverse: true";
+        break;
+
+      default:
+        break;
+    }
+  }
+
   return `
     query CollectionByHandle {
       collection(handle: "${collectionName}") {
         products(
-          ${fetchDirection || "first"}: 2
-          ${cursorFilter || ""}
+          ${fetchDirection || "first"}: 2,
+          ${cursorFilter || ""},
+          ${sort || ""}
+
           filters: [
             {available: true}, 
             { price: { min: ${parseFloat(minPrijs) || 0.0}, max: ${

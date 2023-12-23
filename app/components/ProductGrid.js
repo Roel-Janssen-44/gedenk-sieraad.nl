@@ -28,7 +28,7 @@ export default function ProductGrid({ collection, collectionName }) {
   const merk = merkParam ? merkParam.replace(/\s*\(\d+\)\s*/, "") : null;
   const minPrijs = searchParams.get("MinPrijs");
   const maxPrijs = searchParams.get("MaxPrijs");
-  const sort = searchParams.get("sorteer");
+  const sort = searchParams.get("Sorteer");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +39,7 @@ export default function ProductGrid({ collection, collectionName }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            collectionName: "assieraden",
+            collectionName,
             materiaal: materiaal,
             productVendor: merk,
             minPrijs,
