@@ -172,7 +172,6 @@ function Product() {
                 attributes: outputArray,
               },
             ]);
-            console.log("ikbahjndlnnnljsfndl'jksljagsvdbhklsabvdlasdvb");
             openCartDrawer(true);
           }
         }}

@@ -146,3 +146,5 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
     </Drawer>
   );
 }
+
+// To do button link aanpassen wanneer winkelwagen leeg is

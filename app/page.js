@@ -1,5 +1,12 @@
 import Link from "next/link";
+import {
+  getStorefrontApiUrl,
+  getPrivateTokenHeaders,
+} from "@/lib/shopify-client";
+
 import Hero from "@/components/Hero";
+import CollectionCollage from "./components/CollectionCollage";
+import CollectionSlider from "./components/CollectionSlider";
 
 export const metadata = {
   title: "Home page",
@@ -7,9 +14,84 @@ export const metadata = {
 };
 
 export default async function Home() {
+  const collectionResponse = await fetch(getStorefrontApiUrl(), {
+    body: JSON.stringify({
+      query: getCollectionsQuery,
+    }),
+    headers: getPrivateTokenHeaders({ buyerIp: "..." }),
+    method: "POST",
+  });
+
+  const collectionJson = await collectionResponse.json();
+  console.log("GraphQL Response:", collectionJson);
+
+  if (collectionJson.errors) {
+    console.error("GraphQL Errors:", collectionJson.errors);
+  }
   return (
     <div className="pb-[3000px] ">
       <Hero />
+      <CollectionCollage collections={collectionJson.data} />
+      <CollectionSlider />
     </div>
   );
 }
+
+const getCollectionsQuery = `
+  query Collections {
+    collection1: collection(handle: "sieraden-met-vingerprint") {
+      ...collectionFields
+    }
+    collection2: collection(handle: "assieraden") {
+      ...collectionFields
+    }
+    collection3: collection(handle: "dieren") {
+      ...collectionFields
+    }
+  }
+
+  fragment collectionFields on Collection {
+    descriptionHtml
+    title
+    products(first: 15) {
+      nodes {
+        title
+      }
+    }
+    image {
+      height
+      altText
+      width
+      url
+    }
+  }
+`;
+`
+{
+  collection1: collection(handle: "sieraden-met-gravure") {
+    ...collectionFields
+  }
+  collection2: collection(handle: "sieraden-met-as-haar") {
+    ...collectionFields
+  }
+  collection3: collection(handle: "herinnering-dieren") {
+    ...collectionFields
+  }
+}
+
+fragment collectionFields on Collection {
+  descriptionHtml
+  title
+  products(first: 15) {
+    nodes {
+      title
+    }
+  }
+  image {
+    height
+    altText
+    width
+    url
+  }
+}
+`;
