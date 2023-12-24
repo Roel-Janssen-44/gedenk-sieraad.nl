@@ -37,7 +37,7 @@ export default function Hero() {
     <div className="h-[100svh] bg-red-400">
       <Slider {...settings} className="h-[100svh]">
         {slides.map((slide, index) => (
-          <div className="h-[100svh] relative">
+          <div key={slide.title} className="h-[100svh] relative">
             <Image
               src={`/images/${slide.image}`}
               alt={`/images/${slide.imageAlt}`}

@@ -10,15 +10,9 @@ export default function CollectionCollage({ collections }) {
   console.log(collections);
   return (
     <div className="mt-20 container">
-      {/* {collections.map((collection, index) => (
-        <h2 className="text-2xl font-tangerine">
-          Collection {collection.title}
-        </h2>
-      ))} */}
       {Object.keys(collections).map((key) => {
         const collection = collections[key];
         const htmlContent = collection.descriptionHtml;
-        // const htmlContent = "<script>alert(1);</script>";
 
         const sanitizedHtmlContent = DOMPurify.sanitize(htmlContent);
 
