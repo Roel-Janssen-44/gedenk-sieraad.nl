@@ -38,7 +38,6 @@ export default async function handler(req, res) {
     });
 
     const collectionJson = await collectionResponse.json();
-    console.log("GraphQL Response:", collectionJson);
 
     return res.status(200).json(collectionJson.data.collection.products);
   } catch (error) {
@@ -81,19 +80,15 @@ const generateGraphQLQuery = ({
   if (sortKey != null) {
     switch (sortKey) {
       case "bestsellers":
-        console.log("best selling");
         sort = "sortKey: BEST_SELLING";
         break;
       case "aanbevolen":
-        console.log("relevance");
         sort = "sortKey: RELEVANCE";
         break;
       case "laag naar hoog":
-        console.log("laag naar hoog");
         sort = "sortKey: PRICE";
         break;
       case "hoog naar laag":
-        console.log("hoog naar laag");
         sort = "sortKey: PRICE, reverse: true";
         break;
 
@@ -106,7 +101,7 @@ const generateGraphQLQuery = ({
     query CollectionByHandle {
       collection(handle: "${collectionName}") {
         products(
-          ${fetchDirection || "first"}: 2,
+          ${fetchDirection || "first"}: 3,
           ${cursorFilter || ""},
           ${sort || ""}
 

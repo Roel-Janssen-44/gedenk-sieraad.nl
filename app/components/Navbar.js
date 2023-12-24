@@ -75,10 +75,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function Navbar({ menu }) {
+export default function Navbar({
+  menu,
+  setCartDrawerIsOpen,
+  cartDrawerIsOpen,
+}) {
   const { totalQuantity } = useCart();
 
-  const [cartDrawerIsOpen, setCartDrawerIsOpen] = useState(false);
   const toggleCartDrawerIsOpen = () => {
     setCartDrawerIsOpen(!cartDrawerIsOpen);
   };

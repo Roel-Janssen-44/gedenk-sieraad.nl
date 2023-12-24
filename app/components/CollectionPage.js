@@ -13,7 +13,6 @@ import ProductGrid from "@/components/ProductGrid";
 import NotFound from "@/components/NotFound";
 
 export default async function CollectionPage({ collection }) {
-  console.log(collection);
   if (!collection?.handle) return <NotFound />;
 
   const collectionResponse = await fetch(getStorefrontApiUrl(), {
@@ -21,7 +20,6 @@ export default async function CollectionPage({ collection }) {
       query: GRAPHQL_COLLECTION_QUERY,
       variables: {
         collectionName: collection.handle,
-        collectionTitle: collection.title,
       },
     }),
     headers: getPrivateTokenHeaders({ buyerIp: "..." }),
@@ -29,14 +27,9 @@ export default async function CollectionPage({ collection }) {
   });
 
   const collectionJson = await collectionResponse.json();
-  // console.log(collectionJson);
-  // console.log(collectionJson.data);
-  // console.log(collectionJson.data.collectionByHandle);
-  // console.log(collectionJson.data.search);
-
   return (
     <div className="container flex flex-col gap-8 md:flex-row">
-      <FilterCollection facets={collectionJson.data.search} />
+      <FilterCollection facets={collectionJson?.data?.search} />
       <div className="flex-1">
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 border-[1px] border-gray-200 p-4 mb-8">
           <div className="min-w-[150px]">
@@ -58,7 +51,7 @@ export default async function CollectionPage({ collection }) {
 }
 
 const GRAPHQL_COLLECTION_QUERY = `
-query CollectionByHandle($collectionName: String!, $collectionTitle: String!) {
+query CollectionByHandle($collectionName: String!) {
   collectionByHandle(handle: $collectionName) {
     products(first: 10) {
       pageInfo {
@@ -92,7 +85,7 @@ query CollectionByHandle($collectionName: String!, $collectionTitle: String!) {
       }
     }
   },
-  search(query: $collectionTitle, first: 3) {
+  search(query: $collectionName, first: 3) {
     productFilters {
       id
       label

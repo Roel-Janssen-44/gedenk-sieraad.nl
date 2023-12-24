@@ -2,6 +2,7 @@
 
 import { ShopifyProvider, CartProvider } from "@shopify/hydrogen-react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useState, createContext, useContext } from "react";
 
 const theme = createTheme({
   palette: {
@@ -38,7 +39,14 @@ import Navbar from "./Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
 
+export const CartContext = createContext();
+
+export const useCartDrawer = () => {
+  return useContext(CartContext);
+};
+
 export default function RootLayout({ shopData, children }) {
+  const [cartDrawerIsOpen, setCartDrawerIsOpen] = useState(false);
   return (
     <>
       <ShopifyProvider
@@ -56,11 +64,17 @@ export default function RootLayout({ shopData, children }) {
             console.log("a line has been added");
           }}
         >
-          <ThemeProvider theme={theme}>
-            <Navbar menu={shopData.menu} />
-            <Breadcrumb />
-            {children}
-          </ThemeProvider>
+          <CartContext.Provider value={setCartDrawerIsOpen}>
+            <ThemeProvider theme={theme}>
+              <Navbar
+                cartDrawerIsOpen={cartDrawerIsOpen}
+                setCartDrawerIsOpen={setCartDrawerIsOpen}
+                menu={shopData.menu}
+              />
+              <Breadcrumb />
+              {children}
+            </ThemeProvider>
+          </CartContext.Provider>
         </CartProvider>
       </ShopifyProvider>
       <Footer />

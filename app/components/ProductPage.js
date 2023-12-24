@@ -14,8 +14,12 @@ import * as OptionSets from "./productOptions/optionSets";
 
 import Button from "@mui/material/Button";
 import ExtraProductOptions from "@/components/ExtraProductOptions";
+import { useCartDrawer } from "@/components/MainLayoutInnerWrapper";
 
 export default function ProductPage({ product }) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="container">
       <ProductProvider
@@ -46,6 +50,7 @@ function Product() {
   } = useProduct();
 
   const { linesAdd } = useCart();
+  const openCartDrawer = useCartDrawer();
   const [extraOptions, setExtraOptions] = useState([]);
 
   // const tags = product.tags
@@ -143,25 +148,32 @@ function Product() {
           } else {
             const outputArray = extraOptions.flatMap((item) =>
               Array.isArray(item.value)
-                ? item.value.map((nestedItem) => ({
-                    key: nestedItem.key,
-                    value: nestedItem.value,
-                  }))
-                : [{ key: item.key, value: item.value }]
+                ? item.value
+                    .map((nestedItem) => ({
+                      key: nestedItem.key,
+                      value: nestedItem.value !== "" ? nestedItem.value : null,
+                    }))
+                    .filter((nestedItem) => nestedItem.value !== null)
+                : item.value !== ""
+                ? [{ key: item.key, value: item.value }]
+                : []
             );
             console.log(extraOptions);
+            console.log(outputArray);
             const totalPrice = calculatePrice(extraOptions, OptionSets);
             console.log("totalPrice");
             console.log(totalPrice);
 
-            // linesAdd([
-            //   {
-            //     merchandiseId: selectedVariant.id,
-            //     quantity: 1,
-            //     // Remove attributes on production
-            //     // attributes: extraOptions,
-            //   },
-            // ]);
+            linesAdd([
+              {
+                merchandiseId: selectedVariant.id,
+                quantity: 1,
+                // Remove attributes on production
+                attributes: outputArray,
+              },
+            ]);
+            console.log("ikbahjndlnnnljsfndl'jksljagsvdbhklsabvdlasdvb");
+            openCartDrawer(true);
           }
         }}
       >

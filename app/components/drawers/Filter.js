@@ -156,7 +156,13 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const price = JSON.parse(facets.productFilters[2].values[0].input).price;
+  let price;
+  try {
+    price =
+      JSON.parse(facets?.productFilters[2]?.values[0]?.input).price || null;
+  } catch {
+    price = 10000;
+  }
 
   const [materiaal, setMateriaal] = useState(searchParams.get("Materiaal"));
   const [merk, setMerk] = useState(searchParams.get("Merk"));
@@ -245,7 +251,7 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
               </Accordion>
             </div>
           ))}
-          {facets.productFilters.map((facet, index) => {
+          {facets?.productFilters.map((facet, index) => {
             if (index > 1) return null;
             const options = facet.values.map(({ label, count }) => ({
               value: label,
