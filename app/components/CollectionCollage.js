@@ -1,21 +1,21 @@
 "use client";
 
 import sanitizeHtml from "sanitize-html-react";
-
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Image } from "@shopify/hydrogen-react";
 import Button from "@mui/material/Button";
 
 export default function CollectionCollage({ collections }) {
-  console.log("collections");
-  console.log(collections);
+  const [isClient, setIsClient] = useState(false);
 
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   return (
     <div className="mt-20 container">
       {Object.keys(collections).map((key) => {
         const collection = collections[key];
-        // const htmlContent = collection.descriptionHtml;
-        // const sanitizedHtmlContent = DOMPurify.sanitize(htmlContent);
         const sanitizedHtmlContent = sanitizeHtml(collection.descriptionHtml);
 
         return (
@@ -23,15 +23,19 @@ export default function CollectionCollage({ collections }) {
             key={key}
             className="p-4 border-[1px] border-snow-200 rounded shadow-lg mb-10"
           >
-            {console.log(key, collections[key])}
             <div className="flex flex-col-reverse gap-4 mb-4">
               <hr className="bg-primary rounded h-[3px] border-none w-16" />
               <h2 className="text-xl ">Collection {collection.title}</h2>
             </div>
-            <p
-              className="mb-4"
-              dangerouslySetInnerHTML={{ __html: sanitizedHtmlContent }}
-            ></p>
+            <div className="mb-4">
+              {isClient ? (
+                <p
+                  dangerouslySetInnerHTML={{ __html: sanitizedHtmlContent }}
+                ></p>
+              ) : (
+                "Loading..."
+              )}
+            </div>
 
             <Link href={"/"} className="mb-6 block">
               <Button

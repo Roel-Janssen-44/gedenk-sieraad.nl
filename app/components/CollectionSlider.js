@@ -1,78 +1,135 @@
 "use client";
 
+import sanitizeHtml from "sanitize-html-react";
+import { useEffect, useState, useRef } from "react";
 import Slider from "react-slick";
 import Link from "next/link";
 import "../slick_slider.css";
-import Image from "next/image";
+import { Image } from "@shopify/hydrogen-react";
+import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
+import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 
-export default function CollectionSlider() {
+import ProductGridItem from "@/components/ProductGridItem";
+
+export default function CollectionSlider({ collectionHandle }) {
+  const [collection, setCollection] = useState(null);
+  // To do setError
+
   const settings = {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true,
+    arrows: false,
     autoplay: true,
     autoplaySpeed: 3500,
   };
 
-  //   const slides = [
-  //     {
-  //       image: "hero-image-1.webp",
-  //       imageAlt: "Twee gouden ringen die op elkaar liggen",
-  //       title: "Sieraden met emotie",
-  //     },
-  //     {
-  //       image: "hero-image-2.webp",
-  //       imageAlt: "Twee gouden ringen die op elkaar liggen",
-  //       title: "Memories forever",
-  //     },
-  //     {
-  //       image: "hero-image-3.webp",
-  //       imageAlt: "Twee gouden ringen die op elkaar liggen",
-  //       title: "The art of creation",
-  //     },
-  //   ];
+  const sliderRef = useRef();
+
+  const nextSlide = () => {
+    sliderRef.current.slickNext();
+  };
+
+  const previousSlide = () => {
+    sliderRef.current.slickPrev();
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/getCollection", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            collectionHandle,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        setCollection(data);
+      } catch (error) {
+        setError(error.message || "An error occurred while fetching data.");
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(collection);
   return (
-    <div className="h-[50svh] mt-20 bg-green-400">
-      {/* <Slider {...settings} className="h-[100svh]">
-        {slides.map((slide, index) => (
-          <div className="h-[100svh] relative">
-            <Image
-              src={`/images/${slide.image}`}
-              alt={`/images/${slide.imageAlt}`}
-              fill
-              objectFit="cover"
-            />
-            <div
-              className={`bg-black absolute top-0 left-0 w-full h-full z-10 opacity-20`}
-            />
-            <div
-              className={`z-20 text-white w-full max-w-xs absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`}
+    <div className="mt-20 container">
+      {collection != null ? (
+        <div className="p-4 border-[1px] border-snow-200 rounded shadow-lg mb-10">
+          <div className="flex flex-col-reverse gap-4 mb-4">
+            <hr className="bg-primary rounded h-[3px] border-none w-16" />
+            <h2 className="text-xl ">Collection {collection.title}</h2>
+          </div>
+          <div className="mb-4">
+            <p
+              dangerouslySetInnerHTML={{
+                __html: sanitizeHtml(collection.descriptionHtml),
+              }}
+            ></p>
+          </div>
+
+          <Link href={"/"} className="mb-6 block">
+            <Button
+              variant="contained"
+              size="large"
+              className="bg-primary normal-case font-normal"
             >
-              <h3 className="text-8xl font-tangerine">{slide.title}</h3>
-            </div>
-            <IconButton
-              className={`z-20 text-white w-28 absolute aspect-square bottom-12 ${
-                index == 0
-                  ? "left-12"
-                  : index == 1
-                  ? "right-12"
-                  : "left-1/2 -translate-x-1/2"
-              }`}
-            >
-              <Link
-                className={`p-4 text-3xl font-tangerine border-[1px] w-full flex justify-center items-center h-full border-white rounded-full `}
-                href={"/"}
-              >
-                Shop nu
-              </Link>
+              Ontdek meer
+            </Button>
+          </Link>
+          <Image
+            className="rounded-sm hidden md:block"
+            data={collection.image}
+          />
+          <Slider ref={sliderRef} {...settings} className="h-auto w-full">
+            {collection?.products?.nodes.map((product, index) => (
+              // <div className="h-40 relative">
+              //   <Image data={product.images.nodes[0]} fill objectFit="cover" />
+
+              //   {console.log(product)}
+
+              //   <h3 className="text-4xl font-tangerine">{product.title}</h3>
+              // </div>
+              <div className="w-full">
+                <ProductGridItem product={product} />
+              </div>
+            ))}
+          </Slider>
+
+          <div className="flex justify-center gap-8">
+            <IconButton onClick={previousSlide} size="large">
+              <ChevronLeftRoundedIcon
+                fontSize="32px"
+                className="text-gray-700"
+              />
+            </IconButton>
+            <IconButton onClick={nextSlide} size="large">
+              <ChevronRightRoundedIcon
+                fontSize="32px"
+                className="text-gray-700"
+              />
             </IconButton>
           </div>
-        ))}
-      </Slider> */}
-      collection slider
+        </div>
+      ) : (
+        <>
+          <h2>loading</h2>
+          <p>Loading paragraph</p>
+        </>
+      )}
     </div>
   );
 }

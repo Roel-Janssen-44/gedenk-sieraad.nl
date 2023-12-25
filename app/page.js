@@ -23,7 +23,6 @@ export default async function Home() {
   });
 
   const collectionJson = await collectionResponse.json();
-  console.log("GraphQL Response:", collectionJson);
 
   if (collectionJson.errors) {
     console.error("GraphQL Errors:", collectionJson.errors);
@@ -32,7 +31,7 @@ export default async function Home() {
     <div className="pb-[3000px] ">
       <Hero />
       <CollectionCollage collections={collectionJson.data} />
-      <CollectionSlider />
+      <CollectionSlider collectionHandle="assieraden" />
     </div>
   );
 }

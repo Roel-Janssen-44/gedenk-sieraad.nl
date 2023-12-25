@@ -31,7 +31,7 @@ export default function MenuDrawer({
   openMenuItem,
 }) {
   return (
-    <Drawer anchor="right" open={menuDrawerIsOpen} onClose={onClose}>
+    <Drawer anchor="left" open={menuDrawerIsOpen} onClose={onClose}>
       <div className="h-screen flex flex-col w-max-w-sm w-[325px]">
         <div className="mb-2 bg-primary text-white">
           <div className="flex container h-16 items-center justify-end">
