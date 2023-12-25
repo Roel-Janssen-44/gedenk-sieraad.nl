@@ -103,7 +103,7 @@ export default function CollectionSlider({ collectionHandle }) {
 
               //   <h3 className="text-4xl font-tangerine">{product.title}</h3>
               // </div>
-              <div className="w-full">
+              <div className="w-full" key={product.id}>
                 <ProductGridItem product={product} />
               </div>
             ))}
