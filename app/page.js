@@ -7,6 +7,8 @@ import {
 import Hero from "@/components/Hero";
 import CollectionCollage from "./components/CollectionCollage";
 import CollectionSlider from "./components/CollectionSlider";
+import TextWithImage from "./components/TextWithImage";
+import Video from "./components/Video";
 
 export const metadata = {
   title: "Home page",
@@ -31,7 +33,11 @@ export default async function Home() {
     <div className="pb-[3000px] ">
       <Hero />
       <CollectionCollage collections={collectionJson.data} />
-      <CollectionSlider collectionHandle="assieraden" />
+      <CollectionSlider collectionHandle="luxury-hand-made" />
+      <TextWithImage />
+      <CollectionSlider collectionHandle="exquisite-hand-made" />
+      <Video />
+      {/* <CollectionSlider collectionHandle="elegant-hand-made" /> */}
     </div>
   );
 }

@@ -25,6 +25,9 @@ export default function CollectionSlider({ collectionHandle }) {
     arrows: false,
     autoplay: true,
     autoplaySpeed: 3500,
+    draggable: true,
+    pauseOnHover: true,
+    pauseOnFocus: true,
   };
 
   const sliderRef = useRef();
@@ -64,72 +67,77 @@ export default function CollectionSlider({ collectionHandle }) {
     fetchData();
   }, []);
 
-  console.log(collection);
   return (
-    <div className="mt-20 container">
-      {collection != null ? (
-        <div className="p-4 border-[1px] border-snow-200 rounded shadow-lg mb-10">
-          <div className="flex flex-col-reverse gap-4 mb-4">
-            <hr className="bg-primary rounded h-[3px] border-none w-16" />
-            <h2 className="text-xl ">Collection {collection.title}</h2>
-          </div>
-          <div className="mb-4">
-            <p
-              dangerouslySetInnerHTML={{
-                __html: sanitizeHtml(collection.descriptionHtml),
-              }}
-            ></p>
-          </div>
+    <div className="py-14 bg-white">
+      <div className="container">
+        {collection != null ? (
+          <div className="p-4 rounded">
+            <h2 className="text-3xl text-gray-800 mb-4 font-medium">
+              {collection.title}
+            </h2>
+            <div className="mb-4">
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: sanitizeHtml(collection.descriptionHtml),
+                }}
+                className="before:mb-1 before:mr-2 before:inline-block before:content-[''] before:w-16 before:bg-primary before:rounded before:h-[3px]"
+              ></p>
+            </div>
 
-          <Link href={"/"} className="mb-6 block">
-            <Button
-              variant="contained"
-              size="large"
-              className="bg-primary normal-case font-normal"
+            <Link href={"/"} className="mb-6 block">
+              <Button
+                variant="contained"
+                size="large"
+                className="bg-primary normal-case font-normal"
+              >
+                Bekijk alle
+              </Button>
+            </Link>
+            <Image
+              className="rounded-sm hidden md:block"
+              data={collection.image}
+            />
+            <Slider
+              ref={sliderRef}
+              {...settings}
+              className="h-auto w-full mb-3"
             >
-              Ontdek meer
-            </Button>
-          </Link>
-          <Image
-            className="rounded-sm hidden md:block"
-            data={collection.image}
-          />
-          <Slider ref={sliderRef} {...settings} className="h-auto w-full">
-            {collection?.products?.nodes.map((product, index) => (
-              // <div className="h-40 relative">
-              //   <Image data={product.images.nodes[0]} fill objectFit="cover" />
+              {collection?.products?.nodes.map((product, index) => (
+                // <div className="h-40 relative">
+                //   <Image data={product.images.nodes[0]} fill objectFit="cover" />
 
-              //   {console.log(product)}
+                //   {console.log(product)}
 
-              //   <h3 className="text-4xl font-tangerine">{product.title}</h3>
-              // </div>
-              <div className="w-full" key={product.id}>
-                <ProductGridItem product={product} />
-              </div>
-            ))}
-          </Slider>
+                //   <h3 className="text-4xl font-tangerine">{product.title}</h3>
+                // </div>
+                <div className="w-full" key={product.id}>
+                  <ProductGridItem product={product} />
+                </div>
+              ))}
+            </Slider>
 
-          <div className="flex justify-center gap-8">
-            <IconButton onClick={previousSlide} size="large">
-              <ChevronLeftRoundedIcon
-                fontSize="32px"
-                className="text-gray-700"
-              />
-            </IconButton>
-            <IconButton onClick={nextSlide} size="large">
-              <ChevronRightRoundedIcon
-                fontSize="32px"
-                className="text-gray-700"
-              />
-            </IconButton>
+            <div className="flex justify-center gap-8">
+              <IconButton onClick={previousSlide} size="large">
+                <ChevronLeftRoundedIcon
+                  fontSize="32px"
+                  className="text-gray-700"
+                />
+              </IconButton>
+              <IconButton onClick={nextSlide} size="large">
+                <ChevronRightRoundedIcon
+                  fontSize="32px"
+                  className="text-gray-700"
+                />
+              </IconButton>
+            </div>
           </div>
-        </div>
-      ) : (
-        <>
-          <h2>loading</h2>
-          <p>Loading paragraph</p>
-        </>
-      )}
+        ) : (
+          <>
+            <h2>loading</h2>
+            <p>Loading paragraph</p>
+          </>
+        )}
+      </div>
     </div>
   );
 }
