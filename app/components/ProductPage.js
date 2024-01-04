@@ -52,9 +52,29 @@ function Product() {
   const { linesAdd } = useCart();
   const openCartDrawer = useCartDrawer();
   const [extraOptions, setExtraOptions] = useState([]);
+  const [optionErrors, setOptionErrors] = useState([]);
+  const [showErrors, setShowErrors] = useState(false);
+
+  console.log("optionErrors");
+  console.log(optionErrors);
+  const hasTrueValue = Object.values(optionErrors).some(
+    (value) => value === true
+  );
+
+  console.log("hasTrueValue");
+  console.log(hasTrueValue);
+  console.log("extraOptions");
+  console.log(extraOptions);
+
+  // console.log("optionsToFillIn");
+  // console.log(optionsToFillIn);
 
   // const tags = product.tags
   // const tags = ["creool", "hars", "positie", "ringmaat", "vingerafdruk"];
+
+  // const checkForErrors = () => {
+  //   console.log(" cgheck for errorsa");
+  // };
   const tags = ["creool", "aspakket", "hars", "tekst"];
   return (
     <div className="container mx-auto flex flex-col gap-6">
@@ -74,7 +94,6 @@ function Product() {
               if (option.includes("WD options")) {
                 return null;
               }
-              // Selectedoption
               const isSelected = selectedOptions[optionSet.name] === option;
               if (isSelected) {
                 return (
@@ -108,6 +127,9 @@ function Product() {
         tags={tags}
         extraOptions={extraOptions}
         setExtraOptions={setExtraOptions}
+        showErrors={showErrors}
+        optionErrors={optionErrors}
+        setOptionErrors={setOptionErrors}
       />
       <div className="flex flex-wrap items-center text-sm">
         <span className="font-bold min-w-[140px]">Merk/collectie:</span>
@@ -118,35 +140,23 @@ function Product() {
         <span className="font-normal">{selectedVariant.sku}</span>
       </div>
       {/* To do verzending */}
-
+      {/* {optionErrors && <p className="text-red-700">vul alle velden in!</p>} */}
       <Button
         size="large"
         variant="contained"
         className="bg-primary"
         onClick={(e) => {
+          // checkForErrors();
+          setShowErrors(true);
+          if (hasTrueValue) return null;
+
+          console.log("add to cart");
+          return null;
           // return null;
           if (false) {
+            // if (extraOptions) {
             e.preventDefault();
-            const createdProductVariant = createProductVariant(
-              product,
-              extraOptions,
-              selectedVariant.id
-            )
-              .then((createdProductVariant) => {
-                const newVariantId = `gid://shopify/ProductVariant/${createdProductVariant.succes.variant.id}`;
-                linesAdd([
-                  {
-                    merchandiseId: newVariantId,
-                    quantity: 1,
-                    attributes: extraOptions,
-                  },
-                ]);
-              })
-              .catch((error) => {
-                console.error("Error creating product variant:", error);
-              });
-          } else {
-            const outputArray = extraOptions.flatMap((item) =>
+            const extraOptionsArray = extraOptions.flatMap((item) =>
               Array.isArray(item.value)
                 ? item.value
                     .map((nestedItem) => ({
@@ -158,18 +168,30 @@ function Product() {
                 ? [{ key: item.key, value: item.value }]
                 : []
             );
-            console.log(extraOptions);
-            console.log(outputArray);
-            const totalPrice = calculatePrice(extraOptions, OptionSets);
-            console.log("totalPrice");
-            console.log(totalPrice);
-
+            const createdProductVariant = createProductVariant(
+              product,
+              extraOptions,
+              selectedVariant.id
+            )
+              .then((createdProductVariant) => {
+                const newVariantId = `gid://shopify/ProductVariant/${createdProductVariant.succes.variant.id}`;
+                linesAdd([
+                  {
+                    merchandiseId: newVariantId,
+                    quantity: 1,
+                    attributes: extraOptionsArray,
+                  },
+                ]);
+                openCartDrawer(true);
+              })
+              .catch((error) => {
+                console.error("Error creating product variant:", error);
+              });
+          } else {
             linesAdd([
               {
                 merchandiseId: selectedVariant.id,
                 quantity: 1,
-                // Remove attributes on production
-                attributes: outputArray,
               },
             ]);
             openCartDrawer(true);
@@ -216,50 +238,3 @@ const createProductVariant = async (
   // console.log("fetch after");
   return final;
 };
-
-function calculatePrice(selectedOptions, optionSets) {
-  let totalPrice = 0;
-
-  for (let i = 0; i < selectedOptions.length; i++) {
-    const optionKey = selectedOptions[i].key + "Options";
-    const currentOptionSet = findOptionSet(optionSets, optionKey);
-
-    const selectedTargetValue = selectedOptions[i].value;
-    if (typeof selectedTargetValue == "string") {
-      const selectedOptionSet = currentOptionSet.find(
-        (option) => option.value === selectedTargetValue
-      );
-      totalPrice += selectedOptionSet.price || 0;
-    } else {
-      selectedTargetValue.forEach((selectedTarget) => {
-        const price = findPriceByValue(
-          optionSets,
-          selectedTarget.key,
-          selectedTarget.value
-        );
-        totalPrice += price || 0;
-      });
-    }
-  }
-  return totalPrice;
-}
-
-function findOptionSet(optionSets, optionSetKey) {
-  return optionSets[optionSetKey] || null;
-}
-
-function findPriceByValue(optionSets, targetKey, targetValue) {
-  const optionSet = optionSets[targetKey + "Options"];
-
-  if (optionSet && Array.isArray(optionSet)) {
-    const foundOption = optionSet.find(
-      (option) => option.value === targetValue
-    );
-
-    if (foundOption && typeof foundOption.price !== "undefined") {
-      return foundOption.price;
-    }
-  }
-
-  return null;
-}

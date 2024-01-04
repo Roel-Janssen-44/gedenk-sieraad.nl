@@ -1,21 +1,37 @@
+import { parseGid } from "@shopify/hydrogen-react";
+
+import * as OptionSets from "@/components/productOptions/optionSets";
+
 const handler = async (req, res) => {
   const storeName = process.env.PUBLIC_STORE_DOMAIN;
   const ADMIN_TOKEN = process.env.PRIVATE_SHOPIFY_ADMIN_TOKEN;
   const method = "POST";
   const apiVersion = "2023-10";
 
+  console.log(req.body);
+
+  const extraOptions = req.body.variantData.extraOptions;
+
   const product = req.body.variantData.product;
+  console.log("product");
+  console.log(product);
 
   const productIdParts = product.id.split("/");
   const productId = productIdParts[productIdParts.length - 1];
 
-  const variants = product.variants.edges;
+  const variants = product.variants.nodes;
+  console.log("variants");
+  console.log(variants);
   const targetId = req.body.variantData.selectedVariantId;
 
   const filteredVariants = variants.filter(
-    (variant) => variant.node.id === targetId
+    (variant) => variant.id === targetId
   );
-  const currentVariant = filteredVariants[0].node;
+  const currentVariant = filteredVariants[0];
+
+  console.log("currentVariant");
+  console.log(currentVariant);
+  console.log(currentVariant.price.amount);
 
   const imageIdParts = currentVariant.image.id.split("/");
   const imageId = imageIdParts[imageIdParts.length - 1];
@@ -35,14 +51,19 @@ const handler = async (req, res) => {
       ? currentVariant.selectedOptions[2].value
       : null;
 
+  const price =
+    parseFloat(currentVariant.price.amount) +
+    parseFloat(calculatePrice(extraOptions, OptionSets));
+  console.log("price");
+  console.log(price);
+
   const postBody = {
     variant: {
       product_id: productId,
       option1: option1,
       option2: option2,
       option3: option3,
-      //   price: currentVariant.price.amount,
-      price: "50.00",
+      price: price,
       inventory_policy: "continue",
       sku: currentVariant.sku,
       //   To do
@@ -75,11 +96,52 @@ const handler = async (req, res) => {
 
 export default handler;
 
-function findVariantIdById(variants, targetId) {
-  for (const variant of variants) {
-    if (variant.id === targetId) {
-      return variant;
+function calculatePrice(selectedOptions, optionSets) {
+  let totalPrice = 0;
+
+  console.log("selectedOptions");
+  console.log(selectedOptions);
+
+  for (let i = 0; i < selectedOptions.length; i++) {
+    const optionKey = selectedOptions[i].key + "Options";
+    const currentOptionSet = findOptionSet(optionSets, optionKey);
+
+    const selectedTargetValue = selectedOptions[i].value;
+    if (typeof selectedTargetValue == "string") {
+      const selectedOptionSet = currentOptionSet.find(
+        (option) => option.value === selectedTargetValue
+      );
+      totalPrice += selectedOptionSet.price || 0;
+    } else {
+      selectedTargetValue.forEach((selectedTarget) => {
+        const price = findPriceByValue(
+          optionSets,
+          selectedTarget.key,
+          selectedTarget.value
+        );
+        totalPrice += price || 0;
+      });
     }
   }
+  return totalPrice;
+}
+
+function findOptionSet(optionSets, optionSetKey) {
+  return optionSets[optionSetKey] || null;
+}
+
+function findPriceByValue(optionSets, targetKey, targetValue) {
+  const optionSet = optionSets[targetKey + "Options"];
+
+  if (optionSet && Array.isArray(optionSet)) {
+    const foundOption = optionSet.find(
+      (option) => option.value === targetValue
+    );
+
+    if (foundOption && typeof foundOption.price !== "undefined") {
+      return foundOption.price;
+    }
+  }
+
   return null;
 }

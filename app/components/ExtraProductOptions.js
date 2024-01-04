@@ -9,6 +9,8 @@ export default function ExtraProductOptions({
   tags,
   extraOptions,
   setExtraOptions,
+  setOptionErrors,
+  showErrors,
 }) {
   const handleChange = (newValue, option) => {
     const existingOptionIndex = extraOptions.findIndex((o) => o.key === option);
@@ -38,6 +40,8 @@ export default function ExtraProductOptions({
                 extraOptions.find((option) => option.key === tag)?.value || ""
               }
               onChange={(value) => handleChange(value, tag)}
+              setOptionErrors={setOptionErrors}
+              showErrors={showErrors}
             />
           );
         }

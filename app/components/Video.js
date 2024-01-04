@@ -1,12 +1,9 @@
 "use client";
 
-// import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import Skeleton from "@mui/material/Skeleton";
 
 import ReactPlayer from "react-player/lazy";
-
-// const NoSSR = dynamic(() => import("../components/no-ssr"), { ssr: false });
 
 export default function Video() {
   const [isClient, setIsClient] = useState(false);
