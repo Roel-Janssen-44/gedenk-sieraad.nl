@@ -36,7 +36,7 @@ export default function TextWithImage() {
           sieraad te personaliseren. Kijk rond en laat je verrassen door onze
           collecties.
         </p>
-        <Link href={"/"} className="block">
+        <Link href={"/"} className="inline-block">
           <Button
             variant="contained"
             size="large"

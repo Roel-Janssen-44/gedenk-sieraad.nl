@@ -22,7 +22,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="nl">
-      <body className={`${montserrat.className}	bg-secondary`}>
+      <body className={`${montserrat.className}`}>
         <MainLayoutInnerWrapper shopData={shopDataJson.data}>
           {children}
         </MainLayoutInnerWrapper>

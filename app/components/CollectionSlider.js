@@ -72,7 +72,7 @@ export default function CollectionSlider({ collectionHandle }) {
       <div className="container">
         {collection != null ? (
           <div className="p-4 rounded">
-            <h2 className="text-3xl text-gray-800 mb-4 font-medium">
+            <h2 className="text-5xl font-tangerine text-gray-800 mb-1">
               {collection.title}
             </h2>
             <div className="mb-4">
@@ -84,7 +84,10 @@ export default function CollectionSlider({ collectionHandle }) {
               ></p>
             </div>
 
-            <Link href={"/"} className="mb-6 block">
+            <Link
+              href={"/collections/" + collection.handle}
+              className="mb-6 inline-block"
+            >
               <Button
                 variant="contained"
                 size="large"
@@ -114,6 +117,20 @@ export default function CollectionSlider({ collectionHandle }) {
                   <ProductGridItem product={product} />
                 </div>
               ))}
+              <div className="w-full h-full min-h-[340px] flex flex-col justify-center items-center gap-4">
+                <p className="text-center">
+                  Ontdek alle producten van {collection.title}
+                </p>
+                <Link href={"/collections/" + collection.handle}>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    className="bg-primary normal-case font-normal"
+                  >
+                    Bekijk alle
+                  </Button>
+                </Link>
+              </div>
             </Slider>
 
             <div className="flex justify-center gap-8">

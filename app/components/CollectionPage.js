@@ -19,7 +19,8 @@ export default async function CollectionPage({ collection }) {
     body: JSON.stringify({
       query: GRAPHQL_COLLECTION_QUERY,
       variables: {
-        collectionName: collection.handle,
+        collectionName: collection.title,
+        collectionHandle: collection.handle,
       },
     }),
     headers: getPrivateTokenHeaders({ buyerIp: "..." }),
@@ -27,13 +28,19 @@ export default async function CollectionPage({ collection }) {
   });
 
   const collectionJson = await collectionResponse.json();
+  // console.log(collectionJson);
   return (
     <div className="container flex flex-col gap-8 md:flex-row">
       <FilterCollection facets={collectionJson?.data?.search} />
       <div className="flex-1">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-4 border-[1px] border-gray-200 p-4 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 border-[1px] border-gray-200 p-4 mb-8 bg-white rounded-md">
           <div className="min-w-[150px]">
-            <Image data={collection.image} width={150} height={150} />
+            <Image
+              className="rounded"
+              data={collection.image}
+              width={150}
+              height={150}
+            />
           </div>
           <div className="">
             <h1 className="text-6xl font-tangerine mb-4">{collection.title}</h1>
@@ -51,8 +58,8 @@ export default async function CollectionPage({ collection }) {
 }
 
 const GRAPHQL_COLLECTION_QUERY = `
-query CollectionByHandle($collectionName: String!) {
-  collectionByHandle(handle: $collectionName) {
+query CollectionByHandle($collectionName: String!, $collectionHandle: String!) {
+  collection(handle: $collectionHandle) {
     products(first: 10) {
       pageInfo {
         hasNextPage

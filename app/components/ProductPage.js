@@ -61,11 +61,6 @@ function Product() {
     (value) => value === true
   );
 
-  console.log("hasTrueValue");
-  console.log(hasTrueValue);
-  console.log("extraOptions");
-  console.log(extraOptions);
-
   // console.log("optionsToFillIn");
   // console.log(optionsToFillIn);
 
@@ -148,7 +143,7 @@ function Product() {
         onClick={(e) => {
           // checkForErrors();
           setShowErrors(true);
-          if (hasTrueValue) return null;
+          if (hasTrueValue) return window.scrollTo(0, 0);
 
           console.log("add to cart");
           return null;

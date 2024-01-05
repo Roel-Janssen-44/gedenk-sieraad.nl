@@ -164,6 +164,8 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
     price = 10000;
   }
 
+  console.log("facets");
+  console.log(facets);
   const [materiaal, setMateriaal] = useState(searchParams.get("Materiaal"));
   const [merk, setMerk] = useState(searchParams.get("Merk"));
   const [minPrijs, setMinPrijs] = useState(searchParams.get("MinPrijs") || 0);
@@ -189,6 +191,39 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
     params.set(facetLabel, value);
     replace(`${pathname}?${params.toString()}`);
   };
+
+  // const vendorFacet = facets?.productFilters.find(
+  //   (filter) => filter.id === "filter.p.vendor"
+  // );
+
+  console.log("facets");
+  console.log(facets);
+  const materiaalFacet =
+    facets?.productFilters
+      .find((filter) => filter.id === "filter.v.option.materiaal")
+      ?.values.map(({ label, count }) => ({
+        value: label,
+        count,
+      })) || [];
+
+  console.log("materiaalFacet");
+  console.log(materiaalFacet);
+
+  const vendorFacet =
+    facets?.productFilters
+      .find((filter) => filter.id === "filter.p.vendor")
+      ?.values.map(({ label, count }) => ({
+        value: label,
+        count,
+      })) || [];
+
+  const priceFacet =
+    facets?.productFilters
+      .find((filter) => filter.id === "filter.v.price")
+      ?.values.map(({ label, count }) => ({
+        value: label,
+        count,
+      })) || [];
 
   return (
     <Drawer anchor="left" open={filterDrawerIsOpen} onClose={onClose}>
@@ -251,7 +286,87 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
               </Accordion>
             </div>
           ))}
-          {facets?.productFilters.map((facet, index) => {
+          {materiaalFacet[0] && (
+            <div className="px-4 mt-10">
+              <h5 className="font-semibold mb-2">Materiaal</h5>
+              <div className="mb-2">
+                <hr className="h-[3px] rounded-full bg-gray-800" />
+              </div>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                name="radio-buttons-group"
+                value={materiaal}
+              >
+                {materiaalFacet.map((materiaal) => (
+                  <FormControlLabel
+                    key={"materiaalfacet" + materiaal.value}
+                    value={materiaal.value}
+                    control={
+                      <Radio sx={{ "&.Mui-checked": { color: "#222" } }} />
+                    }
+                    label={materiaal.value + ` (${materiaal.count})`}
+                    className="mb-1.5 last:mb-0 "
+                    onChange={(e) =>
+                      handleFacetChange("Materiaal", e.target.value)
+                    }
+                  />
+                ))}
+              </RadioGroup>
+            </div>
+          )}
+          {vendorFacet[0] && (
+            <div className="px-4 mt-10">
+              <h5 className="font-semibold mb-2">Merk</h5>
+              <div className="mb-2">
+                <hr className="h-[3px] rounded-full bg-gray-800" />
+              </div>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                name="radio-buttons-group"
+                value={merk}
+              >
+                {vendorFacet.map((vendor) => (
+                  <FormControlLabel
+                    key={"vendorfacet" + vendor.value}
+                    value={vendor.value}
+                    control={
+                      <Radio sx={{ "&.Mui-checked": { color: "#222" } }} />
+                    }
+                    label={vendor.value + ` (${vendor.count})`}
+                    className="mb-1.5 last:mb-0 "
+                    onChange={(e) => handleFacetChange("Merk", e.target.value)}
+                  />
+                ))}
+              </RadioGroup>
+            </div>
+          )}
+          {/* {vendorFacet && (
+            <div className="px-4 mt-10">
+              <h5 className="font-semibold mb-2">Merk</h5>
+              <div className="mb-2">
+                <hr className="h-[3px] rounded-full bg-gray-800" />
+              </div>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                name="radio-buttons-group"
+                value={"merk"}
+              >
+                {vendorFacet.map((vendor) => (
+                  <FormControlLabel
+                    key={"vendorfacet" + vendor.value}
+                    value={vendor.value}
+                    control={
+                      <Radio sx={{ "&.Mui-checked": { color: "#222" } }} />
+                    }
+                    label={vendor.value + ` (${vendor.count})`}
+                    className="mb-1.5 last:mb-0 "
+                    onChange={(e) => handleFacetChange("Merk", e.target.value)}
+                  />
+                ))}
+              </RadioGroup>
+            </div>
+          )} */}
+          {/* {facets?.productFilters.map((facet, index) => {
             if (index > 1) return null;
             const options = facet.values.map(({ label, count }) => ({
               value: label,
@@ -291,7 +406,7 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
                 </RadioGroup>
               </div>
             );
-          })}
+          })} */}
         </div>
         <div className="px-8 mt-10 pb-8">
           <h5 className="font-semibold mb-2">Prijs:</h5>

@@ -17,7 +17,8 @@ export default function Tekst({
   showErrors,
 }) {
   const [error, setError] = useState([]);
-
+  console.log("error");
+  console.log(error);
   useEffect(() => {
     if (Array.isArray(value)) {
       const tekstBinnenZijdeRingValue = value.find(
@@ -36,119 +37,275 @@ export default function Tekst({
       const woord3Value = value.find((item) => item.key === "3 woorden").value;
       const woord4Value = value.find((item) => item.key === "4 woorden").value;
 
-      if (tekstBinnenZijdeRingValue != "" && lettertypeValue != "") {
-        setError([]);
-        setOptionErrors((prevState) => ({
-          ...prevState,
-          ["hars"]: false,
-        }));
-      } else {
-        setOptionErrors((prevState) => ({
-          ...prevState,
-          ["hars"]: true,
-        }));
-        if (tekstBinnenZijdeRingValue == "") {
-          setError((prevState) => ({
-            ...prevState,
-            ["tekstBinnenZijdeRing"]: "Veld mag niet leeg zijn",
-          }));
-        } else {
+      console.log("tekstBinnenZijdeRingValue");
+      console.log(tekstBinnenZijdeRingValue);
+      switch (tekstBinnenZijdeRingValue) {
+        case "Initialen/letters/tekens":
+          if (initialenValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["initialen"]: "Veld initiaal mag niet leeg zijn",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["initialen"]: "",
+            }));
+          }
+          if (lettertypeValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "Kies een lettertype",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "",
+            }));
+          }
+          break;
+        case "Geen tekst":
+        case "Hartje ♥ symbool":
+        case "Infinity ∞ teken":
           setError((prevState) => ({
             ...prevState,
             ["tekstBinnenZijdeRing"]: "",
           }));
-        }
-        if (lettertypeValue == "") {
-          setError((prevState) => ({
-            ...prevState,
-            ["lettertype"]: "Kies een lettertype",
-          }));
-        } else {
-          setError((prevState) => ({
-            ...prevState,
-            ["lettertype"]: "",
-          }));
-        }
-        if (initialenValue == "") {
-          setError((prevState) => ({
-            ...prevState,
-            ["initialen"]: "Veld mag niet leeg zijn",
-          }));
-        } else {
-          setError((prevState) => ({
-            ...prevState,
-            ["initialen"]: "",
-          }));
-        }
-        if (datumValue == "") {
-          setError((prevState) => ({
-            ...prevState,
-            ["datum"]: "Veld mag niet leeg zijn",
-          }));
-        } else {
-          setError((prevState) => ({
-            ...prevState,
-            ["datum"]: "",
-          }));
-        }
-        if (naamValue == "") {
-          setError((prevState) => ({
-            ...prevState,
-            ["naam"]: "Veld mag niet leeg zijn",
-          }));
-        } else {
-          setError((prevState) => ({
-            ...prevState,
-            ["naam"]: "",
-          }));
-        }
-        if (woord1Value == "") {
-          setError((prevState) => ({
-            ...prevState,
-            ["woord1"]: "Veld mag niet leeg zijn",
-          }));
-        } else {
-          setError((prevState) => ({
-            ...prevState,
-            ["woord1"]: "",
-          }));
-        }
-        if (woord2Value == "") {
-          setError((prevState) => ({
-            ...prevState,
-            ["woord2"]: "Veld mag niet leeg zijn",
-          }));
-        } else {
-          setError((prevState) => ({
-            ...prevState,
-            ["woord2"]: "",
-          }));
-        }
-        if (woord3Value == "") {
-          setError((prevState) => ({
-            ...prevState,
-            ["woord3"]: "Veld mag niet leeg zijn",
-          }));
-        } else {
-          setError((prevState) => ({
-            ...prevState,
-            ["woord3"]: "",
-          }));
-        }
-        if (woord4Value == "") {
-          setError((prevState) => ({
-            ...prevState,
-            ["woord4"]: "Veld mag niet leeg zijn",
-          }));
-        } else {
-          setError((prevState) => ({
-            ...prevState,
-            ["woord4"]: "",
-          }));
-        }
+          break;
+        case "Datum":
+          if (datumValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["datum"]: "Veld datum mag niet leeg zijn",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["datum"]: "",
+            }));
+          }
+          if (lettertypeValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "Kies een lettertype",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "",
+            }));
+          }
+          break;
+        case "Naam":
+          if (naamValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["naam"]: "Veld naam mag niet leeg zijn",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["naam"]: "",
+            }));
+          }
+          if (lettertypeValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "Kies een lettertype",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "",
+            }));
+          }
+          break;
+        case "Naam en datum":
+          if (naamValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["naam"]: "Veld naam mag niet leeg zijn",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["naam"]: "",
+            }));
+          }
+          if (datumValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["datum"]: "Veld datum mag niet leeg zijn",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["datum"]: "",
+            }));
+          }
+          if (lettertypeValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "Kies een lettertype",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "",
+            }));
+          }
+        case "1 woord":
+          if (woord1Value == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord1"]: "Veld woord 1 mag niet leeg zijn",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord1"]: "",
+            }));
+          }
+          if (lettertypeValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "Kies een lettertype",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "",
+            }));
+          }
+          break;
+        case "2 woorden":
+          if (woord2Value == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord2"]: "Veld woord 2 mag niet leeg zijn",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord2"]: "",
+            }));
+          }
+          if (lettertypeValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "Kies een lettertype",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "",
+            }));
+          }
+          break;
+        case "3 woorden":
+          if (woord3Value == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord3"]: "Veld woord 3 mag niet leeg zijn",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord3"]: "",
+            }));
+          }
+          if (lettertypeValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "Kies een lettertype",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "",
+            }));
+          }
+          break;
+        case "4 woorden":
+          if (woord4Value == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord4"]: "Veld woord 4 mag niet leeg zijn",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord4"]: "",
+            }));
+          }
+          if (lettertypeValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "Kies een lettertype",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["lettertype"]: "",
+            }));
+          }
+          break;
+
+        default:
+          if (tekstBinnenZijdeRingValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["tekstBinnenZijdeRing"]: "Veld mag niet leeg zijn",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["tekstBinnenZijdeRing"]: "",
+            }));
+          }
+      }
+
+      if (
+        tekstBinnenZijdeRingValue == "Geen tekst" ||
+        tekstBinnenZijdeRingValue == "Initialen/letters/tekens" ||
+        tekstBinnenZijdeRingValue == "Hartje ♥ symbool" ||
+        tekstBinnenZijdeRingValue == "Infinity ∞ teken" ||
+        tekstBinnenZijdeRingValue == "Naam en datum" ||
+        tekstBinnenZijdeRingValue == "Naam" ||
+        tekstBinnenZijdeRingValue == "Datum" ||
+        tekstBinnenZijdeRingValue == "1 woord" ||
+        tekstBinnenZijdeRingValue == "2 woorden" ||
+        tekstBinnenZijdeRingValue == "3 woorden" ||
+        tekstBinnenZijdeRingValue == "4 woorden"
+      ) {
+        setError((prevState) => ({
+          ...prevState,
+          ["tekstBinnenZijdeRing"]: "",
+        }));
       }
     }
   }, [value]);
+
+  useEffect(() => {
+    console.log("errors");
+    console.log(error);
+
+    const allValuescorrect = Object.values(error).every(
+      (value) => value === ""
+    );
+    console.log("Are all values empty?", allValuescorrect);
+    if (allValuescorrect) {
+      setOptionErrors((prevState) => ({
+        ...prevState,
+        ["tekst"]: false,
+      }));
+    } else {
+      setOptionErrors((prevState) => ({
+        ...prevState,
+        ["tekst"]: true,
+      }));
+    }
+  }, [error]);
 
   const [values, setValues] = useState([
     {
@@ -199,8 +356,8 @@ export default function Tekst({
         )}
         <InputSelect
           value={tekstBinnenZijdeRingValue}
-          onChange={(newHarsValue) =>
-            handleChange("tekstBinnenZijdeRing", newHarsValue)
+          onChange={(newTekstValue) =>
+            handleChange("tekstBinnenZijdeRing", newTekstValue)
           }
           title="Tekst binnenzijde ring:"
           options={tekstBinnenZijdeRingOptions}
@@ -325,6 +482,7 @@ export default function Tekst({
       )}
       {(tekstBinnenZijdeRingValue == "Initialen/letters/tekens" ||
         tekstBinnenZijdeRingValue == "Naam" ||
+        tekstBinnenZijdeRingValue == "Datum" ||
         tekstBinnenZijdeRingValue == "Naam en datum" ||
         tekstBinnenZijdeRingValue == "1 woord" ||
         tekstBinnenZijdeRingValue == "2 woorden" ||

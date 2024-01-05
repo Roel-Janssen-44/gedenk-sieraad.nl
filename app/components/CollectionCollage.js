@@ -19,9 +19,9 @@ export default function CollectionCollage({ collections }) {
         const sanitizedHtmlContent = sanitizeHtml(collection.descriptionHtml);
 
         return (
-          <div key={key} className="mb-10 bg-white rounded relative">
+          <div key={key} className="mb-10 bg-white rounded-lg relative">
             <div className="p-4 pt-5">
-              <h2 className="text-2xl mb-4 text-gray-800 font-semibold">
+              <h2 className="text-5xl font-tangerine mb-4 text-gray-800">
                 {collection.title}
               </h2>
               <div className="mb-4">
@@ -34,8 +34,12 @@ export default function CollectionCollage({ collections }) {
                   "Loading..."
                 )}
               </div>
+              {console.log(collection)}
 
-              <Link href={"/"} className="block">
+              <Link
+                href={"/collections/" + collection.handle}
+                className="inline-block"
+              >
                 <Button
                   variant="contained"
                   size="large"
@@ -45,9 +49,9 @@ export default function CollectionCollage({ collections }) {
                 </Button>
               </Link>
             </div>
-            <div className="h-56 overflow-hidden relative">
+            <div className="h-56 overflow-hidden relative rounded-b-lg">
               <Image
-                className={`rounded-sm absolute ${
+                className={`absolute ${
                   index == 1 ? "top-1/2 -translate-y-1/2" : "top-0"
                 }`}
                 data={collection.image}

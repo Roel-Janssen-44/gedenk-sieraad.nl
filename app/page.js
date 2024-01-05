@@ -30,7 +30,7 @@ export default async function Home() {
     console.error("GraphQL Errors:", collectionJson.errors);
   }
   return (
-    <div className="pb-[3000px] ">
+    <div className="pb-[3000px] bg-secondary ">
       <Hero />
       <CollectionCollage collections={collectionJson.data} />
       <CollectionSlider collectionHandle="luxury-hand-made" />
@@ -56,8 +56,9 @@ const getCollectionsQuery = `
   }
 
   fragment collectionFields on Collection {
-    descriptionHtml
     title
+    handle
+    descriptionHtml
     products(first: 15) {
       nodes {
         title
@@ -71,32 +72,33 @@ const getCollectionsQuery = `
     }
   }
 `;
-`
-{
-  collection1: collection(handle: "sieraden-met-gravure") {
-    ...collectionFields
-  }
-  collection2: collection(handle: "sieraden-met-as-haar") {
-    ...collectionFields
-  }
-  collection3: collection(handle: "herinnering-dieren") {
-    ...collectionFields
-  }
-}
 
-fragment collectionFields on Collection {
-  descriptionHtml
-  title
-  products(first: 15) {
-    nodes {
-      title
-    }
-  }
-  image {
-    height
-    altText
-    width
-    url
-  }
-}
-`;
+// `
+// {
+//   collection1: collection(handle: "sieraden-met-gravure") {
+//     ...collectionFields
+//   }
+//   collection2: collection(handle: "sieraden-met-as-haar") {
+//     ...collectionFields
+//   }
+//   collection3: collection(handle: "herinnering-dieren") {
+//     ...collectionFields
+//   }
+// }
+
+// fragment collectionFields on Collection {
+//   descriptionHtml
+//   title
+//   products(first: 15) {
+//     nodes {
+//       title
+//     }
+//   }
+//   image {
+//     height
+//     altText
+//     width
+//     url
+//   }
+// }
+// `;

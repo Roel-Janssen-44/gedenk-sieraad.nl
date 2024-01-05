@@ -8,7 +8,6 @@ import { useSearchParams } from "next/navigation";
 import Button from "@mui/material/Button";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
-import Stack from "@mui/material/Stack";
 
 import Grid from "./Grid";
 import ProductGridItem from "./ProductGridItem";
@@ -106,7 +105,10 @@ export default function ProductGrid({ collection, collectionName }) {
                 ? "bg-primary text-white"
                 : "border-2 border-black"
             }`}
-            onClick={() => handleNewFetch("after", pageInfo.endCursor)}
+            onClick={() => {
+              handleNewFetch("after", pageInfo.endCursor);
+              window.scroll({ top: 950, left: 0, behavior: "smooth" });
+            }}
           >
             <ChevronRightRoundedIcon fontSize="large" color="inherit" />
           </Button>

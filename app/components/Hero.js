@@ -64,7 +64,7 @@ export default function Hero() {
             >
               <Link
                 className={`p-4 text-3xl font-tangerine border-[1px] w-full flex justify-center items-center h-full border-white rounded-full `}
-                href={"/"}
+                href={"/collections/all"}
               >
                 Shop nu
               </Link>
