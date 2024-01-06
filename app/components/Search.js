@@ -123,8 +123,8 @@ export default function Search() {
           !data?.data?.search?.nodes[0]?.title) &&
           data != null && (
             <p className="text-center mt-12 text-xl flex flex-col sm:flex-row gap-1 sm:gap-1">
-              Helaas hebben we het product <span /> "{query}" <span /> niet
-              kunnen vinden
+              Helaas hebben we het product <span /> &#34;{query}&#34; <span />{" "}
+              niet kunnen vinden
             </p>
           )}
         {data == null && (
