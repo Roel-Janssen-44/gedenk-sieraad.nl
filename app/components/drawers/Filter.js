@@ -196,8 +196,8 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
   //   (filter) => filter.id === "filter.p.vendor"
   // );
 
-  console.log("facets");
-  console.log(facets);
+  // console.log("facets");
+  // console.log(facets);
   const materiaalFacet =
     facets?.productFilters
       .find((filter) => filter.id === "filter.v.option.materiaal")
@@ -206,8 +206,8 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
         count,
       })) || [];
 
-  console.log("materiaalFacet");
-  console.log(materiaalFacet);
+  // console.log("materiaalFacet");
+  // console.log(materiaalFacet);
 
   const vendorFacet =
     facets?.productFilters

@@ -10,7 +10,6 @@ export default function Breadcrumb() {
   const urlParts = pathname.split("/").filter(Boolean);
 
   if (urlParts[0] == undefined) return null;
-  console.log(urlParts);
   return (
     <div className="relative h-80 flex justify-center items-center mb-20 bg-gray-100">
       <div className="z-10 absolute left-0 top-0 w-full h-full">
