@@ -33,7 +33,7 @@ export default function MenuItemDrawer({
   const pathAfterDotCom = menuItem?.url.split(".com")[1];
 
   return (
-    <Drawer anchor="right" open={menuItemDrawerIsOpen} onClose={onClose}>
+    <Drawer anchor="left" open={menuItemDrawerIsOpen} onClose={onClose}>
       <div className="h-screen flex flex-col w-[325px] max-w-sm">
         <div className="mb-2 bg-primary text-white">
           <div className="flex container h-16 items-center justify-between">

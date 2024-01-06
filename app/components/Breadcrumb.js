@@ -31,7 +31,7 @@ export default function Breadcrumb() {
           <Link underline="hover" color="inherit" href="/">
             Home
           </Link>
-          <Breadcrumb1 urlParts={urlParts} />
+          {urlParts[0] != "pages" && <Breadcrumb1 urlParts={urlParts} />}
           {urlParts[1] && <Breadcrumb2 urlParts={urlParts} />}
         </Breadcrumbs>
       </div>
