@@ -16,40 +16,71 @@ export default function Search() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const fetchData = () => {
-    if (query == "") return null;
-    setLoading(true);
-    const url = "/api/getSearchResults";
-    const method = "POST";
+  //   const fetchData = () => {
+  //     if (query == "") return null;
+  //     setLoading(true);
+  //     const url = "/api/getSearchResults";
+  //     const method = "POST";
 
-    const options = {
-      method: method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ searchQuery: query }),
-    };
-    fetch(url, options)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((result) => {
-        console.log(result);
-        setData(result);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+  //     const options = {
+  //       method: method,
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ searchQuery: query }),
+  //     };
+  //     fetch(url, options)
+  //       .then((response) => {
+  //         if (!response.ok) {
+  //           throw new Error(`HTTP error! Status: ${response.status}`);
+  //         }
+  //         return response.json();
+  //       })
+  //       .then((result) => {
+  //         console.log(result);
+  //         setData(result);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error fetching data:", error);
+  //       })
+  //       .finally(() => {
+  //         setLoading(false);
+  //       });
+  //   };
 
   useEffect(() => {
-    fetchData();
+    if (query == "") {
+      setData(null);
+    } else {
+      setLoading(true);
+      const url = "/api/getSearchResults";
+      const method = "POST";
+
+      const options = {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ searchQuery: query }),
+      };
+      fetch(url, options)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((result) => {
+          console.log(result);
+          setData(result);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   }, [query]);
 
   const handleChange = (newValue) => {
@@ -64,7 +95,7 @@ export default function Search() {
     <div>
       <div className="container">
         <center>
-          <h1 className="font-tangerine text-5xl max-w-[250px] mb-4">
+          <h1 className="font-tangerine text-5xl max-w-[250px] sm:max-w-none mb-4">
             Zoek producten in onze webshop
           </h1>
         </center>
@@ -89,10 +120,16 @@ export default function Search() {
           </Grid>
         )}
         {(data?.data?.search?.totalCount == 0 ||
-          !data?.data?.search?.nodes[0]?.title) && (
+          !data?.data?.search?.nodes[0]?.title) &&
+          data != null && (
+            <p className="text-center mt-12 text-xl flex flex-col sm:flex-row gap-1 sm:gap-1">
+              Helaas hebben we het product <span /> "{query}" <span /> niet
+              kunnen vinden
+            </p>
+          )}
+        {data == null && (
           <p className="text-center mt-12 text-xl">
-            Helaas hebben we het product <br /> "{query}" <br /> niet kunnen
-            vinden...
+            Begin met typen om een product te zoeken
           </p>
         )}
         {query != "" && loading && (
