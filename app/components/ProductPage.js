@@ -70,7 +70,14 @@ function Product() {
   // const checkForErrors = () => {
   //   console.log(" cgheck for errorsa");
   // };
-  const tags = ["creool", "aspakket", "hars", "tekst"];
+  const tags = [
+    "creool",
+    "aspakket",
+    "hars",
+    "tekst",
+    "armbandmaat",
+    "graveertekst",
+  ];
   return (
     <div className="container mx-auto flex flex-col gap-6">
       <h1 className="text-6xl font-tangerine">{product.title}</h1>

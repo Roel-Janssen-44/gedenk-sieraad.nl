@@ -3,26 +3,25 @@
 import { useState, useEffect, useRef } from "react";
 
 import InputSelect from "../InputSelect";
-import InputRadio from "../InputRadio";
 import InputTextField from "../InputTextField";
 import InputDate from "../InputDate";
 import InputImageSwatchLarge from "../InputImageSwatchLarge";
 
-import { tekstBinnenZijdeRingOptions, lettertypeOptions } from "./optionSets";
+import { graveerTekstOptions, lettertypeOptions } from "./optionSets";
 
-export default function Tekst({
+export default function GraveerTekst({
   value,
   onChange,
   setOptionErrors,
   showErrors,
 }) {
   const [error, setError] = useState([]);
-  console.log("error");
-  console.log(error);
+  console.log("value");
+  console.log(value);
   useEffect(() => {
     if (Array.isArray(value)) {
-      const tekstBinnenZijdeRingValue = value.find(
-        (item) => item.key === "tekstBinnenZijdeRing"
+      const graveerTekstValue = value.find(
+        (item) => item.key === "graveerTekst"
       ).value;
       const lettertypeValue = value.find(
         (item) => item.key === "lettertype"
@@ -37,14 +36,14 @@ export default function Tekst({
       const woord3Value = value.find((item) => item.key === "3 woorden").value;
       const woord4Value = value.find((item) => item.key === "4 woorden").value;
 
-      console.log("tekstBinnenZijdeRingValue");
-      console.log(tekstBinnenZijdeRingValue);
-      switch (tekstBinnenZijdeRingValue) {
+      console.log("graveerTekstValue");
+      console.log(graveerTekstValue);
+      switch (graveerTekstValue) {
         case "Initialen/letters/tekens":
           if (initialenValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["initialen"]: "* Veld initiaal mag niet leeg zijn",
+              ["initialen"]: "Veld initiaal mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -55,7 +54,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -69,14 +68,14 @@ export default function Tekst({
         case "Infinity ∞ teken":
           setError((prevState) => ({
             ...prevState,
-            ["tekstBinnenZijdeRing"]: "",
+            ["graveerTekst"]: "",
           }));
           break;
         case "Datum":
           if (datumValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "* Veld datum mag niet leeg zijn",
+              ["datum"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -87,7 +86,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -100,7 +99,7 @@ export default function Tekst({
           if (naamValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "* Veld naam mag niet leeg zijn",
+              ["naam"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -111,7 +110,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -124,7 +123,7 @@ export default function Tekst({
           if (naamValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "* Veld naam mag niet leeg zijn",
+              ["naam"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -135,7 +134,7 @@ export default function Tekst({
           if (datumValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "* Veld datum mag niet leeg zijn",
+              ["datum"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -146,7 +145,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -158,17 +157,17 @@ export default function Tekst({
           if (woord1Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord1"]: "* Dit veld mag niet leeg zijn",
+              ["woord1"]: "Dit veld mag niet leeg zijn",
             }));
           } else if (woord1Value.includes(" ")) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1"]: "* Dit veld mag geen spatie bevatten",
+              ["woord1"]: "Dit veld mag geen spatie bevatten",
             }));
           } else if (woord1Value.length > 11) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1"]: "* Gebruik maximaal 11 karakters",
+              ["woord1"]: "Gebruik maximaal 11 karakters",
             }));
           } else {
             setError((prevState) => ({
@@ -179,7 +178,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -194,17 +193,17 @@ export default function Tekst({
           if (woord2Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord2"]: "* Veld woord 2 mag niet leeg zijn",
+              ["woord2"]: "Veld woord 2 mag niet leeg zijn",
             }));
           } else if (woord2Value.length > 18) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2"]: "* Gebruik maximaal 18 karakters",
+              ["woord2"]: "Gebruik maximaal 18 karakters",
             }));
           } else if (woord2Value.split(" ").length > 2) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2"]: "* Dit veld mag niet meer dan één spatie bevatten",
+              ["woord2"]: "Dit veld mag niet meer dan één spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
@@ -215,7 +214,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -228,17 +227,17 @@ export default function Tekst({
           if (woord3Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord3"]: "* Veld woord 3 mag niet leeg zijn",
+              ["woord3"]: "Veld woord 3 mag niet leeg zijn",
             }));
           } else if (woord3Value.length > 24) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3"]: "* Gebruik maximaal 24 karakters",
+              ["woord3"]: "Gebruik maximaal 24 karakters",
             }));
           } else if (woord3Value.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3"]: "* Dit veld mag niet meer dan twee spaties bevatten",
+              ["woord3"]: "Dit veld mag niet meer dan twee spaties bevatten",
             }));
           } else {
             setError((prevState) => ({
@@ -249,7 +248,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -262,17 +261,17 @@ export default function Tekst({
           if (woord4Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord4"]: "* Veld woord 4 mag niet leeg zijn",
+              ["woord4"]: "Veld woord 4 mag niet leeg zijn",
             }));
           } else if (woord4Value.length > 30) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4"]: "* Gebruik maximaal 30 karakters",
+              ["woord4"]: "Gebruik maximaal 30 karakters",
             }));
           } else if (woord4Value.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4"]: "* Dit veld mag niet meer dan drie spatie bevatten",
+              ["woord4"]: "Dit veld mag niet meer dan drie spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
@@ -283,7 +282,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -294,35 +293,35 @@ export default function Tekst({
           break;
 
         default:
-          if (tekstBinnenZijdeRingValue == "") {
+          if (graveerTekstValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["tekstBinnenZijdeRing"]: "* Veld mag niet leeg zijn",
+              ["graveerTekst"]: "Veld mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["tekstBinnenZijdeRing"]: "",
+              ["graveerTekst"]: "",
             }));
           }
       }
 
       if (
-        tekstBinnenZijdeRingValue == "Geen tekst" ||
-        tekstBinnenZijdeRingValue == "Initialen/letters/tekens" ||
-        tekstBinnenZijdeRingValue == "Hartje ♥ symbool" ||
-        tekstBinnenZijdeRingValue == "Infinity ∞ teken" ||
-        tekstBinnenZijdeRingValue == "Naam en datum" ||
-        tekstBinnenZijdeRingValue == "Naam" ||
-        tekstBinnenZijdeRingValue == "Datum" ||
-        tekstBinnenZijdeRingValue == "1 woord" ||
-        tekstBinnenZijdeRingValue == "2 woorden" ||
-        tekstBinnenZijdeRingValue == "3 woorden" ||
-        tekstBinnenZijdeRingValue == "4 woorden"
+        graveerTekstValue == "Geen tekst" ||
+        graveerTekstValue == "Initialen/letters/tekens" ||
+        graveerTekstValue == "Hartje ♥ symbool" ||
+        graveerTekstValue == "Infinity ∞ teken" ||
+        graveerTekstValue == "Naam en datum" ||
+        graveerTekstValue == "Naam" ||
+        graveerTekstValue == "Datum" ||
+        graveerTekstValue == "1 woord" ||
+        graveerTekstValue == "2 woorden" ||
+        graveerTekstValue == "3 woorden" ||
+        graveerTekstValue == "4 woorden"
       ) {
         setError((prevState) => ({
           ...prevState,
-          ["tekstBinnenZijdeRing"]: "",
+          ["graveerTekst"]: "",
         }));
       }
     }
@@ -348,8 +347,8 @@ export default function Tekst({
 
   const [values, setValues] = useState([
     {
-      key: "tekstBinnenZijdeRing",
-      value: value?.tekstBinnenZijdeRing?.value || "",
+      key: "graveerTekst",
+      value: value?.graveerTekst?.value || "",
     },
     { key: "lettertype", value: value?.naam?.value || "" },
     { key: "initialen", value: value?.naam?.value || "" },
@@ -381,8 +380,8 @@ export default function Tekst({
 
     onChange(values);
   };
-  const tekstBinnenZijdeRingValue = values.find(
-    (item) => item.key === "tekstBinnenZijdeRing"
+  const graveerTekstValue = values.find(
+    (item) => item.key === "graveerTekst"
   ).value;
 
   return (
@@ -390,20 +389,20 @@ export default function Tekst({
       <div className="relative">
         {showErrors && (
           <p className="absolute  -bottom-6 left-0 text-red-700">
-            {error["tekstBinnenZijdeRing"]}
+            {error["graveerTekst"]}
           </p>
         )}
         <InputSelect
-          value={tekstBinnenZijdeRingValue}
+          value={graveerTekstValue}
           onChange={(newTekstValue) =>
-            handleChange("tekstBinnenZijdeRing", newTekstValue)
+            handleChange("graveerTekst", newTekstValue)
           }
-          title="Tekst binnenzijde ring:"
-          options={tekstBinnenZijdeRingOptions}
+          title="Graveertekst:"
+          options={graveerTekstOptions[0].graveerTekst}
         />
       </div>
 
-      {tekstBinnenZijdeRingValue == "Initialen/letters/tekens" && (
+      {graveerTekstValue == "Initialen/letters/tekens" && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -419,8 +418,8 @@ export default function Tekst({
           />
         </div>
       )}
-      {(tekstBinnenZijdeRingValue == "Datum" ||
-        tekstBinnenZijdeRingValue == "Naam en datum") && (
+      {(graveerTekstValue == "Datum" ||
+        graveerTekstValue == "Naam en datum") && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -434,8 +433,8 @@ export default function Tekst({
           />
         </div>
       )}
-      {(tekstBinnenZijdeRingValue == "Naam" ||
-        tekstBinnenZijdeRingValue == "Naam en datum") && (
+      {(graveerTekstValue == "Naam" ||
+        graveerTekstValue == "Naam en datum") && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -449,7 +448,7 @@ export default function Tekst({
           />
         </div>
       )}
-      {tekstBinnenZijdeRingValue == "1 woord" && (
+      {graveerTekstValue == "1 woord" && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -465,7 +464,7 @@ export default function Tekst({
           />
         </div>
       )}
-      {tekstBinnenZijdeRingValue == "2 woorden" && (
+      {graveerTekstValue == "2 woorden" && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -481,7 +480,7 @@ export default function Tekst({
           />
         </div>
       )}
-      {tekstBinnenZijdeRingValue == "3 woorden" && (
+      {graveerTekstValue == "3 woorden" && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -497,7 +496,7 @@ export default function Tekst({
           />
         </div>
       )}
-      {tekstBinnenZijdeRingValue == "4 woorden" && (
+      {graveerTekstValue == "4 woorden" && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -513,14 +512,14 @@ export default function Tekst({
           />
         </div>
       )}
-      {(tekstBinnenZijdeRingValue == "Initialen/letters/tekens" ||
-        tekstBinnenZijdeRingValue == "Naam" ||
-        tekstBinnenZijdeRingValue == "Datum" ||
-        tekstBinnenZijdeRingValue == "Naam en datum" ||
-        tekstBinnenZijdeRingValue == "1 woord" ||
-        tekstBinnenZijdeRingValue == "2 woorden" ||
-        tekstBinnenZijdeRingValue == "3 woorden" ||
-        tekstBinnenZijdeRingValue == "4 woorden") && (
+      {(graveerTekstValue == "Initialen/letters/tekens" ||
+        graveerTekstValue == "Naam" ||
+        graveerTekstValue == "Datum" ||
+        graveerTekstValue == "Naam en datum" ||
+        graveerTekstValue == "1 woord" ||
+        graveerTekstValue == "2 woorden" ||
+        graveerTekstValue == "3 woorden" ||
+        graveerTekstValue == "4 woorden") && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">

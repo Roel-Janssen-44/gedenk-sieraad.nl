@@ -15,7 +15,7 @@ export default function Creool({
 
   useEffect(() => {
     if (value.length === 0) {
-      setError("Veld mag niet leeg zijn");
+      setError("* Veld mag niet leeg zijn");
       setOptionErrors((prevState) => ({
         ...prevState,
         ["creool"]: true,
@@ -36,7 +36,7 @@ export default function Creool({
   return (
     <div className="relative">
       {showErrors && (
-        <p className="absolute  -bottom-4 left-0 text-red-700">{error}</p>
+        <p className="absolute  -bottom-6 left-0 text-red-700">{error}</p>
       )}
       <InputSelect
         value={value}

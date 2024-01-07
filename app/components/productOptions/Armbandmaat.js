@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 
-import InputRadio from "../InputRadio";
-import { aspakketOptions } from "./optionSets";
+import InputSelect from "../InputSelect";
+import { armbandmaatOptions } from "./optionSets";
 
-export default function Aspakket({
+export default function Armbandmaat({
   value,
   onChange,
   setOptionErrors,
@@ -15,16 +15,16 @@ export default function Aspakket({
 
   useEffect(() => {
     if (value.length === 0) {
-      setError("* Kies een optie");
+      setError("* Veld mag niet leeg zijn");
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["aspakket"]: true,
+        ["armbandmaat"]: true,
       }));
     } else {
       setError(null);
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["aspakket"]: false,
+        ["armbandmaat"]: false,
       }));
     }
   }, [value]);
@@ -32,16 +32,17 @@ export default function Aspakket({
   const handleChange = (newValue) => {
     onChange(newValue);
   };
+
   return (
     <div className="relative">
       {showErrors && (
         <p className="absolute  -bottom-6 left-0 text-red-700">{error}</p>
       )}
-      <InputRadio
+      <InputSelect
         value={value}
         onChange={handleChange}
-        title="Maak een keuze:"
-        options={aspakketOptions}
+        title="Armbandmaat:"
+        options={armbandmaatOptions}
       />
     </div>
   );

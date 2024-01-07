@@ -4,6 +4,8 @@ import Creool from "./productOptions/Creool";
 import Aspakket from "./productOptions/Aspakket";
 import Hars from "./productOptions/Hars";
 import Tekst from "./productOptions/Tekst";
+import Armbandmaat from "./productOptions/Armbandmaat";
+import GraveerTekst from "./productOptions/Graveertekst";
 
 export default function ExtraProductOptions({
   tags,
@@ -56,4 +58,6 @@ const components = {
   aspakket: Aspakket,
   hars: Hars,
   tekst: Tekst,
+  armbandmaat: Armbandmaat,
+  graveertekst: GraveerTekst,
 };

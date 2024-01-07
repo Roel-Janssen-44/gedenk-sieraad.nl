@@ -376,10 +376,69 @@ export const lettertypeOptions = [
   },
 ];
 
+export const armbandmaatOptions = [
+  {
+    value: "16 cm",
+    price: 0,
+  },
+  {
+    value: "16,5 cm",
+    price: 0,
+  },
+  {
+    value: "17 cm",
+    price: 0,
+  },
+  {
+    value: "17,5 cm",
+    price: 0,
+  },
+  {
+    value: "18 cm",
+    price: 0,
+  },
+  {
+    value: "18,5 cm",
+    price: 0,
+  },
+  {
+    value: "19 cm",
+    price: 0,
+  },
+  {
+    value: "19,5 cm",
+    price: 0,
+  },
+  {
+    value: "20 cm",
+    price: 0,
+  },
+  {
+    value: "20,5 cm",
+    price: 0,
+  },
+  {
+    value: "21 cm",
+    price: 0,
+  },
+  {
+    value: "21,5 cm",
+    price: 0,
+  },
+  {
+    value: "22 cm",
+    price: 0,
+  },
+];
+
 export const harsOptions = [
   { harsKleur: harsKleurOptions },
   { glitter: glitterOptions },
 ];
 export const tekstOptions = [
   { tekstBinnenZijdeRing: tekstBinnenZijdeRingOptions },
+];
+
+export const graveerTekstOptions = [
+  { graveerTekst: tekstBinnenZijdeRingOptions },
 ];

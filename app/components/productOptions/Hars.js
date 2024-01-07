@@ -36,7 +36,7 @@ export default function HarsKleur({
         if (harsKleurValue == "") {
           setError((prevState) => ({
             ...prevState,
-            ["harsKleur"]: "Veld mag niet nul zijn",
+            ["harsKleur"]: "* Kies een harskleur",
           }));
         } else {
           setError((prevState) => ({
@@ -47,7 +47,7 @@ export default function HarsKleur({
         if (glitterValue == "") {
           setError((prevState) => ({
             ...prevState,
-            ["glitter"]: "Veld mag niet nul zijn",
+            ["glitter"]: "* Kies een optie",
           }));
         } else {
           setError((prevState) => ({
@@ -89,7 +89,7 @@ export default function HarsKleur({
     <>
       <div className="relative">
         {showErrors && (
-          <p className="absolute  -bottom-4 left-0 text-red-700">
+          <p className="absolute  -bottom-6 left-0 text-red-700">
             {error["harsKleur"]}
           </p>
         )}
@@ -102,7 +102,7 @@ export default function HarsKleur({
       </div>
       <div className="relative">
         {showErrors && (
-          <p className="absolute  -bottom-4 left-0 text-red-700">
+          <p className="absolute  -bottom-6 left-0 text-red-700">
             {error["glitter"]}
           </p>
         )}
