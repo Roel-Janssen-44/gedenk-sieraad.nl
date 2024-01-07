@@ -158,7 +158,17 @@ export default function Tekst({
           if (woord1Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord1"]: "Veld woord 1 mag niet leeg zijn",
+              ["woord1"]: "Dit veld mag niet leeg zijn",
+            }));
+          } else if (woord1Value.includes(" ")) {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord1"]: "Dit veld mag geen spatie bevatten",
+            }));
+          } else if (woord1Value.length > 11) {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord1"]: "Gebruik maximaal 11 karakters",
             }));
           } else {
             setError((prevState) => ({
@@ -179,10 +189,22 @@ export default function Tekst({
           }
           break;
         case "2 woorden":
+          console.log("woord2Value.split().length");
+          console.log(woord2Value.split(" ").length);
           if (woord2Value == "") {
             setError((prevState) => ({
               ...prevState,
               ["woord2"]: "Veld woord 2 mag niet leeg zijn",
+            }));
+          } else if (woord2Value.length > 18) {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord2"]: "Gebruik maximaal 18 karakters",
+            }));
+          } else if (woord2Value.split(" ").length > 2) {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord2"]: "Dit veld mag niet meer dan één spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
@@ -208,6 +230,16 @@ export default function Tekst({
               ...prevState,
               ["woord3"]: "Veld woord 3 mag niet leeg zijn",
             }));
+          } else if (woord3Value.length > 24) {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord3"]: "Gebruik maximaal 24 karakters",
+            }));
+          } else if (woord3Value.split(" ").length > 3) {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord3"]: "Dit veld mag niet meer dan twee spaties bevatten",
+            }));
           } else {
             setError((prevState) => ({
               ...prevState,
@@ -231,6 +263,16 @@ export default function Tekst({
             setError((prevState) => ({
               ...prevState,
               ["woord4"]: "Veld woord 4 mag niet leeg zijn",
+            }));
+          } else if (woord4Value.length > 30) {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord4"]: "Gebruik maximaal 30 karakters",
+            }));
+          } else if (woord4Value.split(" ").length > 3) {
+            setError((prevState) => ({
+              ...prevState,
+              ["woord4"]: "Dit veld mag niet meer dan drie spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
@@ -410,10 +452,7 @@ export default function Tekst({
           />
         </div>
       )}
-      {(tekstBinnenZijdeRingValue == "1 woord" ||
-        tekstBinnenZijdeRingValue == "2 woorden" ||
-        tekstBinnenZijdeRingValue == "3 woorden" ||
-        tekstBinnenZijdeRingValue == "4 woorden") && (
+      {tekstBinnenZijdeRingValue == "1 woord" && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-4 left-0 text-red-700">
@@ -429,9 +468,7 @@ export default function Tekst({
           />
         </div>
       )}
-      {(tekstBinnenZijdeRingValue == "2 woorden" ||
-        tekstBinnenZijdeRingValue == "3 woorden" ||
-        tekstBinnenZijdeRingValue == "4 woorden") && (
+      {tekstBinnenZijdeRingValue == "2 woorden" && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-4 left-0 text-red-700">
@@ -447,8 +484,7 @@ export default function Tekst({
           />
         </div>
       )}
-      {(tekstBinnenZijdeRingValue == "3 woorden" ||
-        tekstBinnenZijdeRingValue == "4 woorden") && (
+      {tekstBinnenZijdeRingValue == "3 woorden" && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-4 left-0 text-red-700">

@@ -129,13 +129,13 @@ export default function Navbar({
         // }
       >
         <div className="container">
-          <Link href="/" className="flex justify-center py-3 px-2 mt-2">
+          <Link href="/" className="w-full h-auto py-3 block px-2 mt-2">
             <Image
               src={"/images/logo-groot-wit.svg"}
               width={275}
-              height={80}
+              height={50}
               alt="=Logo gedenk-sieraad.nl"
-              className="w-auto"
+              className="w-[325px] h-auto mx-auto"
             />
           </Link>
           <hr className="my-2 h-[1px-] bg-white" />

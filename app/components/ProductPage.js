@@ -143,7 +143,7 @@ function Product() {
         onClick={(e) => {
           // checkForErrors();
           setShowErrors(true);
-          if (hasTrueValue) return window.scrollTo(0, 0);
+          // if (hasTrueValue) return window.scrollTo(0, 0);
 
           console.log("add to cart");
           return null;
