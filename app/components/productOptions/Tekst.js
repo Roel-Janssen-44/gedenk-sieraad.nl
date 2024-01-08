@@ -17,8 +17,6 @@ export default function Tekst({
   showErrors,
 }) {
   const [error, setError] = useState([]);
-  console.log("error");
-  console.log(error);
   useEffect(() => {
     if (Array.isArray(value)) {
       const tekstBinnenZijdeRingValue = value.find(
@@ -36,9 +34,6 @@ export default function Tekst({
       const woord2Value = value.find((item) => item.key === "2 woorden").value;
       const woord3Value = value.find((item) => item.key === "3 woorden").value;
       const woord4Value = value.find((item) => item.key === "4 woorden").value;
-
-      console.log("tekstBinnenZijdeRingValue");
-      console.log(tekstBinnenZijdeRingValue);
       switch (tekstBinnenZijdeRingValue) {
         case "Initialen/letters/tekens":
           if (initialenValue == "") {
@@ -189,8 +184,6 @@ export default function Tekst({
           }
           break;
         case "2 woorden":
-          console.log("woord2Value.split().length");
-          console.log(woord2Value.split(" ").length);
           if (woord2Value == "") {
             setError((prevState) => ({
               ...prevState,
@@ -332,7 +325,6 @@ export default function Tekst({
     const allValuescorrect = Object.values(error).every(
       (value) => value === ""
     );
-    console.log("Are all values empty?", allValuescorrect);
     if (allValuescorrect) {
       setOptionErrors((prevState) => ({
         ...prevState,

@@ -6,6 +6,7 @@ import Hars from "./productOptions/Hars";
 import Tekst from "./productOptions/Tekst";
 import Armbandmaat from "./productOptions/Armbandmaat";
 import GraveerTekst from "./productOptions/Graveertekst";
+import Upload from "./productOptions/Upload";
 
 export default function ExtraProductOptions({
   tags,
@@ -60,4 +61,5 @@ const components = {
   tekst: Tekst,
   armbandmaat: Armbandmaat,
   graveertekst: GraveerTekst,
+  upload: Upload,
 };

@@ -16,8 +16,6 @@ export default function GraveerTekst({
   showErrors,
 }) {
   const [error, setError] = useState([]);
-  console.log("value");
-  console.log(value);
   useEffect(() => {
     if (Array.isArray(value)) {
       const graveerTekstValue = value.find(
@@ -36,8 +34,6 @@ export default function GraveerTekst({
       const woord3Value = value.find((item) => item.key === "3 woorden").value;
       const woord4Value = value.find((item) => item.key === "4 woorden").value;
 
-      console.log("graveerTekstValue");
-      console.log(graveerTekstValue);
       switch (graveerTekstValue) {
         case "Initialen/letters/tekens":
           if (initialenValue == "") {
@@ -188,8 +184,6 @@ export default function GraveerTekst({
           }
           break;
         case "2 woorden":
-          console.log("woord2Value.split().length");
-          console.log(woord2Value.split(" ").length);
           if (woord2Value == "") {
             setError((prevState) => ({
               ...prevState,
@@ -331,7 +325,6 @@ export default function GraveerTekst({
     const allValuescorrect = Object.values(error).every(
       (value) => value === ""
     );
-    console.log("Are all values empty?", allValuescorrect);
     if (allValuescorrect) {
       setOptionErrors((prevState) => ({
         ...prevState,
