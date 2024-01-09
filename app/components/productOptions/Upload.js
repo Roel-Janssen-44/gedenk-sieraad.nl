@@ -1,69 +1,48 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect } from "react";
 
-export default function Upload() {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
+import InputFile from "@/components/InputFile";
 
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
-  };
-
-  const handleUpload = async () => {
-    if (!selectedFile) {
-      console.error("No file selected");
-      return;
-    }
-
-    try {
-      const reader = new FileReader();
-      reader.readAsDataURL(selectedFile);
-
-      reader.onload = async () => {
-        const response = await fetch("/api/fileUpload", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ file: reader.result }),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log("data");
-          console.log(data);
-          setImageUrl(data.url);
-          console.log("File uploaded successfully!");
-        } else {
-          console.error("Failed to upload file");
-        }
-      };
-    } catch (error) {
-      console.error("Error uploading file:", error);
-    }
-  };
+export default function Upload({
+  value,
+  onChange,
+  setOptionErrors,
+  showErrors,
+}) {
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("selectedFile");
-    console.log(selectedFile);
-  }, [selectedFile]);
+    if (value.length === 0) {
+      setError("* Upload een afbeelding");
+      setOptionErrors((prevState) => ({
+        ...prevState,
+        ["upload"]: true,
+      }));
+    } else {
+      setError(null);
+      setOptionErrors((prevState) => ({
+        ...prevState,
+        ["upload"]: false,
+      }));
+    }
+  }, [value]);
+
+  const handleChange = (newValue) => {
+    onChange(newValue);
+  };
 
   return (
-    <div>
-      <input type="file" onChange={handleFileUpload} />
-      <button onClick={handleUpload}>Upload</button>
-      {imageUrl && (
-        <Image
-          src={imageUrl}
-          height={200}
-          width={200}
-          aria-hidden
-          alt="geuploade afbeelding gebruiker"
-        />
+    <div className="relative">
+      {showErrors && (
+        <p className="absolute  -bottom-6 left-0 text-red-700">{error}</p>
       )}
+      <InputFile
+        setError={setError}
+        title="Upload:"
+        onChange={handleChange}
+        value={value}
+      />
     </div>
   );
 }

@@ -13,6 +13,8 @@ export default function Creool({
 }) {
   const [error, setError] = useState(null);
 
+  console.log("value");
+  console.log(value);
   useEffect(() => {
     if (value.length === 0) {
       setError("* Veld mag niet leeg zijn");

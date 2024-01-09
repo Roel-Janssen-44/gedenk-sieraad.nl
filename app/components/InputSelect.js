@@ -8,15 +8,15 @@ export default function InputSelect({ value, onChange, title, options }) {
       </div>
       <Select
         id={title + "-option_select"}
-        value={value == "" ? "Placeholder" : value}
+        value={value == "" ? "-selecteer-" : value}
         onChange={(e) => onChange(e.target.value)}
         className="min-w-[140px] max-w-full"
         displayEmpty
         size="small"
         variant="outlined"
       >
-        <MenuItem disabled value="Placeholder">
-          <span className="text-gray-500">Placeholder</span>
+        <MenuItem disabled value="-selecteer-">
+          <span className="text-gray-500">-selecteer-</span>
         </MenuItem>
         {options.map((option) => {
           return (

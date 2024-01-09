@@ -328,12 +328,12 @@ export default function GraveerTekst({
     if (allValuescorrect) {
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["tekst"]: false,
+        ["graveerTekst"]: false,
       }));
     } else {
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["tekst"]: true,
+        ["graveerTekst"]: true,
       }));
     }
   }, [error]);

@@ -57,6 +57,8 @@ function Product() {
 
   console.log("optionErrors");
   console.log(optionErrors);
+  console.log("extraOptions");
+  console.log(extraOptions);
   const hasTrueValue = Object.values(optionErrors).some(
     (value) => value === true
   );
