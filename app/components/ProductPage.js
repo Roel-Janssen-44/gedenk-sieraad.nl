@@ -80,6 +80,8 @@ function Product() {
     "armbandmaat",
     "graveertekst",
     "upload",
+    "vppakketup",
+    "cord",
   ];
   return (
     <div className="container mx-auto flex flex-col gap-6">

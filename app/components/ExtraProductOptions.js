@@ -7,6 +7,8 @@ import Tekst from "./productOptions/Tekst";
 import Armbandmaat from "./productOptions/Armbandmaat";
 import GraveerTekst from "./productOptions/Graveertekst";
 import Upload from "./productOptions/Upload";
+import Vppakketup from "./productOptions/Vppakketup";
+import ParaCord from "./productOptions/ParaCord";
 
 export default function ExtraProductOptions({
   tags,
@@ -62,4 +64,6 @@ const components = {
   armbandmaat: Armbandmaat,
   graveertekst: GraveerTekst,
   upload: Upload,
+  vppakketup: Vppakketup,
+  cord: ParaCord,
 };

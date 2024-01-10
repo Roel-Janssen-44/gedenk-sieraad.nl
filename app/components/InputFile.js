@@ -2,9 +2,6 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import Button from "@mui/material/Button";
-import Skeleton from "@mui/material/Skeleton";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export default function InputFile({ onChange, title, value, setError }) {
@@ -79,9 +76,6 @@ export default function InputFile({ onChange, title, value, setError }) {
   const handleDragLeave = (event) => {
     event.currentTarget.classList.remove("border-primary");
   };
-
-  console.log("loading");
-  console.log(loading);
 
   return (
     <div>

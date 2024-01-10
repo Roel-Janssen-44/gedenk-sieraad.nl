@@ -431,6 +431,46 @@ export const armbandmaatOptions = [
   },
 ];
 
+export const vppakketKeuzeOptions = [
+  {
+    value: "Ik heb al een vingerafdruk/gravure en wil nu een bestand uploaden",
+    price: 0,
+  },
+  {
+    value: "Ik wil eerst een gratis vingerafdrukpakket ontvangen.",
+    price: 0,
+    imageUrl: "/images/vingerafdruk.png",
+  },
+  {
+    value: "Ik wil eerst een gratis hand/voet/pootafdrukpakket ontvangen.",
+    price: 0,
+    imageUrl: "/images/handafdruk.png",
+  },
+];
+
+export const paraCordOptions = [
+  {
+    value: "1 Navy",
+    price: 0,
+  },
+  {
+    value: "2 Army",
+    price: 0,
+  },
+  {
+    value: "3 Brown",
+    price: 0,
+  },
+  {
+    value: "4 Beige",
+    price: 0,
+  },
+  {
+    value: "5 Black",
+    price: 0,
+  },
+];
+
 export const harsOptions = [
   { harsKleur: harsKleurOptions },
   { glitter: glitterOptions },
@@ -442,3 +482,5 @@ export const tekstOptions = [
 export const graveerTekstOptions = [
   { graveerTekst: tekstBinnenZijdeRingOptions },
 ];
+
+export const vppakketOptions = [{ vppakketKeuze: vppakketKeuzeOptions }];

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { RadioGroup, FormControlLabel, Radio } from "@mui/material";
 
 export default function InputRadio({ onChange, title, options }) {
@@ -8,19 +9,28 @@ export default function InputRadio({ onChange, title, options }) {
       </div>
       <RadioGroup
         aria-labelledby="demo-radio-buttons-group-label"
-        // defaultValue="female"
         name="radio-buttons-group"
       >
         {options.map((option) => {
           return (
-            <FormControlLabel
-              key={title + "-" + option.value}
-              value={option.value}
-              control={<Radio sx={{ "&.Mui-checked": { color: "#222" } }} />}
-              label={option.value}
-              className="mb-1.5 last:mb-0 "
-              onChange={(e) => onChange(e.target.value)}
-            />
+            <>
+              <FormControlLabel
+                key={title + "-" + option.value}
+                value={option.value}
+                control={<Radio sx={{ "&.Mui-checked": { color: "#222" } }} />}
+                label={option.value}
+                className="mb-1.5 last:mb-0 "
+                onChange={(e) => onChange(e.target.value)}
+              />
+              {option?.imageUrl && (
+                <Image
+                  src={option.imageUrl}
+                  alt="asd"
+                  width={125}
+                  height={125}
+                />
+              )}
+            </>
           );
         })}
       </RadioGroup>
