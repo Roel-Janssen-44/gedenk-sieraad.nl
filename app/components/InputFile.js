@@ -11,7 +11,7 @@ export default function InputFile({ onChange, title, value, setError }) {
 
   useEffect(() => {
     if (!selectedFile) {
-      setError("Fout tijdens het uploaden van het bestand");
+      // setError("Fout tijdens het uploaden van het bestand");
       console.error("No file selected");
       return;
     }
@@ -37,14 +37,14 @@ export default function InputFile({ onChange, title, value, setError }) {
           setLoading(false);
         } else {
           setLoading(false);
-          setError("Fout tijdens het uploaden van het bestand");
+          // setError("Fout tijdens het uploaden van het bestand");
 
           console.error("Failed to upload file");
         }
       };
     } catch (error) {
       setLoading(false);
-      setError("Fout tijdens het uploaden van het bestand" + error);
+      // setError("Fout tijdens het uploaden van het bestand" + error);
       console.error("Error uploading file:", error);
     }
   }, [selectedFile]);

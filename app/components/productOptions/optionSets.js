@@ -22,6 +22,70 @@ export const vulsetOptions = [
   },
 ];
 
+export const pootKeuze1Options = [
+  {
+    value: "Standaard pootafdruk",
+  },
+  {
+    value: "Eigen pootafdruk",
+  },
+];
+
+export const pootKeuze2Options = [
+  {
+    value:
+      "Ik heb al een digitaal bestand van vinger/voet/hand/pootafdruk of gravure en wil dit nu uploaden",
+  },
+  {
+    value:
+      "Ik wil eerst een gratis vingerafdrukpakket ontvangen.(selecteer dan ook bij gravure: vingerafdruk)",
+  },
+  {
+    value:
+      "Ik wil eerst een gratis hand/voet/pootafdrukpakket ontvangen.(selecteer dan ook bij gravure: hand/voetafdruk of pootafdruk)",
+  },
+];
+
+export const printKeuze1Options = [
+  {
+    value:
+      "Ik heb al een digitaal bestand van vinger/voet/hand/pootafdruk of gravure en wil dit nu uploaden",
+    price: 0,
+  },
+  {
+    value:
+      "Ik wil eerst een gratis vingerafdrukpakket ontvangen.(selecteer dan ook bij gravure: vingerafdruk)",
+    price: 0,
+  },
+  {
+    value:
+      "Ik wil eerst een gratis hand/voet/pootafdrukpakket ontvangen.(selecteer dan ook bij gravure: hand/voetafdruk of pootafdruk)",
+    price: 0,
+  },
+];
+
+export const printKeuze2Options = [
+  {
+    value: "Ja",
+    price: 99.0,
+  },
+  {
+    value: "Nee",
+    price: 0,
+  },
+];
+
+export const printKeuze3Options = [
+  {
+    value: "1 Bestand",
+    price: 0,
+  },
+  {
+    value: "2 Bestanden",
+    price: 99.0,
+  },
+];
+
 export const aszijdeOptions = [
   {
     value: "Voorzijde",
@@ -791,3 +855,14 @@ export const graveerTekstOptions = [
 ];
 
 export const vppakketOptions = [{ vppakketKeuze: vppakketKeuzeOptions }];
+
+export const pootOptions = [
+  { option1: pootKeuze1Options },
+  { option2: pootKeuze2Options },
+];
+
+export const printOptions = [
+  { option1: printKeuze1Options },
+  { option2: printKeuze2Options },
+  { option3: printKeuze3Options },
+];

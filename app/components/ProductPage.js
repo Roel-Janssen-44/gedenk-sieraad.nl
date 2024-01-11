@@ -64,6 +64,8 @@ function Product() {
   );
 
   const tags = [
+    "print",
+    "poot",
     "naamdatum",
     "aszijde",
     // "vulset",

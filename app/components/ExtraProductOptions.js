@@ -16,6 +16,8 @@ import Letter from "./productOptions/Letter";
 import Vulset from "./productOptions/Vulset";
 import Aszijde from "./productOptions/Aszijde";
 import NaamDatum from "./productOptions/NaamDatum";
+import Poot from "./productOptions/Poot";
+import Print from "./productOptions/Print";
 
 export default function ExtraProductOptions({
   tags,
@@ -80,4 +82,6 @@ const components = {
   vulset: Vulset,
   aszijde: Aszijde,
   naamdatum: NaamDatum,
+  poot: Poot,
+  print: Print,
 };
