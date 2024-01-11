@@ -13,6 +13,24 @@ export const aspakketOptions = [
   },
 ];
 
+export const vulsetOptions = [
+  {
+    value: "Ja",
+  },
+  {
+    value: "Nee",
+  },
+];
+
+export const aszijdeOptions = [
+  {
+    value: "Voorzijde",
+  },
+  {
+    value: "Achterzijde",
+  },
+];
+
 export const creoolOptions = [
   {
     value: "Geen",
@@ -431,6 +449,209 @@ export const armbandmaatOptions = [
   },
 ];
 
+export const ringmaatOptions = [
+  {
+    value: "47 (15 mm)",
+    price: 0,
+  },
+  {
+    value: "48 (15,25 mm)",
+    price: 0,
+  },
+  {
+    value: "49 (15,5 mm)",
+    price: 0,
+  },
+  {
+    value: "50 (16 mm)",
+    price: 0,
+  },
+  {
+    value: "51 (16,25 mm)",
+    price: 0,
+  },
+  {
+    value: "52 (16,5 mm)",
+    price: 0,
+  },
+  {
+    value: "53 (17 mm)",
+    price: 0,
+  },
+  {
+    value: "54 (17,25 mm)",
+    price: 0,
+  },
+  {
+    value: "55 (17,5 mm)",
+    price: 0,
+  },
+  {
+    value: "57 (18 mm)",
+    price: 0,
+  },
+  {
+    value: "58 (18,5 mm)",
+    price: 0,
+  },
+  {
+    value: "59 (18,75 mm)",
+    price: 0,
+  },
+  {
+    value: "60 (19 mm)",
+    price: 0,
+  },
+  {
+    value: "61 (19,5 mm)",
+    price: 0,
+  },
+  {
+    value: "62 (19,75 mm)",
+    price: 0,
+  },
+  {
+    value: "63 (20 mm)",
+    price: 0,
+  },
+  {
+    value: "64 (20,5 mm)",
+    price: 0,
+  },
+  {
+    value: "65 (20,75 mm)",
+    price: 0,
+  },
+  {
+    value: "66 (21 mm)",
+    price: 0,
+  },
+  {
+    value: "67 (21,25 mm)",
+    price: 0,
+  },
+];
+
+export const ringmaatSeeyouOptions = [
+  {
+    value: "47 (15 mm)",
+    price: 25.0,
+  },
+  {
+    value: "48 (15,25 mm)",
+    price: 25.0,
+  },
+  {
+    value: "49 (15,5 mm)",
+    price: 25.0,
+  },
+  {
+    value: "50 (16 mm)",
+    price: 0,
+  },
+  {
+    value: "51 (16,25 mm)",
+    price: 25.0,
+  },
+  {
+    value: "52 (16,5 mm)",
+    price: 0,
+  },
+  {
+    value: "53 (17 mm)",
+    price: 25.0,
+  },
+  {
+    value: "54 (17,25 mm)",
+    price: 0,
+  },
+  {
+    value: "55 (17,5 mm)",
+    price: 25.0,
+  },
+  {
+    value: "56 (17,75 mm)",
+    price: 0,
+  },
+  {
+    value: "57 (18 mm)",
+    price: 25.0,
+  },
+  {
+    value: "58 (18,5 mm)",
+    price: 0,
+  },
+  {
+    value: "59 (18,75 mm)",
+    price: 25.0,
+  },
+  {
+    value: "60 (19 mm)",
+    price: 0,
+  },
+  {
+    value: "61 (19,5 mm)",
+    price: 25.0,
+  },
+  {
+    value: "62 (19,75 mm)",
+    price: 0,
+  },
+  {
+    value: "63 (20 mm)",
+    price: 27.5,
+  },
+  {
+    value: "64 (20,5 mm)",
+    price: 27.5,
+  },
+  {
+    value: "65 (20,75 mm)",
+    price: 27.5,
+  },
+  {
+    value: "66 (21 mm)",
+    price: 27.5,
+  },
+  {
+    value: "67 (21,25 mm)",
+    price: 27.5,
+  },
+  {
+    value: "69 (22 mm)",
+    price: 27.5,
+  },
+];
+
+export const letterOptions = [
+  { value: "A", price: 0 },
+  { value: "B", price: 0 },
+  { value: "C", price: 0 },
+  { value: "D", price: 0 },
+  { value: "E", price: 0 },
+  { value: "F", price: 0 },
+  { value: "G", price: 0 },
+  { value: "H", price: 0 },
+  { value: "I", price: 0 },
+  { value: "J", price: 0 },
+  { value: "K", price: 0 },
+  { value: "L", price: 0 },
+  { value: "M", price: 0 },
+  { value: "N", price: 0 },
+  { value: "O", price: 0 },
+  { value: "P", price: 0 },
+  { value: "Q", price: 0 },
+  { value: "R", price: 0 },
+  { value: "S", price: 0 },
+  { value: "T", price: 0 },
+  { value: "U", price: 0 },
+  { value: "V", price: 0 },
+  { value: "W", price: 0 },
+  { value: "X", price: 0 },
+  { value: "Y", price: 0 },
+  { value: "Z", price: 0 },
+];
+
 export const vppakketKeuzeOptions = [
   {
     value: "Ik heb al een vingerafdruk/gravure en wil nu een bestand uploaden",
@@ -468,6 +689,92 @@ export const paraCordOptions = [
   {
     value: "5 Black",
     price: 0,
+  },
+];
+
+export const satijnenOptions = [
+  {
+    value: "1 Aquamarijn",
+    price: 0,
+  },
+  {
+    value: "2 Saffier",
+    price: 0,
+  },
+  {
+    value: "3 Rookkwarts",
+    price: 0,
+  },
+  {
+    value: "4 Smaragd",
+    price: 0,
+  },
+  {
+    value: "5 Peridot",
+    price: 0,
+  },
+  {
+    value: "6 Agaat",
+    price: 0,
+  },
+  {
+    value: "7 Granaat",
+    price: 0,
+  },
+  {
+    value: "8 Citrien",
+    price: 0,
+  },
+  {
+    value: "9 Goud",
+    price: 0,
+  },
+  {
+    value: "10 Toermalijn",
+    price: 0,
+  },
+  {
+    value: "11 Morganiet",
+    price: 0,
+  },
+  {
+    value: "12 Jade",
+    price: 0,
+  },
+  {
+    value: "13 Amethyst",
+    price: 0,
+  },
+  {
+    value: "14 Onyx",
+    price: 0,
+  },
+  {
+    value: "15 Pearl",
+    price: 0,
+  },
+  {
+    value: "16 Brown",
+    price: 0,
+  },
+];
+
+export const naamDatumOptions = [
+  {
+    value: "Geen",
+    price: 0,
+  },
+  {
+    value: "Naam",
+    price: 14.95,
+  },
+  {
+    value: "Datum",
+    price: 14.95,
+  },
+  {
+    value: "Naam + datum",
+    price: 29.95,
   },
 ];
 

@@ -63,25 +63,23 @@ function Product() {
     (value) => value === true
   );
 
-  // console.log("optionsToFillIn");
-  // console.log(optionsToFillIn);
-
-  // const tags = product.tags
-  // const tags = ["creool", "hars", "positie", "ringmaat", "vingerafdruk"];
-
-  // const checkForErrors = () => {
-  //   console.log(" cgheck for errorsa");
-  // };
   const tags = [
-    "creool",
-    "aspakket",
-    "hars",
-    "tekst",
-    "armbandmaat",
-    "graveertekst",
-    "upload",
-    "vppakketup",
-    "cord",
+    "naamdatum",
+    "aszijde",
+    // "vulset",
+    // "letter",
+    // "creool",
+    // "aspakket",
+    // "hars",
+    // "tekst",
+    // "armbandmaat",
+    // "graveertekst",
+    // "upload",
+    // "vppakketup",
+    // "cord",
+    // "satijn",
+    // "ringmaat",
+    // "ringmaatsy",
   ];
   return (
     <div className="container mx-auto flex flex-col gap-6">

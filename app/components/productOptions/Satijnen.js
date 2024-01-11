@@ -10,9 +10,9 @@ import Alert from "@mui/material/Alert";
 import InputRadio from "../InputRadio";
 import InputSelect from "../InputSelect";
 
-import { paraCordOptions } from "./optionSets";
+import { satijnenOptions } from "./optionSets";
 
-export default function ParaCord({
+export default function Satijnen({
   value,
   onChange,
   setOptionErrors,
@@ -23,45 +23,45 @@ export default function ParaCord({
   useEffect(() => {
     if (Array.isArray(value)) {
       const paraCrodSingle = value.find(
-        (item) => item.key === "paracordSingle"
+        (item) => item.key === "satijnenSingle"
       ).value;
-      const paracordMulti = value.find(
-        (item) => item.key === "paracordMulti"
+      const satijnenMulti = value.find(
+        (item) => item.key === "satijnenMulti"
       ).value;
 
-      if (paraCrodSingle != "" && paracordMulti.length == 2) {
+      if (paraCrodSingle != "" && satijnenMulti.length == 4) {
         setError([]);
         setOptionErrors((prevState) => ({
           ...prevState,
-          ["paracord"]: false,
+          ["satijnen"]: false,
         }));
       } else {
         setOptionErrors((prevState) => ({
           ...prevState,
-          ["paracord"]: true,
+          ["satijnen"]: true,
         }));
         if (paraCrodSingle == "") {
           setError((prevState) => ({
             ...prevState,
-            ["paracordSingle"]: "* Kies een optie",
+            ["satijnenSingle"]: "* Kies een optie",
           }));
         } else {
           setError((prevState) => ({
             ...prevState,
-            ["paracordSingle"]: "",
+            ["satijnenSingle"]: "",
           }));
         }
-        console.log("paracordMulti");
-        console.log(paracordMulti);
-        if (paracordMulti.length !== 2) {
+        console.log("satijnenMulti");
+        console.log(satijnenMulti);
+        if (satijnenMulti.length !== 4) {
           setError((prevState) => ({
             ...prevState,
-            ["paracordMulti"]: "* Selecteer twee extra paracords",
+            ["satijnenMulti"]: "* Selecteer vier extra satijnens",
           }));
         } else {
           setError((prevState) => ({
             ...prevState,
-            ["paracordMulti"]: "",
+            ["satijnenMulti"]: "",
           }));
         }
       }
@@ -69,8 +69,8 @@ export default function ParaCord({
   }, [value]);
 
   const [values, setValues] = useState([
-    { key: "paracordSingle", value: value?.paracordSingle?.value || "" },
-    { key: "paracordMulti", value: value?.paracordMulti?.value || [] },
+    { key: "satijnenSingle", value: value?.satijnenSingle?.value || "" },
+    { key: "satijnenMulti", value: value?.satijnenMulti?.value || [] },
   ]);
 
   const isInitialRender = useRef(true);
@@ -85,11 +85,11 @@ export default function ParaCord({
   }, [values]);
 
   const handleChange = (changedKey, newValue) => {
-    if (changedKey == "paracordMulti") {
-      if (newValue.length > 2) {
+    if (changedKey == "satijnenMulti") {
+      if (newValue.length > 4) {
         setError((prevState) => ({
           ...prevState,
-          ["paracordMulti"]: "* Selecteer maximaal twee extra paracords",
+          ["satijnenMulti"]: "* Selecteer maximaal vier extra satijnen",
         }));
         setOpenSnackbar(true);
         setValues((prevValues) => prevValues.map((item) => item));
@@ -122,54 +122,56 @@ export default function ParaCord({
       <div className="relative">
         {showErrors && (
           <p className="absolute  -bottom-6 left-0 text-red-700">
-            {error["paracordSingle"]}
+            {error["satijnenSingle"]}
           </p>
         )}
         <div className="flex flex-row gap-6">
           <div className="min-w-[150px]">
             <InputRadio
               value={
-                values.find((item) => item.key === "paracordSingle")?.value ||
+                values.find((item) => item.key === "satijnenSingle")?.value ||
                 ""
               }
-              onChange={(paracordSingle) =>
-                handleChange("paracordSingle", paracordSingle)
+              onChange={(satijnenSingle) =>
+                handleChange("satijnenSingle", satijnenSingle)
               }
-              title="paracordSingle:"
-              options={paraCordOptions}
+              title="satijnenSingle:"
+              options={satijnenOptions}
             />
           </div>
-          <div className="w-auto h-auto pt-10">
-            <Image src={"/images/paracords.jpg"} width={190} height={250} />
+          <div className="w-auto h-auto pt-7">
+            <div className="w-auto h-auto sticky top-10">
+              <Image src={"/images/satijnen.jpeg"} width={200} height={235} />
+            </div>
           </div>
         </div>
       </div>
       <div className="relative">
         {showErrors && (
-          <p className="absolute  -bottom-6 left-0 text-red-700">
-            {error["paracordMulti"]}
+          <p className="absolute -bottom-6 left-0 text-red-700">
+            {error["satijnenMulti"]}
           </p>
         )}
         <InputSelect
           multiple={true}
           value={
-            values.find((item) => item.key === "paracordMulti")?.value || ""
+            values.find((item) => item.key === "satijnenMulti")?.value || ""
           }
-          onChange={(paracordMulti) =>
-            handleChange("paracordMulti", paracordMulti)
+          onChange={(satijnenMulti) =>
+            handleChange("satijnenMulti", satijnenMulti)
           }
-          title="paracordMulti:"
-          options={paraCordOptions}
+          title="satijnenMulti:"
+          options={satijnenOptions}
         />
       </div>
       <Snackbar
         open={openSnackbar}
         autoHideDuration={3000}
         onClose={closeSnackbar}
-        message="Selecteer maximaal twee extra paracords"
+        message="Selecteer maximaal twee extra satijnens"
       >
         <Alert severity="error" sx={{ width: "100%" }}>
-          Selecteer maximaal twee extra paracords
+          Selecteer maximaal vier extra satijnen
           <IconButton
             size="small"
             aria-label="close"

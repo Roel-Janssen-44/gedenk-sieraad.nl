@@ -9,6 +9,13 @@ import GraveerTekst from "./productOptions/Graveertekst";
 import Upload from "./productOptions/Upload";
 import Vppakketup from "./productOptions/Vppakketup";
 import ParaCord from "./productOptions/ParaCord";
+import Satijnen from "./productOptions/Satijnen";
+import Ringmaat from "./productOptions/Ringmaat";
+import RingmaatSeeyou from "./productOptions/RingmaatSeeyou";
+import Letter from "./productOptions/Letter";
+import Vulset from "./productOptions/Vulset";
+import Aszijde from "./productOptions/Aszijde";
+import NaamDatum from "./productOptions/NaamDatum";
 
 export default function ExtraProductOptions({
   tags,
@@ -66,4 +73,11 @@ const components = {
   upload: Upload,
   vppakketup: Vppakketup,
   cord: ParaCord,
+  satijn: Satijnen,
+  ringmaat: Ringmaat,
+  ringmaatsy: RingmaatSeeyou,
+  letter: Letter,
+  vulset: Vulset,
+  aszijde: Aszijde,
+  naamdatum: NaamDatum,
 };

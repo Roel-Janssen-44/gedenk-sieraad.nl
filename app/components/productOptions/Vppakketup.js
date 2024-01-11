@@ -110,7 +110,7 @@ export default function Vppakketup({
             values.find((item) => item.key === "vppakketKeuze")?.value || ""
           }
           onChange={(uploadValue) => handleChange("vppakketKeuze", uploadValue)}
-          title="vppakketKeuze:"
+          title="vppakketUp:"
           options={vppakketKeuzeOptions}
         />
       </div>
