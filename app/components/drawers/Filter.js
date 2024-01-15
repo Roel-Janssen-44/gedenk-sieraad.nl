@@ -164,8 +164,8 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
     price = 10000;
   }
 
-  console.log("facets");
-  console.log(facets);
+  // console.log("facets");
+  // console.log(facets);
   const [materiaal, setMateriaal] = useState(searchParams.get("Materiaal"));
   const [merk, setMerk] = useState(searchParams.get("Merk"));
   const [minPrijs, setMinPrijs] = useState(searchParams.get("MinPrijs") || 0);

@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 import { styled, alpha } from "@mui/material/styles";
 
@@ -41,7 +42,6 @@ const Search = styled("div")(({ theme }) => ({
   width: "100%",
   color: "white",
   [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
     width: "auto",
   },
 }));
@@ -60,9 +60,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    padding: theme.spacing(1, 0, 1, 1.5),
     transition: theme.transitions.create("width"),
     width: "100%",
     color: "white",
@@ -120,6 +118,10 @@ export default function Navbar({
     setMenuItemDrawerIsOpen(false);
   };
 
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const router = useRouter();
+  console.log(router);
   return (
     <>
       <header
@@ -148,20 +150,31 @@ export default function Navbar({
               <MenuRoundedIcon fontSize="40px" />
             </IconButton>
             {/* Nav items */}
-            <div className="hidden sm:block">{/* To do pc menu items */}</div>
+            <div className="hidden lg:block">To do pc menu items</div>
             {/* Search */}
-            <div className="hidden lg:block">
+            <div className="hidden sm:flex justify-center items-center">
               <Search>
-                <SearchIconWrapper>
-                  <SearchRoundedIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  placeholder="Zoeken..."
-                  inputProps={{ "aria-label": "zoeken" }}
-                />
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    router.push(`/search?search=${searchTerm}`);
+                  }}
+                >
+                  <StyledInputBase
+                    placeholder="Zoeken..."
+                    inputProps={{ "aria-label": "zoeken" }}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onSubmit={() => router.push(`/search?seach=${searchTerm}`)}
+                  />
+                  <IconButton
+                    onClick={() => router.push(`/search?search=${searchTerm}`)}
+                  >
+                    <SearchRoundedIcon className="text-white" />
+                  </IconButton>
+                </form>
               </Search>
             </div>
-            <Link className="lg:hidden" href={"/search"}>
+            <Link className="sm:hidden" href={"/search"}>
               <IconButton size="large" color="inherit" onClick={null}>
                 <SearchRoundedIcon fontSize="40px" />
               </IconButton>

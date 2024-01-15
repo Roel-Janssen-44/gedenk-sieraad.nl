@@ -55,10 +55,10 @@ function Product() {
   const [optionErrors, setOptionErrors] = useState([]);
   const [showErrors, setShowErrors] = useState(false);
 
-  console.log("optionErrors");
-  console.log(optionErrors);
-  console.log("extraOptions");
-  console.log(extraOptions);
+  // console.log("optionErrors");
+  // console.log(optionErrors);
+  // console.log("extraOptions");
+  // console.log(extraOptions);
   const hasTrueValue = Object.values(optionErrors).some(
     (value) => value === true
   );

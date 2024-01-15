@@ -99,6 +99,7 @@ export default function CollectionSlider({ collectionHandle }) {
             <Image
               className="rounded-sm hidden md:block"
               data={collection.image}
+              loading="eager"
             />
             <Slider
               ref={sliderRef}
@@ -106,13 +107,6 @@ export default function CollectionSlider({ collectionHandle }) {
               className="h-auto w-full mb-3"
             >
               {collection?.products?.nodes.map((product, index) => (
-                // <div className="h-40 relative">
-                //   <Image data={product.images.nodes[0]} fill objectFit="cover" />
-
-                //   {console.log(product)}
-
-                //   <h3 className="text-4xl font-tangerine">{product.title}</h3>
-                // </div>
                 <div className="w-full" key={product.id}>
                   <ProductGridItem product={product} />
                 </div>

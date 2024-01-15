@@ -26,6 +26,8 @@ import InputBase from "@mui/material/InputBase";
 
 export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
   const { cost, checkoutUrl, lines } = useCart();
+  console.log("lines");
+  console.log(lines);
   return (
     <Drawer anchor="right" open={cartDrawerIsOpen} onClose={onClose}>
       <div className="h-screen flex flex-col w-full max-w-sm">
@@ -117,14 +119,14 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
           <div className="flex justify-between text-base font-medium text-gray-900">
             <p>Subtotaal:</p>
-            <p>€{cost?.subtotalAmount?.amount}</p>
+            <p>€{cost?.subtotalAmount?.amount || "0.00"}</p>
           </div>
 
           <Button
             size="large"
             href={checkoutUrl}
             variant="contained"
-            className="w-full mt-6 py-3 lowercase text-lg text-white"
+            className="w-full mt-6 py-3 lowercase text-lg bg-primary text-white"
           >
             Ga door naar de kassa
           </Button>

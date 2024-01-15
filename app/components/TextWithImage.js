@@ -25,7 +25,7 @@ export default function TextWithImage() {
         <div className="flex flex-col-reverse gap-4 mb-4">
           <h2 className="text-4xl text-gray-800 font-medium">Jewels Design</h2>
         </div>
-        <p class="mb-4 before:mb-1 before:mr-2 before:inline-block before:content-[''] before:w-16 before:bg-primary before:rounded before:h-[3px]">
+        <p className="mb-4 before:mb-1 before:mr-2 before:inline-block before:content-[''] before:w-16 before:bg-primary before:rounded before:h-[3px]">
           Op onze website is een keur aan gedenksieraden te verkrijgen voor vele
           dierbare momenten in ons leven. Daarbij is de verwerking van haar, as,
           moedermelk, melktandjes, vingerafdruk, hand/voetafdruk, pootafdruk of
