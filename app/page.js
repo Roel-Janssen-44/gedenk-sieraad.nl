@@ -72,33 +72,3 @@ const getCollectionsQuery = `
     }
   }
 `;
-
-// `
-// {
-//   collection1: collection(handle: "sieraden-met-gravure") {
-//     ...collectionFields
-//   }
-//   collection2: collection(handle: "sieraden-met-as-haar") {
-//     ...collectionFields
-//   }
-//   collection3: collection(handle: "herinnering-dieren") {
-//     ...collectionFields
-//   }
-// }
-
-// fragment collectionFields on Collection {
-//   descriptionHtml
-//   title
-//   products(first: 15) {
-//     nodes {
-//       title
-//     }
-//   }
-//   image {
-//     height
-//     altText
-//     width
-//     url
-//   }
-// }
-// `;
