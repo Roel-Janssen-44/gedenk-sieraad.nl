@@ -12,8 +12,7 @@ export default function Hero() {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    // autoplay: true,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 3500,
   };
 
@@ -65,18 +64,9 @@ export default function Hero() {
                 </Link>
               </IconButton>
             </div>
-            {/* <div className="container absolute w-full left-1/2 -translate-x-1/2 h-auto bottom-12 sm:bottom-20"></div> */}
           </div>
         ))}
       </Slider>
     </div>
   );
 }
-
-// ${
-//   index == 0
-//     ? "left-0 sm:left-16"
-//     : index == 1
-//     ? "right-12 md:right-1/2 md:translate-x-48"
-//     : "left-1/2 -translate-x-1/2 md:right-1/2 md:translate-x-36"
-// }

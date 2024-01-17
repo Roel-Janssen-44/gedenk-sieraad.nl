@@ -15,7 +15,7 @@ export default function Video() {
     <div className="py-14">
       <div className="container">
         <div className="p-4">
-          <h2 className="text-4xl text-center text-gray-800 mb-4 font-medium">
+          <h2 className="text-4xl text-center text-gray-800 mb-4 sm:mb-6 lg:mb-8 font-medium">
             Het proces...
           </h2>
           {isClient && (

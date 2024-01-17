@@ -20,14 +20,39 @@ export default function CollectionSlider({ collectionHandle }) {
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     arrows: false,
     autoplay: true,
     autoplaySpeed: 3500,
     draggable: true,
     pauseOnHover: true,
     pauseOnFocus: true,
+    responsive: [
+      {
+        breakpoint: 1560,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const sliderRef = useRef();
@@ -72,35 +97,43 @@ export default function CollectionSlider({ collectionHandle }) {
       <div className="container">
         {collection != null ? (
           <div className="p-4 rounded">
-            <h2 className="text-5xl font-tangerine text-gray-800 mb-1">
-              {collection.title}
-            </h2>
-            <div className="mb-4">
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: sanitizeHtml(collection.descriptionHtml),
-                }}
-                className="before:mb-1 before:mr-2 before:inline-block before:content-[''] before:w-16 before:bg-primary before:rounded before:h-[3px]"
-              ></p>
+            <div className="flex flex-col lg:gap-10 lg:flex-row justify-center items-center max-w-6xl mx-auto lg:mb-6 2xl:mb-8">
+              <div className="lg:w-1/2">
+                <h2 className="text-5xl font-tangerine text-gray-800 mb-1">
+                  {collection.title}
+                </h2>
+                <div className="mb-4">
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: sanitizeHtml(collection.descriptionHtml),
+                    }}
+                    className="before:mb-1 before:mr-2 before:inline-block before:content-[''] before:w-16 before:bg-primary before:rounded before:h-[3px]"
+                  ></p>
+                </div>
+
+                <Link
+                  href={"/collections/" + collection.handle}
+                  className="mb-6 inline-block"
+                >
+                  <Button
+                    variant="contained"
+                    size="large"
+                    className="bg-primary normal-case font-normal"
+                  >
+                    Bekijk alle
+                  </Button>
+                </Link>
+              </div>
+              <div className="lg:w-1/2 lg:h-auto relative aspect-square xl:aspect-video overflow-hidden">
+                <Image
+                  // className="rounded-sm hidden lg:block lg:absolute lg:left-0 lg:top-0 lg:w-full lg:h-full"
+                  className="rounded-md hidden lg:block"
+                  data={collection.image}
+                  loading="eager"
+                />
+              </div>
             </div>
 
-            <Link
-              href={"/collections/" + collection.handle}
-              className="mb-6 inline-block"
-            >
-              <Button
-                variant="contained"
-                size="large"
-                className="bg-primary normal-case font-normal"
-              >
-                Bekijk alle
-              </Button>
-            </Link>
-            <Image
-              className="rounded-sm hidden md:block"
-              data={collection.image}
-              loading="eager"
-            />
             <Slider
               ref={sliderRef}
               {...settings}
