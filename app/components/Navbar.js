@@ -191,7 +191,10 @@ export default function Navbar({
                               const childPathAfterDotCom =
                                 menuChildItem?.url.split(".com")[1];
                               return (
-                                <div className="px-3">
+                                <div
+                                  className="px-3"
+                                  key={"meniChildItem" + menuChildItem.url}
+                                >
                                   <Link
                                     href={childPathAfterDotCom}
                                     className={`py-3 px-2 flex w-full text-left ${

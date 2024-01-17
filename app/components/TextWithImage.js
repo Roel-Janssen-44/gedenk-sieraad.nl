@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 export default function TextWithImage() {
   return (
     <div className="py-14 container">
-      <div className="p-4 rounded relative max-w-lg mx-auto lg:max-w-none lg:flex lg:flex-row lg:gap-8">
+      <div className="p-4 rounded relative max-w-lg mx-auto lg:max-w-none lg:flex lg:flex-row lg:gap-8 xl:max-w-6xl">
         <div className="lg:w-1/2 xl:flex xl:justify-center xl:items-center">
           <div className="rounded mb-10 relative">
             <Image
