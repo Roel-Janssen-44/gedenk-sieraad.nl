@@ -44,15 +44,9 @@ export default function SortCollection({}) {
   };
 
   return (
-    <div className="flex justify-center items-center bg-gray-200 p-8 py-4">
+    <div className="flex justify-center xl:justify-end items-center bg-gray-200 p-8 py-4">
       <span className="font-medium mr-4">Sorteren:</span>
       <div>
-        {/* <InputSelect
-          value={sort}
-          onChange={handleChange}
-          title={""}
-          options={options}
-        /> */}
         <Select
           value={sort}
           onChange={(e) => handleChange(e.target.value)}

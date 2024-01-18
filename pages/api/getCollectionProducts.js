@@ -101,7 +101,7 @@ const generateGraphQLQuery = ({
     query CollectionByHandle {
       collection(handle: "${collectionName}") {
         products(
-          ${fetchDirection || "first"}: 3,
+          ${fetchDirection || "first"}: 20,
           ${cursorFilter || ""},
           ${sort || ""}
 

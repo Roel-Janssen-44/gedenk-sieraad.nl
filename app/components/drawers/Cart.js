@@ -26,8 +26,6 @@ import InputBase from "@mui/material/InputBase";
 
 export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
   const { cost, checkoutUrl, lines } = useCart();
-  console.log("lines");
-  console.log(lines);
   return (
     <Drawer anchor="right" open={cartDrawerIsOpen} onClose={onClose}>
       <div className="h-screen flex flex-col w-full max-w-sm">

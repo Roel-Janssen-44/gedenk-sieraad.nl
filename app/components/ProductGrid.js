@@ -12,7 +12,10 @@ import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import Grid from "./Grid";
 import ProductGridItem from "./ProductGridItem";
 
-export default function ProductGrid({ collection, collectionName }) {
+export default function ProductGrid({ collection, collectionHandle }) {
+  console.log("collection");
+  console.log(collection);
+  console.log(collectionHandle);
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [pageInfo, setPageInfo] = useState(null);
@@ -38,7 +41,7 @@ export default function ProductGrid({ collection, collectionName }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            collectionName,
+            collectionHandle,
             materiaal: materiaal,
             productVendor: merk,
             minPrijs,
@@ -72,20 +75,22 @@ export default function ProductGrid({ collection, collectionName }) {
   };
 
   return (
-    <Grid>
-      {/* To do lege pagina melding maken */}
-      {/* {!products[0] && <h2>Geen producten gevonden probeer een andere pagina</h2>} */}
-      {products.map((product) => {
-        return <ProductGridItem key={product.id} product={product} />;
-      })}
-      <div className="flex flex-row justify-center gap-12 mt-8">
+    <>
+      <Grid>
+        {/* To do lege pagina melding maken */}
+        {/* {!products[0] && <h2>Geen producten gevonden probeer een andere pagina</h2>} */}
+        {products.map((product) => {
+          return <ProductGridItem key={product.id} product={product} />;
+        })}
+      </Grid>
+      <div className="w-full flex flex-row justify-center gap-12 mt-8">
         {pageInfo?.hasPreviousPage && (
           <Button
             variant="contained"
             className={`text-gray-700 ${
               pageInfo?.hasPreviousPage
                 ? "bg-primary text-white"
-                : "border-2 border-black"
+                : "border-2 border-black cursor-not-allowed"
             }`}
             onClick={() => handleNewFetch("before", pageInfo.startCursor)}
           >
@@ -93,9 +98,16 @@ export default function ProductGrid({ collection, collectionName }) {
           </Button>
         )}
         {!pageInfo?.hasPreviousPage && (
-          <Button variant="contained" disabled className={`text-gray-700 `}>
-            <ChevronLeftRoundedIcon fontSize="large" color="inherit" />
-          </Button>
+          <div className="cursor-not-allowed">
+            <Button
+              variant="contained"
+              disabled
+              onClick={() => null}
+              className={`text-gray-700 cursor-not-allowed`}
+            >
+              <ChevronLeftRoundedIcon fontSize="large" color="inherit" />
+            </Button>
+          </div>
         )}
         {pageInfo?.hasNextPage && (
           <Button
@@ -106,19 +118,30 @@ export default function ProductGrid({ collection, collectionName }) {
                 : "border-2 border-black"
             }`}
             onClick={() => {
+              const isMobile = window.innerWidth < 768;
+              const scrollValue = isMobile ? 950 : 350;
+              console.log("scorllValue");
+              console.log(scrollValue);
+              window.scroll({ top: scrollValue, left: 0, behavior: "smooth" });
               handleNewFetch("after", pageInfo.endCursor);
-              window.scroll({ top: 950, left: 0, behavior: "smooth" });
             }}
           >
             <ChevronRightRoundedIcon fontSize="large" color="inherit" />
           </Button>
         )}
         {!pageInfo?.hasNextPage && (
-          <Button variant="contained" disabled className={`text-gray-700 `}>
-            <ChevronRightRoundedIcon fontSize="large" color="inherit" />
-          </Button>
+          <div className="cursor-not-allowed">
+            <Button
+              variant="contained"
+              disabled
+              onClick={() => null}
+              className={`text-gray-700`}
+            >
+              <ChevronRightRoundedIcon fontSize="large" color="inherit" />
+            </Button>
+          </div>
         )}
       </div>
-    </Grid>
+    </>
   );
 }

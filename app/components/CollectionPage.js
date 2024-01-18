@@ -49,7 +49,7 @@ export default async function CollectionPage({ collection }) {
         </div>
         <SortCollection />
         <ProductGrid
-          collectionName={collection.handle}
+          collectionHandle={collection.handle}
           collection={collectionJson?.data?.collectionByHandle}
         />
       </div>

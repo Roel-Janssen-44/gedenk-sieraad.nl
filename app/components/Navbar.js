@@ -155,18 +155,16 @@ export default function Navbar({
                 {menu?.items.map((menuItem, index) => {
                   if (menuItem.items[0] == undefined) {
                     return (
-                      <>
-                        <Link
-                          key={"menu_item" + menuItem.id}
-                          target="_blank"
-                          rel="nofollow"
-                          href={menuItem.url}
-                          className="py-3 px-1 text-left flex items-center                           
+                      <Link
+                        key={"menu_item" + menuItem.id}
+                        target="_blank"
+                        rel="nofollow"
+                        href={menuItem.url}
+                        className="py-3 px-1 text-left flex items-center                           
                           relative before:absolute before:left-0 before:-translate-x-[101%] before:bottom-2 before:h-[2px] before:w-full before:bg-white hover:before:translate-x-0 before:transition-all overflow-hidden"
-                        >
-                          <div>{menuItem.title}</div>
-                        </Link>
-                      </>
+                      >
+                        <div>{menuItem.title}</div>
+                      </Link>
                     );
                   } else {
                     const itemPathAfterDotCom = menuItem?.url.split(".com")[1];
@@ -193,7 +191,7 @@ export default function Navbar({
                               return (
                                 <div
                                   className="px-3"
-                                  key={"meniChildItem" + menuChildItem.url}
+                                  key={"menuChildItem" + menuChildItem.url}
                                 >
                                   <Link
                                     href={childPathAfterDotCom}

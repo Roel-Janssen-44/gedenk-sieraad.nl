@@ -85,8 +85,6 @@ export default function Search() {
 
   const handleChange = (newValue) => {
     setQuery(newValue);
-    console.log("newValue");
-    console.log(newValue);
     const params = new URLSearchParams(searchParams);
     params.set("search", newValue);
     replace(`search?${params.toString()}`);
@@ -112,8 +110,6 @@ export default function Search() {
 
         {data?.data?.search?.nodes[0]?.title && (
           <Grid>
-            {console.log("data")}
-            {console.log(data?.data)}
             {data.data.search.nodes.map((product) => (
               <ProductGridItem key={product.id} product={product} />
             ))}

@@ -19,7 +19,7 @@ export default function Breadcrumb() {
           width={1920}
           height={1080}
           priority
-          className="w-auto h-full object-cover"
+          className="w-full h-full object-cover"
         />
       </div>
       <div className="z-10 w-full h-full absolute left-0 top-0 bg-black opacity-[0.35]"></div>

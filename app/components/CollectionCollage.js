@@ -35,8 +35,6 @@ export default function CollectionCollage({ collections }) {
             }
             `}
           >
-            {/* ${index === 2 ? "-mt-[500px]" : ""} */}
-            {/* ${index === 1 ? "ml-auto lg:flex lg:flex-col-reverse" : ""} */}
             <div className="p-4 pt-5 flex flex-col justify-center">
               <h2 className="text-5xl font-tangerine mb-4 text-gray-800">
                 {collection.title}

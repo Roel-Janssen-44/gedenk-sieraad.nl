@@ -8,7 +8,7 @@ export default function ProductGridItem({ product }) {
   return (
     <Link
       href={`/products/${product.handle}`}
-      className="group p-8 hover:shadow-xl animation-all duration-500"
+      className="group p-8 w-full sm:w-[284px] md:w-[332px] lg:w-[303px] xl:w-[301px] 2xl:w-[287px] hover:shadow-xl animation-all duration-500"
     >
       <div className="relative flex justify-center">
         <Image

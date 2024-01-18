@@ -31,6 +31,7 @@ export default function ProductPage({ product }) {
           <Image
             data={product.media.nodes[0].image}
             sizes="(min-width: 45em) 50vw, 100vw"
+            loading="eager"
           />
         </div>
         <Product />

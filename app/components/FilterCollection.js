@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 
 import FilterDrawer from "@/components/drawers/Filter";
+import FilterCollectionFilters from "@/components/FilterCollectionFilters";
 
 export default function FilterCollection({ facets }) {
   const [filterDrawerIsOpen, setFilterDrawerIsOpen] = useState(false);
@@ -14,19 +15,23 @@ export default function FilterCollection({ facets }) {
   };
 
   return (
-    <>
+    <div className="relative">
       <IconButton
-        className="fixed top-1/2 -translate-y-1/2 left-0 rounded-none rounded-r bg-gray-200 hover:bg-primary focus:bg-primary text-gray-700 hover:text-white focus:text-white w-10 h-10"
+        className="xl:hidden fixed top-1/2 -translate-y-1/2 left-0 rounded-none rounded-r bg-gray-200 hover:bg-primary focus:bg-primary text-gray-700 hover:text-white focus:text-white w-10 h-10"
         onClick={toggleFilterDrawerIsOpen}
       >
         <PlayArrowRoundedIcon fontSize="32px" />
       </IconButton>
-      <div className="hidden">filter menu</div>
-      <FilterDrawer
-        filterDrawerIsOpen={filterDrawerIsOpen}
-        onClose={toggleFilterDrawerIsOpen}
-        facets={facets}
-      />
-    </>
+      <div className="hidden xl:block xl:w-[265px]">
+        <FilterCollectionFilters facets={facets} onClose={() => null} />
+      </div>
+      <div className="block xl:hidden">
+        <FilterDrawer
+          filterDrawerIsOpen={filterDrawerIsOpen}
+          onClose={toggleFilterDrawerIsOpen}
+          facets={facets}
+        />
+      </div>
+    </div>
   );
 }
