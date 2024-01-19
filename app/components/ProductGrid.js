@@ -13,9 +13,6 @@ import Grid from "./Grid";
 import ProductGridItem from "./ProductGridItem";
 
 export default function ProductGrid({ collectionHandle }) {
-  console.log("collection");
-  // console.log(collection);
-  console.log(collectionHandle);
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [pageInfo, setPageInfo] = useState(null);
@@ -120,8 +117,6 @@ export default function ProductGrid({ collectionHandle }) {
             onClick={() => {
               const isMobile = window.innerWidth < 768;
               const scrollValue = isMobile ? 950 : 350;
-              console.log("scorllValue");
-              console.log(scrollValue);
               window.scroll({ top: scrollValue, left: 0, behavior: "smooth" });
               handleNewFetch("after", pageInfo.endCursor);
             }}

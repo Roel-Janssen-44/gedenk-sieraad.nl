@@ -34,7 +34,7 @@ export default function Hero() {
     },
   ];
   return (
-    <div className="h-[100lvh] bg-red-400">
+    <div className="h-[100lvh] bg-secondary">
       <Slider {...settings} className="h-[100lvh]">
         {slides.map((slide, index) => (
           <div key={slide.title} className="h-[100lvh] relative">

@@ -11,16 +11,39 @@ export default function PageInfo({ page }) {
   useEffect(() => {
     setIsClient(true);
   }, []);
-  const sanitizedHtmlContent = sanitizeHtml(page.body);
-  const clean = sanitizeHtml(page.body, {
+  // const sanitizedHtmlContent = sanitizeHtml(page.body, {
+  //   allowedTags: false,
+  //   allowedAttributes: false,
+  // });
+  // Add display: inline-block to opening tags
+  const sanitizedHtmlContent = sanitizeHtml(page.body, {
     allowedTags: false,
     allowedAttributes: false,
+    transformTags: {
+      img: (tagName, attribs) => {
+        // Add display: inline-block only to img tags
+        if (!attribs.style) {
+          attribs.style = "";
+        }
+        attribs.style += "display: inline-block;";
+        return { tagName, attribs };
+      },
+      iframe: (tagName, attribs) => {
+        // Add display: inline-block only to img tags
+        if (!attribs.style) {
+          attribs.style = "";
+        }
+        attribs.style += "display: inline-block;";
+        return { tagName, attribs };
+      },
+    },
   });
+
   return (
     <div>
       <div className="mb-4">
         {isClient ? (
-          <p dangerouslySetInnerHTML={{ __html: clean }}></p>
+          <p dangerouslySetInnerHTML={{ __html: sanitizedHtmlContent }}></p>
         ) : (
           "Loading..."
         )}
