@@ -12,9 +12,9 @@ import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import Grid from "./Grid";
 import ProductGridItem from "./ProductGridItem";
 
-export default function ProductGrid({ collection, collectionHandle }) {
+export default function ProductGrid({ collectionHandle }) {
   console.log("collection");
-  console.log(collection);
+  // console.log(collection);
   console.log(collectionHandle);
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
@@ -41,7 +41,7 @@ export default function ProductGrid({ collection, collectionHandle }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            collectionHandle,
+            collectionName: collectionHandle,
             materiaal: materiaal,
             productVendor: merk,
             minPrijs,
@@ -64,7 +64,7 @@ export default function ProductGrid({ collection, collectionHandle }) {
     };
 
     fetchData();
-  }, [collection, newFetchCursor]);
+  }, [collectionHandle, newFetchCursor]);
 
   if (error) {
     return <div>Error: {error}</div>;

@@ -13,24 +13,27 @@ export default function CollectionCollage({ collections }) {
     setIsClient(true);
   }, []);
   return (
-    <div className="pt-28 pb-16 container max-w-7xl mx-auto">
+    <div className="pt-28 pb-16 container max-w-7xl mx-auto xl:flex xl:flex-row xl:flex-wrap xl:justify-center xl:gap-28">
       {Object.keys(collections).map((key, index) => {
         const collection = collections[key];
         const sanitizedHtmlContent = sanitizeHtml(collection.descriptionHtml);
-
         return (
           <div
             key={key}
-            className={`mb-10 bg-white rounded-lg shadow relative max-w-md lg:mb-20 lg:flex lg:aspect-[2/1] lg:gap-4 lg:max-w-[850px] 
-            ${index === 0 ? "lg:flex-row-reverse xl:mx-auto xl:max-w-4xl" : ""}
+            className={`mb-10 bg-white rounded-lg shadow relative max-w-md lg:mb-20 lg:flex lg:aspect-[2/1] lg:gap-4 lg:max-w-[850px] xl:mb-0 xl:h-auto
+            ${
+              index === 0
+                ? "lg:flex-row-reverse xl:mx-auto xl:max-w-4xl xl:w-full"
+                : ""
+            }
             ${
               index === 1
-                ? "ml-auto lg:flex-row xl:flex-col-reverse xl:max-w-md xl:mr-24"
+                ? "ml-auto lg:flex-row xl:flex-col xl:max-w-md xl:m-0 xl:mt-28"
                 : ""
             }
             ${
               index === 2
-                ? "lg:flex-row-reverse xl:flex-col xl:max-w-md xl:-mt-[600px] xl:ml-24"
+                ? "lg:flex-row-reverse xl:flex-col-reverse xl:max-w-md xl:mb-auto"
                 : ""
             }
             `}
@@ -66,8 +69,12 @@ export default function CollectionCollage({ collections }) {
               className={`relative min-w-[50%] w-auto min-h-[224px] h-full overflow-hidden rounded-b-lg rounded-t-sm
               ${index % 2 == 0 ? "lg:rounded-l-lg lg:rounded-r-none" : ""}
               ${index % 2 == 1 ? "lg:rounded-r-lg lg:rounded-l-none" : ""}
-              ${index == 1 ? "xl:rounded-t-lg xl:rounded-b-none" : ""}
-              ${index == 2 ? "xl:rounded-b-lg xl:rounded-t-none" : ""}
+              ${
+                index == 2
+                  ? "xl:rounded-t-lg xl:rounded-b-none xl:h-[224px]"
+                  : ""
+              }
+              ${index == 1 ? "xl:rounded-b-lg xl:rounded-t-none" : ""}
               `}
             >
               <Image

@@ -29,16 +29,22 @@ export default async function handler(req, res) {
       sortKey,
     });
 
+    console.log("GRAPHQL_COLLECTION_QUERY");
+    console.log(GRAPHQL_COLLECTION_QUERY);
     const collectionResponse = await fetch(getStorefrontApiUrl(), {
       method: "POST",
-      headers: getPrivateTokenHeaders({ buyerIp: "..." }),
+      headers: getPrivateTokenHeaders(),
       body: JSON.stringify({
         query: GRAPHQL_COLLECTION_QUERY,
       }),
     });
 
-    const collectionJson = await collectionResponse.json();
+    // console.log("collectionResponse");
+    // console.log(collectionResponse);
 
+    const collectionJson = await collectionResponse.json();
+    // console.log("collectionJson");
+    // console.log(collectionJson);
     return res.status(200).json(collectionJson.data.collection.products);
   } catch (error) {
     console.error("Error fetching collection products:", error);
@@ -96,7 +102,6 @@ const generateGraphQLQuery = ({
         break;
     }
   }
-
   return `
     query CollectionByHandle {
       collection(handle: "${collectionName}") {

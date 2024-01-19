@@ -183,8 +183,8 @@ export default function Navbar({
                             <ExpandMoreRoundedIcon className="text-white" />
                           </span>
                         </Link>
-                        <div className="absolute invisible min-w-[200px] opacity-0 group-hover:visible group-hover:opacity-100 transition-all bg-white rounded-b-md rounded-t-sm text-black flex-1 overflow-y-auto ">
-                          <ul role="list" className="">
+                        <div className="absolute invisible min-w-[200px] shadow-md opacity-0 group-hover:visible group-hover:opacity-100 transition-all bg-white rounded-b-md rounded-t-sm text-black flex-1 overflow-y-auto ">
+                          <ul role="list">
                             {menuItem?.items.map((menuChildItem, index) => {
                               const childPathAfterDotCom =
                                 menuChildItem?.url.split(".com")[1];

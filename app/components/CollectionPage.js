@@ -28,7 +28,6 @@ export default async function CollectionPage({ collection }) {
   });
 
   const collectionJson = await collectionResponse.json();
-  // console.log(collectionJson);
   return (
     <div className="container flex flex-col gap-8 md:flex-row">
       <FilterCollection facets={collectionJson?.data?.search} />
@@ -50,7 +49,7 @@ export default async function CollectionPage({ collection }) {
         <SortCollection />
         <ProductGrid
           collectionHandle={collection.handle}
-          collection={collectionJson?.data?.collectionByHandle}
+          // collection={collectionJson?.data?.collectionByHandle}
         />
       </div>
     </div>
