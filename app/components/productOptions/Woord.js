@@ -7,7 +7,11 @@ import InputTextField from "../InputTextField";
 import InputDate from "../InputDate";
 import InputImageSwatchLarge from "../InputImageSwatchLarge";
 
-import { graveerTekstOptions, lettertypeOptions } from "./optionSets";
+import {
+  graveerTekstOptions,
+  extraWoordenOptions,
+  lettertypeOptions,
+} from "./optionSets";
 
 export default function GraveerTekst({
   value,
@@ -16,6 +20,8 @@ export default function GraveerTekst({
   showErrors,
 }) {
   const [error, setError] = useState([]);
+  console.log("error");
+  console.log(error);
   useEffect(() => {
     if (Array.isArray(value)) {
       const graveerTekstValue = value.find(
@@ -26,6 +32,9 @@ export default function GraveerTekst({
       ).value;
       const initialenValue = value.find(
         (item) => item.key === "initialen"
+      ).value;
+      const extraWoordValue = value.find(
+        (item) => item.key === "extraWoord"
       ).value;
       const datumValue = value.find((item) => item.key === "datum").value;
       const naamValue = value.find((item) => item.key === "naam").value;
@@ -60,12 +69,92 @@ export default function GraveerTekst({
           }
           break;
         case "Geen tekst":
-        case "Hartje ♥ symbool":
-        case "Infinity ∞ teken":
           setError((prevState) => ({
             ...prevState,
-            ["graveerTekst"]: "",
+            ["tekstBinnenZijdeRing"]: "",
           }));
+          break;
+        case "Hartje ♥ symbool":
+        case "Infinity ∞ teken":
+          if (extraWoordValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["extraWoord"]: "* Veld extraWoord mag niet leeg zijn",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["extraWoord"]: "",
+            }));
+            if (extraWoordValue == "1 extra woord") {
+              if (woord1Value == "") {
+                setError((prevState) => ({
+                  ...prevState,
+                  ["woord1"]: "* Dit veld mag niet leeg zijn",
+                }));
+              } else if (woord1Value.includes(" ")) {
+                setError((prevState) => ({
+                  ...prevState,
+                  ["woord1"]: "* Dit veld mag geen spatie bevatten",
+                }));
+              } else if (woord1Value.length > 11) {
+                setError((prevState) => ({
+                  ...prevState,
+                  ["woord1"]: "* Gebruik maximaal 11 karakters",
+                }));
+              } else {
+                setError((prevState) => ({
+                  ...prevState,
+                  ["woord1"]: "",
+                }));
+              }
+              if (lettertypeValue == "") {
+                setError((prevState) => ({
+                  ...prevState,
+                  ["lettertype"]: "* Kies een lettertype",
+                }));
+              } else {
+                setError((prevState) => ({
+                  ...prevState,
+                  ["lettertype"]: "",
+                }));
+              }
+            } else if (extraWoordValue == "2 extra woorden") {
+              if (woord2Value == "") {
+                setError((prevState) => ({
+                  ...prevState,
+                  ["woord2"]: "* Dit veld mag niet leeg zijn",
+                }));
+              } else if (woord2Value.split(" ").length > 2) {
+                setError((prevState) => ({
+                  ...prevState,
+                  ["woord2"]:
+                    "* Dit veld mag niet meer dan één spatie bevatten",
+                }));
+              } else if (woord2Value.length > 18) {
+                setError((prevState) => ({
+                  ...prevState,
+                  ["woord2"]: "* Gebruik maximaal 18 karakters",
+                }));
+              } else {
+                setError((prevState) => ({
+                  ...prevState,
+                  ["woord2"]: "",
+                }));
+              }
+              if (lettertypeValue == "") {
+                setError((prevState) => ({
+                  ...prevState,
+                  ["lettertype"]: "* Kies een lettertype",
+                }));
+              } else {
+                setError((prevState) => ({
+                  ...prevState,
+                  ["lettertype"]: "",
+                }));
+              }
+            }
+          }
           break;
         case "Datum":
           if (datumValue == "") {
@@ -343,14 +432,15 @@ export default function GraveerTekst({
       key: "graveerTekst",
       value: value?.graveerTekst?.value || "",
     },
-    { key: "lettertype", value: value?.naam?.value || "" },
-    { key: "initialen", value: value?.naam?.value || "" },
-    { key: "datum", value: value?.naam?.value || "" },
+    { key: "lettertype", value: value?.lettertype?.value || "" },
+    { key: "initialen", value: value?.initialen?.value || "" },
+    { key: "extraWoord", value: value?.extraWoord?.value || "" },
+    { key: "datum", value: value?.datum?.value || "" },
     { key: "naam", value: value?.naam?.value || "" },
-    { key: "1 woord", value: value?.naam?.value || "" },
-    { key: "2 woorden", value: value?.naam?.value || "" },
-    { key: "3 woorden", value: value?.naam?.value || "" },
-    { key: "4 woorden", value: value?.naam?.value || "" },
+    { key: "1 woord", value: value?.woord1?.value || "" },
+    { key: "2 woorden", value: value?.woord2?.value || "" },
+    { key: "3 woorden", value: value?.woord3?.value || "" },
+    { key: "4 woorden", value: value?.woord4?.value || "" },
   ]);
 
   const isInitialRender = useRef(true);
@@ -376,6 +466,9 @@ export default function GraveerTekst({
   const graveerTekstValue = values.find(
     (item) => item.key === "graveerTekst"
   ).value;
+  const extraWoordValue = values.find(
+    (item) => item.key === "extraWoord"
+  ).value;
 
   return (
     <>
@@ -395,6 +488,24 @@ export default function GraveerTekst({
         />
       </div>
 
+      {(graveerTekstValue == "Hartje ♥ symbool" ||
+        graveerTekstValue == "Infinity ∞ teken") && (
+        <div className="relative">
+          {showErrors && (
+            <p className="absolute  -bottom-6 left-0 text-red-700">
+              {error["extraWoord"]}
+            </p>
+          )}
+          <InputSelect
+            value={extraWoordValue}
+            onChange={(newExtraWoordValue) =>
+              handleChange("extraWoord", newExtraWoordValue)
+            }
+            title="Extra woorden:"
+            options={extraWoordenOptions}
+          />
+        </div>
+      )}
       {graveerTekstValue == "Initialen/letters/tekens" && (
         <div className="relative">
           {showErrors && (
@@ -441,7 +552,8 @@ export default function GraveerTekst({
           />
         </div>
       )}
-      {graveerTekstValue == "1 woord" && (
+      {(graveerTekstValue == "1 woord" ||
+        extraWoordValue == "1 extra woord") && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -457,7 +569,8 @@ export default function GraveerTekst({
           />
         </div>
       )}
-      {graveerTekstValue == "2 woorden" && (
+      {(graveerTekstValue == "2 woorden" ||
+        extraWoordValue == "2 extra woorden") && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -512,7 +625,9 @@ export default function GraveerTekst({
         graveerTekstValue == "1 woord" ||
         graveerTekstValue == "2 woorden" ||
         graveerTekstValue == "3 woorden" ||
-        graveerTekstValue == "4 woorden") && (
+        graveerTekstValue == "4 woorden" ||
+        extraWoordValue == "1 extra woord" ||
+        extraWoordValue == "2 extra woorden") && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">

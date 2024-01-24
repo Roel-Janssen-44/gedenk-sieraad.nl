@@ -5,7 +5,7 @@ import Aspakket from "./productOptions/Aspakket";
 import Hars from "./productOptions/Hars";
 import Tekst from "./productOptions/Tekst";
 import Armbandmaat from "./productOptions/Armbandmaat";
-import GraveerTekst from "./productOptions/Graveertekst";
+import Woord from "./productOptions/Woord";
 import Upload from "./productOptions/Upload";
 import Vppakketup from "./productOptions/Vppakketup";
 import ParaCord from "./productOptions/ParaCord";
@@ -71,7 +71,7 @@ const components = {
   hars: Hars,
   tekst: Tekst,
   armbandmaat: Armbandmaat,
-  graveertekst: GraveerTekst,
+  woord: Woord,
   upload: Upload,
   vppakketup: Vppakketup,
   cord: ParaCord,

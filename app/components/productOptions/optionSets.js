@@ -22,6 +22,21 @@ export const vulsetOptions = [
   },
 ];
 
+export const extraWoordenOptions = [
+  {
+    value: "Geen extra woord",
+    price: 0,
+  },
+  {
+    value: "1 extra woord",
+    price: 14.95,
+  },
+  {
+    value: "2 extra woorden",
+    price: 19.95,
+  },
+];
+
 export const pootKeuze1Options = [
   {
     value: "Standaard pootafdruk",
@@ -848,10 +863,12 @@ export const harsOptions = [
 ];
 export const tekstOptions = [
   { tekstBinnenZijdeRing: tekstBinnenZijdeRingOptions },
+  { extraWoorden: extraWoordenOptions },
 ];
 
 export const graveerTekstOptions = [
   { graveerTekst: tekstBinnenZijdeRingOptions },
+  { extraWoorden: extraWoordenOptions },
 ];
 
 export const vppakketOptions = [{ vppakketKeuze: vppakketKeuzeOptions }];

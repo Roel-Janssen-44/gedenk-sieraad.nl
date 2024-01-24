@@ -100,9 +100,8 @@ const generateGraphQLQuery = ({
       collection(handle: "${collectionName}") {
         products(
           ${fetchDirection || "first"}: 20,
-          ${cursorFilter || ""},
+          ${cursorFilter || ""}
           ${sort || ""}
-
           filters: [
             {available: true}, 
             { price: { min: ${parseFloat(minPrijs) || 0.0}, max: ${

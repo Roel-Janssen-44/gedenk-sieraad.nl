@@ -64,19 +64,22 @@ function Product() {
     (value) => value === true
   );
 
+  console.log("optionErrors");
+  console.log(optionErrors);
+
   const tags = [
-    "print",
-    "poot",
-    "naamdatum",
-    "aszijde",
+    // "print",
+    // "poot",
+    // "naamdatum",
+    // "aszijde",
     // "vulset",
     // "letter",
     // "creool",
     // "aspakket",
     // "hars",
-    // "tekst",
+    "tekst",
     // "armbandmaat",
-    // "graveertekst",
+    "woord",
     // "upload",
     // "vppakketup",
     // "cord",
@@ -147,6 +150,9 @@ function Product() {
         <span className="font-bold min-w-[140px]">Artikelnr:</span>
         <span className="font-normal">{selectedVariant.sku}</span>
       </div>
+
+      {console.log("hasTrueValue")}
+      {console.log(hasTrueValue)}
       {/* To do verzending */}
       {/* {optionErrors && <p className="text-red-700">vul alle velden in!</p>} */}
       <Button

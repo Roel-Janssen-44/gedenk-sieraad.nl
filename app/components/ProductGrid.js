@@ -47,7 +47,6 @@ export default function ProductGrid({ collectionHandle }) {
             newFetchCursor: newFetchCursor,
           }),
         });
-
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
