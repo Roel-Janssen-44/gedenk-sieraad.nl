@@ -2,29 +2,30 @@
 
 import { useState, useEffect, useRef } from "react";
 
+import InputFile from "../InputFile";
 import InputSelect from "../InputSelect";
 import InputTextField from "../InputTextField";
 import InputDate from "../InputDate";
 import InputImageSwatchLarge from "../InputImageSwatchLarge";
 
 import {
-  graveerTekstOptions,
+  gravureOptions,
   extraWoordenOptions,
   lettertypeOptions,
 } from "./optionSets";
 
-export default function GraveerTekst({
+export default function Gravure({
   value,
   onChange,
   setOptionErrors,
   showErrors,
 }) {
   const [error, setError] = useState([]);
+  console.log("error gravure");
+  console.log(error);
   useEffect(() => {
     if (Array.isArray(value)) {
-      const graveerTekstValue = value.find(
-        (item) => item.key === "graveerTekst"
-      ).value;
+      const gravure = value.find((item) => item.key === "gravure").value;
       const lettertypeValue = value.find(
         (item) => item.key === "lettertype"
       ).value;
@@ -40,13 +41,13 @@ export default function GraveerTekst({
       const woord2Value = value.find((item) => item.key === "2 woorden").value;
       const woord3Value = value.find((item) => item.key === "3 woorden").value;
       const woord4Value = value.find((item) => item.key === "4 woorden").value;
-
-      switch (graveerTekstValue) {
+      const uploadValue = value.find((item) => item.key === "upload").value;
+      switch (gravure) {
         case "Initialen/letters/tekens":
           if (initialenValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["initialen"]: "Veld initiaal mag niet leeg zijn",
+              ["initialen"]: "* Veld initiaal mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -57,7 +58,7 @@ export default function GraveerTekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["lettertype"]: "* Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -69,7 +70,7 @@ export default function GraveerTekst({
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,
-            ["tekstBinnenZijdeRing"]: "",
+            ["gravure"]: "",
           }));
           break;
         case "Hartje ♥ symbool":
@@ -158,7 +159,7 @@ export default function GraveerTekst({
           if (datumValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "Veld datum mag niet leeg zijn",
+              ["datum"]: "* Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -169,7 +170,7 @@ export default function GraveerTekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["lettertype"]: "* Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -182,7 +183,7 @@ export default function GraveerTekst({
           if (naamValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "Veld naam mag niet leeg zijn",
+              ["naam"]: "* Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -193,7 +194,7 @@ export default function GraveerTekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["lettertype"]: "* Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -206,7 +207,7 @@ export default function GraveerTekst({
           if (naamValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "Veld naam mag niet leeg zijn",
+              ["naam"]: "* Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -217,7 +218,7 @@ export default function GraveerTekst({
           if (datumValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "Veld datum mag niet leeg zijn",
+              ["datum"]: "* Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -228,7 +229,7 @@ export default function GraveerTekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["lettertype"]: "* Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -240,17 +241,17 @@ export default function GraveerTekst({
           if (woord1Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord1"]: "Dit veld mag niet leeg zijn",
+              ["woord1"]: "* Dit veld mag niet leeg zijn",
             }));
           } else if (woord1Value.includes(" ")) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1"]: "Dit veld mag geen spatie bevatten",
+              ["woord1"]: "* Dit veld mag geen spatie bevatten",
             }));
           } else if (woord1Value.length > 11) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1"]: "Gebruik maximaal 11 karakters",
+              ["woord1"]: "* Gebruik maximaal 11 karakters",
             }));
           } else {
             setError((prevState) => ({
@@ -261,7 +262,7 @@ export default function GraveerTekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["lettertype"]: "* Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -274,17 +275,17 @@ export default function GraveerTekst({
           if (woord2Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord2"]: "Veld woord 2 mag niet leeg zijn",
+              ["woord2"]: "* Veld woord 2 mag niet leeg zijn",
             }));
           } else if (woord2Value.length > 18) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2"]: "Gebruik maximaal 18 karakters",
+              ["woord2"]: "* Gebruik maximaal 18 karakters",
             }));
           } else if (woord2Value.split(" ").length > 2) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2"]: "Dit veld mag niet meer dan één spatie bevatten",
+              ["woord2"]: "* Dit veld mag niet meer dan één spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
@@ -295,7 +296,7 @@ export default function GraveerTekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["lettertype"]: "* Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -308,17 +309,17 @@ export default function GraveerTekst({
           if (woord3Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord3"]: "Veld woord 3 mag niet leeg zijn",
+              ["woord3"]: "* Veld woord 3 mag niet leeg zijn",
             }));
           } else if (woord3Value.length > 24) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3"]: "Gebruik maximaal 24 karakters",
+              ["woord3"]: "* Gebruik maximaal 24 karakters",
             }));
           } else if (woord3Value.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3"]: "Dit veld mag niet meer dan twee spaties bevatten",
+              ["woord3"]: "* Dit veld mag niet meer dan twee spaties bevatten",
             }));
           } else {
             setError((prevState) => ({
@@ -329,7 +330,7 @@ export default function GraveerTekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["lettertype"]: "* Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -342,17 +343,17 @@ export default function GraveerTekst({
           if (woord4Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord4"]: "Veld woord 4 mag niet leeg zijn",
+              ["woord4"]: "* Veld woord 4 mag niet leeg zijn",
             }));
           } else if (woord4Value.length > 30) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4"]: "Gebruik maximaal 30 karakters",
+              ["woord4"]: "* Gebruik maximaal 30 karakters",
             }));
           } else if (woord4Value.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4"]: "Dit veld mag niet meer dan drie spatie bevatten",
+              ["woord4"]: "* Dit veld mag niet meer dan drie spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
@@ -363,7 +364,7 @@ export default function GraveerTekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["lettertype"]: "* Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -373,36 +374,70 @@ export default function GraveerTekst({
           }
           break;
 
-        default:
-          if (graveerTekstValue == "") {
+        case "Voet/handafdruk":
+        case "Poot/snuitafdruk":
+        case "Echo":
+        case "Vingerafdruk":
+        case "Logo/handtekening":
+        case "Twee vingerafdrukken in hartvorm":
+          if (uploadValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["graveerTekst"]: "Veld mag niet leeg zijn",
+              ["upload"]: "* Upload een bestand",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["graveerTekst"]: "",
+              ["upload"]: "",
+            }));
+          }
+          setError((prevState) => ({
+            ...prevState,
+            ["woord1"]: "",
+            ["woord2"]: "",
+            ["woord3"]: "",
+            ["woord4"]: "",
+            ["initialen"]: "",
+            ["naam"]: "",
+            ["datum"]: "",
+          }));
+          break;
+        default:
+          if (gravure == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["gravure"]: "* Veld mag niet leeg zijn",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["gravure"]: "",
             }));
           }
       }
 
       if (
-        graveerTekstValue == "Geen tekst" ||
-        graveerTekstValue == "Initialen/letters/tekens" ||
-        graveerTekstValue == "Hartje ♥ symbool" ||
-        graveerTekstValue == "Infinity ∞ teken" ||
-        graveerTekstValue == "Naam en datum" ||
-        graveerTekstValue == "Naam" ||
-        graveerTekstValue == "Datum" ||
-        graveerTekstValue == "1 woord" ||
-        graveerTekstValue == "2 woorden" ||
-        graveerTekstValue == "3 woorden" ||
-        graveerTekstValue == "4 woorden"
+        gravure == "Geen tekst" ||
+        gravure == "Initialen/letters/tekens" ||
+        gravure == "Hartje ♥ symbool" ||
+        gravure == "Infinity ∞ teken" ||
+        gravure == "Naam en datum" ||
+        gravure == "Naam" ||
+        gravure == "Datum" ||
+        gravure == "1 woord" ||
+        gravure == "2 woorden" ||
+        gravure == "3 woorden" ||
+        gravure == "4 woorden" ||
+        gravure == "Voet/handafdruk" ||
+        gravure == "Poot/snuitafdruk" ||
+        gravure == "Echo" ||
+        gravure == "Vingerafdruk" ||
+        gravure == "Logo/handtekening" ||
+        gravure == "Twee vingerafdrukken in hartvorm"
       ) {
         setError((prevState) => ({
           ...prevState,
-          ["graveerTekst"]: "",
+          ["gravure"]: "",
         }));
       }
     }
@@ -415,20 +450,20 @@ export default function GraveerTekst({
     if (allValuescorrect) {
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["graveerTekst"]: false,
+        ["gravure"]: false,
       }));
     } else {
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["graveerTekst"]: true,
+        ["gravure"]: true,
       }));
     }
   }, [error]);
 
   const [values, setValues] = useState([
     {
-      key: "graveerTekst",
-      value: value?.graveerTekst?.value || "",
+      key: "gravure",
+      value: value?.gravure?.value || "",
     },
     { key: "lettertype", value: value?.lettertype?.value || "" },
     { key: "initialen", value: value?.initialen?.value || "" },
@@ -439,6 +474,7 @@ export default function GraveerTekst({
     { key: "2 woorden", value: value?.woord2?.value || "" },
     { key: "3 woorden", value: value?.woord3?.value || "" },
     { key: "4 woorden", value: value?.woord4?.value || "" },
+    { key: "upload", value: value?.upload?.value || "" },
   ]);
 
   const isInitialRender = useRef(true);
@@ -461,9 +497,7 @@ export default function GraveerTekst({
 
     onChange(values);
   };
-  const graveerTekstValue = values.find(
-    (item) => item.key === "graveerTekst"
-  ).value;
+  const gravure = values.find((item) => item.key === "gravure").value;
   const extraWoordValue = values.find(
     (item) => item.key === "extraWoord"
   ).value;
@@ -473,21 +507,18 @@ export default function GraveerTekst({
       <div className="relative">
         {showErrors && (
           <p className="absolute  -bottom-6 left-0 text-red-700">
-            {error["graveerTekst"]}
+            {error["gravure"]}
           </p>
         )}
         <InputSelect
-          value={graveerTekstValue}
-          onChange={(newTekstValue) =>
-            handleChange("graveerTekst", newTekstValue)
-          }
-          title="Graveertekst:"
-          options={graveerTekstOptions[0].graveerTekst}
+          value={gravure}
+          onChange={(newTekstValue) => handleChange("gravure", newTekstValue)}
+          title="Gravure: "
+          options={gravureOptions}
         />
       </div>
 
-      {(graveerTekstValue == "Hartje ♥ symbool" ||
-        graveerTekstValue == "Infinity ∞ teken") && (
+      {(gravure == "Hartje ♥ symbool" || gravure == "Infinity ∞ teken") && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -504,11 +535,11 @@ export default function GraveerTekst({
           />
         </div>
       )}
-      {graveerTekstValue == "Initialen/letters/tekens" && (
+      {gravure == "Initialen/letters/tekens" && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["initiaal"]}
+              {error["initialen"]}
             </p>
           )}
           <InputTextField
@@ -520,8 +551,7 @@ export default function GraveerTekst({
           />
         </div>
       )}
-      {(graveerTekstValue == "Datum" ||
-        graveerTekstValue == "Naam en datum") && (
+      {(gravure == "Datum" || gravure == "Naam en datum") && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -535,8 +565,7 @@ export default function GraveerTekst({
           />
         </div>
       )}
-      {(graveerTekstValue == "Naam" ||
-        graveerTekstValue == "Naam en datum") && (
+      {(gravure == "Naam" || gravure == "Naam en datum") && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -550,8 +579,7 @@ export default function GraveerTekst({
           />
         </div>
       )}
-      {(graveerTekstValue == "1 woord" ||
-        extraWoordValue == "1 extra woord") && (
+      {(gravure == "1 woord" || extraWoordValue == "1 extra woord") && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -567,8 +595,7 @@ export default function GraveerTekst({
           />
         </div>
       )}
-      {(graveerTekstValue == "2 woorden" ||
-        extraWoordValue == "2 extra woorden") && (
+      {(gravure == "2 woorden" || extraWoordValue == "2 extra woorden") && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -584,7 +611,7 @@ export default function GraveerTekst({
           />
         </div>
       )}
-      {graveerTekstValue == "3 woorden" && (
+      {gravure == "3 woorden" && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -600,7 +627,7 @@ export default function GraveerTekst({
           />
         </div>
       )}
-      {graveerTekstValue == "4 woorden" && (
+      {gravure == "4 woorden" && (
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
@@ -616,14 +643,14 @@ export default function GraveerTekst({
           />
         </div>
       )}
-      {(graveerTekstValue == "Initialen/letters/tekens" ||
-        graveerTekstValue == "Naam" ||
-        graveerTekstValue == "Datum" ||
-        graveerTekstValue == "Naam en datum" ||
-        graveerTekstValue == "1 woord" ||
-        graveerTekstValue == "2 woorden" ||
-        graveerTekstValue == "3 woorden" ||
-        graveerTekstValue == "4 woorden" ||
+      {(gravure == "Initialen/letters/tekens" ||
+        gravure == "Naam" ||
+        gravure == "Datum" ||
+        gravure == "Naam en datum" ||
+        gravure == "1 woord" ||
+        gravure == "2 woorden" ||
+        gravure == "3 woorden" ||
+        gravure == "4 woorden" ||
         extraWoordValue == "1 extra woord" ||
         extraWoordValue == "2 extra woorden") && (
         <div className="relative">
@@ -641,6 +668,29 @@ export default function GraveerTekst({
             }
             title="Lettertype:"
             options={lettertypeOptions}
+          />
+        </div>
+      )}
+      {(gravure == "Voet/handafdruk" ||
+        gravure == "snuitafdruk" ||
+        gravure == "Echo" ||
+        gravure == "Vingerafdruk" ||
+        gravure == "Logo/handtekening" ||
+        gravure == "Twee vingerafdrukken in hartvorm") && (
+        <div className="relative">
+          {showErrors && (
+            <p className="absolute  -bottom-6 left-0 text-red-700">
+              {error["upload"]}
+            </p>
+          )}
+          <InputFile
+            setError={setError}
+            title="Upload:"
+            // onChange={handleChange}
+            onChange={(newUploadValue) =>
+              handleChange("upload", newUploadValue)
+            }
+            value={value}
           />
         </div>
       )}

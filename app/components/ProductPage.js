@@ -70,6 +70,7 @@ function Product() {
   const tags = [
     // "print",
     // "poot",
+    "gravure",
     // "naamdatum",
     // "aszijde",
     // "vulset",
@@ -79,7 +80,7 @@ function Product() {
     // "hars",
     "tekst",
     // "armbandmaat",
-    "woord",
+    // "woord",
     // "upload",
     // "vppakketup",
     // "cord",

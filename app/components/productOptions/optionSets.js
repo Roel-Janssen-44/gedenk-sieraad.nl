@@ -37,6 +37,21 @@ export const extraWoordenOptions = [
   },
 ];
 
+export const voorvoegselOptions = [
+  {
+    value: "Geen",
+    price: 0,
+  },
+  {
+    value: "hartje ♥ symbool",
+    price: 9.95,
+  },
+  {
+    value: "Infinity ∞ teken",
+    price: 9.95,
+  },
+];
+
 export const pootKeuze1Options = [
   {
     value: "Standaard pootafdruk",
@@ -425,6 +440,77 @@ export const tekstBinnenZijdeRingOptions = [
   {
     value: "4 woorden",
     price: 29.95,
+  },
+];
+
+export const gravureOptions = [
+  {
+    value: "Geen",
+    price: 0,
+  },
+  {
+    value: "Initialen/letters/tekens",
+    price: 9.95,
+  },
+  {
+    value: "Hartje ♥ symbool",
+    price: 9.95,
+  },
+  {
+    value: "Infinity ∞ teken",
+    price: 9.95,
+  },
+  {
+    value: "Datum",
+    price: 14.95,
+  },
+  {
+    value: "Naam",
+    price: 14.95,
+  },
+  {
+    value: "Naam en datum",
+    price: 29.95,
+  },
+  {
+    value: "1 woord",
+    price: 14.95,
+  },
+  {
+    value: "2 woorden",
+    price: 19.95,
+  },
+  {
+    value: "3 woorden",
+    price: 24.95,
+  },
+  {
+    value: "4 woorden",
+    price: 29.95,
+  },
+  {
+    value: "Voet/handafdruk",
+    price: 39.95,
+  },
+  {
+    value: "Poot/snuitafdruk",
+    price: 39.95,
+  },
+  {
+    value: "Echo",
+    price: 49.95,
+  },
+  {
+    value: "Vingerafdruk",
+    price: 75,
+  },
+  {
+    value: "Logo/handtekening",
+    price: 75,
+  },
+  {
+    value: "Twee vingerafdrukken in hartvorm",
+    price: 145,
   },
 ];
 

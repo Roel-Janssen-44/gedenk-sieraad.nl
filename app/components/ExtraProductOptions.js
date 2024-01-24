@@ -18,6 +18,7 @@ import Aszijde from "./productOptions/Aszijde";
 import NaamDatum from "./productOptions/NaamDatum";
 import Poot from "./productOptions/Poot";
 import Print from "./productOptions/Print";
+import Gravure from "./productOptions/Gravure";
 
 export default function ExtraProductOptions({
   tags,
@@ -66,6 +67,7 @@ export default function ExtraProductOptions({
 }
 
 const components = {
+  gravure: Gravure,
   creool: Creool,
   aspakket: Aspakket,
   hars: Hars,

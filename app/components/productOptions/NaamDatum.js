@@ -8,7 +8,11 @@ import InputFile from "../InputFile";
 import InputTextField from "../InputTextField";
 import InputImageSwatchLarge from "../InputImageSwatchLarge";
 
-import { naamDatumOptions, lettertypeOptions } from "./optionSets";
+import {
+  naamDatumOptions,
+  lettertypeOptions,
+  voorvoegselOptions,
+} from "./optionSets";
 import InputDate from "../InputDate";
 
 export default function NaamDatum({
@@ -23,6 +27,9 @@ export default function NaamDatum({
     if (Array.isArray(value)) {
       const graveerTekstAchterzijde = value.find(
         (item) => item.key === "graveerTekstAchterzijde"
+      ).value;
+      const voorvoegselValue = value.find(
+        (item) => item.key === "voorvoegsel"
       ).value;
       const naamValue = value.find((item) => item.key === "naam").value;
       const datumValue = value.find((item) => item.key === "datum").value;
@@ -66,6 +73,23 @@ export default function NaamDatum({
               ["lettertype"]: "",
             }));
           }
+          if (voorvoegselValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["voorvoegsel"]: "* Maak een keuze",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["voorvoegsel"]: "",
+            }));
+          }
+
+          setError((prevState) => ({
+            ...prevState,
+            ["datum"]: "",
+          }));
+
         case "Datum":
           if (datumValue == "") {
             setError((prevState) => ({
@@ -89,6 +113,22 @@ export default function NaamDatum({
               ["lettertype"]: "",
             }));
           }
+          if (voorvoegselValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["voorvoegsel"]: "* Maak een keuze",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["voorvoegsel"]: "",
+            }));
+          }
+
+          setError((prevState) => ({
+            ...prevState,
+            ["naam"]: "",
+          }));
         case "Naam + datum":
           if (naamValue == "") {
             setError((prevState) => ({
@@ -126,6 +166,17 @@ export default function NaamDatum({
             setError((prevState) => ({
               ...prevState,
               ["lettertype"]: "",
+            }));
+          }
+          if (voorvoegselValue == "") {
+            setError((prevState) => ({
+              ...prevState,
+              ["voorvoegsel"]: "* Maak een keuze",
+            }));
+          } else {
+            setError((prevState) => ({
+              ...prevState,
+              ["voorvoegsel"]: "",
             }));
           }
         default:
@@ -170,6 +221,7 @@ export default function NaamDatum({
     { key: "naam", value: value?.naam?.value || "" },
     { key: "datum", value: value?.datum?.value || "" },
     { key: "lettertype", value: value?.lettertype?.value || "" },
+    { key: "voorvoegsel", value: value?.voorvoegsel?.value || "" },
   ]);
 
   const isInitialRender = useRef(true);
@@ -214,7 +266,7 @@ export default function NaamDatum({
           onChange={(newGraveerTekstValue) =>
             handleChange("graveerTekstAchterzijde", newGraveerTekstValue)
           }
-          title="Graveertekst achterzijde:"
+          title="NaamDatum:"
           options={naamDatumOptions}
         />
       </div>
@@ -249,23 +301,42 @@ export default function NaamDatum({
       )}
       {graveerTekstAchterzijdeTekst != "Geen" &&
         graveerTekstAchterzijdeTekst != "" && (
-          <div className="relative">
-            {showErrors && (
-              <p className="absolute -bottom-6 left-0 text-red-700">
-                {error["lettertype"]}
-              </p>
-            )}
-            <InputImageSwatchLarge
-              value={
-                values.find((item) => item.key === "lettertype")?.value || ""
-              }
-              onChange={(newLettertypeValue) =>
-                handleChange("lettertype", newLettertypeValue)
-              }
-              title="Lettertype:"
-              options={lettertypeOptions}
-            />
-          </div>
+          <>
+            <div className="relative">
+              {showErrors && (
+                <p className="absolute -bottom-6 left-0 text-red-700">
+                  {error["voorvoegsel"]}
+                </p>
+              )}
+              <InputSelect
+                value={
+                  values.find((item) => item.key === "voorvoegsel")?.value || ""
+                }
+                onChange={(newVoorvoegselValue) =>
+                  handleChange("voorvoegsel", newVoorvoegselValue)
+                }
+                title="Graveertekst voorvoegsel:"
+                options={voorvoegselOptions}
+              />
+            </div>
+            <div className="relative">
+              {showErrors && (
+                <p className="absolute -bottom-6 left-0 text-red-700">
+                  {error["lettertype"]}
+                </p>
+              )}
+              <InputImageSwatchLarge
+                value={
+                  values.find((item) => item.key === "lettertype")?.value || ""
+                }
+                onChange={(newLettertypeValue) =>
+                  handleChange("lettertype", newLettertypeValue)
+                }
+                title="Lettertype:"
+                options={lettertypeOptions}
+              />
+            </div>
+          </>
         )}
     </>
   );
