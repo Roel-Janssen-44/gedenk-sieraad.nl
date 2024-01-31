@@ -95,8 +95,8 @@ export default function ProductPage({ product }) {
             </div>
           </div> */}
           <div className="flex flex-row flex-wrap gap-2">
-            {currentImages?.map((image) => (
-              <div className="w-32 h-32">
+            {currentImages?.map((image, index) => (
+              <div key={"ajksd" + index} className="w-32 h-32">
                 <Image data={image} width={150} height={150} />
               </div>
             ))}
