@@ -314,27 +314,28 @@ function Product({ setCurrentImages, variantImages, extraImages }) {
     setCurrentImages(newThumbnails);
   }, [selectedVariant]);
 
-  const tags = [
-    // "print",
-    // "poot",
-    "gravure",
-    // "naamdatum",
-    // "aszijde",
-    // "vulset",
-    // "letter",
-    // "creool",
-    // "aspakket",
-    // "hars",
-    "tekst",
-    // "armbandmaat",
-    // "woord",
-    // "upload",
-    // "vppakketup",
-    // "cord",
-    // "satijn",
-    // "ringmaat",
-    // "ringmaatsy",
-  ];
+  const tags = product.tags;
+  // const tags = [
+  //   // "print",
+  //   // "poot",
+  //   "gravure",
+  //   // "naamdatum",
+  //   // "aszijde",
+  //   // "vulset",
+  //   // "letter",
+  //   // "creool",
+  //   // "aspakket",
+  //   // "hars",
+  //   "tekst",
+  //   // "armbandmaat",
+  //   // "woord",
+  //   // "upload",
+  //   // "vppakketup",
+  //   // "cord",
+  //   // "satijn",
+  //   // "ringmaat",
+  //   // "ringmaatsy",
+  // ];
 
   return (
     <div className="container max-w-lg mx-auto flex flex-col gap-6">

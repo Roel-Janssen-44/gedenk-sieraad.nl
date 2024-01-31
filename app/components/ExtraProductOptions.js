@@ -19,6 +19,7 @@ import NaamDatum from "./productOptions/NaamDatum";
 import Poot from "./productOptions/Poot";
 import Print from "./productOptions/Print";
 import Gravure from "./productOptions/Gravure";
+import Positie from "./productOptions/Positie";
 
 export default function ExtraProductOptions({
   tags,
@@ -86,4 +87,5 @@ const components = {
   naamdatum: NaamDatum,
   poot: Poot,
   print: Print,
+  positie: Positie,
 };
