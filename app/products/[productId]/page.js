@@ -47,7 +47,7 @@ query productByHandle($productId: String!) {
         currencyCode
       }
     }
-    variants(first: 25) {
+    variants(first: 100) {
       nodes {
         id
         title
@@ -91,11 +91,12 @@ query productByHandle($productId: String!) {
         }
       }
     }
-    media(first: 10) {
+    media(first: 100) {
       nodes {
         ... on MediaImage {
           id
           image {
+            id
             height
             altText
             url

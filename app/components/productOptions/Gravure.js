@@ -21,8 +21,6 @@ export default function Gravure({
   showErrors,
 }) {
   const [error, setError] = useState([]);
-  console.log("error gravure");
-  console.log(error);
   useEffect(() => {
     if (Array.isArray(value)) {
       const gravure = value.find((item) => item.key === "gravure").value;
