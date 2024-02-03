@@ -112,7 +112,7 @@ export default function ProductPage({ product }) {
   );
 }
 
-function Product({ setCurrentImages, variantImages, extraImages }) {
+function Product({ setCurrentImages, variantImages, extraImages = [] }) {
   const {
     product,
     variants,
@@ -231,37 +231,39 @@ function Product({ setCurrentImages, variantImages, extraImages }) {
     // console.log("extraImages");
     // console.log(extraImages);
 
-    console.log("product.tags");
-    console.log(product.tags);
+    // console.log("product.tags");
+    // console.log(product.tags);
 
     if (product.tags.includes("kleuren")) {
       newThumbnails.shift();
       const harskleurOption = extraOptions.find((obj) => obj.key === "kleuren");
-      const harsKleur = harskleurOption?.value[0].value.split(" ")[0];
+      // To do generate random color in stead of blue
+      const harsKleur = harskleurOption?.value[0].value.split(" ")[0] || "Blue";
       newThumbnails.forEach((thumbnail, index) => {
-        console.log("thumbnail.altText");
-        console.log(thumbnail.altText);
-        console.log("``harsKleur``");
-        console.log(harsKleur);
         if (!thumbnail.altText.includes(harsKleur)) {
           newThumbnails.splice(index, 1);
         }
       });
-      // newThumbnails = newThumbnails.filter((thumbnail) => {
-      //   return thumbnail.altText.includes(harsKleur);
-      // });
-      if (harskleurOption) {
-        const harsKleur = harskleurOption.value[0].value.split(" ")[0];
-
-        extraImages.forEach((image) => {
-          if (image.altText.includes(harsKleur)) {
-            newThumbnails.push(image);
-          }
-        });
+      extraImages.forEach((image) => {
+        if (image.altText.includes(harsKleur)) {
+          newThumbnails.push(image);
+        }
+      });
+      if (activeMaterial == "geelgoud") {
+        [newThumbnails[0], newThumbnails[1]] = [
+          newThumbnails[1],
+          newThumbnails[0],
+        ];
+      } else if (activeMaterial == "rosegoud") {
+        [newThumbnails[0], newThumbnails[2]] = [
+          newThumbnails[2],
+          newThumbnails[0],
+        ];
       }
     }
 
     extraImages.forEach((image) => {
+      if (!newThumbnails[0]) return;
       if (image.altText == newThumbnails[0].altText) {
         if (
           !newThumbnails.some(
@@ -297,6 +299,9 @@ function Product({ setCurrentImages, variantImages, extraImages }) {
         }
       }
     });
+
+    console.log("activeMaterial");
+    console.log(activeMaterial);
 
     console.log("newThumbnails");
     console.log(newThumbnails);
