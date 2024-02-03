@@ -228,13 +228,41 @@ function Product({ setCurrentImages, variantImages, extraImages }) {
     //   }
     // });
 
-    console.log("extraImages");
-    console.log(extraImages);
+    // console.log("extraImages");
+    // console.log(extraImages);
+
+    console.log("product.tags");
+    console.log(product.tags);
+
+    if (product.tags.includes("kleuren")) {
+      newThumbnails.shift();
+      const harskleurOption = extraOptions.find((obj) => obj.key === "kleuren");
+      const harsKleur = harskleurOption?.value[0].value.split(" ")[0];
+      newThumbnails.forEach((thumbnail, index) => {
+        console.log("thumbnail.altText");
+        console.log(thumbnail.altText);
+        console.log("``harsKleur``");
+        console.log(harsKleur);
+        if (!thumbnail.altText.includes(harsKleur)) {
+          newThumbnails.splice(index, 1);
+        }
+      });
+      // newThumbnails = newThumbnails.filter((thumbnail) => {
+      //   return thumbnail.altText.includes(harsKleur);
+      // });
+      if (harskleurOption) {
+        const harsKleur = harskleurOption.value[0].value.split(" ")[0];
+
+        extraImages.forEach((image) => {
+          if (image.altText.includes(harsKleur)) {
+            newThumbnails.push(image);
+          }
+        });
+      }
+    }
+
     extraImages.forEach((image) => {
       if (image.altText == newThumbnails[0].altText) {
-        // console.log("selectedVariantMaterial");
-        // console.log(selectedVariantMaterial);
-        // console.log(image.altText);
         if (
           !newThumbnails.some(
             (thumbnail) =>
@@ -243,33 +271,37 @@ function Product({ setCurrentImages, variantImages, extraImages }) {
         ) {
           newThumbnails.push(image);
         }
-        // newThumbnails.forEach((thumbnail) => {
-        //   if (thumbnail.url == image.url) {
-        //     return;
-        //   }
-        // });
-        // console.log(newThumbnails[0].altText);
-        // console.log(image.altText);
-        // newThumbnails.push(image);
-      } else if (
-        ["zilver", "witgoud", "geelgoud", "rosegoud", "roségoud", "alle"].some(
-          (substring) => image.altText.toLowerCase().includes(substring)
-        )
-        // image.altText
-        //   .toLowerCase()
-        //   .includes(["zilver 925 sterling", "9kt witgoud", "zilver"])
-      ) {
-        newThumbnails.push(image);
+      } else {
+        if (
+          (selectedVariantMaterial.includes("zilver") ||
+            selectedVariantMaterial.includes("witgoud")) &&
+          (image.altText.toLowerCase().includes("zilver") ||
+            image.altText.toLowerCase().includes("witgoud") ||
+            image.altText.toLowerCase().includes("alle"))
+        ) {
+          newThumbnails.push(image);
+        } else if (
+          selectedVariantMaterial.includes("geelgoud") &&
+          (image.altText.toLowerCase().includes("geelgoud") ||
+            image.altText.toLowerCase().includes("alle"))
+        ) {
+          newThumbnails.push(image);
+        } else if (
+          (selectedVariantMaterial.includes("rosegoud") ||
+            selectedVariantMaterial.includes("roségoud")) &&
+          (image.altText.toLowerCase().includes("rosegoud") ||
+            image.altText.toLowerCase().includes("roségoud") ||
+            image.altText.toLowerCase().includes("alle"))
+        ) {
+          newThumbnails.push(image);
+        }
       }
-
-      console.log("image.altText");
-      console.log(image.altText);
     });
 
     console.log("newThumbnails");
     console.log(newThumbnails);
     setCurrentImages(newThumbnails);
-  }, [selectedVariant]);
+  }, [selectedVariant, extraOptions]);
 
   const tags = product.tags;
   // const tags = [

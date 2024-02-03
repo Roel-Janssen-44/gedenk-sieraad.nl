@@ -71,7 +71,7 @@ const components = {
   gravure: Gravure,
   creool: Creool,
   aspakket: Aspakket,
-  hars: Hars,
+  kleuren: Hars,
   tekst: Tekst,
   armbandmaat: Armbandmaat,
   woord: Woord,
