@@ -20,8 +20,8 @@ import { useCartDrawer } from "@/components/MainLayoutInnerWrapper";
 export default function ProductPage({ product }) {
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log("product");
-    console.log(product);
+    // console.log("product");
+    // console.log(product);
   }, []);
 
   let allMediaImages = [];
@@ -61,8 +61,8 @@ export default function ProductPage({ product }) {
   //   }
   // });
 
-  console.log("variantImages");
-  console.log(variantImages);
+  // console.log("variantImages");
+  // console.log(variantImages);
 
   const [currentImages, setCurrentImages] = useState(variantImages);
   return (
@@ -141,10 +141,10 @@ function Product({ setCurrentImages, variantImages, extraImages }) {
 
   useEffect(() => {
     if (!selectedVariant) return;
-    console.log("selected variant");
-    console.log(selectedVariant.id);
-    console.log("variantImages");
-    console.log(variantImages);
+    // console.log("selected variant");
+    // console.log(selectedVariant.id);
+    // console.log("variantImages");
+    // console.log(variantImages);
     const currentVariant = variants.find(
       (variant) => variant.id == selectedVariant.id
     );
@@ -154,162 +154,119 @@ function Product({ setCurrentImages, variantImages, extraImages }) {
     const geelgoud = ["9 kt geelgoud", "14 kt geelgoud"];
     const rosegoud = ["9 kt roségoud", "14 kt roségoud"];
 
-    console.log(currentVariant);
+    // console.log(currentVariant);
 
     let newThumbnails = [];
 
+    const selectedVariantMaterial =
+      currentVariant.selectedOptions[0].value.toLowerCase();
+
     newThumbnails.push(currentVariant.image);
-    if (
-      zilver.includes(currentVariant.selectedOptions[0].value.toLowerCase())
-    ) {
+    if (zilver.includes(selectedVariantMaterial)) {
       activeMaterial.push("zilver");
-      console.log("zilver a");
-    } else if (
-      geelgoud.includes(currentVariant.selectedOptions[0].value.toLowerCase())
-    ) {
+    } else if (geelgoud.includes(selectedVariantMaterial)) {
       activeMaterial.push("geelgoud");
-      console.log("geelgoud");
-    } else if (
-      rosegoud.includes(currentVariant.selectedOptions[0].value.toLowerCase())
-    ) {
+    } else if (rosegoud.includes(selectedVariantMaterial)) {
       activeMaterial.push("rosegoud");
-      console.log("rosegoud");
     }
 
-    // newThumbnails.push(currentVariant.image);
-    variants.forEach((variant) => {
-      console.log(variant);
+    // variants.forEach((variant) => {
+    //   const variantMaterial = variant.selectedOptions[0].value.toLowerCase();
+    //   if (
+    //     zilver.includes(variantMaterial) &&
+    //     activeMaterial.includes("zilver")
+    //   ) {
+    //     return;
+    //   } else if (
+    //     geelgoud.includes(variantMaterial) &&
+    //     activeMaterial.includes("geelgoud")
+    //   ) {
+    //     return;
+    //   } else if (
+    //     rosegoud.includes(variantMaterial) &&
+    //     activeMaterial.includes("rosegoud")
+    //   ) {
+    //     return;
+    //   }
+    //   if (
+    //     variant.selectedOptions.length > 1 &&
+    //     selectedVariant.selectedOptions.length > 1
+    //   ) {
+    //     const variantOptionsToCheck = variant.selectedOptions.slice(1);
+    //     const selectedOptionsToCheck = selectedVariant.selectedOptions.slice(1);
 
-      console.log(currentVariant);
+    //     const allOptionsMatch = variantOptionsToCheck.every((option, index) => {
+    //       return option.value === selectedOptionsToCheck[index].value;
+    //     });
 
-      const selectedVariantMaterial =
-        currentVariant.selectedOptions[0].value.toLowerCase();
-      const variantMaterial = variant.selectedOptions[0].value.toLowerCase();
+    //     if (allOptionsMatch) {
+    //       if (
+    //         zilver.includes(variantMaterial) &&
+    //         activeMaterial.includes("zilver")
+    //       ) {
+    //         return;
+    //       } else if (
+    //         geelgoud.includes(variantMaterial) &&
+    //         activeMaterial.includes("geelgoud")
+    //       ) {
+    //         return;
+    //       } else if (
+    //         rosegoud.includes(variantMaterial) &&
+    //         activeMaterial.includes("rosegoud")
+    //       ) {
+    //         return;
+    //       }
+    //       if (zilver.includes(variantMaterial)) {
+    //         activeMaterial.push("zilver");
+    //       } else if (geelgoud.includes(variantMaterial)) {
+    //         activeMaterial.push("geelgoud");
+    //       } else if (rosegoud.includes(variantMaterial)) {
+    //         activeMaterial.push("rosegoud");
+    //       }
+    //       newThumbnails.push(variant.image);
+    //     }
+    //   }
+    // });
 
-      console.log("activeMaterial");
-      console.log(activeMaterial);
-
-      switch (selectedVariantMaterial) {
-        case "zilver 925 sterling":
-        case "9 kt witgoud":
-        case "14 kt witgoud":
-          if (
-            zilver.includes(variantMaterial) &&
-            activeMaterial.includes("zilver")
-          ) {
-            return;
-          } else if (
-            geelgoud.includes(variantMaterial) &&
-            activeMaterial.includes("geelgoud")
-          ) {
-            return;
-          } else if (
-            rosegoud.includes(variantMaterial) &&
-            activeMaterial.includes("rosegoud")
-          ) {
-            return;
-          }
-          if (zilver.includes(variantMaterial)) {
-            console.log("break out of switch");
-            break;
-          } else {
-            if (
-              variant.selectedOptions.length > 1 &&
-              selectedVariant.selectedOptions.length > 1
-            ) {
-              const variantOptionsToCheck = variant.selectedOptions.slice(1);
-              const selectedOptionsToCheck =
-                selectedVariant.selectedOptions.slice(1);
-
-              const allOptionsMatch = variantOptionsToCheck.every(
-                (option, index) => {
-                  return option.value === selectedOptionsToCheck[index].value;
-                }
-              );
-
-              if (allOptionsMatch) {
-                if (
-                  zilver.includes(variantMaterial) &&
-                  activeMaterial.includes("zilver")
-                ) {
-                  return;
-                } else if (
-                  geelgoud.includes(variantMaterial) &&
-                  activeMaterial.includes("geelgoud")
-                ) {
-                  return;
-                } else if (
-                  rosegoud.includes(variantMaterial) &&
-                  activeMaterial.includes("rosegoud")
-                ) {
-                  return;
-                }
-                if (zilver.includes(variantMaterial)) {
-                  activeMaterial.push("zilver");
-                  console.log("zilver a");
-                } else if (geelgoud.includes(variantMaterial)) {
-                  activeMaterial.push("geelgoud");
-                  console.log("geelgoud");
-                } else if (rosegoud.includes(variantMaterial)) {
-                  activeMaterial.push("rosegoud");
-                  console.log("rosegoud");
-                }
-                newThumbnails.push(variant.image);
-              }
-            }
-          }
-          break;
-        default:
-        // console.log(`Sorry, we are out of ${expr}.`);
+    console.log("extraImages");
+    console.log(extraImages);
+    extraImages.forEach((image) => {
+      if (image.altText == newThumbnails[0].altText) {
+        // console.log("selectedVariantMaterial");
+        // console.log(selectedVariantMaterial);
+        // console.log(image.altText);
+        if (
+          !newThumbnails.some(
+            (thumbnail) =>
+              thumbnail.url === image.url && thumbnail.altText === image.altText
+          )
+        ) {
+          newThumbnails.push(image);
+        }
+        // newThumbnails.forEach((thumbnail) => {
+        //   if (thumbnail.url == image.url) {
+        //     return;
+        //   }
+        // });
+        // console.log(newThumbnails[0].altText);
+        // console.log(image.altText);
+        // newThumbnails.push(image);
+      } else if (
+        ["zilver", "witgoud", "geelgoud", "rosegoud", "roségoud", "alle"].some(
+          (substring) => image.altText.toLowerCase().includes(substring)
+        )
+        // image.altText
+        //   .toLowerCase()
+        //   .includes(["zilver 925 sterling", "9kt witgoud", "zilver"])
+      ) {
+        newThumbnails.push(image);
       }
-      // if (currentVariant.selectedOptions[0].value == "Zilver 925 sterling") {
-      //   if (variant.selectedOptions[0] == "Zilver 925 sterling") {
-      //     return;
-      //   }
-      // }
-      // if (
-      //   variant.selectedOptions.length > 1 &&
-      //   selectedVariant.selectedOptions.length > 1
-      // ) {
-      //   console.log("First option matches!");
-      //   // Additional checks for the first option if needed
-      //   // ...
-      //   const variantOptionsToCheck = variant.selectedOptions.slice(1);
-      //   const selectedOptionsToCheck = selectedVariant.selectedOptions.slice(1);
 
-      //   // Check if every option in variantOptionsToCheck matches the corresponding option in selectedOptionsToCheck
-      //   const allOptionsMatch = variantOptionsToCheck.every((option, index) => {
-      //     return option.value === selectedOptionsToCheck[index].value;
-      //   });
-
-      //   if (allOptionsMatch) {
-      //     // Additional checks for the other options if needed
-      //     // ...
-
-      //     console.log("Other options match!");
-      //     // newThumbnails.push(variant.image);
-      //   }
-      // }
-
-      // if (variant.selectedOptions.length > 1 && selectedVariant.selectedOptions.length > 1) {
-      // Create new arrays excluding the first option
-      // const variantOptionsToCheck = variant.selectedOptions.slice(1);
-      // const selectedOptionsToCheck = selectedVariant.selectedOptions.slice(1);
-
-      // // Check if every option in variantOptionsToCheck matches the corresponding option in selectedOptionsToCheck
-      // const allOptionsMatch = variantOptionsToCheck.every((option, index) => {
-      //   return option.value === selectedOptionsToCheck[index].value;
-      // });
-
-      // if (allOptionsMatch) {
-      //   // Additional checks for the other options if needed
-      //   // ...
-
-      //   console.log("Other options match!");
-      //   newThumbnails.push(variant.image);
-      // }
-      // }
+      console.log("image.altText");
+      console.log(image.altText);
     });
+
+    console.log("newThumbnails");
     console.log(newThumbnails);
     setCurrentImages(newThumbnails);
   }, [selectedVariant]);
