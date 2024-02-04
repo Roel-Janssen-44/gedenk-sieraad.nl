@@ -11,3 +11,12 @@
 .font-tangerine {
   font-family: "Tangerine", cursive !important;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

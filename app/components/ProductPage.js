@@ -9,6 +9,7 @@ import {
   getClientBrowserParameters,
 } from "@shopify/hydrogen-react";
 import { useState, useEffect } from "react";
+import { Transition } from "@headlessui/react";
 
 import * as OptionSets from "./productOptions/optionSets";
 import { checkForActiveMaterial } from "@/lib/functions";
@@ -18,12 +19,6 @@ import ExtraProductOptions from "@/components/ExtraProductOptions";
 import { useCartDrawer } from "@/components/MainLayoutInnerWrapper";
 
 export default function ProductPage({ product }) {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    // console.log("product");
-    // console.log(product);
-  }, []);
-
   let allMediaImages = [];
 
   const variantImages = product.variants.nodes;
@@ -33,6 +28,12 @@ export default function ProductPage({ product }) {
       extraImages.push(media.image);
     }
   });
+
+  const [activeImage, setActiveImage] = useState();
+  const [currentThumbnails, setCurrentThumbnails] = useState([]);
+  const [activeThumbnailIndex, setActiveThumbnailIndex] = useState(0);
+
+  // setActiveImage(currentThumbnails[0]);
 
   // product.variants.nodes.forEach((variant) => {
   //   if (variant.image) {
@@ -64,7 +65,20 @@ export default function ProductPage({ product }) {
   // console.log("variantImages");
   // console.log(variantImages);
 
-  const [currentImages, setCurrentImages] = useState(variantImages);
+  // useState(() => {
+  //   console.log("changed thumnails");
+  //   // setActiveImage(currentThumbnails[0]);
+  //   console.log("activeImage");
+  //   console.log(activeImage);
+  // }, [currentThumbnails]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    // console.log("product");
+    // console.log(product);
+    console.log("sad");
+  }, []);
+
   return (
     <div className="container flex flex-col items-center lg:flex-row lg:items-start">
       <ProductProvider
@@ -73,46 +87,98 @@ export default function ProductPage({ product }) {
       >
         {/* To do image gallery */}
         <div className="max-w-[500px]">
-          <Image
+          {/* <Image
             data={product.media.nodes[0].image}
             sizes="(min-width: 45em) 50vw, 100vw"
             loading="eager"
-          />
-          {/* <div className="flex flex-row gap-10">
-            <div className="flex flex-col gap-2">
-              {product.media?.nodes?.map((image) => (
-                <div className="w-16 h-16">
-                  <Image data={image.image} />
-                </div>
-              ))}
+          /> */}
+          {activeImage && (
+            <div key={activeImage.url} className="animate-fadeIn">
+              <Image
+                data={activeImage}
+                sizes="(min-width: 45em) 50vw, 100vw"
+                loading="eager"
+              />
             </div>
-            <div className="flex flex-col gap-2">
-              {product.variants?.nodes?.map((image) => (
-                <div className="w-16 h-16">
-                  <Image data={image.image} />
-                </div>
-              ))}
-            </div>
-          </div> */}
+          )}
+
           <div className="flex flex-row flex-wrap gap-2">
-            {currentImages?.map((image, index) => (
-              <div key={"ajksd" + index} className="w-32 h-32">
-                <Image data={image} width={150} height={150} />
-              </div>
+            {currentThumbnails?.map((image, index) => (
+              <button
+                key={"thumbnailImage" + image.url}
+                className={`w-32 h-32 transition-all animate-fadeIn`}
+                onClick={() => {
+                  setActiveThumbnailIndex(index);
+                  setActiveImage(image);
+                }}
+              >
+                <Image
+                  loading="lazy"
+                  className={`rouned-lg border-2 rounded-lg ${
+                    index == activeThumbnailIndex
+                      ? "border-black"
+                      : "border-black-300"
+                  }`}
+                  data={image}
+                  width={150}
+                  height={150}
+                />
+              </button>
             ))}
           </div>
+          {/* <div className="flex flex-row flex-wrap gap-2">
+            {currentThumbnails?.map((image, index) => (
+              <Transition
+                appear={true}
+                key={"thumbnailImage" + index}
+                show={true}
+                enter="transition-opacity duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition-opacity duration-300"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                {(ref) => (
+                  <div
+                    ref={ref}
+                    className={`w-32 h-32 transition-all   ${
+                      index === activeThumbnailIndex
+                        ? "border-black border-2"
+                        : ""
+                    }`}
+                  >
+                    <Image
+                      loading="lazy"
+                      data={image}
+                      width={150}
+                      height={150}
+                    />
+                  </div>
+                )}
+              </Transition>
+            ))}
+          </div> */}
         </div>
         <Product
-          variantImages={variantImages}
           extraImages={extraImages}
-          setCurrentImages={setCurrentImages}
+          setCurrentThumbnails={setCurrentThumbnails}
+          setActiveThumbnailIndex={setActiveThumbnailIndex}
+          activeThumbnailIndex={activeThumbnailIndex}
+          setActiveImage={setActiveImage}
         />
       </ProductProvider>
     </div>
   );
 }
 
-function Product({ setCurrentImages, variantImages, extraImages = [] }) {
+function Product({
+  setCurrentThumbnails,
+  extraImages = [],
+  setActiveImage,
+  activeThumbnailIndex,
+  setActiveThumbnailIndex,
+}) {
   const {
     product,
     variants,
@@ -141,10 +207,7 @@ function Product({ setCurrentImages, variantImages, extraImages = [] }) {
 
   useEffect(() => {
     if (!selectedVariant) return;
-    // console.log("selected variant");
-    // console.log(selectedVariant.id);
-    // console.log("variantImages");
-    // console.log(variantImages);
+
     const currentVariant = variants.find(
       (variant) => variant.id == selectedVariant.id
     );
@@ -153,8 +216,6 @@ function Product({ setCurrentImages, variantImages, extraImages = [] }) {
     const zilver = ["zilver 925 sterling", "9 kt witgoud", "14 kt witgoud"];
     const geelgoud = ["9 kt geelgoud", "14 kt geelgoud"];
     const rosegoud = ["9 kt roségoud", "14 kt roségoud"];
-
-    // console.log(currentVariant);
 
     let newThumbnails = [];
 
@@ -169,70 +230,6 @@ function Product({ setCurrentImages, variantImages, extraImages = [] }) {
     } else if (rosegoud.includes(selectedVariantMaterial)) {
       activeMaterial.push("rosegoud");
     }
-
-    // variants.forEach((variant) => {
-    //   const variantMaterial = variant.selectedOptions[0].value.toLowerCase();
-    //   if (
-    //     zilver.includes(variantMaterial) &&
-    //     activeMaterial.includes("zilver")
-    //   ) {
-    //     return;
-    //   } else if (
-    //     geelgoud.includes(variantMaterial) &&
-    //     activeMaterial.includes("geelgoud")
-    //   ) {
-    //     return;
-    //   } else if (
-    //     rosegoud.includes(variantMaterial) &&
-    //     activeMaterial.includes("rosegoud")
-    //   ) {
-    //     return;
-    //   }
-    //   if (
-    //     variant.selectedOptions.length > 1 &&
-    //     selectedVariant.selectedOptions.length > 1
-    //   ) {
-    //     const variantOptionsToCheck = variant.selectedOptions.slice(1);
-    //     const selectedOptionsToCheck = selectedVariant.selectedOptions.slice(1);
-
-    //     const allOptionsMatch = variantOptionsToCheck.every((option, index) => {
-    //       return option.value === selectedOptionsToCheck[index].value;
-    //     });
-
-    //     if (allOptionsMatch) {
-    //       if (
-    //         zilver.includes(variantMaterial) &&
-    //         activeMaterial.includes("zilver")
-    //       ) {
-    //         return;
-    //       } else if (
-    //         geelgoud.includes(variantMaterial) &&
-    //         activeMaterial.includes("geelgoud")
-    //       ) {
-    //         return;
-    //       } else if (
-    //         rosegoud.includes(variantMaterial) &&
-    //         activeMaterial.includes("rosegoud")
-    //       ) {
-    //         return;
-    //       }
-    //       if (zilver.includes(variantMaterial)) {
-    //         activeMaterial.push("zilver");
-    //       } else if (geelgoud.includes(variantMaterial)) {
-    //         activeMaterial.push("geelgoud");
-    //       } else if (rosegoud.includes(variantMaterial)) {
-    //         activeMaterial.push("rosegoud");
-    //       }
-    //       newThumbnails.push(variant.image);
-    //     }
-    //   }
-    // });
-
-    // console.log("extraImages");
-    // console.log(extraImages);
-
-    // console.log("product.tags");
-    // console.log(product.tags);
 
     if (product.tags.includes("kleuren")) {
       newThumbnails.shift();
@@ -305,7 +302,8 @@ function Product({ setCurrentImages, variantImages, extraImages = [] }) {
 
     console.log("newThumbnails");
     console.log(newThumbnails);
-    setCurrentImages(newThumbnails);
+    setActiveImage(newThumbnails[0]);
+    setCurrentThumbnails(newThumbnails);
   }, [selectedVariant, extraOptions]);
 
   const tags = product.tags;
@@ -335,7 +333,7 @@ function Product({ setCurrentImages, variantImages, extraImages = [] }) {
     <div className="container max-w-lg mx-auto flex flex-col gap-6">
       <h1 className="text-6xl font-tangerine w-auto">{product.title}</h1>
       <div className="flex items-center text-sm">
-        <span className="font-bold min-w-[140px]">Prijs:</span>
+        <span className="font-bold">Prijs:</span>
         <span>
           € {selectedVariant?.price?.amount || "Variant bestaat niet"}
         </span>
