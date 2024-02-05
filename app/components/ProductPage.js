@@ -8,8 +8,15 @@ import {
   ProductPrice,
   getClientBrowserParameters,
 } from "@shopify/hydrogen-react";
-import { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
+import { useEffect, useState, useRef } from "react";
+
+import Slider from "react-slick";
+
+import "../slick_slider.css";
+import IconButton from "@mui/material/IconButton";
+import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
+import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 
 import * as OptionSets from "./productOptions/optionSets";
 import { checkForActiveMaterial } from "@/lib/functions";
@@ -33,51 +40,113 @@ export default function ProductPage({ product }) {
   const [currentThumbnails, setCurrentThumbnails] = useState([]);
   const [activeThumbnailIndex, setActiveThumbnailIndex] = useState(0);
 
-  // setActiveImage(currentThumbnails[0]);
-
-  // product.variants.nodes.forEach((variant) => {
-  //   if (variant.image) {
-  //     allMediaImages.push(variant.image);
-  //   }
-  // });
-  // product.media.nodes.forEach((media) => {
-  //   if (!allMediaImages.some((image) => image.url === media.image.url)) {
-  //     allMediaImages.push(media.image);
-  //   }
-  //   // mediaToShow.forEach((image) => {
-  //   //   if (image.url != media.image.url) {
-  //   //     console.log("not matching found");
-  //   //     console.log(image);
-  //   //     console.log(media.image);
-  //   //     mediaToShow.push(media.image);
-  //   //   }
-  //   // });
-  // });
-
-  // product.media.nodes.forEach((mediaNode) => {
-  //   if (!mediaToShow.some((item) => item.url === mediaNode.url)) {
-  //     mediaToShow.push(mediaNode.image);
-  //     console.log("item added");
-  //     console.log(mediaNode);
-  //   }
-  // });
-
-  // console.log("variantImages");
-  // console.log(variantImages);
-
-  // useState(() => {
-  //   console.log("changed thumnails");
-  //   // setActiveImage(currentThumbnails[0]);
-  //   console.log("activeImage");
-  //   console.log(activeImage);
-  // }, [currentThumbnails]);
-
   useEffect(() => {
     window.scrollTo(0, 0);
-    // console.log("product");
-    // console.log(product);
-    console.log("sad");
   }, []);
+
+  const settings = {
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 3,
+    arrows: false,
+    vertical: true,
+    autoplay: false,
+    autoplaySpeed: 3500,
+    draggable: true,
+    pauseOnHover: true,
+    pauseOnFocus: true,
+    responsive: [
+      {
+        breakpoint: 5120,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 3,
+          vertical: true,
+        },
+      },
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 3,
+          vertical: false,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 3,
+          vertical: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 3,
+          vertical: false,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          vertical: false,
+        },
+      },
+    ],
+  };
+  const sliderRef = useRef();
+  const [hasNextSlide, setHasNextSlide] = useState(true);
+  const [hasPrevSlide, setHasPrevSlide] = useState(false);
+
+  const nextSlide = () => {
+    console.log(sliderRef.current);
+    if (sliderRef.current && sliderRef.current.innerSlider) {
+      const { slideCount, currentSlide } = sliderRef.current.innerSlider.state;
+      const currentSettings = sliderRef.current.props;
+      const responsiveSettings =
+        currentSettings.responsive.find(
+          (breakpoint) => window.innerWidth <= breakpoint.breakpoint
+        ).settings || null;
+      if (currentSlide + responsiveSettings.slidesToShow < slideCount) {
+        sliderRef.current.slickNext();
+        setHasPrevSlide(true);
+        if (
+          currentSlide +
+            responsiveSettings.slidesToShow +
+            responsiveSettings.slidesToScroll >=
+          slideCount
+        ) {
+          setHasNextSlide(false);
+        }
+      } else {
+        setHasNextSlide(false);
+      }
+    }
+  };
+  const previousSlide = () => {
+    if (sliderRef.current && sliderRef.current.innerSlider) {
+      const { currentSlide } = sliderRef.current.innerSlider.state;
+      const currentSettings = sliderRef.current.props;
+      const responsiveSettings =
+        currentSettings.responsive.find(
+          (breakpoint) => window.innerWidth <= breakpoint.breakpoint
+        ).settings || null;
+      if (currentSlide > 0) {
+        sliderRef.current.slickPrev();
+        setHasNextSlide(true);
+        if (currentSlide - responsiveSettings.slidesToScroll <= 0) {
+          setHasPrevSlide(false);
+        }
+      } else {
+        setHasPrevSlide(false);
+      }
+    }
+  };
 
   return (
     <div className="container flex flex-col items-center lg:flex-row lg:items-start">
@@ -85,80 +154,90 @@ export default function ProductPage({ product }) {
         data={product}
         initialVariantId={product?.variant?.edges[0]?.node?.id}
       >
-        {/* To do image gallery */}
-        <div className="max-w-[500px]">
-          {/* <Image
-            data={product.media.nodes[0].image}
-            sizes="(min-width: 45em) 50vw, 100vw"
-            loading="eager"
-          /> */}
-          {activeImage && (
-            <div key={activeImage.url} className="animate-fadeIn">
-              <Image
-                data={activeImage}
-                sizes="(min-width: 45em) 50vw, 100vw"
-                loading="eager"
-              />
-            </div>
-          )}
-
-          <div className="flex flex-row flex-wrap gap-2">
-            {currentThumbnails?.map((image, index) => (
-              <button
-                key={"thumbnailImage" + image.url}
-                className={`w-32 h-32 transition-all animate-fadeIn`}
-                onClick={() => {
-                  setActiveThumbnailIndex(index);
-                  setActiveImage(image);
-                }}
+        <div className="mb-8 px-0 relative block w-full md:flex md:flex-row-reverse lg:flex-col lg:max-w-lg lg:sticky lg:top-40 lg:mb-0 xl:flex-row-reverse xl:max-w-none 2xl:max-w-2xl 2xl:ml-auto">
+          <div className="md:flex-1">
+            {activeImage && (
+              <div
+                key={activeImage.url}
+                className="animate-fadeIn mb-4 flex items-center justify-center aspect-square lg:pr-8 lg:mb-0"
               >
                 <Image
-                  loading="lazy"
-                  className={`rouned-lg border-2 rounded-lg ${
-                    index == activeThumbnailIndex
-                      ? "border-black"
-                      : "border-black-300"
-                  }`}
-                  data={image}
-                  width={150}
-                  height={150}
+                  data={activeImage}
+                  sizes="(min-width: 45em) 50vw, 100vw"
+                  loading="eager"
+                  className="rounded"
                 />
-              </button>
-            ))}
+              </div>
+            )}
           </div>
-          {/* <div className="flex flex-row flex-wrap gap-2">
-            {currentThumbnails?.map((image, index) => (
-              <Transition
-                appear={true}
-                key={"thumbnailImage" + index}
-                show={true}
-                enter="transition-opacity duration-300"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="transition-opacity duration-300"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
-              >
-                {(ref) => (
-                  <div
-                    ref={ref}
-                    className={`w-32 h-32 transition-all   ${
-                      index === activeThumbnailIndex
-                        ? "border-black border-2"
-                        : ""
-                    }`}
+
+          <div className="max-w-lg mx-auto relative md:w-32 md:mt-8 lg:w-full lg:mt-0 lg:max-w-none xl:w-32 xl:mt-10 2xl:mt-9">
+            {currentThumbnails.length > 1 && (
+              <>
+                <Slider
+                  ref={sliderRef}
+                  {...settings}
+                  className="h-auto w-full relative pt-2"
+                >
+                  {currentThumbnails?.map((image, index) => (
+                    <button
+                      key={"thumbnailImage" + image.url}
+                      className={`w-full h-auto aspect-sqaure transition-all animate-fadeIn ml-2 first:ml-0 md:ml-0 md:flex md:justify-center md:mt-4 lg:justify-normal lg:mt-0 xl:mt-4 xl:ml-0 xl:flex xl:justify-center 2xl:mt-3`}
+                      onClick={() => {
+                        setActiveThumbnailIndex(index);
+                        setActiveImage(image);
+                      }}
+                    >
+                      <Image
+                        loading="lazy"
+                        className={`w-24 xs:w-28 sm:w-24 rouned-lg border-2 rounded-lg ${
+                          index == activeThumbnailIndex
+                            ? "border-black"
+                            : "border-black-300"
+                        }`}
+                        data={image}
+                        width={150}
+                        height={150}
+                      />
+                    </button>
+                  ))}
+                </Slider>
+
+                {hasPrevSlide && (
+                  <IconButton
+                    onClick={previousSlide}
+                    size="medium"
+                    className="bg-gray-200 absolute z-0 bottom-1/2 translate-y-1/2 left-0 -translate-x-1/3
+                    xs:left-0 xs:-translate-x-1/2 md:left-1/2 md:-translate-x-1/2 md:-top-1 md:-translate-y-1/2 md:rotate-90 md:h-10 md:w-10 md:flex md:justiyf-center md:items-center
+                    lg:top-1/2 lg:-tranlate-y-1/2 lg:left-0 lg:rotate-0
+                    xl:left-1/2 xl:-translate-x-1/2 xl:-top-1 xl:-translate-y-1/2 xl:rotate-90 xl:h-10 xl:w-10 xl:flex xl:justiyf-center xl:items-center
+                    2xl:-top-1"
                   >
-                    <Image
-                      loading="lazy"
-                      data={image}
-                      width={150}
-                      height={150}
+                    <ChevronLeftRoundedIcon
+                      fontSize="32px"
+                      className="text-gray-700"
                     />
-                  </div>
+                  </IconButton>
                 )}
-              </Transition>
-            ))}
-          </div> */}
+                {hasNextSlide && (
+                  <IconButton
+                    onClick={nextSlide}
+                    size="medium"
+                    className="bg-gray-200 absolute z-0 bottom-1/2 translate-y-1/2 right-0
+                    xs:-right-3 xs:translate-x-1/2 sm:-right-1 md:left-1/2 md:-translate-x-1/2 md:bottom-16 md:rotate-90 md:w-10 md:h-10
+                    lg:bottom-1/2 lg:-tranlate-y-1/2 lg:-right-2 lg:ml-auto lg:rotate-0 lg:-translate-x-1/2
+                    xl:left-1/2 xl:-translate-x-1/2 xl:bottom-9 xl:rotate-90 xl:w-10 xl:h-10 xl:m-0 
+                    2xl:bottom-8 "
+                  >
+                    <ChevronRightRoundedIcon
+                      fontSize="32px"
+                      className="text-gray-700"
+                    />
+                  </IconButton>
+                )}
+              </>
+            )}
+          </div>
         </div>
         <Product
           extraImages={extraImages}
@@ -166,6 +245,7 @@ export default function ProductPage({ product }) {
           setActiveThumbnailIndex={setActiveThumbnailIndex}
           activeThumbnailIndex={activeThumbnailIndex}
           setActiveImage={setActiveImage}
+          slider={sliderRef.current}
         />
       </ProductProvider>
     </div>
@@ -178,6 +258,7 @@ function Product({
   setActiveImage,
   activeThumbnailIndex,
   setActiveThumbnailIndex,
+  slider,
 }) {
   const {
     product,
@@ -303,7 +384,12 @@ function Product({
     console.log("newThumbnails");
     console.log(newThumbnails);
     setActiveImage(newThumbnails[0]);
+    setActiveImage(newThumbnails[0]);
     setCurrentThumbnails(newThumbnails);
+    // if (slider) {
+    //   slider.slickGoTo(0);
+    // }
+    // To do check index of active thumbnail
   }, [selectedVariant, extraOptions]);
 
   const tags = product.tags;
@@ -330,13 +416,13 @@ function Product({
   // ];
 
   return (
-    <div className="container max-w-lg mx-auto flex flex-col gap-6">
-      <h1 className="text-6xl font-tangerine w-auto">{product.title}</h1>
+    <div className="max-w-lg mx-auto flex flex-col gap-6 2xl:ml-0">
+      <h1 className="text-6xl font-tangerine w-auto lg:ml-1 lg:mt-4">
+        {product.title}
+      </h1>
       <div className="flex items-center text-sm">
-        <span className="font-bold">Prijs:</span>
-        <span>
-          € {selectedVariant?.price?.amount || "Variant bestaat niet"}
-        </span>
+        <span className="font-bold mr-2">Prijs:</span>
+        <span>€{selectedVariant?.price?.amount || "Variant bestaat niet"}</span>
       </div>
       <div className="flex gap-6 flex-wrap">
         {product.options.map((optionSet) => (
