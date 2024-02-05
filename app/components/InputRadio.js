@@ -11,7 +11,7 @@ export default function InputRadio({ onChange, title, options }) {
         aria-labelledby="demo-radio-buttons-group-label"
         name="radio-buttons-group"
       >
-        {options.map((option) => {
+        {options.map((option, index) => {
           return (
             <>
               <FormControlLabel

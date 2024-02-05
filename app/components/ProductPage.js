@@ -104,7 +104,6 @@ export default function ProductPage({ product }) {
   const [hasPrevSlide, setHasPrevSlide] = useState(false);
 
   const nextSlide = () => {
-    console.log(sliderRef.current);
     if (sliderRef.current && sliderRef.current.innerSlider) {
       const { slideCount, currentSlide } = sliderRef.current.innerSlider.state;
       const currentSettings = sliderRef.current.props;
@@ -378,11 +377,11 @@ function Product({
       }
     });
 
-    console.log("activeMaterial");
-    console.log(activeMaterial);
+    // console.log("activeMaterial");
+    // console.log(activeMaterial);
 
-    console.log("newThumbnails");
-    console.log(newThumbnails);
+    // console.log("newThumbnails");
+    // console.log(newThumbnails);
     setActiveImage(newThumbnails[0]);
     setActiveImage(newThumbnails[0]);
     setCurrentThumbnails(newThumbnails);

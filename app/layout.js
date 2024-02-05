@@ -6,6 +6,8 @@ import {
   getPrivateTokenHeaders,
 } from "@/lib/shopify-client";
 
+import CookieBanner from "@/components/CookieBanner";
+
 import MainLayoutInnerWrapper from "@/components/MainLayoutInnerWrapper";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
@@ -23,6 +25,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="nl">
       <body className={`${montserrat.className}`}>
+        <CookieBanner />
         <MainLayoutInnerWrapper shopData={shopDataJson.data}>
           {children}
         </MainLayoutInnerWrapper>
