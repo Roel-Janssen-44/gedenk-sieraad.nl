@@ -25,6 +25,8 @@ import Button from "@mui/material/Button";
 import ExtraProductOptions from "@/components/ExtraProductOptions";
 import { useCartDrawer } from "@/components/MainLayoutInnerWrapper";
 
+import sanitizeHtml from "sanitize-html-react";
+
 export default function ProductPage({ product }) {
   let allMediaImages = [];
 
@@ -63,6 +65,7 @@ export default function ProductPage({ product }) {
           slidesToShow: 4,
           slidesToScroll: 3,
           vertical: true,
+          draggable: true,
         },
       },
       {
@@ -79,6 +82,7 @@ export default function ProductPage({ product }) {
           slidesToShow: 4,
           slidesToScroll: 3,
           vertical: true,
+          draggable: true,
         },
       },
       {
@@ -100,7 +104,7 @@ export default function ProductPage({ product }) {
     ],
   };
   const sliderRef = useRef();
-  const [hasNextSlide, setHasNextSlide] = useState(true);
+  const [hasNextSlide, setHasNextSlide] = useState(false);
   const [hasPrevSlide, setHasPrevSlide] = useState(false);
 
   const nextSlide = () => {
@@ -147,106 +151,142 @@ export default function ProductPage({ product }) {
     }
   };
 
+  useEffect(() => {
+    const sliderAmount =
+      sliderRef?.current?.props?.responsive.find(
+        (breakpoint) => window.innerWidth <= breakpoint.breakpoint
+      ).settings.slidesToShow || null;
+    if (currentThumbnails.length > sliderAmount) {
+      setHasNextSlide(true);
+    }
+    sliderRef?.current?.slickGoTo(0);
+  }, [currentThumbnails]);
+
+  const sanitizedHtmlDescription = sanitizeHtml(product.descriptionHtml);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
-    <div className="container flex flex-col items-center lg:flex-row lg:items-start">
-      <ProductProvider
-        data={product}
-        initialVariantId={product?.variant?.edges[0]?.node?.id}
-      >
-        <div className="mb-8 px-0 relative block w-full md:flex md:flex-row-reverse lg:flex-col lg:max-w-lg lg:sticky lg:top-40 lg:mb-0 xl:flex-row-reverse xl:max-w-none 2xl:max-w-2xl 2xl:ml-auto">
-          <div className="md:flex-1">
-            {activeImage && (
-              <div
-                key={activeImage.url}
-                className="animate-fadeIn mb-4 flex items-center justify-center aspect-square lg:pr-8 lg:mb-0"
-              >
-                <Image
-                  data={activeImage}
-                  sizes="(min-width: 45em) 50vw, 100vw"
-                  loading="eager"
-                  className="rounded"
-                />
-              </div>
-            )}
-          </div>
-
-          <div className="max-w-lg mx-auto relative md:w-32 md:mt-8 lg:w-full lg:mt-0 lg:max-w-none xl:w-32 xl:mt-10 2xl:mt-9">
-            {currentThumbnails.length > 1 && (
-              <>
-                <Slider
-                  ref={sliderRef}
-                  {...settings}
-                  className="h-auto w-full relative pt-2"
+    <div className="flex flex-col gap-12">
+      <div className="container flex flex-col items-center lg:flex-row lg:items-start">
+        <ProductProvider
+          data={product}
+          initialVariantId={product?.variant?.edges[0]?.node?.id}
+        >
+          <div className="mb-8 px-0 relative block w-full md:flex md:flex-row-reverse lg:flex-col lg:max-w-lg lg:sticky lg:top-40 lg:mb-0 xl:flex-row-reverse xl:max-w-none 2xl:max-w-2xl 2xl:ml-auto">
+            <div className="md:flex-1">
+              {activeImage && (
+                <div
+                  key={activeImage.url}
+                  className="animate-fadeIn mb-4 flex items-center justify-center aspect-square lg:pr-8 lg:mb-0"
                 >
-                  {currentThumbnails?.map((image, index) => (
-                    <button
-                      key={"thumbnailImage" + image.url}
-                      className={`w-full h-auto aspect-sqaure transition-all animate-fadeIn ml-2 first:ml-0 md:ml-0 md:flex md:justify-center md:mt-4 lg:justify-normal lg:mt-0 xl:mt-4 xl:ml-0 xl:flex xl:justify-center 2xl:mt-3`}
-                      onClick={() => {
-                        setActiveThumbnailIndex(index);
-                        setActiveImage(image);
-                      }}
-                    >
-                      <Image
-                        loading="lazy"
-                        className={`w-24 xs:w-28 sm:w-24 rouned-lg border-2 rounded-lg ${
-                          index == activeThumbnailIndex
-                            ? "border-black"
-                            : "border-black-300"
-                        }`}
-                        data={image}
-                        width={150}
-                        height={150}
-                      />
-                    </button>
-                  ))}
-                </Slider>
+                  <Image
+                    data={activeImage}
+                    sizes="(min-width: 45em) 50vw, 100vw"
+                    loading="eager"
+                    className="rounded"
+                  />
+                </div>
+              )}
+            </div>
 
-                {hasPrevSlide && (
-                  <IconButton
-                    onClick={previousSlide}
-                    size="medium"
-                    className="bg-gray-200 absolute z-0 bottom-1/2 translate-y-1/2 left-0 -translate-x-1/3
+            <div className="max-w-lg mx-auto relative md:w-32 md:mt-8 lg:w-full lg:mt-0 lg:max-w-none xl:w-32 xl:mt-10 2xl:mt-9">
+              {currentThumbnails.length > 1 && (
+                <>
+                  <Slider
+                    ref={sliderRef}
+                    {...settings}
+                    className="h-auto w-full relative pt-2"
+                  >
+                    {currentThumbnails?.map((image, index) => (
+                      <button
+                        key={"thumbnailImage" + image.url}
+                        className={`w-full h-auto aspect-sqaure transition-all animate-fadeIn ml-2 first:ml-0 md:ml-0 md:flex md:justify-center md:mt-4 lg:justify-normal lg:mt-0 xl:mt-4 xl:ml-0 xl:flex xl:justify-center 2xl:mt-3
+                        focus-visible:outline-none focus:outline-none outline-none`}
+                        onClick={() => {
+                          setActiveThumbnailIndex(index);
+                          setActiveImage(image);
+                        }}
+                      >
+                        <Image
+                          loading="lazy"
+                          className={`w-24 xs:w-28 sm:w-24 rouned-lg border-2 rounded-lg ${
+                            index == activeThumbnailIndex
+                              ? "border-black"
+                              : "border-black-300"
+                          }`}
+                          data={image}
+                          width={150}
+                          height={150}
+                        />
+                      </button>
+                    ))}
+                  </Slider>
+
+                  {hasPrevSlide && (
+                    <IconButton
+                      onClick={previousSlide}
+                      size="medium"
+                      className="bg-gray-200 absolute z-0 bottom-1/2 translate-y-1/2 left-0 -translate-x-1/3
                     xs:left-0 xs:-translate-x-1/2 md:left-1/2 md:-translate-x-1/2 md:-top-1 md:-translate-y-1/2 md:rotate-90 md:h-10 md:w-10 md:flex md:justiyf-center md:items-center
                     lg:top-1/2 lg:-tranlate-y-1/2 lg:left-0 lg:rotate-0
                     xl:left-1/2 xl:-translate-x-1/2 xl:-top-1 xl:-translate-y-1/2 xl:rotate-90 xl:h-10 xl:w-10 xl:flex xl:justiyf-center xl:items-center
                     2xl:-top-1"
-                  >
-                    <ChevronLeftRoundedIcon
-                      fontSize="32px"
-                      className="text-gray-700"
-                    />
-                  </IconButton>
-                )}
-                {hasNextSlide && (
-                  <IconButton
-                    onClick={nextSlide}
-                    size="medium"
-                    className="bg-gray-200 absolute z-0 bottom-1/2 translate-y-1/2 right-0
+                    >
+                      <ChevronLeftRoundedIcon
+                        fontSize="32px"
+                        className="text-gray-700"
+                      />
+                    </IconButton>
+                  )}
+                  {hasNextSlide && (
+                    <IconButton
+                      onClick={nextSlide}
+                      size="medium"
+                      className="bg-gray-200 absolute z-0 bottom-1/2 translate-y-1/2 right-0
                     xs:-right-3 xs:translate-x-1/2 sm:-right-1 md:left-1/2 md:-translate-x-1/2 md:bottom-16 md:rotate-90 md:w-10 md:h-10
                     lg:bottom-1/2 lg:-tranlate-y-1/2 lg:-right-2 lg:ml-auto lg:rotate-0 lg:-translate-x-1/2
                     xl:left-1/2 xl:-translate-x-1/2 xl:bottom-9 xl:rotate-90 xl:w-10 xl:h-10 xl:m-0 
                     2xl:bottom-8 "
-                  >
-                    <ChevronRightRoundedIcon
-                      fontSize="32px"
-                      className="text-gray-700"
-                    />
-                  </IconButton>
-                )}
-              </>
-            )}
+                    >
+                      <ChevronRightRoundedIcon
+                        fontSize="32px"
+                        className="text-gray-700"
+                      />
+                    </IconButton>
+                  )}
+                </>
+              )}
+            </div>
           </div>
-        </div>
-        <Product
-          extraImages={extraImages}
-          setCurrentThumbnails={setCurrentThumbnails}
-          setActiveThumbnailIndex={setActiveThumbnailIndex}
-          activeThumbnailIndex={activeThumbnailIndex}
-          setActiveImage={setActiveImage}
-          slider={sliderRef.current}
-        />
-      </ProductProvider>
+          <Product
+            extraImages={extraImages}
+            setCurrentThumbnails={setCurrentThumbnails}
+            setActiveThumbnailIndex={setActiveThumbnailIndex}
+            activeThumbnailIndex={activeThumbnailIndex}
+            setActiveImage={setActiveImage}
+            // slideShow={sliderRef.current}
+          />
+        </ProductProvider>
+      </div>
+      <div className="flex flex-wrap items-center container mx-auto">
+        <span className="bg-primary p-4 px-6 text-white rounded-t">
+          <span className="font-bold w-full -mb-2">Product bescrhijving:</span>
+        </span>
+        {isClient ? (
+          <p
+            dangerouslySetInnerHTML={{ __html: sanitizedHtmlDescription }}
+            className="border-[1px] border-gray-200 p-4 leading-7 tracking-wide"
+          ></p>
+        ) : (
+          <p className="w-full border-[1px] border-gray-200 p-4">
+            Aan het laden...
+          </p>
+        )}
+      </div>
     </div>
   );
 }
@@ -257,7 +297,7 @@ function Product({
   setActiveImage,
   activeThumbnailIndex,
   setActiveThumbnailIndex,
-  slider,
+  // slideShow,
 }) {
   const {
     product,
@@ -377,18 +417,10 @@ function Product({
       }
     });
 
-    // console.log("activeMaterial");
-    // console.log(activeMaterial);
-
-    // console.log("newThumbnails");
-    // console.log(newThumbnails);
-    setActiveImage(newThumbnails[0]);
+    // slideShow?.slickPrev(0);
     setActiveImage(newThumbnails[0]);
     setCurrentThumbnails(newThumbnails);
-    // if (slider) {
-    //   slider.slickGoTo(0);
-    // }
-    // To do check index of active thumbnail
+    setActiveThumbnailIndex(0);
   }, [selectedVariant, extraOptions]);
 
   const tags = product.tags;
@@ -415,138 +447,143 @@ function Product({
   // ];
 
   return (
-    <div className="max-w-lg mx-auto flex flex-col gap-6 2xl:ml-0">
-      <h1 className="text-6xl font-tangerine w-auto lg:ml-1 lg:mt-4">
-        {product.title}
-      </h1>
-      <div className="flex items-center text-sm">
-        <span className="font-bold mr-2">Prijs:</span>
-        <span>€{selectedVariant?.price?.amount || "Variant bestaat niet"}</span>
-      </div>
-      <div className="flex gap-6 flex-wrap">
-        {product.options.map((optionSet) => (
-          <div
-            className="flex flex-wrap gap-4 items-center text-sm"
-            key={"optionset-" + optionSet.name}
-          >
-            <span className="font-bold w-full -mb-2">{optionSet.name}:</span>
-            {optionSet.values.map((option) => {
-              if (option.includes("WD options")) {
-                return null;
-              }
-              const isSelected = selectedOptions[optionSet.name] === option;
-              if (isSelected) {
-                return (
-                  <Button
-                    variant="outlined"
-                    size="medium"
-                    className="lowercase border-black hover:border-black text-black hover:text-black"
-                    key={optionSet.name + "-" + option}
-                  >
-                    {option}
-                  </Button>
-                );
-              } else {
-                return (
-                  <Button
-                    variant="outlined"
-                    size="medium"
-                    className="lowercase border-gray-300 text-black hover:border-gray-600 hover:text-black !important"
-                    onClick={() => setSelectedOption(optionSet.name, option)}
-                    key={optionSet.name + "-" + option}
-                  >
-                    {option}
-                  </Button>
-                );
-              }
-            })}
-          </div>
-        ))}
-      </div>
-      <ExtraProductOptions
-        tags={tags}
-        extraOptions={extraOptions}
-        setExtraOptions={setExtraOptions}
-        showErrors={showErrors}
-        optionErrors={optionErrors}
-        setOptionErrors={setOptionErrors}
-      />
-      <div className="flex flex-wrap items-center text-sm">
-        <span className="font-bold min-w-[140px]">Merk/collectie:</span>
-        <span className="font-normal">{product.vendor}</span>
-      </div>
-      <div className="flex flex-wrap items-center text-sm">
-        <span className="font-bold min-w-[140px]">Artikelnr:</span>
-        <span className="font-normal">
-          {selectedVariant?.sku || "Variant bestaat niet"}
-        </span>
-      </div>
+    <div className="flex flex-col gap-8 2xl:mr-auto">
+      <div className="max-w-lg mx-auto flex flex-col gap-6 2xl:ml-0">
+        <h1 className="text-6xl font-tangerine w-auto lg:ml-1 lg:mt-4">
+          {product.title}
+        </h1>
+        <div className="flex items-center text-sm">
+          <span className="font-bold mr-2">Prijs:</span>
+          <span>
+            €{selectedVariant?.price?.amount || "Variant bestaat niet"}
+          </span>
+        </div>
+        <div className="flex gap-6 flex-wrap">
+          {product.options.map((optionSet) => (
+            <div
+              className="flex flex-wrap gap-4 items-center text-sm"
+              key={"optionset-" + optionSet.name}
+            >
+              <span className="font-bold w-full -mb-2">{optionSet.name}:</span>
+              {optionSet.values.map((option) => {
+                if (option.includes("WD options")) {
+                  return null;
+                }
+                const isSelected = selectedOptions[optionSet.name] === option;
+                if (isSelected) {
+                  return (
+                    <Button
+                      variant="outlined"
+                      size="medium"
+                      className="lowercase border-black hover:border-black text-black hover:text-black"
+                      key={optionSet.name + "-" + option}
+                    >
+                      {option}
+                    </Button>
+                  );
+                } else {
+                  return (
+                    <Button
+                      variant="outlined"
+                      size="medium"
+                      className="lowercase border-gray-300 text-black hover:border-gray-600 hover:text-black !important"
+                      onClick={() => setSelectedOption(optionSet.name, option)}
+                      key={optionSet.name + "-" + option}
+                    >
+                      {option}
+                    </Button>
+                  );
+                }
+              })}
+            </div>
+          ))}
+        </div>
+        <ExtraProductOptions
+          tags={tags}
+          extraOptions={extraOptions}
+          setExtraOptions={setExtraOptions}
+          showErrors={showErrors}
+          optionErrors={optionErrors}
+          setOptionErrors={setOptionErrors}
+        />
+        <div className="flex flex-wrap items-center text-sm">
+          <span className="font-bold min-w-[140px]">Merk/collectie:</span>
+          <span className="font-normal">{product.vendor}</span>
+        </div>
+        <div className="flex flex-wrap items-center text-sm">
+          <span className="font-bold min-w-[140px]">Artikelnr:</span>
+          <span className="font-normal">
+            {selectedVariant?.sku || "Variant bestaat niet"}
+          </span>
+        </div>
 
-      {/* {console.log("hasTrueValue")}
+        {/* {console.log("hasTrueValue")}
       {console.log(hasTrueValue)} */}
-      {/* To do verzending */}
-      {/* {optionErrors && <p className="text-red-700">vul alle velden in!</p>} */}
-      <Button
-        size="large"
-        variant="contained"
-        className="bg-primary max-w-sm"
-        onClick={(e) => {
-          // checkForErrors();
-          setShowErrors(true);
-          // if (hasTrueValue) return window.scrollTo(0, 0);
+        {/* To do verzending */}
+        {/* {optionErrors && <p className="text-red-700">vul alle velden in!</p>} */}
+        <Button
+          size="large"
+          variant="contained"
+          className="bg-primary max-w-sm"
+          onClick={(e) => {
+            setShowErrors(true);
+            if (hasTrueValue)
+              return window.scrollTo({ top: 0, behavior: "smooth" });
 
-          console.log("add to cart");
-          return null;
-          // return null;
-          if (false) {
-            // if (extraOptions) {
-            e.preventDefault();
-            const extraOptionsArray = extraOptions.flatMap((item) =>
-              Array.isArray(item.value)
-                ? item.value
-                    .map((nestedItem) => ({
-                      key: nestedItem.key,
-                      value: nestedItem.value !== "" ? nestedItem.value : null,
-                    }))
-                    .filter((nestedItem) => nestedItem.value !== null)
-                : item.value !== ""
-                ? [{ key: item.key, value: item.value }]
-                : []
-            );
-            const createdProductVariant = createProductVariant(
-              product,
-              extraOptions,
-              selectedVariant.id
-            )
-              .then((createdProductVariant) => {
-                const newVariantId = `gid://shopify/ProductVariant/${createdProductVariant.succes.variant.id}`;
-                linesAdd([
-                  {
-                    merchandiseId: newVariantId,
-                    quantity: 1,
-                    attributes: extraOptionsArray,
-                  },
-                ]);
-                openCartDrawer(true);
-              })
-              .catch((error) => {
-                console.error("Error creating product variant:", error);
-              });
-          } else {
-            linesAdd([
-              {
-                merchandiseId: selectedVariant.id,
-                quantity: 1,
-              },
-            ]);
-            openCartDrawer(true);
-          }
-        }}
-      >
-        Voeg toe aan winkelmandje
-      </Button>
+            console.log("add to cart");
 
-      {/* To do product beschrijving */}
+            if (extraOptions) {
+              e.preventDefault();
+              const extraOptionsArray = extraOptions.flatMap((item) =>
+                Array.isArray(item.value)
+                  ? item.value
+                      .map((nestedItem) => ({
+                        key: nestedItem.key,
+                        value:
+                          nestedItem.value !== "" ? nestedItem.value : null,
+                      }))
+                      .filter((nestedItem) => nestedItem.value !== null)
+                  : item.value !== ""
+                  ? [{ key: item.key, value: item.value }]
+                  : []
+              );
+              const createdProductVariant = createProductVariant(
+                product,
+                extraOptions,
+                selectedVariant.id
+              )
+                .then((createdProductVariant) => {
+                  const newVariantId = `gid://shopify/ProductVariant/${createdProductVariant.succes.variant.id}`;
+                  linesAdd([
+                    {
+                      merchandiseId: newVariantId,
+                      quantity: 1,
+                      attributes: extraOptionsArray,
+                    },
+                  ]);
+                  openCartDrawer(true);
+                })
+                .catch((error) => {
+                  console.error("Error creating product variant:", error);
+                });
+            } else {
+              linesAdd([
+                {
+                  merchandiseId: selectedVariant.id,
+                  quantity: 1,
+                },
+              ]);
+              openCartDrawer(true);
+            }
+          }}
+        >
+          Voeg toe aan winkelmandje
+        </Button>
+
+        {/* To do product beschrijving */}
+        {console.log(product)}
+        {/* <p>{product.description}</p> */}
+      </div>
     </div>
   );
 }

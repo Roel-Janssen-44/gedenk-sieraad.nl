@@ -28,6 +28,7 @@ const GRAPHQL_PRODUCT_QUERY = `
 query productByHandle($productId: String!) {
   productByHandle(handle: $productId) {
     description
+    descriptionHtml
     id
     handle
     options {
