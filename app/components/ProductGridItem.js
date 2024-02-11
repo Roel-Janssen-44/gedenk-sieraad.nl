@@ -36,7 +36,7 @@ export default function ProductGridItem({ product }) {
         {product?.vendor && (
           <span className="text-xs font-light">{product.vendor}</span>
         )}
-        <h3 className="text-5xl font-tangerine mt-4 mb-4 group-hover:text-primary transition-colors">
+        <h3 className="text-2xl  mt-4 mb-4 group-hover:text-primary transition-colors">
           {product.title}
         </h3>
         <span className="text-xl mt-4 font-light text-primary">

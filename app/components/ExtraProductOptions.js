@@ -70,6 +70,7 @@ export default function ExtraProductOptions({
 const components = {
   gravure: Gravure,
   creool: Creool,
+  hars: Hars,
   aspakket: Aspakket,
   kleuren: Hars,
   tekst: Tekst,

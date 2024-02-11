@@ -26,6 +26,7 @@ import ExtraProductOptions from "@/components/ExtraProductOptions";
 import { useCartDrawer } from "@/components/MainLayoutInnerWrapper";
 
 import sanitizeHtml from "sanitize-html-react";
+import { createSearchParamsBailoutProxy } from "next/dist/client/components/searchparams-bailout-proxy";
 
 export default function ProductPage({ product }) {
   let allMediaImages = [];
@@ -203,7 +204,7 @@ export default function ProductPage({ product }) {
                   >
                     {currentThumbnails?.map((image, index) => (
                       <button
-                        key={"thumbnailImage" + image.url}
+                        key={"thumbnailImage" + image?.url}
                         className={`w-full h-auto aspect-sqaure transition-all animate-fadeIn ml-2 first:ml-0 md:ml-0 md:flex md:justify-center md:mt-4 lg:justify-normal lg:mt-0 xl:mt-4 xl:ml-0 xl:flex xl:justify-center 2xl:mt-3
                         focus-visible:outline-none focus:outline-none outline-none`}
                         onClick={() => {
@@ -322,9 +323,6 @@ function Product({
   // console.log("extraOptions");
   // console.log(extraOptions);
 
-  // console.log("optionErrors");
-  // console.log(optionErrors);
-
   useEffect(() => {
     if (!selectedVariant) return;
 
@@ -334,8 +332,24 @@ function Product({
 
     let activeMaterial = [];
     const zilver = ["zilver 925 sterling", "9 kt witgoud", "14 kt witgoud"];
-    const geelgoud = ["9 kt geelgoud", "14 kt geelgoud"];
-    const rosegoud = ["9 kt roségoud", "14 kt roségoud"];
+    const geelgoud = [
+      "9 kt geelgoud",
+      "14 kt geelgoud",
+      "zilver/geelgoud verguld",
+    ];
+    const rosegoud = [
+      "9 kt roségoud",
+      "14 kt roségoud",
+      "zilver/roségoud verguld",
+    ];
+
+    let availableMaterialOrder = [];
+    console.log(product);
+    console.log(product.variants);
+    console.log(product.variants.nodes);
+    product.variants.nodes.forEach((variant) => {
+      console.log(variant.title);
+    });
 
     let newThumbnails = [];
 
@@ -343,6 +357,7 @@ function Product({
       currentVariant.selectedOptions[0].value.toLowerCase();
 
     newThumbnails.push(currentVariant.image);
+
     if (zilver.includes(selectedVariantMaterial)) {
       activeMaterial.push("zilver");
     } else if (geelgoud.includes(selectedVariantMaterial)) {
@@ -351,35 +366,46 @@ function Product({
       activeMaterial.push("rosegoud");
     }
 
+    const harskleurOption = extraOptions.find((obj) => obj.key === "kleuren");
+    const harsKleur = harskleurOption?.value[0].value.split(" ")[0] || "Blue";
+
     if (product.tags.includes("kleuren")) {
-      newThumbnails.shift();
-      const harskleurOption = extraOptions.find((obj) => obj.key === "kleuren");
+      // console.log("hars kleuren");
+      // console.log(newThumbnails);
+      // newThumbnails.shift();
       // To do generate random color in stead of blue
-      const harsKleur = harskleurOption?.value[0].value.split(" ")[0] || "Blue";
       newThumbnails.forEach((thumbnail, index) => {
-        if (!thumbnail.altText.includes(harsKleur)) {
+        if (!thumbnail.altText?.includes(harsKleur)) {
           newThumbnails.splice(index, 1);
         }
       });
-      extraImages.forEach((image) => {
-        if (image.altText.includes(harsKleur)) {
+      extraImages?.forEach((image) => {
+        if (image.altText?.toLowerCase().includes(harsKleur.toLowerCase())) {
           newThumbnails.push(image);
         }
       });
-      if (activeMaterial == "geelgoud") {
-        [newThumbnails[0], newThumbnails[1]] = [
-          newThumbnails[1],
-          newThumbnails[0],
-        ];
-      } else if (activeMaterial == "rosegoud") {
-        [newThumbnails[0], newThumbnails[2]] = [
-          newThumbnails[2],
-          newThumbnails[0],
-        ];
-      }
+      // if (activeMaterial == "geelgoud") {
+      //   [newThumbnails[0], newThumbnails[1]] = [
+      //     newThumbnails[1],
+      //     newThumbnails[0],
+      //   ];
+      // } else if (activeMaterial == "rosegoud") {
+      //   [newThumbnails[0], newThumbnails[2]] = [
+      //     newThumbnails[2],
+      //     newThumbnails[0],
+      //   ];
+      // }
     }
 
-    extraImages.forEach((image) => {
+    // console.log("currentVariant.");
+    // console.log(currentVariant.image);
+    // console.log(currentVariant.image.altText);
+
+    extraImages?.forEach((image) => {
+      // console.log("image");
+      // console.log(image.altText);
+      // console.log("newThumbnails[0].altText");
+      // console.log(newThumbnails[0].altText);
       if (!newThumbnails[0]) return;
       if (image.altText == newThumbnails[0].altText) {
         if (
@@ -391,26 +417,31 @@ function Product({
           newThumbnails.push(image);
         }
       } else {
+        // console.log("else");
+        // console.log("");
         if (
-          (selectedVariantMaterial.includes("zilver") ||
+          (selectedVariantMaterial.includes("zilver 925 sterling") ||
             selectedVariantMaterial.includes("witgoud")) &&
-          (image.altText.toLowerCase().includes("zilver") ||
-            image.altText.toLowerCase().includes("witgoud") ||
-            image.altText.toLowerCase().includes("alle"))
+          (image.altText?.toLowerCase().includes("zilver 925 sterling") ||
+            image.altText?.toLowerCase().includes("witgoud") ||
+            image.altText?.toLowerCase().includes("alle"))
+          // && (
+          //   image.altText?.toLowerCase() ==newThumbnails[0].altText
+          // )
         ) {
           newThumbnails.push(image);
         } else if (
           selectedVariantMaterial.includes("geelgoud") &&
-          (image.altText.toLowerCase().includes("geelgoud") ||
-            image.altText.toLowerCase().includes("alle"))
+          (image.altText?.toLowerCase().includes("geelgoud") ||
+            image.altText?.toLowerCase().includes("alle"))
         ) {
           newThumbnails.push(image);
         } else if (
           (selectedVariantMaterial.includes("rosegoud") ||
             selectedVariantMaterial.includes("roségoud")) &&
-          (image.altText.toLowerCase().includes("rosegoud") ||
-            image.altText.toLowerCase().includes("roségoud") ||
-            image.altText.toLowerCase().includes("alle"))
+          (image.altText?.toLowerCase().includes("rosegoud") ||
+            image.altText?.toLowerCase().includes("roségoud") ||
+            image.altText?.toLowerCase().includes("alle"))
         ) {
           newThumbnails.push(image);
         }
@@ -455,7 +486,7 @@ function Product({
         <div className="flex items-center text-sm">
           <span className="font-bold mr-2">Prijs:</span>
           <span>
-            €{selectedVariant?.price?.amount || "Variant bestaat niet"}
+            €{selectedVariant?.price?.amount || " Variant bestaat niet"}
           </span>
         </div>
         <div className="flex gap-6 flex-wrap">
@@ -579,10 +610,6 @@ function Product({
         >
           Voeg toe aan winkelmandje
         </Button>
-
-        {/* To do product beschrijving */}
-        {console.log(product)}
-        {/* <p>{product.description}</p> */}
       </div>
     </div>
   );
