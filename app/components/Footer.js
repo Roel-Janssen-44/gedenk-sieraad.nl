@@ -3,7 +3,8 @@ export default function Navbar() {
     <div className="py-20 mt-20 border-t-2 border-primary">
       <div className="container flex flex-col gap-8">
         <div className="">
-          <h5 className="font-tangerine text-5xl mb-3">Info pagina's</h5>
+          {/* Quote */}
+          {/* <h5 className="font-tangerine text-5xl mb-3">Info paginas</h5> */}
           <ul className="list-disc pl-6">
             <li>
               <a
@@ -60,7 +61,7 @@ export default function Navbar() {
           <li className="my-2">& WhatsApp 06 43 79 15 84</li>
           <li className="my-2">Idere dag van 09:00 tot 21:00 uur</li>
           <li className="my-2">
-            BTW nummer: NL001816537B08 <br /> en KvK nummer : 54210666
+            BTW nummer: NL001816537B08 <br /> en KvK nummer: 54210666
           </li>
         </ul>
       </div>
