@@ -5,10 +5,7 @@ import {
   useProduct,
   Image,
   useCart,
-  ProductPrice,
-  getClientBrowserParameters,
 } from "@shopify/hydrogen-react";
-import { Transition } from "@headlessui/react";
 import { useEffect, useState, useRef } from "react";
 import { Money } from "@shopify/hydrogen-react";
 
@@ -19,16 +16,11 @@ import IconButton from "@mui/material/IconButton";
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 
-import * as OptionSets from "./productOptions/optionSets";
-import { checkForActiveMaterial } from "@/lib/functions";
-
 import Button from "@mui/material/Button";
 import ExtraProductOptions from "@/components/ExtraProductOptions";
 import { useCartDrawer } from "@/components/MainLayoutInnerWrapper";
 
 import sanitizeHtml from "sanitize-html-react";
-import { createSearchParamsBailoutProxy } from "next/dist/client/components/searchparams-bailout-proxy";
-import { CompareSharp } from "@mui/icons-material";
 
 export default function ProductPage({ product }) {
   let allMediaImages = [];
@@ -184,25 +176,27 @@ export default function ProductPage({ product }) {
               {activeImage && (
                 <div
                   key={activeImage.url}
-                  className="animate-fadeIn mb-4 aspect-square lg:pr-8 lg:mb-0"
+                  className="animate-fadeIn mb-4 flex justify-center items-center aspect-square lg:mr-8 lg:mb-0"
                 >
-                  <Image
-                    data={activeImage}
-                    sizes="(min-width: 45em) 50vw, 100vw"
-                    loading="eager"
-                    className="rounded"
-                  />
+                  <div className="relative w-full h-full overflow-hidden">
+                    <Image
+                      data={activeImage}
+                      // sizes="(min-width: 45em) 50vw, 100vw"
+                      loading="eager"
+                      className="rounded block w-auto h-auto z-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    />
+                  </div>
                 </div>
               )}
             </div>
 
-            <div className="max-w-lg mx-auto relative md:w-32 md:mt-8 lg:w-full lg:mt-0 lg:max-w-none xl:w-32 xl:mt-10 2xl:mt-9">
+            <div className="max-w-lg mx-auto relative md:w-32 md:mt-8 lg:w-full lg:mt-0 lg:max-w-none xl:w-32 xl:h-[520px] 2xl:h-[500px] xl:mt-12 2xl:mt-9">
               {currentThumbnails.length > 1 && (
                 <>
                   <Slider
                     ref={sliderRef}
                     {...settings}
-                    className="h-auto w-full relative pt-2"
+                    className="h-auto w-full relative pt-2 lg:pt-0"
                   >
                     {currentThumbnails?.map((image, index) => (
                       <button
@@ -236,8 +230,8 @@ export default function ProductPage({ product }) {
                       className="bg-gray-200 absolute z-0 bottom-1/2 translate-y-1/2 left-0 -translate-x-1/3
                     xs:left-0 xs:-translate-x-1/2 md:left-1/2 md:-translate-x-1/2 md:-top-1 md:-translate-y-1/2 md:rotate-90 md:h-10 md:w-10 md:flex md:justiyf-center md:items-center
                     lg:top-1/2 lg:-tranlate-y-1/2 lg:left-0 lg:rotate-0
-                    xl:left-1/2 xl:-translate-x-1/2 xl:-top-1 xl:-translate-y-1/2 xl:rotate-90 xl:h-10 xl:w-10 xl:flex xl:justiyf-center xl:items-center
-                    2xl:-top-1"
+                    xl:left-1/2 xl:-translate-x-1/2 xl:-top-3 xl:-translate-y-1/2 xl:rotate-90 xl:h-10 xl:w-10 xl:flex xl:justiyf-center xl:items-center
+                    2xl:-top-4"
                     >
                       <ChevronLeftRoundedIcon
                         fontSize="32px"
@@ -407,20 +401,16 @@ function Product({
       }
     }
 
-    console.log(product.tags);
-
     extraImages?.forEach((image) => {
       if (!newThumbnails[0]) return;
-      if (
-        product.tags.includes("geboorte") &&
-        (product.tags.includes("kleuren") || product.tags.includes("letter"))
-      ) {
-        console.log("uif");
+      if (product.tags.includes("geboorte")) {
         if (
+          newThumbnails[0].altText?.toLowerCase() ==
+            image.altText.toLowerCase() ||
+          image.altText?.toLowerCase().includes("alle") ||
           newThumbnails[0].altText
-            .toLowerCase()
-            .includes(image.altText.toLowerCase()) ||
-          image.altText?.toLowerCase().includes("alle")
+            ?.toLowerCase()
+            .includes(image.altText.toLowerCase())
         ) {
           if (
             !newThumbnails.some(
@@ -435,7 +425,7 @@ function Product({
       } else {
         if (
           newThumbnails[0].altText
-            .toLowerCase()
+            ?.toLowerCase()
             .includes(image.altText?.toLowerCase())
         ) {
           if (
@@ -517,7 +507,7 @@ function Product({
           <span className="font-bold mr-2">Prijs:</span>
           <span>
             {selectedVariant?.price?.amount && (
-              <Money data={selectedVariant?.price} />
+              <Money withoutTrailingZeros data={selectedVariant?.price} />
             )}
 
             {!selectedVariant?.price?.amount && " Variant bestaat niet"}
