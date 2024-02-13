@@ -184,7 +184,7 @@ export default function ProductPage({ product }) {
               {activeImage && (
                 <div
                   key={activeImage.url}
-                  className="animate-fadeIn mb-4 flex items-center justify-center aspect-square lg:pr-8 lg:mb-0"
+                  className="animate-fadeIn mb-4 aspect-square lg:pr-8 lg:mb-0"
                 >
                   <Image
                     data={activeImage}
@@ -216,7 +216,7 @@ export default function ProductPage({ product }) {
                       >
                         <Image
                           loading="lazy"
-                          className={`w-24 xs:w-28 sm:w-24 rouned-lg border-2 rounded-lg ${
+                          className={`w-24 xs:w-28 aspect-sqaure sm:w-24 rouned-lg border-2 rounded-lg ${
                             index == activeThumbnailIndex
                               ? "border-black"
                               : "border-black-300"
@@ -324,8 +324,6 @@ function Product({
 
   useEffect(() => {
     if (!selectedVariant) return;
-    console.log("selectedVariant");
-    console.log(selectedVariant);
 
     const currentVariant = variants.find(
       (variant) => variant.id == selectedVariant.id
@@ -409,48 +407,74 @@ function Product({
       }
     }
 
+    console.log(product.tags);
+
     extraImages?.forEach((image) => {
       if (!newThumbnails[0]) return;
       if (
-        newThumbnails[0].altText
-          .toLowerCase()
-          .includes(image.altText?.toLowerCase())
+        product.tags.includes("geboorte") &&
+        (product.tags.includes("kleuren") || product.tags.includes("letter"))
       ) {
+        console.log("uif");
         if (
-          !newThumbnails.some(
-            (thumbnail) =>
-              thumbnail.url === image.url && thumbnail.altText === image.altText
-          )
+          newThumbnails[0].altText
+            .toLowerCase()
+            .includes(image.altText.toLowerCase()) ||
+          image.altText?.toLowerCase().includes("alle")
         ) {
-          newThumbnails.push(image);
-        }
-      } else if (product.tags.includes("letter")) {
-        if (image.altText?.toLowerCase().includes("alle")) {
-          newThumbnails.push(image);
+          if (
+            !newThumbnails.some(
+              (thumbnail) =>
+                thumbnail.url === image.url &&
+                thumbnail.altText === image.altText
+            )
+          ) {
+            newThumbnails.push(image);
+          }
         }
       } else {
         if (
-          (selectedVariantMaterial.includes("zilver 925 sterling") ||
-            selectedVariantMaterial.includes("witgoud")) &&
-          (image.altText?.toLowerCase().includes("zilver 925 sterling") ||
-            image.altText?.toLowerCase().includes("witgoud") ||
-            image.altText?.toLowerCase().includes("alle"))
+          newThumbnails[0].altText
+            .toLowerCase()
+            .includes(image.altText?.toLowerCase())
         ) {
-          newThumbnails.push(image);
-        } else if (
-          selectedVariantMaterial.includes("geelgoud") &&
-          (image.altText?.toLowerCase().includes("geelgoud") ||
-            image.altText?.toLowerCase().includes("alle"))
-        ) {
-          newThumbnails.push(image);
-        } else if (
-          (selectedVariantMaterial.includes("rosegoud") ||
-            selectedVariantMaterial.includes("roségoud")) &&
-          (image.altText?.toLowerCase().includes("rosegoud") ||
-            image.altText?.toLowerCase().includes("roségoud") ||
-            image.altText?.toLowerCase().includes("alle"))
-        ) {
-          newThumbnails.push(image);
+          if (
+            !newThumbnails.some(
+              (thumbnail) =>
+                thumbnail.url === image.url &&
+                thumbnail.altText === image.altText
+            )
+          ) {
+            newThumbnails.push(image);
+          }
+        } else if (product.tags.includes("letter")) {
+          if (image.altText?.toLowerCase().includes("alle")) {
+            newThumbnails.push(image);
+          }
+        } else {
+          if (
+            (selectedVariantMaterial.includes("zilver 925 sterling") ||
+              selectedVariantMaterial.includes("witgoud")) &&
+            (image.altText?.toLowerCase().includes("zilver 925 sterling") ||
+              image.altText?.toLowerCase().includes("witgoud") ||
+              image.altText?.toLowerCase().includes("alle"))
+          ) {
+            newThumbnails.push(image);
+          } else if (
+            selectedVariantMaterial.includes("geelgoud") &&
+            (image.altText?.toLowerCase().includes("geelgoud") ||
+              image.altText?.toLowerCase().includes("alle"))
+          ) {
+            newThumbnails.push(image);
+          } else if (
+            (selectedVariantMaterial.includes("rosegoud") ||
+              selectedVariantMaterial.includes("roségoud")) &&
+            (image.altText?.toLowerCase().includes("rosegoud") ||
+              image.altText?.toLowerCase().includes("roségoud") ||
+              image.altText?.toLowerCase().includes("alle"))
+          ) {
+            newThumbnails.push(image);
+          }
         }
       }
     });
