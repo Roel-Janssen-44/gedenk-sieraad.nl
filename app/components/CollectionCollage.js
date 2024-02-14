@@ -39,7 +39,7 @@ export default function CollectionCollage({ collections }) {
             `}
           >
             <div className="p-4 pt-5 flex flex-col justify-center">
-              <h2 className="text-5xl font-tangerine mb-4 text-gray-800">
+              <h2 className="text-3xl font-roboto mb-4 text-gray-800">
                 {collection.title}
               </h2>
               <div className="mb-4">

@@ -42,7 +42,7 @@ export default async function CollectionPage({ collection }) {
             />
           </div>
           <div className="">
-            <h1 className="text-6xl font-tangerine mb-4">{collection.title}</h1>
+            <h1 className="text-3xl font-roboto mb-4">{collection.title}</h1>
             <p>{collection.description}</p>
           </div>
         </div>

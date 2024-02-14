@@ -99,7 +99,7 @@ export default function CollectionSlider({ collectionHandle }) {
           <div className="p-4 rounded">
             <div className="flex flex-col lg:gap-10 lg:flex-row justify-center items-center max-w-6xl mx-auto lg:mb-6 2xl:mb-8">
               <div className="lg:w-1/2">
-                <h2 className="text-5xl font-tangerine text-gray-800 mb-1">
+                <h2 className="text-3xl font-roboto text-gray-800 mb-3">
                   {collection.title}
                 </h2>
                 <div className="mb-4">

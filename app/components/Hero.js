@@ -37,13 +37,12 @@ export default function Hero() {
     <div className="h-[100lvh] bg-secondary">
       <Slider {...settings} className="h-[100lvh]">
         {slides.map((slide, index) => (
-          <div key={slide.title} className="h-[100lvh] relative">
+          <div key={slide.title} className="h-[100lvh] relative cursor-grab">
             <Image
               src={`/images/${slide.image}`}
               alt={`/images/${slide.imageAlt}`}
               fill
               objectFit="cover"
-              className=""
               priority
             />
             <div

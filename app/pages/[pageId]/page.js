@@ -31,9 +31,7 @@ export default async function Page({ params }) {
 
   return (
     <div className="container">
-      <h1 className="font-tangerine text-5xl mb-10">
-        {pageJson.data.page.title}
-      </h1>
+      <h1 className="font-roboto text-3xl mb-10">{pageJson.data.page.title}</h1>
       <PageInfo page={pageJson.data.page} />
     </div>
   );

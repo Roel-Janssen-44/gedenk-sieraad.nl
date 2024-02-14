@@ -93,7 +93,7 @@ export default function Search() {
     <div>
       <div className="container">
         <center>
-          <h1 className="font-tangerine text-5xl max-w-[250px] sm:max-w-none mb-4">
+          <h1 className="font-roboto text-3xl max-w-[250px] sm:max-w-none mb-4">
             Zoek producten in onze webshop
           </h1>
         </center>

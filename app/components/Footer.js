@@ -4,7 +4,7 @@ export default function Navbar() {
       <div className="container flex flex-col gap-8">
         <div className="">
           {/* Quote */}
-          {/* <h5 className="font-tangerine text-5xl mb-3">Info paginas</h5> */}
+          {/* <h5 className="font-roboto text-5xl mb-3">Info paginas</h5> */}
           <ul className="list-disc pl-6">
             <li>
               <a

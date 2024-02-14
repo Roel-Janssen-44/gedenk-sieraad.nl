@@ -6,7 +6,7 @@
 export default async function Contact({ params }) {
   return (
     <div className="container">
-      <h1 className="font-tangerine text-5xl mb-10">Contact pagina</h1>
+      <h1 className="font-roboto text-5xl mb-10">Contact pagina</h1>
       <p>To do contact formulier</p>
     </div>
   );

@@ -21,6 +21,33 @@ import Print from "./productOptions/Print";
 import Gravure from "./productOptions/Gravure";
 import Positie from "./productOptions/Positie";
 
+const tagsOrder = [
+  "ringmaat",
+  "ringmaatsy",
+  "paracord",
+  "satijnen",
+  "creool",
+  "armbandmaat",
+  "vulset",
+  "kleuren",
+  "hars",
+  "gravure",
+  "upload",
+  "aspakket",
+  "vppakket",
+  "vppakketup",
+  "aszijde",
+  "tekst",
+  "poot",
+  "woord",
+  "letter",
+  "positie",
+  "naamdatum",
+  "print",
+];
+
+// To do Vpring
+
 export default function ExtraProductOptions({
   tags,
   extraOptions,
@@ -44,25 +71,29 @@ export default function ExtraProductOptions({
     }
   };
 
+  // console.log(tags);
+  // console.log(tagsOrder.filter((tag) => tags.includes(tag)));
   return (
     <div className="flex flex-col gap-6">
-      {tags.map((tag, index) => {
-        const Component = components[tag];
-        if (Component) {
-          return (
-            <Component
-              key={index}
-              value={
-                extraOptions.find((option) => option.key === tag)?.value || ""
-              }
-              onChange={(value) => handleChange(value, tag)}
-              setOptionErrors={setOptionErrors}
-              showErrors={showErrors}
-            />
-          );
-        }
-        return null;
-      })}
+      {tagsOrder
+        .filter((tag) => tags.includes(tag))
+        .map((tag, index) => {
+          const Component = components[tag];
+          if (Component) {
+            return (
+              <Component
+                key={index}
+                value={
+                  extraOptions.find((option) => option.key === tag)?.value || ""
+                }
+                onChange={(value) => handleChange(value, tag)}
+                setOptionErrors={setOptionErrors}
+                showErrors={showErrors}
+              />
+            );
+          }
+          return null;
+        })}
     </div>
   );
 }

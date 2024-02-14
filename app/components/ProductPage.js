@@ -183,7 +183,7 @@ export default function ProductPage({ product }) {
                       data={activeImage}
                       // sizes="(min-width: 45em) 50vw, 100vw"
                       loading="eager"
-                      className="rounded block w-auto h-auto z-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                      className="max-w-full max-h-full object-contain rounded block w-full h-full z-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     />
                   </div>
                 </div>
@@ -210,14 +210,12 @@ export default function ProductPage({ product }) {
                       >
                         <Image
                           loading="lazy"
-                          className={`w-24 xs:w-28 aspect-sqaure sm:w-24 rouned-lg border-2 rounded-lg ${
+                          className={`w-24 h-24 xs:w-28 xs:h-28 object-contain aspect-sqaure sm:w-24 sm:h-24 rouned-lg border-2 rounded-lg ${
                             index == activeThumbnailIndex
                               ? "border-black"
                               : "border-black-300"
                           }`}
                           data={image}
-                          width={150}
-                          height={150}
                         />
                       </button>
                     ))}
@@ -500,7 +498,7 @@ function Product({
   return (
     <div className="flex flex-col gap-8 2xl:mr-auto">
       <div className="max-w-lg mx-auto flex flex-col gap-6 2xl:ml-0">
-        <h1 className="text-6xl font-tangerine w-auto lg:ml-1 lg:mt-4">
+        <h1 className="text-4xl font-roboto w-auto lg:ml-1 lg:mt-4">
           {product.title}
         </h1>
         <div className="flex items-center text-sm">
