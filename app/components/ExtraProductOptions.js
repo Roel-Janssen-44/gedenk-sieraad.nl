@@ -71,8 +71,6 @@ export default function ExtraProductOptions({
     }
   };
 
-  // console.log(tags);
-  // console.log(tagsOrder.filter((tag) => tags.includes(tag)));
   return (
     <div className="flex flex-col gap-6">
       {tagsOrder

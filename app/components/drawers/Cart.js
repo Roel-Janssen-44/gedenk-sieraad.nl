@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 
 import { styled, alpha } from "@mui/material/styles";
 
+import Price from "@/components/Price";
+
 import ShoppingBagRoundedIcon from "@mui/icons-material/ShoppingBagRounded";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
@@ -67,7 +69,7 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
                             <a href="#">{line.merchandise.product.handle}</a>
                           </h3>
                           <p className="ml-4">
-                            €{line.cost.totalAmount.amount}
+                            <Price value={line.cost.totalAmount.amount} />
                           </p>
                         </div>
                         {line.merchandise.selectedOptions.map((option) => (
@@ -117,7 +119,12 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
           <div className="flex justify-between text-base font-medium text-gray-900">
             <p>Subtotaal:</p>
-            <p>€{cost?.subtotalAmount?.amount || "0.00"}</p>
+            <p>
+              {cost?.subtotalAmount?.amount && (
+                <Price value={cost.subtotalAmount.amount} />
+              )}{" "}
+              {!cost?.subtotalAmount?.amount && "0.00"}
+            </p>
           </div>
 
           <Button

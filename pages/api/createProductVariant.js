@@ -1,5 +1,6 @@
 import { parseGid } from "@shopify/hydrogen-react";
 
+import { calculatePrice } from "@/lib/functions";
 import * as OptionSets from "@/components/productOptions/optionSets";
 
 const handler = async (req, res) => {
@@ -95,53 +96,3 @@ const handler = async (req, res) => {
 };
 
 export default handler;
-
-function calculatePrice(selectedOptions, optionSets) {
-  let totalPrice = 0;
-
-  console.log("selectedOptions");
-  console.log(selectedOptions);
-
-  for (let i = 0; i < selectedOptions.length; i++) {
-    const optionKey = selectedOptions[i].key + "Options";
-    const currentOptionSet = findOptionSet(optionSets, optionKey);
-
-    const selectedTargetValue = selectedOptions[i].value;
-    if (typeof selectedTargetValue == "string") {
-      const selectedOptionSet = currentOptionSet.find(
-        (option) => option.value === selectedTargetValue
-      );
-      totalPrice += selectedOptionSet.price || 0;
-    } else {
-      selectedTargetValue.forEach((selectedTarget) => {
-        const price = findPriceByValue(
-          optionSets,
-          selectedTarget.key,
-          selectedTarget.value
-        );
-        totalPrice += price || 0;
-      });
-    }
-  }
-  return totalPrice;
-}
-
-function findOptionSet(optionSets, optionSetKey) {
-  return optionSets[optionSetKey] || null;
-}
-
-function findPriceByValue(optionSets, targetKey, targetValue) {
-  const optionSet = optionSets[targetKey + "Options"];
-
-  if (optionSet && Array.isArray(optionSet)) {
-    const foundOption = optionSet.find(
-      (option) => option.value === targetValue
-    );
-
-    if (foundOption && typeof foundOption.price !== "undefined") {
-      return foundOption.price;
-    }
-  }
-
-  return null;
-}

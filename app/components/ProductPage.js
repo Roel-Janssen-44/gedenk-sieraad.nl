@@ -18,9 +18,12 @@ import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 
 import Button from "@mui/material/Button";
 import ExtraProductOptions from "@/components/ExtraProductOptions";
+import Price from "@/components/Price";
 import { useCartDrawer } from "@/components/MainLayoutInnerWrapper";
 
 import sanitizeHtml from "sanitize-html-react";
+import * as OptionSets from "@/components/productOptions/optionSets";
+import { calculatePrice } from "@/lib/functions";
 
 export default function ProductPage({ product }) {
   let allMediaImages = [];
@@ -190,72 +193,70 @@ export default function ProductPage({ product }) {
               )}
             </div>
 
-            <div className="max-w-lg mx-auto relative md:w-32 md:mt-8 lg:w-full lg:mt-0 lg:max-w-none xl:w-32 xl:h-[520px] 2xl:h-[500px] xl:mt-12 2xl:mt-9">
-              {currentThumbnails.length > 1 && (
-                <>
-                  <Slider
-                    ref={sliderRef}
-                    {...settings}
-                    className="h-auto w-full relative pt-2 lg:pt-0"
-                  >
-                    {currentThumbnails?.map((image, index) => (
-                      <button
-                        key={"thumbnailImage" + image?.url}
-                        className={`w-full h-auto aspect-sqaure transition-all animate-fadeIn ml-2 first:ml-0 md:ml-0 md:flex md:justify-center md:mt-4 lg:justify-normal lg:mt-0 xl:mt-4 xl:ml-0 xl:flex xl:justify-center 2xl:mt-3
+            {currentThumbnails.length > 1 && (
+              <div className="max-w-lg mx-auto relative md:w-32 md:mt-8 lg:w-full lg:mt-0 lg:max-w-none xl:w-32 xl:h-[520px] 2xl:h-[500px] xl:mt-12 2xl:mt-9">
+                <Slider
+                  ref={sliderRef}
+                  {...settings}
+                  className="h-auto w-full relative pt-2 lg:pt-0"
+                >
+                  {currentThumbnails?.map((image, index) => (
+                    <button
+                      key={"thumbnailImage" + image?.url}
+                      className={`w-full h-auto aspect-sqaure transition-all animate-fadeIn ml-2 first:ml-0 md:ml-0 md:flex md:justify-center md:mt-4 lg:justify-normal lg:mt-0 xl:mt-4 xl:ml-0 xl:flex xl:justify-center 2xl:mt-3
                         focus-visible:outline-none focus:outline-none outline-none`}
-                        onClick={() => {
-                          setActiveThumbnailIndex(index);
-                          setActiveImage(image);
-                        }}
-                      >
-                        <Image
-                          loading="lazy"
-                          className={`w-24 h-24 xs:w-28 xs:h-28 object-contain aspect-sqaure sm:w-24 sm:h-24 rouned-lg border-2 rounded-lg ${
-                            index == activeThumbnailIndex
-                              ? "border-black"
-                              : "border-black-300"
-                          }`}
-                          data={image}
-                        />
-                      </button>
-                    ))}
-                  </Slider>
+                      onClick={() => {
+                        setActiveThumbnailIndex(index);
+                        setActiveImage(image);
+                      }}
+                    >
+                      <Image
+                        loading="lazy"
+                        className={`w-24 h-24 xs:w-28 xs:h-28 object-contain aspect-sqaure sm:w-24 sm:h-24 rouned-lg border-2 rounded-lg ${
+                          index == activeThumbnailIndex
+                            ? "border-black"
+                            : "border-black-300"
+                        }`}
+                        data={image}
+                      />
+                    </button>
+                  ))}
+                </Slider>
 
-                  {hasPrevSlide && (
-                    <IconButton
-                      onClick={previousSlide}
-                      size="medium"
-                      className="bg-gray-200 absolute z-0 bottom-1/2 translate-y-1/2 left-0 -translate-x-1/3
+                {hasPrevSlide && (
+                  <IconButton
+                    onClick={previousSlide}
+                    size="medium"
+                    className="bg-gray-200 absolute z-0 bottom-1/2 translate-y-1/2 left-0 -translate-x-1/3
                     xs:left-0 xs:-translate-x-1/2 md:left-1/2 md:-translate-x-1/2 md:-top-1 md:-translate-y-1/2 md:rotate-90 md:h-10 md:w-10 md:flex md:justiyf-center md:items-center
                     lg:top-1/2 lg:-tranlate-y-1/2 lg:left-0 lg:rotate-0
                     xl:left-1/2 xl:-translate-x-1/2 xl:-top-3 xl:-translate-y-1/2 xl:rotate-90 xl:h-10 xl:w-10 xl:flex xl:justiyf-center xl:items-center
                     2xl:-top-4"
-                    >
-                      <ChevronLeftRoundedIcon
-                        fontSize="32px"
-                        className="text-gray-700"
-                      />
-                    </IconButton>
-                  )}
-                  {hasNextSlide && (
-                    <IconButton
-                      onClick={nextSlide}
-                      size="medium"
-                      className="bg-gray-200 absolute z-0 bottom-1/2 translate-y-1/2 right-0
+                  >
+                    <ChevronLeftRoundedIcon
+                      fontSize="32px"
+                      className="text-gray-700"
+                    />
+                  </IconButton>
+                )}
+                {hasNextSlide && (
+                  <IconButton
+                    onClick={nextSlide}
+                    size="medium"
+                    className="bg-gray-200 absolute z-0 bottom-1/2 translate-y-1/2 right-0
                     xs:-right-3 xs:translate-x-1/2 sm:-right-1 md:left-1/2 md:-translate-x-1/2 md:bottom-16 md:rotate-90 md:w-10 md:h-10
                     lg:bottom-1/2 lg:-tranlate-y-1/2 lg:-right-2 lg:ml-auto lg:rotate-0 lg:-translate-x-1/2
                     xl:left-1/2 xl:-translate-x-1/2 xl:bottom-9 xl:rotate-90 xl:w-10 xl:h-10 xl:m-0 
                     2xl:bottom-8 "
-                    >
-                      <ChevronRightRoundedIcon
-                        fontSize="32px"
-                        className="text-gray-700"
-                      />
-                    </IconButton>
-                  )}
-                </>
-              )}
-            </div>
+                  >
+                    <ChevronRightRoundedIcon
+                      fontSize="32px"
+                      className="text-gray-700"
+                    />
+                  </IconButton>
+                )}
+              </div>
+            )}
           </div>
           <Product
             extraImages={extraImages}
@@ -505,7 +506,13 @@ function Product({
           <span className="font-bold mr-2">Prijs:</span>
           <span>
             {selectedVariant?.price?.amount && (
-              <Money withoutTrailingZeros data={selectedVariant?.price} />
+              // <Money withoutTrailingZeros data={selectedVariant?.price} />
+              <Price
+                value={
+                  parseFloat(selectedVariant.price.amount) +
+                  parseFloat(calculatePrice(extraOptions, OptionSets))
+                }
+              />
             )}
 
             {!selectedVariant?.price?.amount && " Variant bestaat niet"}
