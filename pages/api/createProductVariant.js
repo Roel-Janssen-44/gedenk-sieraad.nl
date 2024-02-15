@@ -14,25 +14,17 @@ const handler = async (req, res) => {
   const extraOptions = req.body.variantData.extraOptions;
 
   const product = req.body.variantData.product;
-  console.log("product");
-  console.log(product);
 
   const productIdParts = product.id.split("/");
   const productId = productIdParts[productIdParts.length - 1];
 
   const variants = product.variants.nodes;
-  console.log("variants");
-  console.log(variants);
   const targetId = req.body.variantData.selectedVariantId;
 
   const filteredVariants = variants.filter(
     (variant) => variant.id === targetId
   );
   const currentVariant = filteredVariants[0];
-
-  console.log("currentVariant");
-  console.log(currentVariant);
-  console.log(currentVariant.price.amount);
 
   const imageIdParts = currentVariant.image.id.split("/");
   const imageId = imageIdParts[imageIdParts.length - 1];
@@ -55,8 +47,6 @@ const handler = async (req, res) => {
   const price =
     parseFloat(currentVariant.price.amount) +
     parseFloat(calculatePrice(extraOptions, OptionSets));
-  console.log("price");
-  console.log(price);
 
   const postBody = {
     variant: {
