@@ -8,7 +8,7 @@ import NoteRoundedIcon from "@mui/icons-material/NoteRounded";
 export default function Navbar() {
   return (
     <div className="py-20 mt-20 border-t-2 border-primary">
-      <div className="container flex flex-col gap-8 md:flex-row md:flex-wrap">
+      <div className="container flex flex-col gap-8 md:flex-row md:flex-wrap md:items-center xl:flex-nowrap xl:items-start">
         <div className="max-w-md w-full mx-auto md:w-[336px] md:max-w-[336px]">
           <h5 className="font-roboto text-2xl mb-3">Info paginas</h5>
           <ul>
@@ -62,9 +62,9 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="max-w-md w-full mx-auto md:w-[336px] md:max-w-[336px]">
+        <div className="max-w-md w-full mx-auto md:w-[336px] md:max-w-[336px] xl:border-l-primary">
           <ul>
-            <li className="my-2 flex flex-row items-center gap-1">
+            <li className="my-2 flex flex-row items-center gap-1 mt-0">
               <EmailRoundedIcon fontSize="small" />
               service@gedenk-sieraad.nl
             </li>
@@ -82,7 +82,7 @@ export default function Navbar() {
             </li>
           </ul>
           {/* Payment icons */}
-          <ul className="my-5 flex flex-row gap-2 flex-wrap">
+          <ul className="my-5 flex flex-row gap-2 flex-wrap md:mb-0">
             <li>
               <svg
                 version="1.1"
@@ -471,19 +471,19 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="max-w-md w-full mx-auto md:w-[336px] md:max-w-[336px]">
+        <div className="max-w-md w-full mx-auto md:w-[336px] md:max-w-[336px] 2xl:mt-0">
           <p className="mb-3">
             Bij een aankoopbedrag vanaf €300,- ontvang je gratis onze rosé gold
             metalen USB stick 3.0 - 16 GB geheugen t.w.v. €9,95
           </p>
           <Image
             src={"/images/usb.webp"}
-            width={320}
-            height={200}
-            className="rounded-lg w-auto h-auto"
+            width={250}
+            height={160}
+            className="rounded-lg w-[250px] h-auto xl:w-[200px]"
           />
         </div>
-        <div className="max-w-md w-full mx-auto md:w-[336px] md:max-w-[336px]">
+        <div className="max-w-md w-full mx-auto md:w-[336px] md:max-w-[336px] md:mb-20 2xl:mb-0 ">
           <p className="mb-2">
             Voor alle sieraden in de webshop geldt : twee jaar garantie en
             gratis verzending!
