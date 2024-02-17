@@ -5,15 +5,7 @@ import {
 
 import PageInfo from "@/components/PageInfo";
 
-// export const metadata = {
-//   title:
-//     "Gedenksieraden en herinneringssieraden voor jou persoonlijk gemaakt. gedenk-sieraad.nl",
-//   description:
-//     "Exclusieve gedenksieraden om as, haarlokjes en vingerafdrukken van je dierbare in te verwerken en te personaliseren. De online juwelier van voordelige ashangers, memorials, unieke assieraden en See You gedenksieraden. Herinneringssieraden voor huisdieren. Herdenkingswinkel",
-// };
-
 export default async function Page({ params }) {
-  console.log(params.pageId);
   const pageResponse = await fetch(getStorefrontApiUrl(), {
     body: JSON.stringify({
       query: GRAPHQL_COLLECTION_QUERY,

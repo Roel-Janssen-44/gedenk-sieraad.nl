@@ -697,7 +697,7 @@ export const ringmaatOptions = [
   },
 ];
 
-export const ringmaatSeeyouOptions = [
+export const ringmaatsyOptions = [
   {
     value: "47 (15 mm)",
     price: 25.0,
@@ -947,25 +947,7 @@ export const harsOptions = [
   { harsKleur: harsKleurOptions },
   { glitter: glitterOptions },
 ];
-export const tekstOptions = [
-  { tekstBinnenZijdeRing: tekstBinnenZijdeRingOptions },
-  { extraWoorden: extraWoordenOptions },
-];
 
-export const graveerTekstOptions = [
-  { graveerTekst: tekstBinnenZijdeRingOptions },
-  { extraWoorden: extraWoordenOptions },
-];
+export const graveerTekstOptions = tekstBinnenZijdeRingOptions;
 
 export const vppakketOptions = [{ vppakketKeuze: vppakketKeuzeOptions }];
-
-export const pootOptions = [
-  { option1: pootKeuze1Options },
-  { option2: pootKeuze2Options },
-];
-
-export const printOptions = [
-  { option1: printKeuze1Options },
-  { option2: printKeuze2Options },
-  { option3: printKeuze3Options },
-];

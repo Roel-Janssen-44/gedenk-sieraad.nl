@@ -26,7 +26,7 @@ export default function NaamDatum({
   useEffect(() => {
     if (Array.isArray(value)) {
       const graveerTekstAchterzijde = value.find(
-        (item) => item.key === "graveerTekstAchterzijde"
+        (item) => item.key === "naamDatum"
       ).value;
       const voorvoegselValue = value.find(
         (item) => item.key === "voorvoegsel"
@@ -183,12 +183,12 @@ export default function NaamDatum({
           if (graveerTekstAchterzijde == "") {
             setError((prevState) => ({
               ...prevState,
-              ["graveerTekstAchterzijde"]: "* Kies een optie",
+              ["naamDatum"]: "* Kies een optie",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["graveerTekstAchterzijde"]: "",
+              ["naamDatum"]: "",
             }));
           }
           break;
@@ -215,7 +215,7 @@ export default function NaamDatum({
 
   const [values, setValues] = useState([
     {
-      key: "graveerTekstAchterzijde",
+      key: "naamDatum",
       value: value?.graveerTekstAchterzijde?.value || "",
     },
     { key: "naam", value: value?.naam?.value || "" },
@@ -246,7 +246,7 @@ export default function NaamDatum({
   };
 
   const graveerTekstAchterzijdeTekst = values.find(
-    (item) => item.key === "graveerTekstAchterzijde"
+    (item) => item.key === "naamDatum"
   ).value;
 
   return (
@@ -254,17 +254,14 @@ export default function NaamDatum({
       <div className="relative">
         {showErrors && (
           <p className="absolute -bottom-6 left-0 text-red-700">
-            {error["graveerTekstAchterzijde"]}
+            {error["naamDatum"]}
           </p>
         )}
 
         <InputSelect
-          value={
-            values.find((item) => item.key === "graveerTekstAchterzijde")
-              ?.value || ""
-          }
+          value={values.find((item) => item.key === "naamDatum")?.value || ""}
           onChange={(newGraveerTekstValue) =>
-            handleChange("graveerTekstAchterzijde", newGraveerTekstValue)
+            handleChange("naamDatum", newGraveerTekstValue)
           }
           title="NaamDatum:"
           options={naamDatumOptions}

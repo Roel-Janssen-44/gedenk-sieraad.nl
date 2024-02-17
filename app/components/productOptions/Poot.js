@@ -8,8 +8,7 @@ import InputFile from "../InputFile";
 import InputTextField from "../InputTextField";
 import InputImageSwatchLarge from "../InputImageSwatchLarge";
 
-import { pootOptions } from "./optionSets";
-import InputDate from "../InputDate";
+import { pootKeuze1Options, pootKeuze2Options } from "./optionSets";
 
 export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
   const [error, setError] = useState([]);
@@ -79,12 +78,12 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
     if (allValuescorrect) {
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["naamdatum"]: false,
+        ["poot"]: false,
       }));
     } else {
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["naamdatum"]: true,
+        ["poot"]: true,
       }));
     }
   }, [error]);
@@ -122,8 +121,6 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
   const pootKeuze = values.find((item) => item.key === "poot").value;
   const pootKeuze2 = values.find((item) => item.key === "keuze2").value;
 
-  // console.log("errors poot");
-  // console.log(error);
   return (
     <>
       <div className="relative">
@@ -139,7 +136,7 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
             handleChange("poot", newPootTekstValue)
           }
           title="Poot:"
-          options={pootOptions[0].option1}
+          options={pootKeuze1Options}
         />
       </div>
       {pootKeuze === "Eigen pootafdruk" && (
@@ -155,7 +152,7 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
               handleChange("keuze2", newKeuze2Value)
             }
             title="Maak een keuze:"
-            options={pootOptions[1].option2}
+            options={pootKeuze2Options}
           />
         </div>
       )}

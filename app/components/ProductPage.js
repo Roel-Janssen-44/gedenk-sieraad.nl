@@ -310,10 +310,11 @@ function Product({
   const hasTrueValue = Object.values(optionErrors).some(
     (value) => value === true
   );
-  // console.log("optionErrors");
-  // console.log(optionErrors);
-  // console.log("extraOptions");
-  // console.log(extraOptions);
+
+  console.log("optionErrors");
+  console.log(optionErrors);
+  console.log("extraOptions");
+  console.log(extraOptions);
 
   useEffect(() => {
     if (!selectedVariant) return;
@@ -506,7 +507,6 @@ function Product({
           <span className="font-bold mr-2">Prijs:</span>
           <span>
             {selectedVariant?.price?.amount && (
-              // <Money withoutTrailingZeros data={selectedVariant?.price} />
               <Price
                 value={
                   parseFloat(selectedVariant.price.amount) +
@@ -515,6 +515,7 @@ function Product({
               />
             )}
 
+            {console.log(parseFloat(calculatePrice(extraOptions, OptionSets)))}
             {!selectedVariant?.price?.amount &&
               "Deze keuze is niet beschikbaar"}
           </span>

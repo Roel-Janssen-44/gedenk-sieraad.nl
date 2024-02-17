@@ -18,16 +18,9 @@ export async function generateMetadata({ params, searchParams }, parent) {
   const productJson = await productResponse.json();
 
   const previousImages = (await parent).openGraph?.images || [];
-  console.log(productJson.data.productByHandle.seo);
   return {
     title: `${productJson.data.productByHandle.seo.title} -- gedenk-sieraad.nl`,
     description: productJson.data.productByHandle.seo.description,
-    // openGraph: {
-    //   images: [
-    //     productJson.data.productByHandle.variants.nodes[0].image.url,
-    //     ...previousImages,
-    //   ],
-    // },
   };
 }
 

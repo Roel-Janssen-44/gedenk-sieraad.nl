@@ -9,7 +9,11 @@ import InputTextField from "../InputTextField";
 import InputImageSwatchLarge from "../InputImageSwatchLarge";
 import InputDate from "../InputDate";
 
-import { printOptions } from "./optionSets";
+import {
+  printKeuze1Options,
+  printKeuze2Options,
+  printKeuze3Options,
+} from "./optionSets";
 
 export default function Print({
   value,
@@ -175,7 +179,7 @@ export default function Print({
             handleChange("keuze1", newKeuze1TekstValue)
           }
           title="Print:"
-          options={printOptions[0].option1}
+          options={printKeuze1Options}
         />
       </div>
       {printKeuze ===
@@ -193,7 +197,7 @@ export default function Print({
                 handleChange("keuze2", newKeuze2Value)
               }
               title="Tweede bestand uploaden:"
-              options={printOptions[1].option2}
+              options={printKeuze2Options}
             />
           </div>
           <div className="relative">
@@ -208,7 +212,7 @@ export default function Print({
                 handleChange("upload1", newUpload1Value)
               }
               title="Bestand 1:"
-              options={printOptions[1].option2}
+              options={printKeuze2Options}
               setError={setError}
             />
           </div>
@@ -227,7 +231,7 @@ export default function Print({
                   handleChange("upload2", newUpload2Value)
                 }
                 title="Bestand 2:"
-                options={printOptions[1].option2}
+                options={printKeuze2Options}
                 setError={setError}
               />
             </div>
@@ -250,7 +254,7 @@ export default function Print({
                 handleChange("keuze3", newKeuze3Value)
               }
               title="Aantal bestanden:"
-              options={printOptions[2].option3}
+              options={printKeuze3Options}
             />
           </div>
         )}

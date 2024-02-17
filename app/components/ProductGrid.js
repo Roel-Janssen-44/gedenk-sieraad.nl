@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { flattenConnection } from "@shopify/hydrogen-react";
 import { getClientBrowserParameters } from "@shopify/hydrogen-react";
-import { useSearchParams } from "next/navigation";
 
 import Button from "@mui/material/Button";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
@@ -11,6 +10,20 @@ import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 
 import Grid from "./Grid";
 import ProductGridItem from "./ProductGridItem";
+
+// import { useState, useEffect } from "react";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
+// import { TextField } from "@mui/material";
+//   const { replace } = useRouter();
+//   const [query, setQuery] = useState(searchParams.get("search") || "");
+//   const [data, setData] = useState(null);
+//   const [loading, setLoading] = useState(false);
+//   const handleChange = (newValue) => {
+//     setQuery(newValue);
+//     const params = new URLSearchParams(searchParams);
+//     params.set("search", newValue);
+//     replace(`search?${params.toString()}`);
+//   };
 
 export default function ProductGrid({ collectionHandle }) {
   const [products, setProducts] = useState([]);
@@ -66,8 +79,20 @@ export default function ProductGrid({ collectionHandle }) {
     return <div>Error: {error}</div>;
   }
 
+  const { replace, push } = useRouter();
+
   const handleNewFetch = (direction, cursor) => {
+    // to do hanle page with different search params
+    const isMobile = window.innerWidth < 768;
+    const scrollValue = isMobile ? 950 : 350;
+    window.scroll({ top: scrollValue, left: 0, behavior: "smooth" });
     setNewFetchCursor({ direction, cursor });
+    const page = searchParams.get("page");
+    if (direction == "after") {
+      push(`?page=${String(parseInt(page) + 1)}`);
+    } else {
+      replace(`?page=${String(parseInt(page) - 1)}`);
+    }
   };
 
   return (
@@ -113,12 +138,7 @@ export default function ProductGrid({ collectionHandle }) {
                 ? "bg-primary text-white"
                 : "border-2 border-black"
             }`}
-            onClick={() => {
-              const isMobile = window.innerWidth < 768;
-              const scrollValue = isMobile ? 950 : 350;
-              window.scroll({ top: scrollValue, left: 0, behavior: "smooth" });
-              handleNewFetch("after", pageInfo.endCursor);
-            }}
+            onClick={() => handleNewFetch("after", pageInfo.endCursor)}
           >
             <ChevronRightRoundedIcon fontSize="large" color="inherit" />
           </Button>

@@ -13,21 +13,20 @@ export default function ProductGridItem({ product }) {
       <div className="relative flex justify-center w-[150px] h-[150px] mx-auto">
         <Image
           data={product?.images?.nodes[0]}
-          // width={150}
-          // height={150}
+          width={150}
+          height={150}
           className={`h-full w-full object-contain ${
             product?.images?.nodes[1]?.url != undefined
               ? "group-hover:opacity-0 transition-all duration-500"
               : ""
           }`}
         />
-        {console.log(product.images.nodes)}
         {product?.images?.nodes[1]?.url && (
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-0 group-hover:opacity-100 transition-all duration-500 flex justify-center">
             <Image
               data={product?.images?.nodes[1]}
-              // width={150}
-              // height={150}
+              width={150}
+              height={150}
               className="h-full w-full object-contain"
             />
           </div>

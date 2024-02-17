@@ -65,11 +65,33 @@ export default function GraveerTekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["naam"]: "",
+            ["datum"]: "",
+            ["graveerTekst"]: "",
+            ["woord1"]: "",
+            ["woord2"]: "",
+            ["woord3"]: "",
+            ["woord4"]: "",
+          }));
           break;
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,
             ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["lettertype"]: "",
+            ["naam"]: "",
+            ["datum"]: "",
+            ["graveerTekst"]: "",
+            ["woord1"]: "",
+            ["woord2"]: "",
+            ["woord3"]: "",
+            ["woord4"]: "",
           }));
           break;
         case "Hartje ♥ symbool":
@@ -117,6 +139,18 @@ export default function GraveerTekst({
                   ["lettertype"]: "",
                 }));
               }
+              setError((prevState) => ({
+                ...prevState,
+                ["tekstBinnenZijdeRing"]: "",
+                ["extraWoord"]: "",
+                ["initialen"]: "",
+                ["naam"]: "",
+                ["datum"]: "",
+                ["graveerTekst"]: "",
+                ["woord2"]: "",
+                ["woord3"]: "",
+                ["woord4"]: "",
+              }));
             } else if (extraWoordValue == "2 extra woorden") {
               if (woord2Value == "") {
                 setError((prevState) => ({
@@ -151,8 +185,21 @@ export default function GraveerTekst({
                   ["lettertype"]: "",
                 }));
               }
+              setError((prevState) => ({
+                ...prevState,
+                ["tekstBinnenZijdeRing"]: "",
+                ["extraWoord"]: "",
+                ["initialen"]: "",
+                ["naam"]: "",
+                ["datum"]: "",
+                ["graveerTekst"]: "",
+                ["woord1"]: "",
+                ["woord3"]: "",
+                ["woord4"]: "",
+              }));
             }
           }
+
           break;
         case "Datum":
           if (datumValue == "") {
@@ -177,6 +224,18 @@ export default function GraveerTekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["naam"]: "",
+            ["graveerTekst"]: "",
+            ["woord1"]: "",
+            ["woord2"]: "",
+            ["woord3"]: "",
+            ["woord4"]: "",
+          }));
           break;
         case "Naam":
           if (naamValue == "") {
@@ -201,6 +260,18 @@ export default function GraveerTekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["datum"]: "",
+            ["graveerTekst"]: "",
+            ["woord1"]: "",
+            ["woord2"]: "",
+            ["woord3"]: "",
+            ["woord4"]: "",
+          }));
           break;
         case "Naam en datum":
           if (naamValue == "") {
@@ -236,6 +307,17 @@ export default function GraveerTekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["graveerTekst"]: "",
+            ["woord1"]: "",
+            ["woord2"]: "",
+            ["woord3"]: "",
+            ["woord4"]: "",
+          }));
         case "1 woord":
           if (woord1Value == "") {
             setError((prevState) => ({
@@ -269,6 +351,18 @@ export default function GraveerTekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["naam"]: "",
+            ["datum"]: "",
+            ["graveerTekst"]: "",
+            ["woord2"]: "",
+            ["woord3"]: "",
+            ["woord4"]: "",
+          }));
           break;
         case "2 woorden":
           if (woord2Value == "") {
@@ -303,6 +397,18 @@ export default function GraveerTekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["naam"]: "",
+            ["datum"]: "",
+            ["graveerTekst"]: "",
+            ["woord1"]: "",
+            ["woord3"]: "",
+            ["woord4"]: "",
+          }));
           break;
         case "3 woorden":
           if (woord3Value == "") {
@@ -337,6 +443,18 @@ export default function GraveerTekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["naam"]: "",
+            ["datum"]: "",
+            ["graveerTekst"]: "",
+            ["woord1"]: "",
+            ["woord2"]: "",
+            ["woord4"]: "",
+          }));
           break;
         case "4 woorden":
           if (woord4Value == "") {
@@ -371,8 +489,19 @@ export default function GraveerTekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["naam"]: "",
+            ["datum"]: "",
+            ["graveerTekst"]: "",
+            ["woord1"]: "",
+            ["woord2"]: "",
+            ["woord3"]: "",
+          }));
           break;
-
         default:
           if (graveerTekstValue == "") {
             setError((prevState) => ({
@@ -409,6 +538,8 @@ export default function GraveerTekst({
   }, [value]);
 
   useEffect(() => {
+    console.log("error");
+    console.log(error);
     const allValuescorrect = Object.values(error).every(
       (value) => value === ""
     );
@@ -482,9 +613,10 @@ export default function GraveerTekst({
             handleChange("graveerTekst", newTekstValue)
           }
           title="Graveertekst:"
-          options={graveerTekstOptions[0].graveerTekst}
+          options={graveerTekstOptions}
         />
       </div>
+      {/* To do initialen checken */}
 
       {(graveerTekstValue == "Hartje ♥ symbool" ||
         graveerTekstValue == "Infinity ∞ teken") && (
@@ -508,7 +640,7 @@ export default function GraveerTekst({
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["initiaal"]}
+              {error["initialen"]}
             </p>
           )}
           <InputTextField

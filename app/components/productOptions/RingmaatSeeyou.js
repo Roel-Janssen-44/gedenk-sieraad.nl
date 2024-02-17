@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 import InputSelect from "../InputSelect";
-import { ringmaatSeeyouOptions } from "./optionSets";
+import { ringmaatsyOptions } from "./optionSets";
 
 export default function RingmaatSeeyou({
   value,
@@ -18,13 +18,13 @@ export default function RingmaatSeeyou({
       setError("* Veld mag niet leeg zijn");
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["ringmaatSeeyou"]: true,
+        ["ringmaatsy"]: true,
       }));
     } else {
       setError(null);
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["ringmaatSeeyou"]: false,
+        ["ringmaatsy"]: false,
       }));
     }
   }, [value]);
@@ -42,7 +42,7 @@ export default function RingmaatSeeyou({
         value={value}
         onChange={handleChange}
         title="RingmaatSeeyou:"
-        options={ringmaatSeeyouOptions}
+        options={ringmaatsyOptions}
       />
     </div>
   );
