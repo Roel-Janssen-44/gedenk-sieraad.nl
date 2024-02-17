@@ -515,7 +515,8 @@ function Product({
               />
             )}
 
-            {!selectedVariant?.price?.amount && " Variant bestaat niet"}
+            {!selectedVariant?.price?.amount &&
+              "Deze keuze is niet beschikbaar"}
           </span>
         </div>
         <div className="flex gap-6 flex-wrap">
@@ -573,12 +574,9 @@ function Product({
         <div className="flex flex-wrap items-center text-sm">
           <span className="font-bold min-w-[140px]">Artikelnr:</span>
           <span className="font-normal">
-            {selectedVariant?.sku || "Variant bestaat niet"}
+            {selectedVariant?.sku || "Dit artikel bestaat niet"}
           </span>
         </div>
-
-        {/* To do verzending */}
-        {/* {optionErrors && <p className="text-red-700">vul alle velden in!</p>} */}
         {selectedVariant && (
           <Button
             size="large"
@@ -646,7 +644,8 @@ function Product({
             variant="contained"
             className="cursor-not-allowed max-w-sm"
           >
-            Variant bestaat niet
+            {/* Variant bestaat niet */}
+            Deze keuze is niet beschikbaar
           </Button>
         )}
       </div>

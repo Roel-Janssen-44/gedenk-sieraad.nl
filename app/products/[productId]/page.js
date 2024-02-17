@@ -5,10 +5,31 @@ import {
   getPrivateTokenHeaders,
 } from "@/lib/shopify-client";
 
-export const metadata = {
-  title: "Product page",
-  description: "product page description",
-};
+export async function generateMetadata({ params, searchParams }, parent) {
+  const productResponse = await fetch(getStorefrontApiUrl(), {
+    body: JSON.stringify({
+      query: GRAPHQL_PRODUCT_QUERY,
+      variables: { productId: params.productId },
+    }),
+    headers: getPrivateTokenHeaders({ buyerIp: "..." }),
+    method: "POST",
+  });
+
+  const productJson = await productResponse.json();
+
+  const previousImages = (await parent).openGraph?.images || [];
+  console.log(productJson.data.productByHandle.seo);
+  return {
+    title: `${productJson.data.productByHandle.seo.title} -- gedenk-sieraad.nl`,
+    description: productJson.data.productByHandle.seo.description,
+    // openGraph: {
+    //   images: [
+    //     productJson.data.productByHandle.variants.nodes[0].image.url,
+    //     ...previousImages,
+    //   ],
+    // },
+  };
+}
 
 export default async function Product({ params }) {
   const productResponse = await fetch(getStorefrontApiUrl(), {
@@ -30,6 +51,10 @@ query productByHandle($productId: String!) {
     description
     descriptionHtml
     id
+    seo {
+      title
+      description
+    }
     handle
     options {
       name
