@@ -47,10 +47,7 @@ export default async function CollectionPage({ collection }) {
           </div>
         </div>
         <SortCollection />
-        <ProductGrid
-          collectionHandle={collection.handle}
-          // collection={collectionJson?.data?.collectionByHandle}
-        />
+        <ProductGrid collectionHandle={collection.handle} />
       </div>
     </div>
   );

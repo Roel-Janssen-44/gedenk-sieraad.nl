@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { flattenConnection } from "@shopify/hydrogen-react";
 import { getClientBrowserParameters } from "@shopify/hydrogen-react";
 
@@ -10,9 +10,11 @@ import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 
 import Grid from "./Grid";
 import ProductGridItem from "./ProductGridItem";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 // import { useState, useEffect } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { createSearchParamsBailoutProxy } from "next/dist/client/components/searchparams-bailout-proxy";
 // import { TextField } from "@mui/material";
 //   const { replace } = useRouter();
 //   const [query, setQuery] = useState(searchParams.get("search") || "");
@@ -30,6 +32,7 @@ export default function ProductGrid({ collectionHandle }) {
   const [error, setError] = useState(null);
   const [pageInfo, setPageInfo] = useState(null);
   const [newFetchCursor, setNewFetchCursor] = useState(null);
+  const [fetching, setFetching] = useState(true);
 
   const searchParams = useSearchParams();
   const materiaalParam = searchParams.get("Materiaal");
@@ -63,10 +66,27 @@ export default function ProductGrid({ collectionHandle }) {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-
         const data = await response.json();
-        setProducts(data.nodes);
+        console.log("Products added to list");
+
+        let uniqueProducts = [];
+        data.nodes.forEach((newProduct) => {
+          if (!products.some((product) => product.id == newProduct.id)) {
+            console.log("new product added");
+            uniqueProducts.push(newProduct);
+          } else {
+            console.log("no product added");
+          }
+        });
+
+        console.log(uniqueProducts);
+        setProducts([...products, ...uniqueProducts]);
+        // setProducts(uniqueProducts);
+        // console.log("[...products, uniqueProducts]");
+        // console.log(...products, uniqueProducts);
         setPageInfo(data.pageInfo);
+        setFetching(false);
+        // fetching = false;
       } catch (error) {
         setError(error.message || "An error occurred while fetching data.");
       }
@@ -79,24 +99,31 @@ export default function ProductGrid({ collectionHandle }) {
     return <div>Error: {error}</div>;
   }
 
-  const { replace, push } = useRouter();
-
-  const handleNewFetch = (direction, cursor) => {
-    // to do hanle page with different search params
-    const isMobile = window.innerWidth < 768;
-    const scrollValue = isMobile ? 950 : 350;
-    window.scroll({ top: scrollValue, left: 0, behavior: "smooth" });
-    setNewFetchCursor({ direction, cursor });
-    const page = searchParams.get("page");
-    if (direction == "after") {
-      push(`?page=${String(parseInt(page) + 1)}`);
-    } else {
-      replace(`?page=${String(parseInt(page) - 1)}`);
-    }
-  };
+  // const fetchNewProducts = () => {
+  //   console.log("Fetching new products ");
+  //   if (!fetching) {
+  //     // fetching = true;
+  //     setFetching(true);
+  //     console.log("Fetching new products 2");
+  //     if (pageInfo?.startCursor) {
+  //       setNewFetchCursor({
+  //         direction: "after",
+  //         cursor: pageInfo.startCursor,
+  //       });
+  //     }
+  //   }
+  // };
 
   return (
     <>
+      {/* <InfiniteScroll
+        dataLength={products.length}
+        next={fetchNewProducts}
+        hasMore={true}
+        loader={<p>Loading...</p>}
+        endMessage={<p>No more data to load.</p>}
+        scrollThreshold={0.5}
+      > */}
       <Grid>
         {/* To do lege pagina melding maken */}
         {/* {!products[0] && <h2>Geen producten gevonden probeer een andere pagina</h2>} */}
@@ -104,58 +131,9 @@ export default function ProductGrid({ collectionHandle }) {
           return <ProductGridItem key={product.id} product={product} />;
         })}
       </Grid>
-      <div className="w-full flex flex-row justify-center gap-12 mt-8">
-        {pageInfo?.hasPreviousPage && (
-          <Button
-            variant="contained"
-            className={`text-gray-700 ${
-              pageInfo?.hasPreviousPage
-                ? "bg-primary text-white"
-                : "border-2 border-black cursor-not-allowed"
-            }`}
-            onClick={() => handleNewFetch("before", pageInfo.startCursor)}
-          >
-            <ChevronLeftRoundedIcon fontSize="large" color="inherit" />
-          </Button>
-        )}
-        {!pageInfo?.hasPreviousPage && (
-          <div className="cursor-not-allowed">
-            <Button
-              variant="contained"
-              disabled
-              onClick={() => null}
-              className={`text-gray-700 cursor-not-allowed`}
-            >
-              <ChevronLeftRoundedIcon fontSize="large" color="inherit" />
-            </Button>
-          </div>
-        )}
-        {pageInfo?.hasNextPage && (
-          <Button
-            variant="contained"
-            className={`text-gray-700  ${
-              pageInfo?.hasNextPage
-                ? "bg-primary text-white"
-                : "border-2 border-black"
-            }`}
-            onClick={() => handleNewFetch("after", pageInfo.endCursor)}
-          >
-            <ChevronRightRoundedIcon fontSize="large" color="inherit" />
-          </Button>
-        )}
-        {!pageInfo?.hasNextPage && (
-          <div className="cursor-not-allowed">
-            <Button
-              variant="contained"
-              disabled
-              onClick={() => null}
-              className={`text-gray-700`}
-            >
-              <ChevronRightRoundedIcon fontSize="large" color="inherit" />
-            </Button>
-          </div>
-        )}
-      </div>
+      {/* </InfiniteScroll> */}
+
+      <div className="w-full flex flex-row justify-center gap-12 mt-8"></div>
     </>
   );
 }
