@@ -99,7 +99,7 @@ const generateGraphQLQuery = ({
     query CollectionByHandle {
       collection(handle: "${collectionName}") {
         products(
-          ${fetchDirection || "first"}: 250,
+          ${fetchDirection || "first"}: 9,
           ${cursorFilter || ""}
           ${sort || ""}
           filters: [
@@ -107,7 +107,7 @@ const generateGraphQLQuery = ({
             { price: { min: ${parseFloat(minPrijs) || 0.0}, max: ${
     parseFloat(maxPrijs) || 10000.0
   } } },
-            ${vendorFilter || ""}     
+            ${vendorFilter || ""}
             ${materiaalFilter || ""}
           ]
         ) {

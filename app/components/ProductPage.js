@@ -41,6 +41,15 @@ export default function ProductPage({ product }) {
   const [activeThumbnailIndex, setActiveThumbnailIndex] = useState(0);
 
   useEffect(() => {
+    console.log("activeImage");
+    console.log(activeImage);
+    console.log("currentRhumbnails");
+    console.log(currentThumbnails);
+    console.log("activeThumbnailIndex");
+    console.log(activeThumbnailIndex);
+  }, [activeImage, currentThumbnails, activeThumbnailIndex]);
+
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
@@ -169,13 +178,13 @@ export default function ProductPage({ product }) {
 
   return (
     <div className="flex flex-col gap-12">
-      <div className="container flex flex-col items-center lg:flex-row lg:items-start">
+      <div className="container flex flex-col items-start lg:flex-row">
         <ProductProvider
           data={product}
           initialVariantId={product?.variant?.edges[0]?.node?.id}
         >
           <div className="mb-8 px-0 relative block w-full md:flex md:flex-row-reverse lg:flex-col lg:max-w-lg lg:sticky lg:top-40 lg:mb-0 xl:flex-row-reverse xl:max-w-none 2xl:max-w-2xl 2xl:ml-auto">
-            <div className="md:flex-1">
+            <div className="md:flex-1 lg:mb-4">
               {activeImage && (
                 <div
                   key={activeImage.url}
@@ -267,7 +276,7 @@ export default function ProductPage({ product }) {
           />
         </ProductProvider>
       </div>
-      <div className="flex flex-wrap items-center container mx-auto">
+      <div className="flex flex-wrap items-center container mx-auto lg:max-w-5xl">
         <span className="bg-primary p-4 px-6 text-white rounded-t">
           <span className="font-bold w-full -mb-2">Product bescrhijving:</span>
         </span>
@@ -311,10 +320,10 @@ function Product({
     (value) => value === true
   );
 
-  console.log("optionErrors");
-  console.log(optionErrors);
-  console.log("extraOptions");
-  console.log(extraOptions);
+  // console.log("optionErrors");
+  // console.log(optionErrors);
+  // console.log("extraOptions");
+  // console.log(extraOptions);
 
   useEffect(() => {
     if (!selectedVariant) return;
@@ -371,7 +380,8 @@ function Product({
 
     const harskleurOption = extraOptions.find((obj) => obj.key === "kleuren");
     const harsKleur = harskleurOption?.value[0].value.split(" ")[0] || "Blue";
-
+    console.log("product.tags");
+    console.log(product.tags);
     if (product.tags.includes("kleuren")) {
       // To do generate random color in stead of blue
       newThumbnails.forEach((thumbnail, index) => {
@@ -385,7 +395,7 @@ function Product({
         }
       });
 
-      // Order based on selected material
+      // Image order based on selected material
       if (availableMaterialOrder[0] != activeMaterial) {
         if (availableMaterialOrder[1] == activeMaterial) {
           [newThumbnails[0], newThumbnails[1]] = [
@@ -400,6 +410,9 @@ function Product({
         }
       }
     }
+
+    console.log("extraImages");
+    console.log(extraImages);
 
     extraImages?.forEach((image) => {
       if (!newThumbnails[0]) return;
@@ -499,7 +512,7 @@ function Product({
 
   return (
     <div className="flex flex-col gap-8 2xl:mr-auto">
-      <div className="max-w-lg mx-auto flex flex-col gap-6 2xl:ml-0">
+      <div className="max-w-lg mx-auto flex flex-col gap-6 2xl:ml-0 xl:min-w-[500px]">
         <h1 className="text-4xl font-roboto w-auto lg:ml-1 lg:mt-4">
           {product.title}
         </h1>
@@ -515,7 +528,6 @@ function Product({
               />
             )}
 
-            {console.log(parseFloat(calculatePrice(extraOptions, OptionSets)))}
             {!selectedVariant?.price?.amount &&
               "Deze keuze is niet beschikbaar"}
           </span>
