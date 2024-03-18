@@ -700,15 +700,15 @@ export const ringmaatOptions = [
 export const ringmaatsyOptions = [
   {
     value: "47 (15 mm)",
-    price: 25.0,
+    price: 39.0,
   },
   {
     value: "48 (15,25 mm)",
-    price: 25.0,
+    price: 39.0,
   },
   {
     value: "49 (15,5 mm)",
-    price: 25.0,
+    price: 39.0,
   },
   {
     value: "50 (16 mm)",
@@ -716,7 +716,7 @@ export const ringmaatsyOptions = [
   },
   {
     value: "51 (16,25 mm)",
-    price: 25.0,
+    price: 39.0,
   },
   {
     value: "52 (16,5 mm)",
@@ -724,7 +724,7 @@ export const ringmaatsyOptions = [
   },
   {
     value: "53 (17 mm)",
-    price: 25.0,
+    price: 39.0,
   },
   {
     value: "54 (17,25 mm)",
@@ -732,7 +732,7 @@ export const ringmaatsyOptions = [
   },
   {
     value: "55 (17,5 mm)",
-    price: 25.0,
+    price: 39.0,
   },
   {
     value: "56 (17,75 mm)",
@@ -740,7 +740,7 @@ export const ringmaatsyOptions = [
   },
   {
     value: "57 (18 mm)",
-    price: 25.0,
+    price: 39.0,
   },
   {
     value: "58 (18,5 mm)",
@@ -748,7 +748,7 @@ export const ringmaatsyOptions = [
   },
   {
     value: "59 (18,75 mm)",
-    price: 25.0,
+    price: 39.0,
   },
   {
     value: "60 (19 mm)",
@@ -756,7 +756,7 @@ export const ringmaatsyOptions = [
   },
   {
     value: "61 (19,5 mm)",
-    price: 25.0,
+    price: 39.0,
   },
   {
     value: "62 (19,75 mm)",

@@ -20,6 +20,11 @@ export default function GraveerTekst({
   showErrors,
 }) {
   const [error, setError] = useState([]);
+
+  useEffect(() => {
+    console.log("current error messages");
+    console.log(error);
+  }, [error]);
   useEffect(() => {
     if (Array.isArray(value)) {
       const graveerTekstValue = value.find(
@@ -196,6 +201,20 @@ export default function GraveerTekst({
                 ["woord1"]: "",
                 ["woord3"]: "",
                 ["woord4"]: "",
+              }));
+            } else {
+              setError((prevState) => ({
+                ...prevState,
+                ["tekstBinnenZijdeRing"]: "",
+                ["extraWoord"]: "",
+                ["initialen"]: "",
+                ["naam"]: "",
+                ["datum"]: "",
+                ["graveerTekst"]: "",
+                ["woord1"]: "",
+                ["woord3"]: "",
+                ["woord4"]: "",
+                ["lettertype"]: "",
               }));
             }
           }
@@ -538,7 +557,7 @@ export default function GraveerTekst({
   }, [value]);
 
   useEffect(() => {
-    console.log("error");
+    console.log("error messages");
     console.log(error);
     const allValuescorrect = Object.values(error).every(
       (value) => value === ""
@@ -584,6 +603,18 @@ export default function GraveerTekst({
   }, [values]);
 
   const handleChange = (changedKey, newValue) => {
+    if (changedKey === "graveerTekst") {
+      if (
+        !newValue.includes("Initialen/letters/tekens") ||
+        !newValue.includes("Hartje ♥ symbool")
+      ) {
+        setValues((prevValues) =>
+          prevValues.map((item) =>
+            item.key === "extraWoord" ? { ...item, value: "" } : item
+          )
+        );
+      }
+    }
     setValues((prevValues) =>
       prevValues.map((item) =>
         item.key === changedKey ? { ...item, value: newValue } : item

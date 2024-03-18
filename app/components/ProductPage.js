@@ -40,14 +40,14 @@ export default function ProductPage({ product }) {
   const [currentThumbnails, setCurrentThumbnails] = useState([]);
   const [activeThumbnailIndex, setActiveThumbnailIndex] = useState(0);
 
-  useEffect(() => {
-    console.log("activeImage");
-    console.log(activeImage);
-    console.log("currentRhumbnails");
-    console.log(currentThumbnails);
-    console.log("activeThumbnailIndex");
-    console.log(activeThumbnailIndex);
-  }, [activeImage, currentThumbnails, activeThumbnailIndex]);
+  // useEffect(() => {
+  //   console.log("activeImage");
+  //   console.log(activeImage);
+  //   console.log("currentRhumbnails");
+  //   console.log(currentThumbnails);
+  //   console.log("activeThumbnailIndex");
+  //   console.log(activeThumbnailIndex);
+  // }, [activeImage, currentThumbnails, activeThumbnailIndex]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -325,6 +325,15 @@ function Product({
   // console.log("extraOptions");
   // console.log(extraOptions);
 
+  // To do total price calculation voor extra woorden bij graveertekst
+  console.log("extraOptions");
+  console.log(extraOptions);
+  console.log("Total price:");
+  console.log(
+    parseFloat(selectedVariant.price.amount) +
+      parseFloat(calculatePrice(extraOptions, OptionSets))
+  );
+
   useEffect(() => {
     if (!selectedVariant) return;
 
@@ -379,9 +388,35 @@ function Product({
     }
 
     const harskleurOption = extraOptions.find((obj) => obj.key === "kleuren");
-    const harsKleur = harskleurOption?.value[0].value.split(" ")[0] || "Blue";
-    console.log("product.tags");
-    console.log(product.tags);
+    //const harsKleur = harskleurOption?.value[0].value.split(" ")[0] || "Blue";
+    const colors = [
+      "Transparent",
+      "Aqua",
+      "Black",
+      "Blush",
+      "Brown",
+      "Blue",
+      "Fluo",
+      "Gold",
+      "Green",
+      "Orange",
+      "Marine",
+      "Olive",
+      "Purple",
+      "Red",
+      "Baby",
+      "Silver",
+      "Soft",
+      "White",
+      "Turquoise",
+      "Yellow",
+    ];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    // console.log("randomColor");
+    // console.log(randomColor);
+    const harsKleur =
+      harskleurOption?.value[0].value.split(" ")[0] || randomColor;
+
     if (product.tags.includes("kleuren")) {
       // To do generate random color in stead of blue
       newThumbnails.forEach((thumbnail, index) => {
@@ -411,8 +446,8 @@ function Product({
       }
     }
 
-    console.log("extraImages");
-    console.log(extraImages);
+    // console.log("extraImages");
+    // console.log(extraImages);
 
     extraImages?.forEach((image) => {
       if (!newThumbnails[0]) return;
@@ -481,6 +516,15 @@ function Product({
         }
       }
     });
+
+    //const uniqueUrls = {};
+    //newThumbnails = newThumbnails.filter((obj) => {
+    //  if (uniqueUrls[obj.url]) {
+    //    return false; // Duplicate URL, skip
+    //  }
+    //  uniqueUrls[obj.url] = true;
+    //  return true; // Unique URL, include
+    //});
 
     setActiveImage(newThumbnails[0]);
     setCurrentThumbnails(newThumbnails);
@@ -657,7 +701,6 @@ function Product({
             variant="contained"
             className="cursor-not-allowed max-w-sm"
           >
-            {/* Variant bestaat niet */}
             Deze keuze is niet beschikbaar
           </Button>
         )}

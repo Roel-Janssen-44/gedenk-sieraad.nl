@@ -74,7 +74,7 @@ export default function Navbar() {
             </li>
             <li className="my-2 flex flex-row items-center gap-1">
               <AccessTimeRoundedIcon fontSize="small" />
-              Idere dag van 09:00 tot 21:00 uur
+              Iedere dag van 09:00 tot 21:00 uur
             </li>
             <li className="my-2 flex flex-row gap-1">
               <NoteRoundedIcon fontSize="small" sx={{ marginTop: "2px" }} />

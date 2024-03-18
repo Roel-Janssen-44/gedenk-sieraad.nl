@@ -5,7 +5,9 @@ export default function InputImageSwatch({ value, onChange, title, options }) {
   return (
     <div>
       <div className="flex flex-wrap items-center text-sm mb-2">
-        <span className="font-bold min-w-[140px]">{title}</span>
+        <span className="font-bold min-w-[140px]">
+          {title} <span className="font-normal">{value}</span>
+        </span>
       </div>
       <div className="flex flex-row flex-wrap gap-4">
         {options.map((option) => (

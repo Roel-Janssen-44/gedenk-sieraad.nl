@@ -269,20 +269,29 @@ export default function FilterDrawerFilters({ facets, onClose }) {
               name="radio-buttons-group"
               value={materiaal}
             >
-              {materiaalFacet.map((materiaal) => (
-                <FormControlLabel
-                  key={"materiaalfacet" + materiaal.value}
-                  value={materiaal.value}
-                  control={
-                    <Radio sx={{ "&.Mui-checked": { color: "#222" } }} />
-                  }
-                  label={materiaal.value + ` (${materiaal.count})`}
-                  className="mb-1.5 last:mb-0 "
-                  onChange={(e) =>
-                    handleFacetChange("Materiaal", e.target.value)
-                  }
-                />
-              ))}
+              {materiaalFacet.map((materiaal) => {
+                if (
+                  materiaal.value.includes("WD options") ||
+                  materiaal.value.includes("MWS option")
+                ) {
+                  return null;
+                } else {
+                  return (
+                    <FormControlLabel
+                      key={"materiaalfacet" + materiaal.value}
+                      value={materiaal.value}
+                      control={
+                        <Radio sx={{ "&.Mui-checked": { color: "#222" } }} />
+                      }
+                      label={materiaal.value + ` (${materiaal.count})`}
+                      className="mb-1.5 last:mb-0 "
+                      onChange={(e) =>
+                        handleFacetChange("Materiaal", e.target.value)
+                      }
+                    />
+                  );
+                }
+              })}
             </RadioGroup>
           </div>
         )}
