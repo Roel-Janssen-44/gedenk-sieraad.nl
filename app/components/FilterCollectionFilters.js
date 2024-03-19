@@ -272,7 +272,7 @@ export default function FilterDrawerFilters({ facets, onClose }) {
               {materiaalFacet.map((materiaal) => {
                 if (
                   materiaal.value.includes("WD options") ||
-                  materiaal.value.includes("MWS option")
+                  materiaal.value.toLowerCase().includes("mws")
                 ) {
                   return null;
                 } else {

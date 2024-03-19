@@ -72,15 +72,22 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
                             <Price value={line.cost.totalAmount.amount} />
                           </p>
                         </div>
-                        {line.merchandise.selectedOptions.map((option) => (
-                          <p
-                            key={"selectedOptions_" + option.value}
-                            className="mt-1 text-sm text-gray-500 font-bold"
-                          >
-                            {option.name}:{" "}
-                            <span className="font-normal">{option.value}</span>
-                          </p>
-                        ))}
+                        {line.merchandise.selectedOptions.map((option) => {
+                          console.log(option);
+                          if (option.name === "Title") return null;
+
+                          return (
+                            <p
+                              key={"selectedOptions_" + option.value}
+                              className="mt-1 text-sm text-gray-500 font-bold"
+                            >
+                              {option.name}:{" "}
+                              <span className="font-normal">
+                                {option.value.split("WD options")[0].trim()}
+                              </span>
+                            </p>
+                          );
+                        })}
                         {line.attributes?.map((attribute) => (
                           <p
                             key={"selectedAttributes_" + attribute.value}
@@ -93,7 +100,7 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
                           </p>
                         ))}
                       </div>
-                      <div className="flex flex-1 items-end justify-between text-sm">
+                      <div className="flex flex-1 items-start mt-2 justify-between text-sm">
                         <p className="text-gray-500 font-bold">
                           Aantal:{" "}
                           <span className="font-normal">
@@ -127,31 +134,43 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
             </p>
           </div>
 
-          <Button
-            size="large"
-            href={checkoutUrl}
-            variant="contained"
-            className="w-full mt-6 py-3 lowercase text-lg bg-primary text-white"
-          >
-            Ga door naar de kassa
-          </Button>
-          <div className="flex justify-center text-center text-sm text-gray-500">
-            <p>
-              of{" "}
+          {cost?.subtotalAmount?.amount != 0 && (
+            <>
               <Button
                 size="large"
                 href={checkoutUrl}
-                variant="text"
-                className="py-3 pl-0 lowercase"
+                variant="contained"
+                className="w-full mt-6 py-3 lowercase text-lg bg-primary text-white"
               >
-                Ga door met shoppen
+                Ga door naar de kassa
               </Button>
-            </p>
-          </div>
+              <div className="flex justify-center text-center text-sm text-gray-500">
+                <p>
+                  of{" "}
+                  <Button
+                    size="large"
+                    href={"/collections/all"}
+                    variant="text"
+                    className="py-3 pl-0 lowercase"
+                  >
+                    Ga door met shoppen
+                  </Button>
+                </p>
+              </div>
+            </>
+          )}
+          {cost?.subtotalAmount?.amount == 0 && (
+            <Button
+              size="large"
+              href={"/collections/all"}
+              variant="contained"
+              className="w-full mt-6 py-3 lowercase text-lg bg-primary text-white"
+            >
+              Start met shoppen
+            </Button>
+          )}
         </div>
       </div>
     </Drawer>
   );
 }
-
-// To do button link aanpassen wanneer winkelwagen leeg is

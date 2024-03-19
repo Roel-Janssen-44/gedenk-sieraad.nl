@@ -388,7 +388,6 @@ function Product({
     }
 
     const harskleurOption = extraOptions.find((obj) => obj.key === "kleuren");
-    //const harsKleur = harskleurOption?.value[0].value.split(" ")[0] || "Blue";
     const colors = [
       "Transparent",
       "Aqua",
@@ -412,13 +411,10 @@ function Product({
       "Yellow",
     ];
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    // console.log("randomColor");
-    // console.log(randomColor);
     const harsKleur =
       harskleurOption?.value[0].value.split(" ")[0] || randomColor;
 
     if (product.tags.includes("kleuren")) {
-      // To do generate random color in stead of blue
       newThumbnails.forEach((thumbnail, index) => {
         if (!thumbnail.altText?.includes(harsKleur)) {
           newThumbnails.splice(index, 1);
@@ -445,9 +441,6 @@ function Product({
         }
       }
     }
-
-    // console.log("extraImages");
-    // console.log(extraImages);
 
     extraImages?.forEach((image) => {
       if (!newThumbnails[0]) return;
@@ -576,46 +569,57 @@ function Product({
               "Deze keuze is niet beschikbaar"}
           </span>
         </div>
-        <div className="flex gap-6 flex-wrap">
-          {product.options.map((optionSet) => (
-            <div
-              className="flex flex-wrap gap-4 items-center text-sm"
-              key={"optionset-" + optionSet.name}
-            >
-              <span className="font-bold w-full -mb-2">{optionSet.name}:</span>
-              {optionSet.values.map((option) => {
-                if (option.includes("WD options")) {
-                  return null;
-                }
-                const isSelected = selectedOptions[optionSet.name] === option;
-                if (isSelected) {
-                  return (
-                    <Button
-                      variant="outlined"
-                      size="medium"
-                      className="lowercase border-black hover:border-black text-black hover:text-black"
-                      key={optionSet.name + "-" + option}
-                    >
-                      {option}
-                    </Button>
-                  );
-                } else {
-                  return (
-                    <Button
-                      variant="outlined"
-                      size="medium"
-                      className="lowercase border-gray-300 text-black hover:border-gray-600 hover:text-black !important"
-                      onClick={() => setSelectedOption(optionSet.name, option)}
-                      key={optionSet.name + "-" + option}
-                    >
-                      {option}
-                    </Button>
-                  );
-                }
-              })}
-            </div>
-          ))}
-        </div>
+
+        {product.options[0].name != "Title" && (
+          <div className="flex gap-6 flex-wrap">
+            {product.options.map((optionSet) => (
+              <div
+                className="flex flex-wrap gap-4 items-center text-sm"
+                key={"optionset-" + optionSet.name}
+              >
+                <span className="font-bold w-full -mb-2">
+                  {optionSet.name}:
+                </span>
+                {optionSet.values.map((option) => {
+                  if (
+                    option.includes("WD options") ||
+                    option.toLowerCase().includes("mws")
+                  ) {
+                    return null;
+                  }
+                  const isSelected = selectedOptions[optionSet.name] === option;
+                  if (isSelected) {
+                    return (
+                      <Button
+                        variant="outlined"
+                        size="medium"
+                        className="lowercase border-black hover:border-black text-black hover:text-black"
+                        key={optionSet.name + "-" + option}
+                      >
+                        {option}
+                      </Button>
+                    );
+                  } else {
+                    return (
+                      <Button
+                        variant="outlined"
+                        size="medium"
+                        className="lowercase border-gray-300 text-black hover:border-gray-600 hover:text-black !important"
+                        onClick={() =>
+                          setSelectedOption(optionSet.name, option)
+                        }
+                        key={optionSet.name + "-" + option}
+                      >
+                        {option}
+                      </Button>
+                    );
+                  }
+                })}
+              </div>
+            ))}
+          </div>
+        )}
+
         <ExtraProductOptions
           tags={tags}
           extraOptions={extraOptions}
@@ -646,7 +650,7 @@ function Product({
 
               console.log("add to cart");
 
-              if (extraOptions) {
+              if (extraOptions.length > 0) {
                 e.preventDefault();
                 const extraOptionsArray = extraOptions.flatMap((item) =>
                   Array.isArray(item.value)

@@ -764,27 +764,27 @@ export const ringmaatsyOptions = [
   },
   {
     value: "63 (20 mm)",
-    price: 27.5,
+    price: 39.0,
   },
   {
     value: "64 (20,5 mm)",
-    price: 27.5,
+    price: 39.0,
   },
   {
     value: "65 (20,75 mm)",
-    price: 27.5,
+    price: 39.0,
   },
   {
     value: "66 (21 mm)",
-    price: 27.5,
+    price: 39.0,
   },
   {
     value: "67 (21,25 mm)",
-    price: 27.5,
+    price: 39.0,
   },
   {
     value: "69 (22 mm)",
-    price: 27.5,
+    price: 39.0,
   },
 ];
 

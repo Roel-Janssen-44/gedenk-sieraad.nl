@@ -25,6 +25,7 @@ export default function GraveerTekst({
     console.log("current error messages");
     console.log(error);
   }, [error]);
+
   useEffect(() => {
     if (Array.isArray(value)) {
       const graveerTekstValue = value.find(

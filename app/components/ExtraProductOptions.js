@@ -71,6 +71,10 @@ export default function ExtraProductOptions({
     }
   };
 
+  if (tags[0] === "accesoire") {
+    return null;
+  }
+
   return (
     <div className="flex flex-col gap-6">
       {tagsOrder

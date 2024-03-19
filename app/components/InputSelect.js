@@ -59,8 +59,8 @@ export default function InputSelect({
           {options.map((option) => {
             return (
               <MenuItem key={title + "-" + option.value} value={option.value}>
-                {option.value}{" "}
-                {option.price !== 0 && `(€${option.price || ""})`}
+                {option.value} {option.price !== 0 && `(€${option.price || ""}`}
+                {!option.price.toString().includes(".") ? ",-)" : ")"}
               </MenuItem>
             );
           })}

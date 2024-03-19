@@ -25,7 +25,9 @@ export default async function Page({ params }) {
   return (
     <div className="container">
       <h1 className="font-roboto text-3xl mb-10">{pageJson.data.page.title}</h1>
-      <PageInfo page={pageJson.data.page} />
+      <div className="info-page">
+        <PageInfo page={pageJson.data.page} />
+      </div>
     </div>
   );
 }
