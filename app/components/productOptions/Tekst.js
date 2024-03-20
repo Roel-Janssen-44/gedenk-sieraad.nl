@@ -22,7 +22,7 @@ export default function Tekst({
   const [error, setError] = useState([]);
   useEffect(() => {
     if (Array.isArray(value)) {
-      const tekstBinnenZijdeRingValue = value.find(
+      const tekstBinnenZijdeRing = value.find(
         (item) => item.key === "tekstBinnenZijdeRing"
       ).value;
       const lettertypeValue = value.find(
@@ -40,12 +40,13 @@ export default function Tekst({
       const woord2Value = value.find((item) => item.key === "2 woorden").value;
       const woord3Value = value.find((item) => item.key === "3 woorden").value;
       const woord4Value = value.find((item) => item.key === "4 woorden").value;
-      switch (tekstBinnenZijdeRingValue) {
+
+      switch (tekstBinnenZijdeRing) {
         case "Initialen/letters/tekens":
           if (initialenValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["initialen"]: "* Veld initiaal mag niet leeg zijn",
+              ["initialen"]: "Veld initiaal mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -56,7 +57,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -64,11 +65,33 @@ export default function Tekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["naam"]: "",
+            ["datum"]: "",
+            ["tekstBinnenZijdeRing"]: "",
+            ["woord1"]: "",
+            ["woord2"]: "",
+            ["woord3"]: "",
+            ["woord4"]: "",
+          }));
           break;
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,
             ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["lettertype"]: "",
+            ["naam"]: "",
+            ["datum"]: "",
+            ["tekstBinnenZijdeRing"]: "",
+            ["woord1"]: "",
+            ["woord2"]: "",
+            ["woord3"]: "",
+            ["woord4"]: "",
           }));
           break;
         case "Hartje ♥ symbool":
@@ -116,6 +139,18 @@ export default function Tekst({
                   ["lettertype"]: "",
                 }));
               }
+              setError((prevState) => ({
+                ...prevState,
+                ["tekstBinnenZijdeRing"]: "",
+                ["extraWoord"]: "",
+                ["initialen"]: "",
+                ["naam"]: "",
+                ["datum"]: "",
+                ["tekstBinnenZijdeRing"]: "",
+                ["woord2"]: "",
+                ["woord3"]: "",
+                ["woord4"]: "",
+              }));
             } else if (extraWoordValue == "2 extra woorden") {
               if (woord2Value == "") {
                 setError((prevState) => ({
@@ -150,14 +185,41 @@ export default function Tekst({
                   ["lettertype"]: "",
                 }));
               }
+              setError((prevState) => ({
+                ...prevState,
+                ["tekstBinnenZijdeRing"]: "",
+                ["extraWoord"]: "",
+                ["initialen"]: "",
+                ["naam"]: "",
+                ["datum"]: "",
+                ["tekstBinnenZijdeRing"]: "",
+                ["woord1"]: "",
+                ["woord3"]: "",
+                ["woord4"]: "",
+              }));
+            } else {
+              setError((prevState) => ({
+                ...prevState,
+                ["tekstBinnenZijdeRing"]: "",
+                ["extraWoord"]: "",
+                ["initialen"]: "",
+                ["naam"]: "",
+                ["datum"]: "",
+                ["tekstBinnenZijdeRing"]: "",
+                ["woord1"]: "",
+                ["woord3"]: "",
+                ["woord4"]: "",
+                ["lettertype"]: "",
+              }));
             }
           }
+
           break;
         case "Datum":
           if (datumValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "* Veld datum mag niet leeg zijn",
+              ["datum"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -168,7 +230,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -176,12 +238,24 @@ export default function Tekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["naam"]: "",
+            ["tekstBinnenZijdeRing"]: "",
+            ["woord1"]: "",
+            ["woord2"]: "",
+            ["woord3"]: "",
+            ["woord4"]: "",
+          }));
           break;
         case "Naam":
           if (naamValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "* Veld naam mag niet leeg zijn",
+              ["naam"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -192,7 +266,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -200,12 +274,24 @@ export default function Tekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["datum"]: "",
+            ["tekstBinnenZijdeRing"]: "",
+            ["woord1"]: "",
+            ["woord2"]: "",
+            ["woord3"]: "",
+            ["woord4"]: "",
+          }));
           break;
         case "Naam en datum":
           if (naamValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "* Veld naam mag niet leeg zijn",
+              ["naam"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -216,7 +302,7 @@ export default function Tekst({
           if (datumValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "* Veld datum mag niet leeg zijn",
+              ["datum"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -227,7 +313,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -235,21 +321,32 @@ export default function Tekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["tekstBinnenZijdeRing"]: "",
+            ["woord1"]: "",
+            ["woord2"]: "",
+            ["woord3"]: "",
+            ["woord4"]: "",
+          }));
         case "1 woord":
           if (woord1Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord1"]: "* Dit veld mag niet leeg zijn",
+              ["woord1"]: "Dit veld mag niet leeg zijn",
             }));
           } else if (woord1Value.includes(" ")) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1"]: "* Dit veld mag geen spatie bevatten",
+              ["woord1"]: "Dit veld mag geen spatie bevatten",
             }));
           } else if (woord1Value.length > 11) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1"]: "* Gebruik maximaal 11 karakters",
+              ["woord1"]: "Gebruik maximaal 11 karakters",
             }));
           } else {
             setError((prevState) => ({
@@ -260,7 +357,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -268,22 +365,34 @@ export default function Tekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["naam"]: "",
+            ["datum"]: "",
+            ["tekstBinnenZijdeRing"]: "",
+            ["woord2"]: "",
+            ["woord3"]: "",
+            ["woord4"]: "",
+          }));
           break;
         case "2 woorden":
           if (woord2Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord2"]: "* Veld woord 2 mag niet leeg zijn",
+              ["woord2"]: "Veld woord 2 mag niet leeg zijn",
             }));
           } else if (woord2Value.length > 18) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2"]: "* Gebruik maximaal 18 karakters",
+              ["woord2"]: "Gebruik maximaal 18 karakters",
             }));
           } else if (woord2Value.split(" ").length > 2) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2"]: "* Dit veld mag niet meer dan één spatie bevatten",
+              ["woord2"]: "Dit veld mag niet meer dan één spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
@@ -294,7 +403,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -302,22 +411,34 @@ export default function Tekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["naam"]: "",
+            ["datum"]: "",
+            ["tekstBinnenZijdeRing"]: "",
+            ["woord1"]: "",
+            ["woord3"]: "",
+            ["woord4"]: "",
+          }));
           break;
         case "3 woorden":
           if (woord3Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord3"]: "* Veld woord 3 mag niet leeg zijn",
+              ["woord3"]: "Veld woord 3 mag niet leeg zijn",
             }));
           } else if (woord3Value.length > 24) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3"]: "* Gebruik maximaal 24 karakters",
+              ["woord3"]: "Gebruik maximaal 24 karakters",
             }));
           } else if (woord3Value.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3"]: "* Dit veld mag niet meer dan twee spaties bevatten",
+              ["woord3"]: "Dit veld mag niet meer dan twee spaties bevatten",
             }));
           } else {
             setError((prevState) => ({
@@ -328,7 +449,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -336,22 +457,34 @@ export default function Tekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["naam"]: "",
+            ["datum"]: "",
+            ["tekstBinnenZijdeRing"]: "",
+            ["woord1"]: "",
+            ["woord2"]: "",
+            ["woord4"]: "",
+          }));
           break;
         case "4 woorden":
           if (woord4Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord4"]: "* Veld woord 4 mag niet leeg zijn",
+              ["woord4"]: "Veld woord 4 mag niet leeg zijn",
             }));
           } else if (woord4Value.length > 30) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4"]: "* Gebruik maximaal 30 karakters",
+              ["woord4"]: "Gebruik maximaal 30 karakters",
             }));
           } else if (woord4Value.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4"]: "* Dit veld mag niet meer dan drie spatie bevatten",
+              ["woord4"]: "Dit veld mag niet meer dan drie spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
@@ -362,7 +495,7 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
@@ -370,13 +503,24 @@ export default function Tekst({
               ["lettertype"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["tekstBinnenZijdeRing"]: "",
+            ["extraWoord"]: "",
+            ["initialen"]: "",
+            ["naam"]: "",
+            ["datum"]: "",
+            ["tekstBinnenZijdeRing"]: "",
+            ["woord1"]: "",
+            ["woord2"]: "",
+            ["woord3"]: "",
+          }));
           break;
-
         default:
-          if (tekstBinnenZijdeRingValue == "") {
+          if (tekstBinnenZijdeRing == "") {
             setError((prevState) => ({
               ...prevState,
-              ["tekstBinnenZijdeRing"]: "* Veld mag niet leeg zijn",
+              ["tekstBinnenZijdeRing"]: "Veld mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
@@ -387,17 +531,17 @@ export default function Tekst({
       }
 
       if (
-        tekstBinnenZijdeRingValue == "Geen tekst" ||
-        tekstBinnenZijdeRingValue == "Initialen/letters/tekens" ||
-        tekstBinnenZijdeRingValue == "Hartje ♥ symbool" ||
-        tekstBinnenZijdeRingValue == "Infinity ∞ teken" ||
-        tekstBinnenZijdeRingValue == "Naam en datum" ||
-        tekstBinnenZijdeRingValue == "Naam" ||
-        tekstBinnenZijdeRingValue == "Datum" ||
-        tekstBinnenZijdeRingValue == "1 woord" ||
-        tekstBinnenZijdeRingValue == "2 woorden" ||
-        tekstBinnenZijdeRingValue == "3 woorden" ||
-        tekstBinnenZijdeRingValue == "4 woorden"
+        tekstBinnenZijdeRing == "Geen tekst" ||
+        tekstBinnenZijdeRing == "Initialen/letters/tekens" ||
+        tekstBinnenZijdeRing == "Hartje ♥ symbool" ||
+        tekstBinnenZijdeRing == "Infinity ∞ teken" ||
+        tekstBinnenZijdeRing == "Naam en datum" ||
+        tekstBinnenZijdeRing == "Naam" ||
+        tekstBinnenZijdeRing == "Datum" ||
+        tekstBinnenZijdeRing == "1 woord" ||
+        tekstBinnenZijdeRing == "2 woorden" ||
+        tekstBinnenZijdeRing == "3 woorden" ||
+        tekstBinnenZijdeRing == "4 woorden"
       ) {
         setError((prevState) => ({
           ...prevState,
@@ -447,17 +591,31 @@ export default function Tekst({
       isInitialRender.current = false;
       return;
     }
-
     onChange(values);
   }, [values]);
 
   const handleChange = (changedKey, newValue) => {
+    if (changedKey === "tekstBinnenZijdeRing") {
+      if (
+        !newValue.includes("Initialen/letters/tekens") ||
+        !newValue.includes("Hartje ♥ symbool")
+      ) {
+        setValues((prevValues) =>
+          prevValues.map((item) =>
+            item.key === "extraWoord" ? { ...item, value: "" } : item
+          )
+        );
+        setError((prevState) => ({
+          ...prevState,
+          ["extraWoord"]: "",
+        }));
+      }
+    }
     setValues((prevValues) =>
       prevValues.map((item) =>
         item.key === changedKey ? { ...item, value: newValue } : item
       )
     );
-
     onChange(values);
   };
   const tekstBinnenZijdeRingValue = values.find(
@@ -466,6 +624,11 @@ export default function Tekst({
   const extraWoordValue = values.find(
     (item) => item.key === "extraWoord"
   ).value;
+
+  useEffect(() => {
+    console.log("error in optionset");
+    console.log(error);
+  }, [error, values]);
 
   return (
     <>
@@ -507,7 +670,7 @@ export default function Tekst({
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["initiaal"]}
+              {error["initialen"]}
             </p>
           )}
           <InputTextField

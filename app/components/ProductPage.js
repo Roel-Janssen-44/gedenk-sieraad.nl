@@ -525,6 +525,9 @@ function Product({
   }, [selectedVariant, extraOptions]);
 
   const tags = product.tags;
+
+  console.log("tags");
+  console.log(tags);
   // const tags = [
   //   // "print",
   //   // "poot",

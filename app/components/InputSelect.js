@@ -57,10 +57,18 @@ export default function InputSelect({
             <span className="text-gray-500">-selecteer-</span>
           </MenuItem>
           {options.map((option) => {
+            let price = option.price;
+            if (price != 0) {
+              price = `(€${option.price || ""}`;
+              if (price.includes("(") && !price.includes(".")) {
+                price += ",-)";
+              } else {
+                price += ")";
+              }
+            }
             return (
               <MenuItem key={title + "-" + option.value} value={option.value}>
-                {option.value} {option.price !== 0 && `(€${option.price || ""}`}
-                {!option.price.toString().includes(".") ? ",-)" : ")"}
+                {option.value} {price || ""}
               </MenuItem>
             );
           })}

@@ -73,7 +73,6 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
                           </p>
                         </div>
                         {line.merchandise.selectedOptions.map((option) => {
-                          console.log(option);
                           if (option.name === "Title") return null;
 
                           return (
