@@ -948,6 +948,21 @@ export const harsOptions = [
   { glitter: glitterOptions },
 ];
 
+export const posititeOptions = [
+  {
+    value: "Links",
+  },
+  {
+    value: "Midden",
+  },
+  {
+    value: "Rechts",
+  },
+  {
+    value: "Achter",
+  },
+];
+
 export const graveerTekstOptions = tekstBinnenZijdeRingOptions;
 
 export const vppakketOptions = [{ vppakketKeuze: vppakketKeuzeOptions }];

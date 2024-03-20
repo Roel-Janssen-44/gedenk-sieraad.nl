@@ -320,12 +320,6 @@ function Product({
     (value) => value === true
   );
 
-  // console.log("optionErrors");
-  // console.log(optionErrors);
-  // console.log("extraOptions");
-  // console.log(extraOptions);
-
-  // To do total price calculation voor extra woorden bij graveertekst
   console.log("extraOptions");
   console.log(extraOptions);
   console.log("Total price:");
@@ -510,14 +504,21 @@ function Product({
       }
     });
 
-    //const uniqueUrls = {};
-    //newThumbnails = newThumbnails.filter((obj) => {
-    //  if (uniqueUrls[obj.url]) {
-    //    return false; // Duplicate URL, skip
-    //  }
-    //  uniqueUrls[obj.url] = true;
-    //  return true; // Unique URL, include
-    //});
+    if (tags.includes("positie")) {
+      console.log("positions");
+      extraImages?.forEach((image) => {
+        newThumbnails.push(image);
+      });
+    }
+
+    const uniqueUrls = {};
+    newThumbnails = newThumbnails.filter((obj) => {
+      if (uniqueUrls[obj.url]) {
+        return false;
+      }
+      uniqueUrls[obj.url] = true;
+      return true;
+    });
 
     setActiveImage(newThumbnails[0]);
     setCurrentThumbnails(newThumbnails);
@@ -526,8 +527,9 @@ function Product({
 
   const tags = product.tags;
 
-  console.log("tags");
-  console.log(tags);
+  // console.log("tags");
+  // console.log(tags);
+
   // const tags = [
   //   // "print",
   //   // "poot",

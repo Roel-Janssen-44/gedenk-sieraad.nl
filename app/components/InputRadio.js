@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { RadioGroup, FormControlLabel, Radio } from "@mui/material";
 
-export default function InputRadio({ onChange, title, options }) {
+export default function InputRadio({ onChange, title, options, multiple }) {
   return (
     <div>
       <div className="flex flex-wrap items-center text-sm mb-2">
@@ -10,6 +10,7 @@ export default function InputRadio({ onChange, title, options }) {
       <RadioGroup
         aria-labelledby="demo-radio-buttons-group-label"
         name="radio-buttons-group"
+        multiple
       >
         {options.map((option, index) => {
           return (
