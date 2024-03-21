@@ -32,7 +32,7 @@ export function calculatePrice(selectedOptions, optionSets) {
       );
       totalPrice += selectedOptionSet.price || 0;
     } else {
-      selectedTargetValue.forEach((selectedTarget) => {
+      selectedTargetValue?.forEach((selectedTarget) => {
         if (selectedTarget.key === "extraWoord") {
           if (selectedTarget.value == "1 extra woord") {
             totalPrice += 14.95;
@@ -58,17 +58,11 @@ export function findOptionSet(optionSets, optionSetKey) {
 
 export function findPriceByValue(optionSets, targetKey, targetValue) {
   const optionSet = optionSets[targetKey + "Options"];
-  // console.log(optionSets);
-  // console.log("find price by value");
 
-  // console.log(targetKey);
-  // console.log(targetValue);
   if (optionSet && Array.isArray(optionSet)) {
     const foundOption = optionSet.find(
       (option) => option.value === targetValue
     );
-    // console.log("foundOption");
-    // console.log(foundOption);
 
     if (foundOption && typeof foundOption.price !== "undefined") {
       return foundOption.price;

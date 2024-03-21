@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
+import Image from "next/image";
 import InputRadio from "../InputRadio";
 import { vulsetOptions } from "./optionSets";
 
@@ -37,12 +37,15 @@ export default function Vulset({
       {showErrors && (
         <p className="absolute  -bottom-6 left-0 text-red-700">{error}</p>
       )}
-      <InputRadio
-        value={value}
-        onChange={handleChange}
-        title="Vulset:"
-        options={vulsetOptions}
-      />
+      <div className="flex flex-row">
+        <InputRadio
+          value={value}
+          onChange={handleChange}
+          title="Vulset:"
+          options={vulsetOptions}
+        />
+        <Image src={"/images/vulset.webp"} width={150} height={150} />
+      </div>
     </div>
   );
 }
