@@ -41,7 +41,7 @@ export default function RingmaatSeeyou({
       <InputSelect
         value={value}
         onChange={handleChange}
-        title="RingmaatSeeyou:"
+        title="Ringmaat:"
         options={ringmaatsyOptions}
       />
     </div>

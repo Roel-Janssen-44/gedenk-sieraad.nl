@@ -28,65 +28,57 @@ const menu = [
     label: "Gedenksieraden as/haar",
     items: [
       {
-        link: "/collections/assieraden",
-        label: "Gedenksieraden as/haar",
-      },
-      {
         link: "/collections/ashangers",
-        label: "Ashanger",
-      },
-      {
-        link: "/collections/ashanger-met-vingerprint-gravure",
-        label: "Ashangers met gravure",
+        label: "Gedenkhangers as/haar",
       },
       {
         link: "/collections/asringen",
-        label: "Asringen",
+        label: "Gedenkringen as/haar",
       },
       {
-        link: "/collections/armband-met-as",
-        label: "Armbanden met as",
+        link: "/collections/armbanden-met-as",
+        label: "Gedenk armbanden as/haar",
       },
       {
-        link: "/collections/oorsieraden",
-        label: "Oorsieraden",
+        link: "/collections/oorsieraad",
+        label: "Gedenk oorsieraden as/haar",
       },
       {
         link: "/collections/asbedels",
-        label: "Asbedels",
+        label: "Gedenkbedels as/haar",
       },
       {
-        link: "/collections/as-manchetknopen",
-        label: "Manchetknopen",
+        link: "/collections/as-manchetkknopen",
+        label: "Gedenk manchetknopen as/haar",
+      },
+      {
+        link: "/collections/ashanger-met-vingerprint-gravure",
+        label: "Gedenkhangers as/haar en vingerafdruk/gravure",
       },
     ],
   },
   {
-    label: "Gedenkieraden vingerprint/gravure",
+    label: "Gedenksieraden vingerafdruk/gravure",
     items: [
       {
-        link: "/collections/sieraden-met-vingerprint",
-        label: "Gedenkieraden vingerprint/gravure",
-      },
-      {
         link: "/collections/hangers",
-        label: "Hangers",
+        label: "Gedenkhangers met vingerafdruk/gravure",
       },
       {
         link: "/collections/ringen",
-        label: "Ringern",
+        label: "Gedenkringen met vingerafdruk/gravure",
       },
       {
         link: "/collections/armband-met-vingerprint",
-        label: "Armbanden",
+        label: "Gedenk armbanden met vingerafdruk/gravure",
       },
       {
         link: "/collections/bedels",
-        label: "Bedels",
+        label: "Gedenkbedels met vingerafdruk/gravure",
       },
       {
         link: "/collections/manchetknopen",
-        label: "Manchetknopen",
+        label: "Gedenk manchetknopen met vingerafdruk/gravure",
       },
     ],
   },
@@ -94,36 +86,32 @@ const menu = [
     label: "Assortiment",
     items: [
       {
-        link: "/collections/assortiment",
-        label: "Assortiment",
-      },
-      {
-        link: "/collections/colliers-kettingen",
-        label: "Colliers/kettingen",
-      },
-      {
         link: "/collections/specials-mannen",
         label: "Specials mannen",
       },
       {
+        link: "/collections/geboortesieraden",
+        label: "Geboortesieraden",
+      },
+      {
         link: "/collections/initials",
-        label: "Initials",
+        label: "Initialen/letter sieraden",
       },
       {
         link: "/collections/knuffelkeien",
-        label: "Knuffelkeien/mini urnen",
-      },
-      {
-        link: "/collections/geboortesieraden",
-        label: "geboortesieraden",
+        label: "Knuffelkeitjes/mini urnen",
       },
       {
         link: "/collections/siders",
         label: "Aanschuifringen",
       },
       {
-        link: "/collections/accespores",
-        label: "Accessoires",
+        link: "/collections/colliers-kettingen",
+        label: "Colliers/kettingen",
+      },
+      {
+        link: "/collections/accesoires",
+        label: "Accessoires/gedenkbonnen",
       },
     ],
   },
@@ -131,20 +119,16 @@ const menu = [
     label: "Herinnering dieren",
     items: [
       {
-        link: "/collections/dieren",
-        label: "Herinnering dieren",
-      },
-      {
         link: "/collections/hangers-1",
-        label: "Hangers dieren",
+        label: "Gedenkhangers dieren",
       },
       {
         link: "/collections/bedels-1",
-        label: "Bedels",
+        label: "Gedenkbedels dieren",
       },
       {
         link: "/collections/mini-urnen-1",
-        label: "Mini urnen",
+        label: "Mini urnen dieren",
       },
     ],
   },
