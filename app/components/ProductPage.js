@@ -295,12 +295,41 @@ export default function ProductPage({ product }) {
   );
 }
 
+const colors = [
+  "Transparent",
+  "Aqua",
+  "Black",
+  "Blush",
+  "Brown",
+  "Blue",
+  "Fluo",
+  "Gold",
+  "Green",
+  "Orange",
+  "Marine",
+  "Olive",
+  "Purple",
+  "Red",
+  "Baby",
+  "Silver",
+  "Soft",
+  "White",
+  "Turquoise",
+  "Yellow",
+];
+
 function Product({
   setCurrentThumbnails,
   extraImages = [],
   setActiveImage,
   setActiveThumbnailIndex,
 }) {
+  const [tempHarskleur, setTempHarskleur] = useState(null);
+  useEffect(() => {
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    setTempHarskleur(randomColor);
+  }, []);
+
   const {
     product,
     variants,
@@ -382,31 +411,12 @@ function Product({
     }
 
     const harskleurOption = extraOptions.find((obj) => obj.key === "kleuren");
-    const colors = [
-      "Transparent",
-      "Aqua",
-      "Black",
-      "Blush",
-      "Brown",
-      "Blue",
-      "Fluo",
-      "Gold",
-      "Green",
-      "Orange",
-      "Marine",
-      "Olive",
-      "Purple",
-      "Red",
-      "Baby",
-      "Silver",
-      "Soft",
-      "White",
-      "Turquoise",
-      "Yellow",
-    ];
+
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     const harsKleur =
-      harskleurOption?.value[0].value.split(" ")[0] || randomColor;
+      harskleurOption?.value[0].value.split(" ")[0] ||
+      tempHarskleur ||
+      randomColor;
 
     if (product.tags.includes("kleuren")) {
       newThumbnails.forEach((thumbnail, index) => {
@@ -513,10 +523,10 @@ function Product({
 
     const uniqueUrls = {};
     newThumbnails = newThumbnails.filter((obj) => {
-      if (uniqueUrls[obj.url]) {
+      if (uniqueUrls[obj?.url]) {
         return false;
       }
-      uniqueUrls[obj.url] = true;
+      uniqueUrls[obj?.url] = true;
       return true;
     });
 
@@ -527,8 +537,8 @@ function Product({
 
   const tags = product.tags;
 
-  // console.log("tags");
-  // console.log(tags);
+  console.log("tags");
+  console.log(tags);
 
   // const tags = [
   //   // "print",

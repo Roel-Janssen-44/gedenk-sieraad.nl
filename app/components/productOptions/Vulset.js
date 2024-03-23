@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import InputRadio from "../InputRadio";
 import { vulsetOptions } from "./optionSets";
+import { Button, Modal } from "@mui/material";
 
 export default function Vulset({
   value,
@@ -11,6 +12,10 @@ export default function Vulset({
   setOptionErrors,
   showErrors,
 }) {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -44,8 +49,31 @@ export default function Vulset({
           title="Vulset:"
           options={vulsetOptions}
         />
-        <Image src={"/images/vulset.webp"} width={150} height={150} />
+        <Button onClick={handleOpen}>
+          <Image src={"/images/vulset.webp"} width={150} height={150} />
+        </Button>
       </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="fixed overflow-hidden left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[528px] max-h-[528px]">
+          <Image
+            src={"/images/vulset.webp"}
+            className="mx-auto my-auto rounded-lg"
+            width={528}
+            height={528}
+          />
+        </div>
+        {/* <Typography id="modal-modal-title" variant="h6" component="h2">
+          Text in a modal
+        </Typography>
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+        </Typography> */}
+      </Modal>
     </div>
   );
 }

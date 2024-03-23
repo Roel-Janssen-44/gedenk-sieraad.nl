@@ -19,7 +19,11 @@ export default function InputRadio({ onChange, title, options, multiple }) {
                 key={title + "-" + option.value}
                 value={option.value}
                 control={<Radio sx={{ "&.Mui-checked": { color: "#222" } }} />}
-                label={option.value}
+                label={
+                  option.value +
+                  " " +
+                  (option?.price != 0 ? `(€${option?.price})` : "")
+                }
                 className="mb-1.5 last:mb-0 "
                 onChange={(e) => onChange(e.target.value)}
               />

@@ -16,9 +16,11 @@ export const aspakketOptions = [
 export const vulsetOptions = [
   {
     value: "Ja",
+    price: 8.95,
   },
   {
     value: "Nee",
+    price: 0,
   },
 ];
 

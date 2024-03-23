@@ -32,8 +32,7 @@ export default async function handler(req, res) {
 
 const GRAPHQL_COLLECTION_QUERY = `
   query searchQuery($searchQuery: String!) {
-    search(query: $searchQuery, first: 25) {
-      totalCount
+    products(query: $searchQuery, first: 50) {
       nodes {
         ... on Product {
           handle
