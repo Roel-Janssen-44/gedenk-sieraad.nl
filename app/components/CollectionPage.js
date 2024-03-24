@@ -1,36 +1,77 @@
-import {
-  getStorefrontApiUrl,
-  getPrivateTokenHeaders,
-} from "@/lib/shopify-client";
+"use client";
 
 import { Image } from "@shopify/hydrogen-react";
+import { useState, useEffect } from "react";
 
 import LoadingGrid from "@/components/LoadingGrid";
-
+import ProductGrid from "@/components/ProductGrid";
 import FilterCollection from "@/components/FilterCollection";
 import SortCollection from "@/components/SortCollection";
-import ProductGrid from "@/components/ProductGrid";
 import NotFound from "@/components/NotFound";
 
-export default async function CollectionPage({ collection }) {
-  if (!collection?.handle) return <NotFound />;
+export default function CollectionPage({ searchParams, collection }) {
+  const sortKey = searchParams.Sorteer;
+  const material = searchParams.Materiaal || null;
+  const vendor = searchParams.Merk || null;
+  const minPrice = searchParams.MinPrijs || null;
+  const maxPrice = searchParams.MaxPrijs || null;
 
-  const collectionResponse = await fetch(getStorefrontApiUrl(), {
-    body: JSON.stringify({
-      query: GRAPHQL_COLLECTION_QUERY,
-      variables: {
-        collectionName: collection.title,
-        collectionHandle: collection.handle,
-      },
-    }),
-    headers: getPrivateTokenHeaders({ buyerIp: "..." }),
-    method: "POST",
-  });
+  const [products, setProducts] = useState([]);
+  const [currentProducts, setCurrentProducts] = useState([]);
+  const [error, setError] = useState(null);
 
-  const collectionJson = await collectionResponse.json();
+  useEffect(() => {
+    console.log("fetching products");
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/getCollectionProducts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            collectionHandle: collection.handle,
+            // material,
+            // vendor,
+            minPrice,
+            maxPrice,
+            sortKey,
+          }),
+        });
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const fetchedProducts = await response.json();
+        setProducts(fetchedProducts);
+
+        let productsToShow = [];
+        fetchedProducts.forEach((product) => {
+          if (product.vendor === vendor) {
+            productsToShow.push(product);
+          }
+        });
+        setCurrentProducts(productsToShow);
+      } catch (error) {
+        console.log("Error fetching collection products:", error);
+        setError(error.message || "An error occurred while fetching data.");
+      }
+    };
+    fetchData();
+  }, [collection.handle, searchParams]);
+
+  useEffect(() => {
+    let newProducts = [];
+    products.forEach((product) => {
+      if (product.vendor === vendor) {
+        newProducts.push(product);
+      }
+    });
+    setProducts(newProducts);
+  }, [searchParams]);
+
   return (
     <div className="container flex flex-col gap-8 md:flex-row">
-      <FilterCollection facets={collectionJson?.data?.search} />
+      <FilterCollection products={products} />
       <div className="flex-1">
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 border-[1px] border-gray-200 p-4 mb-8 bg-white rounded-md">
           <div className="min-w-[150px]">
@@ -47,79 +88,8 @@ export default async function CollectionPage({ collection }) {
           </div>
         </div>
         <SortCollection />
-        <ProductGrid collectionHandle={collection.handle} />
+        <ProductGrid collectionProducts={currentProducts} />
       </div>
     </div>
   );
 }
-
-const GRAPHQL_COLLECTION_QUERY = `
-query CollectionByHandle($collectionName: String!, $collectionHandle: String!) {
-  collection(handle: $collectionHandle) {
-    products(first: 10) {
-      pageInfo {
-        hasNextPage
-        hasPreviousPage
-      }
-      nodes {
-        title
-        id
-        handle
-        vendor
-        images(first: 2) {
-          nodes {
-            altText
-            height
-            url
-            width
-            src
-          }
-        }
-        priceRange {
-          maxVariantPrice {
-            amount
-            currencyCode
-          }
-          minVariantPrice {
-            amount
-            currencyCode
-          }
-        }
-      }
-    }
-  },
-  search(query: $collectionName, first: 3) {
-    productFilters {
-      id
-      label
-      type
-      values {
-        id
-        label
-        count
-        input
-      }
-    }
-    totalCount
-  }
-}
-`;
-
-// const GRAPHQL_FILTERS_QUERY = `
-// query facets($collectionTitle: String!, $first: Int) {
-//   search(query: $collectionTitle, first: $first) {
-//     productFilters {
-//       id
-//       label
-//       type
-//       values {
-//         id
-//         label
-//         count
-//         input
-//       }
-//     }
-//     totalCount
-//   }
-// }
-// `;

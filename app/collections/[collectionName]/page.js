@@ -28,7 +28,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
   };
 }
 
-export default async function Collection({ params }) {
+export default async function Collection({ params, searchParams }) {
   const collectionResponse = await fetch(getStorefrontApiUrl(), {
     body: JSON.stringify({
       query: GRAPHQL_COLLECTION_QUERY,
@@ -44,7 +44,7 @@ export default async function Collection({ params }) {
   return (
     <CollectionPage
       collection={collectionJson.data.collectionData}
-      filterMenu={collectionJson.data.shopData}
+      searchParams={searchParams}
     />
   );
 }

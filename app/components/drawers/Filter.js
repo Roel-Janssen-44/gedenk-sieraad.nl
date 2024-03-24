@@ -25,7 +25,11 @@ import InputAdornment from "@mui/material/InputAdornment";
 
 import FilterCollectionFilters from "../FilterCollectionFilters";
 
-export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
+export default function FilterDrawer({
+  filterDrawerIsOpen,
+  onClose,
+  products,
+}) {
   return (
     <Drawer anchor="left" open={filterDrawerIsOpen} onClose={onClose}>
       <div className="h-screen flex flex-col w-full max-w-[325px]">
@@ -46,7 +50,7 @@ export default function FilterDrawer({ filterDrawerIsOpen, onClose, facets }) {
             </div>
           </div>
         </div>
-        <FilterCollectionFilters facets={facets} onClose={onClose} />
+        <FilterCollectionFilters products={products} onClose={onClose} />
       </div>
     </Drawer>
   );

@@ -1,20 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
-import {
-  getStorefrontApiUrl,
-  getPrivateTokenHeaders,
-} from "@/lib/shopify-client";
-
-import Drawer from "@mui/material/Drawer";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
-import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+import Drawer from "@mui/material/Drawer";
+import Typography from "@mui/material/Typography";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
@@ -134,75 +130,117 @@ const menu = [
   },
 ];
 
-export default function FilterDrawerFilters({ facets, onClose }) {
+export default function FilterDrawerFilters({ products, onClose }) {
   const [expanded, setExpanded] = useState(false);
 
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  let price;
-  try {
-    price =
-      JSON.parse(facets?.productFilters[2]?.values[0]?.input).price || null;
-  } catch {
-    price = 10000;
-  }
+  // useEffect(() => {
+  //   console.log("facets");
+  // }, []);
 
-  const [materiaal, setMateriaal] = useState(searchParams.get("Materiaal"));
-  const [merk, setMerk] = useState(searchParams.get("Merk"));
-  const [minPrijs, setMinPrijs] = useState(searchParams.get("MinPrijs") || 0);
-  const [maxPrijs, setMaxPrijs] = useState(
-    searchParams.get("MaxPrijs") || price.max
-  );
+  const [material, setMaterial] = useState(searchParams.get("Materiaal"));
+  const [vendor, setVendor] = useState(searchParams.get("Merk"));
+  const [minPrice, setMinPrice] = useState(searchParams.get("MinPrijs"));
+  const [maxPrice, setMaxPrice] = useState(searchParams.get("MaxPrijs"));
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  const stateSetters = {
-    Materiaal: setMateriaal,
-    Merk: setMerk,
-    MinPrijs: setMinPrijs,
-    MaxPrijs: setMaxPrijs,
-  };
+  // const stateSetters = {
+  //   Material: setMaterial,
+  //   Vendor: setVendor,
+  //   MinPrice: setMinPrice,
+  //   MaxPrice: setMaxPrice,
+  // };
 
-  const handleFacetChange = (facetLabel, value) => {
-    stateSetters[facetLabel](value);
+  // const handleFacetChange = (facetLabel, value) => {
+  //   stateSetters[facetLabel](value);
 
+  //   const params = new URLSearchParams(searchParams);
+  //   params.set(facetLabel, value);
+  //   replace(`${pathname}?${params.toString()}`);
+  // };
+
+  // To do update link based on state change
+
+  useEffect(() => {
+    // console.log("state change");
     const params = new URLSearchParams(searchParams);
-    params.set(facetLabel, value);
+    if (material) {
+      params.set("Materiaal", material);
+    }
+    if (vendor) {
+      params.set("Merk", vendor);
+    }
+    if (minPrice) {
+      params.set("MinPrijs", minPrice);
+    }
+    if (maxPrice) {
+      params.set("MaxPrijs", maxPrice);
+    }
     replace(`${pathname}?${params.toString()}`);
+  }, [vendor, material, minPrice, maxPrice]);
+
+  let vendors = {
+    elegant: {
+      name: "Elegante hand made",
+      amount: 0,
+    },
+    exquisite: {
+      name: "Exquisite hand made",
+      amount: 0,
+    },
+    seeyou: {
+      name: "See You Gedenksieraden",
+      amount: 0,
+    },
   };
 
-  const materiaalFacet =
-    facets?.productFilters
-      .find((filter) => filter.id === "filter.v.option.materiaal")
-      ?.values.map(({ label, count }) => ({
-        value: label,
-        count,
-      })) || [];
+  products.forEach((product) => {
+    // console.log(product.vendor);
+    if (product.vendor === "See You Gedenksieraden") {
+      vendors["seeyou"].amount++;
+    } else if (product.vendor === "Elegante hand made") {
+      vendors["elegant"].amount++;
+    } else if (product.vendor === "Exquisite hand made") {
+      vendors["exquisite"].amount++;
+    }
+  });
 
-  const vendorFacet =
-    facets?.productFilters
-      .find((filter) => filter.id === "filter.p.vendor")
-      ?.values.map(({ label, count }) => ({
-        value: label,
-        count,
-      })) || [];
+  // console.log(vendors);
 
-  const priceFacet =
-    facets?.productFilters
-      .find((filter) => filter.id === "filter.v.price")
-      ?.values.map(({ label, count }) => ({
-        value: label,
-        count,
-      })) || [];
+  // const materiaalFacet =
+  //   facets?.productFilters
+  //     ?.find((filter) => filter.id === "filter.v.option.materiaal")
+  //     ?.values.map(({ label, count }) => ({
+  //       value: label,
+  //       count,
+  //     })) || [];
+
+  // const vendorFacet =
+  //   facets?.productFilters
+  //     ?.find((filter) => filter.id === "filter.p.vendor")
+  //     ?.values.map(({ label, count }) => ({
+  //       value: label,
+  //       count,
+  //     })) || [];
+
+  // const priceFacet =
+  //   facets?.productFilters
+  //     ?.find((filter) => filter.id === "filter.v.price")
+  //     ?.values.map(({ label, count }) => ({
+  //       value: label,
+  //       count,
+  //     })) || [];
 
   return (
     <>
       <div className="px-4 xl:px-0">
-        <h5 className="pl-4 font-semibold mb-2">Collecties:</h5>
+        <h5 className="pl-4 font-semibold mb-2">Categorie</h5>
         <div className="px-4 mb-2">
           <hr className="h-[3px] rounded-full bg-gray-800" />
         </div>
@@ -242,7 +280,7 @@ export default function FilterDrawerFilters({ facets, onClose }) {
             </Accordion>
           </div>
         ))}
-        {materiaalFacet[0] && (
+        {/* {materiaalFacet[0] && (
           <div className="px-4 mt-10 xl:px-0">
             <h5 className="font-semibold mb-2">Materiaal</h5>
             <div className="mb-2">
@@ -278,8 +316,8 @@ export default function FilterDrawerFilters({ facets, onClose }) {
               })}
             </RadioGroup>
           </div>
-        )}
-        {vendorFacet[0] && (
+        )}*/}
+        {vendors && (
           <div className="px-4 mt-10">
             <h5 className="font-semibold mb-2">Merk</h5>
             <div className="mb-2">
@@ -288,32 +326,33 @@ export default function FilterDrawerFilters({ facets, onClose }) {
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
               name="radio-buttons-group"
-              value={merk}
+              value={vendor}
             >
-              {vendorFacet.map((vendor) => (
+              {Object.keys(vendors).map((vendorKey) => (
                 <FormControlLabel
-                  key={"vendorfacet" + vendor.value}
-                  value={vendor.value}
+                  key={"vendorfacet" + vendors[vendorKey].name}
+                  value={vendors[vendorKey].name}
                   control={
                     <Radio sx={{ "&.Mui-checked": { color: "#222" } }} />
                   }
-                  label={vendor.value + ` (${vendor.count})`}
+                  label={
+                    vendors[vendorKey].name + ` (${vendors[vendorKey].amount})`
+                  }
                   className="mb-1.5 last:mb-0 "
-                  onChange={(e) => handleFacetChange("Merk", e.target.value)}
+                  onChange={(e) => setVendor(e.target.value)}
                 />
               ))}
             </RadioGroup>
           </div>
         )}
       </div>
-      <div className="px-8 mt-10 pb-8 xl:px-4">
+      {/* <div className="px-8 mt-10 pb-8 xl:px-4">
         <h5 className="font-semibold mb-2">Prijs:</h5>
         <div className="mb-2">
           <hr className="h-[3px] rounded-full bg-gray-800" />
         </div>
-        {/* Prijs opties */}
         <div className="flex flex-wrap items-center text-sm mb-2 mt-4">
-          <span className="font-bold min-w-[140px]">Van €0.-</span>
+          <span className="font-bold min-w-[140px]">Van €</span>
         </div>
         <TextField
           type="number"
@@ -325,7 +364,7 @@ export default function FilterDrawerFilters({ facets, onClose }) {
           }}
         />
         <div className="flex flex-wrap items-center text-sm mb-2 mt-4">
-          <span className="font-bold min-w-[140px]">Tot €{price.max}.-</span>
+          <span className="font-bold min-w-[140px]">Tot €</span>
         </div>
         <TextField
           type="number"
@@ -345,7 +384,7 @@ export default function FilterDrawerFilters({ facets, onClose }) {
         >
           Producten zoeken
         </Button>
-      </div>
+      </div> */}
     </>
   );
 }

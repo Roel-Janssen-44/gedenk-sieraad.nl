@@ -2,6 +2,7 @@ import {
   getStorefrontApiUrl,
   getPrivateTokenHeaders,
 } from "@/lib/shopify-client";
+import { createSearchParamsBailoutProxy } from "next/dist/client/components/searchparams-bailout-proxy";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -9,25 +10,23 @@ export default async function handler(req, res) {
   }
 
   const {
-    collectionName,
-    materiaal,
-    productVendor,
-    minPrijs,
-    maxPrijs,
-    newFetchCursor,
+    collectionHandle,
+    // material, vendor,
+    minPrice,
+    maxPrice,
     sortKey,
   } = req.body;
-
   try {
     const GRAPHQL_COLLECTION_QUERY = generateGraphQLQuery({
-      collectionName,
-      materiaal,
-      productVendor,
-      minPrijs,
-      maxPrijs,
-      newFetchCursor,
+      collectionHandle,
+      // material,
+      // vendor,
+      minPrice,
+      maxPrice,
       sortKey,
     });
+
+    console.log("GRAPHQL_COLLECTION_QUERY", GRAPHQL_COLLECTION_QUERY);
 
     const collectionResponse = await fetch(getStorefrontApiUrl(), {
       method: "POST",
@@ -37,8 +36,8 @@ export default async function handler(req, res) {
       }),
     });
 
-    const collectionJson = await collectionResponse.json();
-    return res.status(200).json(collectionJson.data.collection.products);
+    const productsJson = await collectionResponse.json();
+    return res.status(200).json(productsJson.data.collection.products.nodes);
   } catch (error) {
     console.error("Error fetching collection products:", error);
     return res.status(500).json({ message: "Internal Server Error" });
@@ -46,34 +45,21 @@ export default async function handler(req, res) {
 }
 
 const generateGraphQLQuery = ({
-  collectionName,
-  materiaal,
-  productVendor,
-  minPrijs,
-  maxPrijs,
-  newFetchCursor,
+  collectionHandle,
+  // material,
+  // vendor,
+  minPrice,
+  maxPrice,
   sortKey,
 }) => {
-  let vendorFilter;
-  if (productVendor != null) {
-    vendorFilter = `{ productVendor: "${productVendor}"}`;
-  }
-  let materiaalFilter;
-  if (materiaal != null) {
-    materiaalFilter = `{ variantOption: { name: "Materiaal", value: "${materiaal}" } }`;
-  }
-
-  let cursorFilter;
-  if (newFetchCursor != null) {
-    cursorFilter = `${newFetchCursor.direction}: "${newFetchCursor.cursor}"`;
-  }
-
-  let fetchDirection;
-  if (newFetchCursor?.direction == "after") {
-    fetchDirection = "first";
-  } else if (newFetchCursor?.direction == "before") {
-    fetchDirection = "last";
-  }
+  // let vendorFilter;
+  // if (vendor != null) {
+  //   vendorFilter = `{ productVendor: "${vendor}"}`;
+  // }
+  // let materialFilter;
+  // if (material != null) {
+  //   materialFilter = `{ variantOption: { name: "Materiaal", value: "${material}" } }`;
+  // }
 
   let sort;
   if (sortKey != null) {
@@ -95,20 +81,18 @@ const generateGraphQLQuery = ({
         break;
     }
   }
+
   return `
     query CollectionByHandle {
-      collection(handle: "${collectionName}") {
+      collection(handle: "${collectionHandle}") {
         products(
-          ${fetchDirection || "first"}: 250,
-          ${cursorFilter || ""}
+          first: 250,
           ${sort || ""}
           filters: [
             {available: true}, 
-            { price: { min: ${parseFloat(minPrijs) || 0.0}, max: ${
-    parseFloat(maxPrijs) || 10000.0
+            { price: { min: ${parseFloat(minPrice) || 0.0}, max: ${
+    parseFloat(maxPrice) || 10000.0
   } } },
-            ${vendorFilter || ""}
-            ${materiaalFilter || ""}
           ]
         ) {
           pageInfo {
