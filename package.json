@@ -22,6 +22,7 @@
     "react": "^18",
     "react-carousel": "^4.3.0",
     "react-dom": "^18",
+    "react-img-hover-zoom": "^0.1.8",
     "react-infinite-scroll-component": "^6.1.0",
     "react-player": "^2.14.1",
     "react-slick": "^0.29.0",

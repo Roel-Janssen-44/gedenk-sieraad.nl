@@ -21,8 +21,6 @@ export default async function handler(req, res) {
       sortKey,
     });
 
-    console.log("GRAPHQL_COLLECTION_QUERY", GRAPHQL_COLLECTION_QUERY);
-
     const collectionResponse = await fetch(getStorefrontApiUrl(), {
       method: "POST",
       headers: getPrivateTokenHeaders(),

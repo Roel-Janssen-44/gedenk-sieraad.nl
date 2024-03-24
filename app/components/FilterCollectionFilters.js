@@ -147,12 +147,7 @@ export default function FilterDrawerFilters({ products, onClose }) {
   };
 
   useEffect(() => {
-    console.log("material or vendor state edit");
     const params = new URLSearchParams(searchParams);
-    // console.log("material");
-    // console.log(material);
-    // console.log("vendor");
-    // console.log(vendor);
     if (material) {
       params.set("Materiaal", material);
     } else {

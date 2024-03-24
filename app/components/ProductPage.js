@@ -24,6 +24,7 @@ import { useCartDrawer } from "@/components/MainLayoutInnerWrapper";
 import sanitizeHtml from "sanitize-html-react";
 import * as OptionSets from "@/components/productOptions/optionSets";
 import { calculatePrice } from "@/lib/functions";
+import Zoom from "react-img-hover-zoom";
 
 export default function ProductPage({ product }) {
   let allMediaImages = [];
@@ -39,15 +40,6 @@ export default function ProductPage({ product }) {
   const [activeImage, setActiveImage] = useState();
   const [currentThumbnails, setCurrentThumbnails] = useState([]);
   const [activeThumbnailIndex, setActiveThumbnailIndex] = useState(0);
-
-  // useEffect(() => {
-  //   console.log("activeImage");
-  //   console.log(activeImage);
-  //   console.log("currentRhumbnails");
-  //   console.log(currentThumbnails);
-  //   console.log("activeThumbnailIndex");
-  //   console.log(activeThumbnailIndex);
-  // }, [activeImage, currentThumbnails, activeThumbnailIndex]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -190,11 +182,18 @@ export default function ProductPage({ product }) {
                   key={activeImage.url}
                   className="animate-fadeIn mb-4 flex justify-center items-center aspect-square lg:mr-8 lg:mb-0"
                 >
-                  <div className="relative w-full h-full overflow-hidden">
-                    <Image
+                  <div className="relative group w-full h-full overflow-hidden">
+                    {/* <Image
                       data={activeImage}
-                      // sizes="(min-width: 45em) 50vw, 100vw"
                       loading="eager"
+                      className="max-w-full max-h-full object-contain rounded block w-full h-full z-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    /> */}
+                    <Zoom
+                      loading="eager"
+                      img={activeImage.url}
+                      zoomScale={2.5}
+                      height={600}
+                      width={600}
                       className="max-w-full max-h-full object-contain rounded block w-full h-full z-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     />
                   </div>
@@ -540,28 +539,6 @@ function Product({
   console.log("tags");
   console.log(tags);
 
-  // const tags = [
-  //   // "print",
-  //   // "poot",
-  //   "gravure",
-  //   // "naamdatum",
-  //   // "aszijde",
-  //   // "vulset",
-  //   // "letter",
-  //   // "creool",
-  //   // "aspakket",
-  //   // "hars",
-  //   "tekst",
-  //   // "armbandmaat",
-  //   // "woord",
-  //   // "upload",
-  //   // "vppakketup",
-  //   // "cord",
-  //   // "satijn",
-  //   // "ringmaat",
-  //   // "ringmaatsy",
-  // ];
-
   return (
     <div className="flex flex-col gap-8 2xl:mr-auto">
       <div className="max-w-lg mx-auto flex flex-col gap-6 2xl:ml-0 xl:min-w-[500px]">
@@ -755,8 +732,5 @@ const createProductVariant = async (
 
   const final = await res.json();
 
-  // console.log("finalData: ", final);
-
-  // console.log("fetch after");
   return final;
 };
