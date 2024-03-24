@@ -62,9 +62,12 @@ export default function CollectionPage({ searchParams, collection }) {
   useEffect(() => {
     let newProducts = [];
     products.forEach((product) => {
-      if (product.vendor === vendor) {
-        newProducts.push(product);
-      }
+      // if (vendor) {
+      //   if (product.vendor === vendor) {
+      //     newProducts.push(product);
+      //   }
+      // }
+      newProducts.push(product);
     });
     setProducts(newProducts);
   }, [searchParams]);

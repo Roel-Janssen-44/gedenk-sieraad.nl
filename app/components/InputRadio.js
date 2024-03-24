@@ -13,6 +13,7 @@ export default function InputRadio({ onChange, title, options, multiple }) {
         multiple
       >
         {options.map((option, index) => {
+          console.log(option);
           return (
             <>
               <FormControlLabel

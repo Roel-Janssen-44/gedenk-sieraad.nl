@@ -165,10 +165,7 @@ export default function FilterDrawerFilters({ products, onClose }) {
   //   replace(`${pathname}?${params.toString()}`);
   // };
 
-  // To do update link based on state change
-
   useEffect(() => {
-    // console.log("state change");
     const params = new URLSearchParams(searchParams);
     if (material) {
       params.set("Materiaal", material);
@@ -176,18 +173,25 @@ export default function FilterDrawerFilters({ products, onClose }) {
     if (vendor) {
       params.set("Merk", vendor);
     }
+    replace(`${pathname}?${params.toString()}`);
+  }, [vendor, material]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams);
     if (minPrice) {
       params.set("MinPrijs", minPrice);
     }
     if (maxPrice) {
       params.set("MaxPrijs", maxPrice);
     }
-    replace(`${pathname}?${params.toString()}`);
-  }, [vendor, material, minPrice, maxPrice]);
+    setTimeout(() => {
+      replace(`${pathname}?${params.toString()}`);
+    }, 1800);
+  }, [minPrice, maxPrice]);
 
   let vendors = {
     elegant: {
-      name: "Elegante hand made",
+      name: "Elegant hand made",
       amount: 0,
     },
     exquisite: {
@@ -200,14 +204,88 @@ export default function FilterDrawerFilters({ products, onClose }) {
     },
   };
 
+  let materials = [];
+
   products.forEach((product) => {
-    // console.log(product.vendor);
-    if (product.vendor === "See You Gedenksieraden") {
-      vendors["seeyou"].amount++;
-    } else if (product.vendor === "Elegante hand made") {
-      vendors["elegant"].amount++;
-    } else if (product.vendor === "Exquisite hand made") {
-      vendors["exquisite"].amount++;
+    if (material == null) {
+      if (product.vendor === "Elegante hand made") {
+        vendors["elegant"].amount++;
+      } else if (product.vendor === "Exquisite hand made") {
+        vendors["exquisite"].amount++;
+      } else if (product.vendor === "See You Gedenksieraden") {
+        vendors["seeyou"].amount++;
+      }
+    } else {
+      product.options[0].values.forEach((option) => {
+        if (option == material) {
+          if (product.vendor === "Elegante hand made") {
+            vendors["elegant"].amount++;
+          } else if (product.vendor === "Exquisite hand made") {
+            vendors["exquisite"].amount++;
+          } else if (product.vendor === "See You Gedenksieraden") {
+            vendors["seeyou"].amount++;
+          }
+        }
+      });
+    }
+
+    if (product.options[0]?.name == "Materiaal") {
+      if (vendor == null) {
+        product.options[0].values.forEach((option) => {
+          let existingMaterial = materials.find(
+            (material) => material.name === option
+          );
+          if (!existingMaterial) {
+            materials.push({ name: option, amount: 1 });
+          } else {
+            existingMaterial.amount++;
+          }
+        });
+      } else {
+        if (
+          vendor == "Elegant hand made" &&
+          product.vendor == "Elegant hand made"
+        ) {
+          product.options[0].values.forEach((option) => {
+            let existingMaterial = materials.find(
+              (material) => material.name === option
+            );
+            if (!existingMaterial) {
+              materials.push({ name: option, amount: 1 });
+            } else {
+              existingMaterial.amount++;
+            }
+          });
+        } else if (
+          vendor == "Exquisite hand made" &&
+          product.vendor == "Exquisite hand made"
+        ) {
+          product.options[0].values.forEach((option) => {
+            let existingMaterial = materials.find(
+              (material) => material.name === option
+            );
+            if (!existingMaterial) {
+              materials.push({ name: option, amount: 1 });
+            } else {
+              existingMaterial.amount++;
+            }
+          });
+        } else if (
+          vendor == "See You Gedenksieraden" &&
+          product.vendor == "See You Gedenksieraden"
+        ) {
+          product.options[0].values.forEach((option) => {
+            let existingMaterial = materials.find(
+              (material) => material.name === option
+            );
+            if (!existingMaterial) {
+              materials.push({ name: option, amount: 1 });
+            } else {
+              existingMaterial.amount++;
+            }
+          });
+        }
+      }
     }
   });
 
@@ -280,8 +358,8 @@ export default function FilterDrawerFilters({ products, onClose }) {
             </Accordion>
           </div>
         ))}
-        {/* {materiaalFacet[0] && (
-          <div className="px-4 mt-10 xl:px-0">
+        {materials && (
+          <div className="px-4 mt-10">
             <h5 className="font-semibold mb-2">Materiaal</h5>
             <div className="mb-2">
               <hr className="h-[3px] rounded-full bg-gray-800" />
@@ -289,34 +367,43 @@ export default function FilterDrawerFilters({ products, onClose }) {
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
               name="radio-buttons-group"
-              value={materiaal}
+              value={material}
             >
-              {materiaalFacet.map((materiaal) => {
+              {materials.map((material) => {
                 if (
-                  materiaal.value.includes("WD options") ||
-                  materiaal.value.toLowerCase().includes("mws")
+                  material.name.includes("WD options") ||
+                  material.name.toLowerCase().includes("mws")
                 ) {
                   return null;
                 } else {
                   return (
                     <FormControlLabel
-                      key={"materiaalfacet" + materiaal.value}
-                      value={materiaal.value}
+                      key={"materialfacet" + material.name}
+                      value={material.name}
                       control={
                         <Radio sx={{ "&.Mui-checked": { color: "#222" } }} />
                       }
-                      label={materiaal.value + ` (${materiaal.count})`}
+                      label={material.name + ` (${material.amount})`}
                       className="mb-1.5 last:mb-0 "
-                      onChange={(e) =>
-                        handleFacetChange("Materiaal", e.target.value)
-                      }
+                      onChange={(e) => setMaterial(e.target.value)}
                     />
                   );
                 }
               })}
+
+              <Button
+                onClick={() => {
+                  setMaterial(null);
+                }}
+                size="large"
+                variant="outlined"
+                className="mt-3"
+              >
+                Reset filter
+              </Button>
             </RadioGroup>
           </div>
-        )}*/}
+        )}
         {vendors && (
           <div className="px-4 mt-10">
             <h5 className="font-semibold mb-2">Merk</h5>
@@ -342,11 +429,21 @@ export default function FilterDrawerFilters({ products, onClose }) {
                   onChange={(e) => setVendor(e.target.value)}
                 />
               ))}
+              <Button
+                variant="outlined"
+                onClick={() => {
+                  setVendor(null);
+                }}
+                size="large"
+                className="mt-3"
+              >
+                Reset filter
+              </Button>
             </RadioGroup>
           </div>
         )}
       </div>
-      {/* <div className="px-8 mt-10 pb-8 xl:px-4">
+      <div className="px-8 mt-10 pb-8 xl:px-4">
         <h5 className="font-semibold mb-2">Prijs:</h5>
         <div className="mb-2">
           <hr className="h-[3px] rounded-full bg-gray-800" />
@@ -356,9 +453,9 @@ export default function FilterDrawerFilters({ products, onClose }) {
         </div>
         <TextField
           type="number"
-          value={minPrijs}
+          value={minPrice}
           variant="outlined"
-          onChange={(e) => handleFacetChange("MinPrijs", e.target.value)}
+          onChange={(e) => setMinPrice(e.target.value)}
           InputProps={{
             startAdornment: <InputAdornment position="start">€</InputAdornment>,
           }}
@@ -368,23 +465,38 @@ export default function FilterDrawerFilters({ products, onClose }) {
         </div>
         <TextField
           type="number"
-          max={price.max}
-          value={maxPrijs}
+          // max={price.max}
+          value={maxPrice}
           variant="outlined"
-          onChange={(e) => handleFacetChange("MaxPrijs", e.target.value)}
+          onChange={(e) => setMaxPrice(e.target.value)}
           InputProps={{
             startAdornment: <InputAdornment position="start">€</InputAdornment>,
           }}
         />
+        <div>
+          <Button
+            onClick={() => {
+              setMinPrice(null);
+              setMaxPrice(null);
+            }}
+            size="large"
+            variant="outlined"
+            className="mt-3 w-full"
+          >
+            Reset filter
+          </Button>
+        </div>
         <Button
           className="bg-primary w-full mt-8"
           variant="contained"
           size="large"
-          onClick={onClose}
+          onClick={() => {
+            // To do add scroll to top
+          }}
         >
           Producten zoeken
         </Button>
-      </div> */}
+      </div>
     </>
   );
 }

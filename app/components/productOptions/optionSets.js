@@ -2,14 +2,17 @@ export const aspakketOptions = [
   {
     value:
       "Ik wil as en/of haar opsturen naar jullie, stuur mij eerst een gratis pakket met retourenvelop toe.",
+    price: 0,
   },
   {
     value:
       "Ik wil moedermelk opsturen naar jullie, stuur mij eerst een gratis pakket met retourenvelop toe. ",
+    price: 0,
   },
   {
     value:
       "Na mijn bestelling graag een afspraak inplannen met mij in de edelsmederij.",
+    price: 0,
   },
 ];
 
@@ -57,9 +60,11 @@ export const voorvoegselOptions = [
 export const pootKeuze1Options = [
   {
     value: "Standaard pootafdruk",
+    price: 0,
   },
   {
     value: "Eigen pootafdruk",
+    price: 0,
   },
 ];
 
@@ -67,14 +72,17 @@ export const pootKeuze2Options = [
   {
     value:
       "Ik heb al een digitaal bestand van vinger/voet/hand/pootafdruk of gravure en wil dit nu uploaden",
+    price: 0,
   },
   {
     value:
       "Ik wil eerst een gratis vingerafdrukpakket ontvangen.(selecteer dan ook bij gravure: vingerafdruk)",
+    price: 0,
   },
   {
     value:
       "Ik wil eerst een gratis hand/voet/pootafdrukpakket ontvangen.(selecteer dan ook bij gravure: hand/voetafdruk of pootafdruk)",
+    price: 0,
   },
 ];
 
@@ -121,9 +129,11 @@ export const printKeuze3Options = [
 export const aszijdeOptions = [
   {
     value: "Voorzijde",
+    price: 0,
   },
   {
     value: "Achterzijde",
+    price: 0,
   },
 ];
 
@@ -392,9 +402,11 @@ export const harsKleurOptions = [
 export const glitterOptions = [
   {
     value: "Ja",
+    price: 0,
   },
   {
     value: "Nee",
+    price: 0,
   },
 ];
 
