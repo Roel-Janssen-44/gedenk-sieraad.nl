@@ -146,6 +146,7 @@ export default function Navbar({
               size="large"
               color="inherit"
               className="xl:hidden"
+              aria-label="Menu toggle"
             >
               <MenuRoundedIcon fontSize="40px" />
             </IconButton>
@@ -219,7 +220,10 @@ export default function Navbar({
               </ul>
             </div>
             {/* Search */}
-            <div className="hidden sm:flex justify-center items-center xl:hidden">
+            <div
+              aria-hidden
+              className="hidden sm:flex justify-center items-center xl:hidden"
+            >
               <Search className="bg-transparent border-[1px] border-white text-white">
                 <form
                   onSubmit={(e) => {
@@ -234,6 +238,7 @@ export default function Navbar({
                     onSubmit={() => router.push(`/search?seach=${searchTerm}`)}
                   />
                   <IconButton
+                    aria-label="Zoek pagina openen"
                     onClick={() => router.push(`/search?search=${searchTerm}`)}
                   >
                     <SearchRoundedIcon className="text-white" />

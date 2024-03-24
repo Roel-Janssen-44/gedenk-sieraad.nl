@@ -10,7 +10,7 @@ export default function Navbar() {
     <div className="py-20 mt-20 border-t-2 border-primary">
       <div className="container flex flex-col gap-8 md:flex-row md:flex-wrap md:items-center xl:flex-nowrap xl:items-start">
         <div className="max-w-md w-full mx-auto md:w-[336px] md:max-w-[336px]">
-          <h5 className="font-roboto text-2xl mb-3">Info paginas</h5>
+          <h4 className="font-roboto text-2xl mb-3">Info paginas</h4>
           <ul>
             <li>
               <a
