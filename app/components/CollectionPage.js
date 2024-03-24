@@ -17,11 +17,9 @@ export default function CollectionPage({ searchParams, collection }) {
   const maxPrice = searchParams.MaxPrijs || null;
 
   const [products, setProducts] = useState([]);
-  const [currentProducts, setCurrentProducts] = useState([]);
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("fetching products");
     const fetchData = async () => {
       try {
         const response = await fetch("/api/getCollectionProducts", {
@@ -31,8 +29,8 @@ export default function CollectionPage({ searchParams, collection }) {
           },
           body: JSON.stringify({
             collectionHandle: collection.handle,
-            // material,
-            // vendor,
+            material,
+            vendor,
             minPrice,
             maxPrice,
             sortKey,
@@ -43,34 +41,12 @@ export default function CollectionPage({ searchParams, collection }) {
         }
         const fetchedProducts = await response.json();
         setProducts(fetchedProducts);
-
-        let productsToShow = [];
-        fetchedProducts.forEach((product) => {
-          if (product.vendor === vendor) {
-            productsToShow.push(product);
-          }
-        });
-        setCurrentProducts(productsToShow);
       } catch (error) {
         console.log("Error fetching collection products:", error);
-        setError(error.message || "An error occurred while fetching data.");
       }
     };
     fetchData();
   }, [collection.handle, searchParams]);
-
-  useEffect(() => {
-    let newProducts = [];
-    products.forEach((product) => {
-      // if (vendor) {
-      //   if (product.vendor === vendor) {
-      //     newProducts.push(product);
-      //   }
-      // }
-      newProducts.push(product);
-    });
-    setProducts(newProducts);
-  }, [searchParams]);
 
   return (
     <div className="container flex flex-col gap-8 md:flex-row">
@@ -91,7 +67,7 @@ export default function CollectionPage({ searchParams, collection }) {
           </div>
         </div>
         <SortCollection />
-        <ProductGrid collectionProducts={currentProducts} />
+        <ProductGrid collectionProducts={products} />
       </div>
     </div>
   );

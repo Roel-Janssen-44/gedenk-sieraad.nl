@@ -137,10 +137,6 @@ export default function FilterDrawerFilters({ products, onClose }) {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  // useEffect(() => {
-  //   console.log("facets");
-  // }, []);
-
   const [material, setMaterial] = useState(searchParams.get("Materiaal"));
   const [vendor, setVendor] = useState(searchParams.get("Merk"));
   const [minPrice, setMinPrice] = useState(searchParams.get("MinPrijs"));
@@ -150,28 +146,22 @@ export default function FilterDrawerFilters({ products, onClose }) {
     setExpanded(isExpanded ? panel : false);
   };
 
-  // const stateSetters = {
-  //   Material: setMaterial,
-  //   Vendor: setVendor,
-  //   MinPrice: setMinPrice,
-  //   MaxPrice: setMaxPrice,
-  // };
-
-  // const handleFacetChange = (facetLabel, value) => {
-  //   stateSetters[facetLabel](value);
-
-  //   const params = new URLSearchParams(searchParams);
-  //   params.set(facetLabel, value);
-  //   replace(`${pathname}?${params.toString()}`);
-  // };
-
   useEffect(() => {
+    console.log("material or vendor state edit");
     const params = new URLSearchParams(searchParams);
+    // console.log("material");
+    // console.log(material);
+    // console.log("vendor");
+    // console.log(vendor);
     if (material) {
       params.set("Materiaal", material);
+    } else {
+      params.delete("Materiaal");
     }
     if (vendor) {
       params.set("Merk", vendor);
+    } else {
+      params.delete("Merk");
     }
     replace(`${pathname}?${params.toString()}`);
   }, [vendor, material]);
@@ -288,32 +278,6 @@ export default function FilterDrawerFilters({ products, onClose }) {
       }
     }
   });
-
-  // console.log(vendors);
-
-  // const materiaalFacet =
-  //   facets?.productFilters
-  //     ?.find((filter) => filter.id === "filter.v.option.materiaal")
-  //     ?.values.map(({ label, count }) => ({
-  //       value: label,
-  //       count,
-  //     })) || [];
-
-  // const vendorFacet =
-  //   facets?.productFilters
-  //     ?.find((filter) => filter.id === "filter.p.vendor")
-  //     ?.values.map(({ label, count }) => ({
-  //       value: label,
-  //       count,
-  //     })) || [];
-
-  // const priceFacet =
-  //   facets?.productFilters
-  //     ?.find((filter) => filter.id === "filter.v.price")
-  //     ?.values.map(({ label, count }) => ({
-  //       value: label,
-  //       count,
-  //     })) || [];
 
   return (
     <>

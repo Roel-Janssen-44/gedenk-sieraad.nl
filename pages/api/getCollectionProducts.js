@@ -9,22 +9,19 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
 
-  const {
-    collectionHandle,
-    // material, vendor,
-    minPrice,
-    maxPrice,
-    sortKey,
-  } = req.body;
+  const { collectionHandle, material, vendor, minPrice, maxPrice, sortKey } =
+    req.body;
   try {
     const GRAPHQL_COLLECTION_QUERY = generateGraphQLQuery({
       collectionHandle,
-      // material,
-      // vendor,
+      material,
+      vendor,
       minPrice,
       maxPrice,
       sortKey,
     });
+
+    console.log("GRAPHQL_COLLECTION_QUERY", GRAPHQL_COLLECTION_QUERY);
 
     const collectionResponse = await fetch(getStorefrontApiUrl(), {
       method: "POST",
@@ -44,20 +41,20 @@ export default async function handler(req, res) {
 
 const generateGraphQLQuery = ({
   collectionHandle,
-  // material,
-  // vendor,
+  material,
+  vendor,
   minPrice,
   maxPrice,
   sortKey,
 }) => {
-  // let vendorFilter;
-  // if (vendor != null) {
-  //   vendorFilter = `{ productVendor: "${vendor}"}`;
-  // }
-  // let materialFilter;
-  // if (material != null) {
-  //   materialFilter = `{ variantOption: { name: "Materiaal", value: "${material}" } }`;
-  // }
+  let vendorFilter;
+  if (vendor != null) {
+    vendorFilter = `{ productVendor: "${vendor}"}`;
+  }
+  let materialFilter;
+  if (material != null) {
+    materialFilter = `{ variantOption: { name: "Materiaal", value: "${material}" } }`;
+  }
 
   let sort;
   if (sortKey != null) {
@@ -91,6 +88,9 @@ const generateGraphQLQuery = ({
             { price: { min: ${parseFloat(minPrice) || 0.0}, max: ${
     parseFloat(maxPrice) || 10000.0
   } } },
+          ${vendorFilter || ""}
+          ${materialFilter || ""}
+
           ]
         ) {
           pageInfo {
