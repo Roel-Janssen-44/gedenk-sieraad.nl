@@ -41,7 +41,7 @@ export default function TextWithImage() {
             jou sieraad te personaliseren. Kijk rond en laat je verrassen door
             onze collecties.
           </p>
-          <Link href={"/"} className="inline-block">
+          <Link href={"/collections/all"} className="inline-block">
             <Button
               variant="contained"
               size="large"

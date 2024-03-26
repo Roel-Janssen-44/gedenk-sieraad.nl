@@ -169,7 +169,7 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
               onChange={(newUploadValue) =>
                 handleChange("upload", newUploadValue)
               }
-              title="Upload:"
+              title="bestand toevoegen:"
               setError={setError}
             />
           </div>

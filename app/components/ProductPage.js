@@ -352,7 +352,7 @@ function Product({
   console.log(extraOptions);
   console.log("Total price:");
   console.log(
-    parseFloat(selectedVariant.price.amount) +
+    parseFloat(selectedVariant?.price?.amount) +
       parseFloat(calculatePrice(extraOptions, OptionSets))
   );
 
@@ -398,8 +398,9 @@ function Product({
 
     const selectedVariantMaterial =
       currentVariant.selectedOptions[0].value.toLowerCase();
-
-    newThumbnails.push(currentVariant.image);
+    if (!product.tags.includes("kleuren")) {
+      newThumbnails.push(currentVariant.image);
+    }
 
     if (zilver.includes(selectedVariantMaterial)) {
       activeMaterial = "zilver";
@@ -551,7 +552,7 @@ function Product({
             {selectedVariant?.price?.amount && (
               <Price
                 value={
-                  parseFloat(selectedVariant.price.amount) +
+                  parseFloat(selectedVariant?.price?.amount) +
                   parseFloat(calculatePrice(extraOptions, OptionSets))
                 }
               />

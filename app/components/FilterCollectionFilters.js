@@ -189,9 +189,40 @@ export default function FilterDrawerFilters({ products, onClose }) {
     },
   };
 
-  let materials = [];
+  let materials = [
+    {
+      name: "Zilver 925 sterling",
+      amount: 0,
+    },
+    {
+      name: "9 KT geelgoud",
+      amount: 0,
+    },
+    {
+      name: "14 KT geelgoud",
+      amount: 0,
+    },
+    {
+      name: "9 KT witgoud",
+      amount: 0,
+    },
+    {
+      name: "14 KT witgoud",
+      amount: 0,
+    },
+    {
+      name: "9 KT roségoud",
+      amount: 0,
+    },
+    {
+      name: "14 KT roségoud",
+      amount: 0,
+    },
+  ];
 
   products.forEach((product) => {
+    // console.log("material");
+    // console.log(material);
     if (material == null) {
       if (product.vendor === "Elegante hand made") {
         vendors["elegant"].amount++;
@@ -203,6 +234,8 @@ export default function FilterDrawerFilters({ products, onClose }) {
     } else {
       product.options[0].values.forEach((option) => {
         if (option == material) {
+          console.log("inside if statement");
+
           if (product.vendor === "Elegante hand made") {
             vendors["elegant"].amount++;
           } else if (product.vendor === "Exquisite hand made") {
@@ -340,7 +373,10 @@ export default function FilterDrawerFilters({ products, onClose }) {
                       key={"materialfacet" + material.name}
                       value={material.name}
                       control={
-                        <Radio sx={{ "&.Mui-checked": { color: "#222" } }} />
+                        <Radio
+                          disabled={material.amount === 0}
+                          sx={{ "&.Mui-checked": { color: "#222" } }}
+                        />
                       }
                       label={material.name + ` (${material.amount})`}
                       className="mb-1.5 last:mb-0 "
@@ -379,7 +415,10 @@ export default function FilterDrawerFilters({ products, onClose }) {
                   key={"vendorfacet" + vendors[vendorKey].name}
                   value={vendors[vendorKey].name}
                   control={
-                    <Radio sx={{ "&.Mui-checked": { color: "#222" } }} />
+                    <Radio
+                      disabled={vendors[vendorKey].amount === 0}
+                      sx={{ "&.Mui-checked": { color: "#222" } }}
+                    />
                   }
                   label={
                     vendors[vendorKey].name + ` (${vendors[vendorKey].amount})`

@@ -6,6 +6,7 @@ import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Alert from "@mui/material/Alert";
+import { Button, Modal } from "@mui/material";
 
 import InputRadio from "../InputRadio";
 import InputSelect from "../InputSelect";
@@ -117,6 +118,10 @@ export default function Satijnen({
     setOpenSnackbar(false);
   };
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <>
       <div className="relative">
@@ -135,13 +140,15 @@ export default function Satijnen({
               onChange={(satijnenSingle) =>
                 handleChange("satijnenSingle", satijnenSingle)
               }
-              title="satijnenSingle:"
+              title="Satijnen armbandje 1e keuze:"
               options={satijnenOptions}
             />
           </div>
           <div className="w-auto h-auto pt-7">
             <div className="w-auto h-auto sticky top-10">
-              <Image src={"/images/satijnen.jpeg"} width={200} height={235} />
+              <Button onClick={handleOpen}>
+                <Image src={"/images/satijnen.jpeg"} width={150} height={235} />
+              </Button>
             </div>
           </div>
         </div>
@@ -160,7 +167,7 @@ export default function Satijnen({
           onChange={(satijnenMulti) =>
             handleChange("satijnenMulti", satijnenMulti)
           }
-          title="satijnenMulti:"
+          title="Satijnen armbandjes extra:"
           options={satijnenOptions}
         />
       </div>
@@ -182,6 +189,21 @@ export default function Satijnen({
           </IconButton>
         </Alert>
       </Snackbar>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="fixed overflow-hidden left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[750px] max-h-[750px]">
+          <Image
+            src={"/images/satijnen.jpeg"}
+            className="mx-auto my-auto h-full w-auto rounded-lg"
+            width={750}
+            height={750}
+          />
+        </div>
+      </Modal>
     </>
   );
 }

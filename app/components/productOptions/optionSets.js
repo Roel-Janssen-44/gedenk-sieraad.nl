@@ -428,16 +428,16 @@ export const tekstBinnenZijdeRingOptions = [
     price: 9.95,
   },
   {
-    value: "Datum",
-    price: 14.95,
+    value: "Naam en datum",
+    price: 29.95,
   },
   {
     value: "Naam",
     price: 14.95,
   },
   {
-    value: "Naam en datum",
-    price: 29.95,
+    value: "Datum",
+    price: 14.95,
   },
   {
     value: "1 woord",
@@ -475,16 +475,16 @@ export const gravureOptions = [
     price: 9.95,
   },
   {
-    value: "Datum",
-    price: 14.95,
+    value: "Naam en datum",
+    price: 29.95,
   },
   {
     value: "Naam",
     price: 14.95,
   },
   {
-    value: "Naam en datum",
-    price: 29.95,
+    value: "Datum",
+    price: 14.95,
   },
   {
     value: "1 woord",

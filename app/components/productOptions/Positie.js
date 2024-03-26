@@ -2248,7 +2248,7 @@ export default function Positie({
                   )}
                   <InputFile
                     setError={setError}
-                    title="Upload:"
+                    title="bestand toevoegen:"
                     onChange={(newUploadValue) =>
                       handleChange(`upload${option.name}`, newUploadValue)
                     }

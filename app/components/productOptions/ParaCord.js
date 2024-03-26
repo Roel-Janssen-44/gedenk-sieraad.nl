@@ -9,6 +9,7 @@ import Alert from "@mui/material/Alert";
 
 import InputRadio from "../InputRadio";
 import InputSelect from "../InputSelect";
+import { Button, Modal } from "@mui/material";
 
 import { paraCordOptions } from "./optionSets";
 
@@ -117,6 +118,10 @@ export default function ParaCord({
     setOpenSnackbar(false);
   };
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <>
       <div className="relative">
@@ -135,12 +140,14 @@ export default function ParaCord({
               onChange={(paracordSingle) =>
                 handleChange("paracordSingle", paracordSingle)
               }
-              title="paracordSingle:"
+              title="Para koord 1e keuze:"
               options={paraCordOptions}
             />
           </div>
           <div className="w-auto h-auto pt-10">
-            <Image src={"/images/paracords.jpg"} width={190} height={250} />
+            <Button onClick={handleOpen}>
+              <Image src={"/images/paracords.jpg"} width={190} height={250} />
+            </Button>
           </div>
         </div>
       </div>
@@ -158,7 +165,7 @@ export default function ParaCord({
           onChange={(paracordMulti) =>
             handleChange("paracordMulti", paracordMulti)
           }
-          title="paracordMulti:"
+          title="Para koord extra:"
           options={paraCordOptions}
         />
       </div>
@@ -180,6 +187,22 @@ export default function ParaCord({
           </IconButton>
         </Alert>
       </Snackbar>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="fixed overflow-hidden left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[750px] max-h-[750px]">
+          <Image
+            src={"/images/satijnen.jpeg"}
+            className="mx-auto my-auto h-full w-auto rounded-lg"
+            width={750}
+            height={750}
+          />
+        </div>
+      </Modal>
     </>
   );
 }

@@ -238,7 +238,6 @@ export default function Navbar({
                     onSubmit={() => router.push(`/search?seach=${searchTerm}`)}
                   />
                   <IconButton
-                    aria-label="Zoek pagina openen"
                     onClick={() => router.push(`/search?search=${searchTerm}`)}
                   >
                     <SearchRoundedIcon className="text-white" />

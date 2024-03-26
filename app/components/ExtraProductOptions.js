@@ -24,8 +24,8 @@ import Positie from "./productOptions/Positie";
 const tagsOrder = [
   "ringmaat",
   "ringmaatsy",
-  "paracord",
-  "satijnen",
+  "cord",
+  "satijn",
   "creool",
   "armbandmaat",
   "vulset",

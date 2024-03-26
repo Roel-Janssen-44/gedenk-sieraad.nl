@@ -852,7 +852,7 @@ export default function Gravure({
           )}
           <InputFile
             setError={setError}
-            title="Upload:"
+            title="bestand toevoegen:"
             onChange={(newUploadValue) =>
               handleChange("upload", newUploadValue)
             }
