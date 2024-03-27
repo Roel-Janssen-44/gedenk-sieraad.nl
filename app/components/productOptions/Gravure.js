@@ -717,20 +717,6 @@ export default function Gravure({
           />
         </div>
       )}
-      {(gravure == "Datum" || gravure == "Naam en datum") && (
-        <div className="relative">
-          {showErrors && (
-            <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["datum"]}
-            </p>
-          )}
-          <InputDate
-            value={values.find((item) => item.key === "datum")?.value || ""}
-            onChange={(newDateValue) => handleChange("datum", newDateValue)}
-            title="Datum:"
-          />
-        </div>
-      )}
       {(gravure == "Naam" || gravure == "Naam en datum") && (
         <div className="relative">
           {showErrors && (
@@ -742,6 +728,20 @@ export default function Gravure({
             value={values.find((item) => item.key === "naam")?.value || ""}
             onChange={(newNaamValue) => handleChange("naam", newNaamValue)}
             title="Naam:"
+          />
+        </div>
+      )}
+      {(gravure == "Datum" || gravure == "Naam en datum") && (
+        <div className="relative">
+          {showErrors && (
+            <p className="absolute  -bottom-6 left-0 text-red-700">
+              {error["datum"]}
+            </p>
+          )}
+          <InputDate
+            value={values.find((item) => item.key === "datum")?.value || ""}
+            onChange={(newDateValue) => handleChange("datum", newDateValue)}
+            title="Datum:"
           />
         </div>
       )}
@@ -852,7 +852,7 @@ export default function Gravure({
           )}
           <InputFile
             setError={setError}
-            title="bestand toevoegen:"
+            title="Bestand toevoegen:"
             onChange={(newUploadValue) =>
               handleChange("upload", newUploadValue)
             }

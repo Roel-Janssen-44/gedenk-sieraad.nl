@@ -39,7 +39,7 @@ export default function Upload({
       )}
       <InputFile
         setError={setError}
-        title="bestand toevoegen:"
+        title="Bestand toevoegen:"
         onChange={handleChange}
         value={value}
       />

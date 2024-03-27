@@ -1,31 +1,21 @@
 "use client";
 
-import {
-  Image as HydrogenImage,
-  useCart,
-  CartLineProvider,
-  CartLineQuantity,
-  CartLineQuantityAdjustButton,
-} from "@shopify/hydrogen-react";
+import { useCart } from "@shopify/hydrogen-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useEffect, useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 import { styled, alpha } from "@mui/material/styles";
 
+import TawkMessengerReact from "@tawk.to/tawk-messenger-react";
+
 import ShoppingBagRoundedIcon from "@mui/icons-material/ShoppingBagRounded";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
-import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
-import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import InputBase from "@mui/material/InputBase";
 
 import CartDrawer from "@/components/drawers/Cart";
@@ -64,7 +54,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     padding: theme.spacing(1, 0, 1, 1.5),
     transition: theme.transitions.create("width"),
     width: "100%",
-    // backgroundColor: "#fff",
     [theme.breakpoints.up("sm")]: {
       width: "12ch",
       "&:focus": {
@@ -79,6 +68,8 @@ export default function Navbar({
   setCartDrawerIsOpen,
   cartDrawerIsOpen,
 }) {
+  const tawkMessengerRef = useRef();
+
   const { totalQuantity } = useCart();
 
   const toggleCartDrawerIsOpen = () => {
@@ -178,6 +169,12 @@ export default function Navbar({
                           className="flex                           
                           relative before:absolute before:left-0 before:-translate-x-[101%] before:bottom-2 before:h-[2px] before:w-full before:bg-white hover:before:translate-x-0 before:transition-all overflow-hidden"
                           href={itemPathAfterDotCom}
+                          onClick={() => {
+                            scrollTo({
+                              top: 0,
+                              behavior: "smooth",
+                            });
+                          }}
                         >
                           <span className="flex justify-between py-3 px-2 items-center">
                             <span className="text-left">{menuItem?.title}</span>
@@ -203,6 +200,12 @@ export default function Navbar({
                                     }
                                     relative before:absolute before:left-0 before:opacity-0 before:bottom-2 before:h-[2px] before:w-full before:bg-primary hover:before:opacity-100 before:transition-all overflow-hidden"
                                   `}
+                                    onClick={() => {
+                                      scrollTo({
+                                        top: 0,
+                                        behavior: "smooth",
+                                      });
+                                    }}
                                   >
                                     <div key={"cart_line" + menuChildItem.id}>
                                       <div>{menuChildItem.title}</div>
@@ -283,6 +286,11 @@ export default function Navbar({
         menuItem={menuItem}
         onCloseAll={onCloseAll}
       />
+      {/* <TawkMessengerReact
+        propertyId="628d2b18b0d10b6f3e73d6c2"
+        widgetId="1g3rn0mja"
+        ref={tawkMessengerRef}
+      /> */}
     </>
   );
 }

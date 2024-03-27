@@ -2115,26 +2115,6 @@ export default function Positie({
                   />
                 </div>
               )}
-              {(gravureOption == "Datum" ||
-                gravureOption == "Naam en datum") && (
-                <div className="relative">
-                  {showErrors && (
-                    <p className="absolute  -bottom-6 left-0 text-red-700">
-                      {error[`datum${option.name}`]}
-                    </p>
-                  )}
-                  <InputDate
-                    value={
-                      values.find((item) => item.key === `datum${option.name}`)
-                        ?.value || ""
-                    }
-                    onChange={(newDateValue) =>
-                      handleChange(`datum${option.name}`, newDateValue)
-                    }
-                    title="Datum:"
-                  />
-                </div>
-              )}
               {(gravureOption == "Naam" ||
                 gravureOption == "Naam en datum") && (
                 <div className="relative">
@@ -2152,6 +2132,26 @@ export default function Positie({
                       handleChange(`naam${option.name}`, newNaamValue)
                     }
                     title="Naam:"
+                  />
+                </div>
+              )}
+              {(gravureOption == "Datum" ||
+                gravureOption == "Naam en datum") && (
+                <div className="relative">
+                  {showErrors && (
+                    <p className="absolute  -bottom-6 left-0 text-red-700">
+                      {error[`datum${option.name}`]}
+                    </p>
+                  )}
+                  <InputDate
+                    value={
+                      values.find((item) => item.key === `datum${option.name}`)
+                        ?.value || ""
+                    }
+                    onChange={(newDateValue) =>
+                      handleChange(`datum${option.name}`, newDateValue)
+                    }
+                    title="Datum:"
                   />
                 </div>
               )}
@@ -2248,7 +2248,7 @@ export default function Positie({
                   )}
                   <InputFile
                     setError={setError}
-                    title="bestand toevoegen:"
+                    title="Bestand toevoegen:"
                     onChange={(newUploadValue) =>
                       handleChange(`upload${option.name}`, newUploadValue)
                     }

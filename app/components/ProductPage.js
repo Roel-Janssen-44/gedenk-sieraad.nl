@@ -191,7 +191,7 @@ export default function ProductPage({ product }) {
                     <Zoom
                       loading="eager"
                       img={activeImage.url}
-                      zoomScale={2.5}
+                      zoomScale={2}
                       height={600}
                       width={600}
                       className="max-w-full max-h-full object-contain rounded block w-full h-full z-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"

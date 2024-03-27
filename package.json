@@ -16,6 +16,7 @@
     "@mui/material": "^5.14.19",
     "@mui/x-date-pickers": "^6.18.3",
     "@shopify/hydrogen-react": "^2023.10.0",
+    "@tawk.to/tawk-messenger-react": "^2.0.2",
     "cloudinary": "^1.41.2",
     "dayjs": "^1.11.10",
     "next": "14.0.3",

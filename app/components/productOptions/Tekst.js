@@ -682,21 +682,6 @@ export default function Tekst({
           />
         </div>
       )}
-      {(tekstBinnenZijdeRingValue == "Datum" ||
-        tekstBinnenZijdeRingValue == "Naam en datum") && (
-        <div className="relative">
-          {showErrors && (
-            <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["datum"]}
-            </p>
-          )}
-          <InputDate
-            value={values.find((item) => item.key === "datum")?.value || ""}
-            onChange={(newDateValue) => handleChange("datum", newDateValue)}
-            title="Datum:"
-          />
-        </div>
-      )}
       {(tekstBinnenZijdeRingValue == "Naam" ||
         tekstBinnenZijdeRingValue == "Naam en datum") && (
         <div className="relative">
@@ -709,6 +694,21 @@ export default function Tekst({
             value={values.find((item) => item.key === "naam")?.value || ""}
             onChange={(newNaamValue) => handleChange("naam", newNaamValue)}
             title="Naam:"
+          />
+        </div>
+      )}
+      {(tekstBinnenZijdeRingValue == "Datum" ||
+        tekstBinnenZijdeRingValue == "Naam en datum") && (
+        <div className="relative">
+          {showErrors && (
+            <p className="absolute  -bottom-6 left-0 text-red-700">
+              {error["datum"]}
+            </p>
+          )}
+          <InputDate
+            value={values.find((item) => item.key === "datum")?.value || ""}
+            onChange={(newDateValue) => handleChange("datum", newDateValue)}
+            title="Datum:"
           />
         </div>
       )}

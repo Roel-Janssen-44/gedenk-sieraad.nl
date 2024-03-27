@@ -684,21 +684,6 @@ export default function GraveerTekst({
           />
         </div>
       )}
-      {(graveerTekstValue == "Datum" ||
-        graveerTekstValue == "Naam en datum") && (
-        <div className="relative">
-          {showErrors && (
-            <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["datum"]}
-            </p>
-          )}
-          <InputDate
-            value={values.find((item) => item.key === "datum")?.value || ""}
-            onChange={(newDateValue) => handleChange("datum", newDateValue)}
-            title="Datum:"
-          />
-        </div>
-      )}
       {(graveerTekstValue == "Naam" ||
         graveerTekstValue == "Naam en datum") && (
         <div className="relative">
@@ -711,6 +696,21 @@ export default function GraveerTekst({
             value={values.find((item) => item.key === "naam")?.value || ""}
             onChange={(newNaamValue) => handleChange("naam", newNaamValue)}
             title="Naam:"
+          />
+        </div>
+      )}
+      {(graveerTekstValue == "Datum" ||
+        graveerTekstValue == "Naam en datum") && (
+        <div className="relative">
+          {showErrors && (
+            <p className="absolute  -bottom-6 left-0 text-red-700">
+              {error["datum"]}
+            </p>
+          )}
+          <InputDate
+            value={values.find((item) => item.key === "datum")?.value || ""}
+            onChange={(newDateValue) => handleChange("datum", newDateValue)}
+            title="Datum:"
           />
         </div>
       )}

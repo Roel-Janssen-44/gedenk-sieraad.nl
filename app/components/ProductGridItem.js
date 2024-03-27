@@ -10,12 +10,11 @@ export default function ProductGridItem({ product }) {
       href={`/products/${product.handle}`}
       className="group p-8 w-full sm:w-[284px] md:w-[332px] lg:w-[303px] xl:w-[295px] 2xl:w-[287px] hover:shadow-xl animation-all duration-500"
     >
-      <div className="relative flex justify-center w-[150px] h-[150px] mx-auto">
+      <div className="relative block w-[150px] h-[150px] mx-auto">
         <Image
           data={product?.images?.nodes[0]}
-          width={150}
-          height={150}
-          className={`h-full w-full object-contain ${
+          layout="raw"
+          className={`w-full h-full object-scale-down ${
             product?.images?.nodes[1]?.url != undefined
               ? "group-hover:opacity-0 transition-all duration-500"
               : ""
@@ -25,9 +24,7 @@ export default function ProductGridItem({ product }) {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-0 group-hover:opacity-100 transition-all duration-500 flex justify-center">
             <Image
               data={product?.images?.nodes[1]}
-              width={150}
-              height={150}
-              className="h-full w-full object-contain"
+              className="w-full h-full object-scale-down"
             />
           </div>
         )}
