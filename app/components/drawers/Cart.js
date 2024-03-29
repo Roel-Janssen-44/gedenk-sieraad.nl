@@ -55,11 +55,12 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
               <div key={"cart_line" + line.id}>
                 <CartLineProvider line={line}>
                   <li className="flex py-6">
-                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                    <div className="h-24 relative w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <HydrogenImage
                         data={line.merchandise.image}
-                        width={100}
-                        height={100}
+                        // width={100}
+                        className="absolute left-1/2 top-1/2 object-scale-down w-full h-full -translate-x-1/2 -translate-y-1/2"
+                        // height={100}
                       />
                     </div>
                     <div className="ml-4 flex flex-1 flex-col">

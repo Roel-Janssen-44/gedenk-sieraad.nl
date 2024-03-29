@@ -1,5 +1,6 @@
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+// import {Seo} from `@shopify/hydrogen`;
 
 import {
   getStorefrontApiUrl,
@@ -24,6 +25,10 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="nl">
+      <head>
+        {/* To do SEO  */}
+        {/* <Seo /> */}
+      </head>
       <body className={`${montserrat.className}`}>
         <CookieBanner />
         <MainLayoutInnerWrapper shopData={shopDataJson.data}>
