@@ -132,7 +132,7 @@ export default function Satijnen({
         )}
         <div className="flex flex-row gap-6">
           <div className="min-w-[150px]">
-            <InputRadio
+            <InputSelect
               value={
                 values.find((item) => item.key === "satijnenSingle")?.value ||
                 ""
@@ -146,8 +146,11 @@ export default function Satijnen({
           </div>
           <div className="w-auto h-auto pt-7">
             <div className="w-auto h-auto sticky top-10">
-              <Button onClick={handleOpen}>
-                <Image src={"/images/satijnen.jpeg"} width={150} height={235} />
+              <Button
+                onClick={handleOpen}
+                className="bg-gray-100 aspect-sqaure w-28 rounded-lg"
+              >
+                <Image src={"/images/satijnen.jpeg"} width={50} height={150} />
               </Button>
             </div>
           </div>

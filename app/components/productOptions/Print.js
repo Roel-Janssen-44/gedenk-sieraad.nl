@@ -178,7 +178,7 @@ export default function Print({
           onChange={(newKeuze1TekstValue) =>
             handleChange("keuze1", newKeuze1TekstValue)
           }
-          title="Print:"
+          title="Tekst:"
           options={printKeuze1Options}
         />
       </div>

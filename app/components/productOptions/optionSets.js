@@ -117,11 +117,11 @@ export const printKeuze2Options = [
 
 export const printKeuze3Options = [
   {
-    value: "1 Bestand",
+    value: "Bestand 1",
     price: 0,
   },
   {
-    value: "2 Bestanden",
+    value: "Bestand 2",
     price: 99.0,
   },
 ];
