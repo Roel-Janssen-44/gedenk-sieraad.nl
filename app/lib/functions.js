@@ -25,6 +25,61 @@ export function calculatePrice(selectedOptions, optionSets) {
     const currentOptionSet = findOptionSet(optionSets, optionKey);
 
     const selectedTargetValue = selectedOptions[i].value;
+
+    if (optionKey === "positieOptions") {
+      // if (selectedTargetValue.) {
+      //   totalPrice += 5;
+      // }
+      console.log("selectedTargetValue");
+      console.log(selectedTargetValue);
+      for (let i = 0; i < selectedTargetValue.length; i++) {
+        if (selectedTargetValue[i].key === "gravureLinks") {
+          const value = selectedTargetValue[i].value;
+          const price = findPriceByValue(optionSets, "gravure", value);
+          totalPrice += price || 0;
+        } else if (selectedTargetValue[i].key === "gravureMidden") {
+          const value = selectedTargetValue[i].value;
+          const price = findPriceByValue(optionSets, "gravure", value);
+          totalPrice += price || 0;
+        } else if (selectedTargetValue[i].key === "gravureRechts") {
+          const value = selectedTargetValue[i].value;
+          const price = findPriceByValue(optionSets, "gravure", value);
+          totalPrice += price || 0;
+        } else if (selectedTargetValue[i].key === "gravureAchter") {
+          const value = selectedTargetValue[i].value;
+          const price = findPriceByValue(optionSets, "gravure", value);
+          totalPrice += price || 0;
+        } else if (selectedTargetValue[i].key === "extraWoordLinks") {
+          const value = selectedTargetValue[i].value;
+          const price = findPriceByValue(optionSets, "extraWoorden", value);
+          totalPrice += price || 0;
+        } else if (selectedTargetValue[i].key === "extraWoordMidden") {
+          const value = selectedTargetValue[i].value;
+          const price = findPriceByValue(
+            optionSets,
+            "extraWoordenOptions",
+            value
+          );
+          totalPrice += price || 0;
+        } else if (selectedTargetValue[i].key === "extraWoordRechts") {
+          const value = selectedTargetValue[i].value;
+          const price = findPriceByValue(
+            optionSets,
+            "extraWoordenOptions",
+            value
+          );
+          totalPrice += price || 0;
+        } else if (selectedTargetValue[i].key === "extraWoordAchter") {
+          const value = selectedTargetValue[i].value;
+          const price = findPriceByValue(
+            optionSets,
+            "extraWoordenOptions",
+            value
+          );
+          totalPrice += price || 0;
+        }
+      }
+    }
     if (typeof selectedTargetValue == "string") {
       if (!currentOptionSet) return;
       const selectedOptionSet = currentOptionSet.find(
