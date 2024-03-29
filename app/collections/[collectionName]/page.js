@@ -3,6 +3,7 @@ import {
   getPrivateTokenHeaders,
 } from "@/lib/shopify-client";
 import CollectionPage from "@/components/CollectionPage";
+import { data } from "autoprefixer";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const collectionResponse = await fetch(getStorefrontApiUrl(), {
@@ -28,22 +29,29 @@ export async function generateMetadata({ params, searchParams }, parent) {
   };
 }
 
-export default async function Collection({ params, searchParams }) {
-  const collectionResponse = await fetch(getStorefrontApiUrl(), {
+async function getCollectionData({ collectionName }) {
+  const res = await fetch(getStorefrontApiUrl(), {
     body: JSON.stringify({
       query: GRAPHQL_COLLECTION_QUERY,
       variables: {
-        collectionName: params.collectionName,
+        collectionName,
       },
     }),
     headers: getPrivateTokenHeaders({ buyerIp: "..." }),
     method: "POST",
   });
 
-  const collectionJson = await collectionResponse.json();
+  return res.json();
+}
+
+export default async function Collection({ params, searchParams }) {
+  const data = await getCollectionData({
+    collectionName: params.collectionName,
+  });
+
   return (
     <CollectionPage
-      collection={collectionJson.data.collectionData}
+      collection={data.data.collectionData}
       searchParams={searchParams}
     />
   );
@@ -69,3 +77,53 @@ query CollectionByHandle($collectionName: String!) {
   }
 }
 `;
+// const GRAPHQL_COLLECTION_QUERY = `
+// query CollectionByHandle($collectionName: String!) {
+//   collectionData: collection(handle: $collectionName) {
+//     handle
+//     title
+//     description
+//     image {
+//       altText
+//       height
+//       url
+//       width
+//       src
+//     }
+//     seo {
+//       description
+//       title
+//     }
+//     products(first: 10) {
+//       nodes {
+//         title
+//         id
+//         handle
+//         images(first: 2) {
+//           nodes {
+//             altText
+//             height
+//             url
+//             width
+//           }
+//         }
+//         priceRange {
+//           maxVariantPrice {
+//             amount
+//             currencyCode
+//           }
+//           minVariantPrice {
+//             amount
+//             currencyCode
+//           }
+//         }
+//         vendor
+//         options(first: 1) {
+//           name
+//           values
+//         }
+//       }
+//     }
+//   }
+// }
+// `;

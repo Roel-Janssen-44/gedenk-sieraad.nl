@@ -1,3 +1,5 @@
+// import { c } from "tar";
+
 export function checkForActiveMaterial(activeMaterialList, activeMaterial) {
   if (
     zilver.includes(activeMaterial) &&
@@ -27,11 +29,6 @@ export function calculatePrice(selectedOptions, optionSets) {
     const selectedTargetValue = selectedOptions[i].value;
 
     if (optionKey === "positieOptions") {
-      // if (selectedTargetValue.) {
-      //   totalPrice += 5;
-      // }
-      console.log("selectedTargetValue");
-      console.log(selectedTargetValue);
       for (let i = 0; i < selectedTargetValue.length; i++) {
         if (selectedTargetValue[i].key === "gravureLinks") {
           const value = selectedTargetValue[i].value;
@@ -80,6 +77,30 @@ export function calculatePrice(selectedOptions, optionSets) {
         }
       }
     }
+
+    // To do print
+    console.log("optionKey");
+    console.log(optionKey);
+
+    if (optionKey === "printOptions") {
+      console.log("printOptions");
+      console.log(selectedTargetValue);
+      for (let i = 0; i < selectedTargetValue.length; i++) {
+        if (selectedTargetValue[i].key === "keuze2") {
+          if (selectedTargetValue[i].value == "Ja") {
+            totalPrice += 99.0;
+          }
+        }
+        if (selectedTargetValue[i].key === "keuze3") {
+          if (selectedTargetValue[i].value == "Bestand 2") {
+            totalPrice += 99.0;
+          }
+        }
+      }
+      // const price = findPriceByValue(optionSets, "extraWoordenOptions", value);
+      // totalPrice += price || 0;
+    }
+
     if (typeof selectedTargetValue == "string") {
       if (!currentOptionSet) return;
       const selectedOptionSet = currentOptionSet.find(

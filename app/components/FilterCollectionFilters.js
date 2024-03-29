@@ -130,7 +130,7 @@ const menu = [
   },
 ];
 
-export default function FilterDrawerFilters({ products, onClose }) {
+export default function FilterDrawerFilters({ products }) {
   const [expanded, setExpanded] = useState(false);
 
   const searchParams = useSearchParams();
@@ -146,6 +146,8 @@ export default function FilterDrawerFilters({ products, onClose }) {
     setExpanded(isExpanded ? panel : false);
   };
 
+  console.log("products");
+  console.log(products);
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
     if (material) {
@@ -169,9 +171,7 @@ export default function FilterDrawerFilters({ products, onClose }) {
     if (maxPrice) {
       params.set("MaxPrijs", maxPrice);
     }
-    setTimeout(() => {
-      replace(`${pathname}?${params.toString()}`);
-    }, 1800);
+    replace(`${pathname}?${params.toString()}`);
   }, [minPrice, maxPrice]);
 
   let vendors = {
@@ -185,6 +185,14 @@ export default function FilterDrawerFilters({ products, onClose }) {
     },
     seeyou: {
       name: "See You Gedenksieraden",
+      amount: 0,
+    },
+    milanello: {
+      name: "Milanello",
+      amount: 0,
+    },
+    adore: {
+      name: "Adore",
       amount: 0,
     },
   };
@@ -218,30 +226,52 @@ export default function FilterDrawerFilters({ products, onClose }) {
       name: "14 KT roségoud",
       amount: 0,
     },
+    {
+      name: "Leder",
+      amount: 0,
+    },
+    {
+      name: "Staal",
+      amount: 0,
+    },
+    {
+      name: "Zilver/geelgoud verguld",
+      amount: 0,
+    },
+    {
+      name: "Zilver/roségoud verguld",
+      amount: 0,
+    },
   ];
 
-  products.forEach((product) => {
-    // console.log("material");
-    // console.log(material);
+  products?.forEach((product) => {
     if (material == null) {
-      if (product.vendor === "Elegante hand made") {
+      if (product.vendor === "Elegant hand made") {
         vendors["elegant"].amount++;
       } else if (product.vendor === "Exquisite hand made") {
         vendors["exquisite"].amount++;
       } else if (product.vendor === "See You Gedenksieraden") {
         vendors["seeyou"].amount++;
+      } else if (product.vendor === "Adore") {
+        vendors["adore"].amount++;
+      } else if (product.vendor === "Milanello") {
+        vendors["milanello"].amount++;
       }
     } else {
       product.options[0].values.forEach((option) => {
         if (option == material) {
           console.log("inside if statement");
 
-          if (product.vendor === "Elegante hand made") {
+          if (product.vendor === "Elegant hand made") {
             vendors["elegant"].amount++;
           } else if (product.vendor === "Exquisite hand made") {
             vendors["exquisite"].amount++;
           } else if (product.vendor === "See You Gedenksieraden") {
             vendors["seeyou"].amount++;
+          } else if (product.vendor === "Adore") {
+            vendors["adore"].amount++;
+          } else if (product.vendor === "Milanello") {
+            vendors["milanello"].amount++;
           }
         }
       });
@@ -488,9 +518,9 @@ export default function FilterDrawerFilters({ products, onClose }) {
           className="bg-primary w-full mt-8"
           variant="contained"
           size="large"
-          onClick={() => {
-            // To do add scroll to top
-          }}
+          // onClick={() => {
+          //   // To do add scroll to top
+          // }}
         >
           Producten zoeken
         </Button>

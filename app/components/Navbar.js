@@ -169,12 +169,12 @@ export default function Navbar({
                           className="flex                           
                           relative before:absolute before:left-0 before:-translate-x-[101%] before:bottom-2 before:h-[2px] before:w-full before:bg-white hover:before:translate-x-0 before:transition-all overflow-hidden"
                           href={itemPathAfterDotCom}
-                          onClick={() => {
-                            scrollTo({
-                              top: 0,
-                              behavior: "smooth",
-                            });
-                          }}
+                          // onClick={() => {
+                          //   scrollTo({
+                          //     top: 0,
+                          //     behavior: "smooth",
+                          //   });
+                          // }}
                         >
                           <span className="flex justify-between py-3 px-2 items-center">
                             <span className="text-left">{menuItem?.title}</span>
@@ -200,12 +200,12 @@ export default function Navbar({
                                     }
                                     relative before:absolute before:left-0 before:opacity-0 before:bottom-2 before:h-[2px] before:w-full before:bg-primary hover:before:opacity-100 before:transition-all overflow-hidden"
                                   `}
-                                    onClick={() => {
-                                      scrollTo({
-                                        top: 0,
-                                        behavior: "smooth",
-                                      });
-                                    }}
+                                    // onClick={() => {
+                                    //   scrollTo({
+                                    //     top: 0,
+                                    //     behavior: "smooth",
+                                    //   });
+                                    // }}
                                   >
                                     <div key={"cart_line" + menuChildItem.id}>
                                       <div>{menuChildItem.title}</div>

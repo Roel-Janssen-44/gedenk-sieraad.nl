@@ -18,7 +18,7 @@ export default function FilterCollection({ products }) {
     <div className="relative">
       {/* Pc filters */}
       <div className="hidden xl:block xl:w-[265px]">
-        <FilterCollectionFilters products={products} onClose={() => null} />
+        <FilterCollectionFilters products={products} />
       </div>
       {/* Mobile filters */}
       <div className="block xl:hidden">

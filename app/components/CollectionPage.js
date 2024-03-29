@@ -1,7 +1,7 @@
 "use client";
 
 import { Image } from "@shopify/hydrogen-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 
 import LoadingGrid from "@/components/LoadingGrid";
 import ProductGrid from "@/components/ProductGrid";
@@ -16,8 +16,11 @@ export default function CollectionPage({ searchParams, collection }) {
   const minPrice = searchParams.MinPrijs || null;
   const maxPrice = searchParams.MaxPrijs || null;
 
+  console.log("searchParams");
+  console.log(searchParams);
+  console.log(vendor);
+
   const [products, setProducts] = useState([]);
-  // const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {

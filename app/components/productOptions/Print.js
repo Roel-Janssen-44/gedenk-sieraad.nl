@@ -72,11 +72,12 @@ export default function Print({
             }));
           }
           break;
-        case "Ik wil eerst een gratis vingerafdrukpakket ontvangen.(selecteer dan ook bij gravure: vingerafdruk)":
-        case "Ik wil eerst een gratis hand/voet/pootafdrukpakket ontvangen.(selecteer dan ook bij gravure: hand/voetafdruk of pootafdruk)":
+        case "Ik wil eerst een gratis vingerafdruk pakket ontvangen.":
+        case "Ik wil eerst een gratis hand/voet/pootafdruk pakket ontvangen.":
           setError((prevState) => ({
             ...prevState,
             ["keuze2"]: "",
+            ["keuze3"]: "",
             ["upload1"]: "",
             ["upload2"]: "",
           }));
@@ -91,6 +92,10 @@ export default function Print({
               ["keuze3"]: "",
             }));
           }
+          setError((prevState) => ({
+            ...prevState,
+            ["keuze2"]: "",
+          }));
           break;
         default:
           break;
@@ -152,6 +157,25 @@ export default function Print({
   }, [values]);
 
   const handleChange = (changedKey, newValue) => {
+    if (changedKey === "keuze1") {
+      if (
+        newValue ==
+        "Ik heb al een digitaal bestand van vinger/voet/hand/pootafdruk of gravure en wil dit nu uploaden "
+      ) {
+        setValues((prevValues) =>
+          prevValues.map((item) =>
+            item.key === "keuze3" ? { ...item, value: "" } : item
+          )
+        );
+      } else {
+        setValues((prevValues) =>
+          prevValues.map((item) =>
+            item.key === "keuze2" ? { ...item, value: "" } : item
+          )
+        );
+      }
+    }
+
     setValues((prevValues) =>
       prevValues.map((item) =>
         item.key === changedKey ? { ...item, value: newValue } : item
@@ -188,21 +212,6 @@ export default function Print({
           <div className="relative">
             {showErrors && (
               <p className="absolute -bottom-6 left-0 text-red-700">
-                {error["keuze2"]}
-              </p>
-            )}
-            <InputSelect
-              value={values.find((item) => item.key === "keuze2")?.value || ""}
-              onChange={(newKeuze2Value) =>
-                handleChange("keuze2", newKeuze2Value)
-              }
-              title="Tweede bestand uploaden:"
-              options={printKeuze2Options}
-            />
-          </div>
-          <div className="relative">
-            {showErrors && (
-              <p className="absolute -bottom-6 left-0 text-red-700">
                 {error["upload1"]}
               </p>
             )}
@@ -214,6 +223,21 @@ export default function Print({
               title="Bestand 1:"
               options={printKeuze2Options}
               setError={setError}
+            />
+          </div>
+          <div className="relative">
+            {showErrors && (
+              <p className="absolute -bottom-6 left-0 text-red-700">
+                {error["keuze2"]}
+              </p>
+            )}
+            <InputSelect
+              value={values.find((item) => item.key === "keuze2")?.value || ""}
+              onChange={(newKeuze2Value) =>
+                handleChange("keuze2", newKeuze2Value)
+              }
+              title="Tweede bestand uploaden:"
+              options={printKeuze2Options}
             />
           </div>
           {printKeuze2 == "Ja" && (

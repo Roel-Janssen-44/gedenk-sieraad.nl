@@ -27,7 +27,8 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-player": "^2.14.1",
     "react-slick": "^0.29.0",
-    "sanitize-html-react": "^1.13.0"
+    "sanitize-html-react": "^1.13.0",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",

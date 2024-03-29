@@ -71,18 +71,20 @@ export const pootKeuze1Options = [
 export const pootKeuze2Options = [
   {
     value:
-      "Ik heb al een digitaal bestand van vinger/voet/hand/pootafdruk of gravure en wil dit nu uploaden",
+      "Ik heb al een digitaal bestand van een pootafdruk en wil dit nu uploaden",
+    // value:
+    //   "Ik heb al een digitaal bestand van vinger/voet/hand/pootafdruk of gravure en wil dit nu uploaden",
     price: 0,
   },
+  // {
+  //   value:
+  //     "Ik wil eerst een gratis vingerafdrukpakket ontvangen.(selecteer dan ook bij gravure: vingerafdruk)",
+  //   price: 0,
+  // },
   {
-    value:
-      "Ik wil eerst een gratis vingerafdrukpakket ontvangen.(selecteer dan ook bij gravure: vingerafdruk)",
+    value: "Ik wil eerst een gratis pootafdruk pakket ontvangen.",
     price: 0,
-  },
-  {
-    value:
-      "Ik wil eerst een gratis hand/voet/pootafdrukpakket ontvangen.(selecteer dan ook bij gravure: hand/voetafdruk of pootafdruk)",
-    price: 0,
+    imageUrl: "/images/handafdruk.png",
   },
 ];
 
@@ -93,14 +95,18 @@ export const printKeuze1Options = [
     price: 0,
   },
   {
-    value:
-      "Ik wil eerst een gratis vingerafdrukpakket ontvangen.(selecteer dan ook bij gravure: vingerafdruk)",
+    // value:
+    //   "Ik wil eerst een gratis vingerafdrukpakket ontvangen.(selecteer dan ook bij gravure: vingerafdruk)",
+    value: "Ik wil eerst een gratis vingerafdruk pakket ontvangen.",
     price: 0,
+    imageUrl: "/images/handafdruk.png",
   },
   {
-    value:
-      "Ik wil eerst een gratis hand/voet/pootafdrukpakket ontvangen.(selecteer dan ook bij gravure: hand/voetafdruk of pootafdruk)",
+    value: "Ik wil eerst een gratis hand/voet/pootafdruk pakket ontvangen.",
+    // value:
+    //   "Ik wil eerst een gratis hand/voet/pootafdrukpakket ontvangen.(selecteer dan ook bij gravure: hand/voetafdruk of pootafdruk)",
     price: 0,
+    imageUrl: "/images/vingerafdruk.png",
   },
 ];
 

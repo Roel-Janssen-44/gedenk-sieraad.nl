@@ -46,9 +46,9 @@ const generateGraphQLQuery = ({
   sortKey,
 }) => {
   let vendorFilter;
-  // if (vendor != null) {
-  //   vendorFilter = `{ productVendor: "${vendor}"}`;
-  // }
+  if (vendor != null) {
+    vendorFilter = `{ productVendor: "${vendor}"}`;
+  }
   let materialFilter;
   if (material != null) {
     materialFilter = `{ variantOption: { name: "Materiaal", value: "${material}" } }`;

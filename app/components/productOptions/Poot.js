@@ -158,7 +158,7 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
       )}
       {pootKeuze == "Eigen pootafdruk" &&
         pootKeuze2 ===
-          "Ik heb al een digitaal bestand van vinger/voet/hand/pootafdruk of gravure en wil dit nu uploaden" && (
+          "Ik heb al een digitaal bestand van een pootafdruk en wil dit nu uploaden" && (
           <div className="relative">
             {showErrors && (
               <p className="absolute -bottom-6 left-0 text-red-700">

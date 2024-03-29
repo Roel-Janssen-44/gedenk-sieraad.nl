@@ -14,6 +14,8 @@ export default function ProductGridItem({ product }) {
         <Image
           data={product?.images?.nodes[0]}
           layout="raw"
+          width={350}
+          height={350}
           className={`w-full h-full object-scale-down ${
             product?.images?.nodes[1]?.url != undefined
               ? "group-hover:opacity-0 transition-all duration-500"
@@ -25,6 +27,8 @@ export default function ProductGridItem({ product }) {
             <Image
               data={product?.images?.nodes[1]}
               className="w-full h-full object-scale-down"
+              width={350}
+              height={350}
             />
           </div>
         )}
