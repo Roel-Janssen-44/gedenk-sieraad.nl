@@ -18,13 +18,13 @@ export default function Ringmaat({
       setError("* Veld mag niet leeg zijn");
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["ringmaat"]: true,
+        ["Ringmaat"]: true,
       }));
     } else {
       setError(null);
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["ringmaat"]: false,
+        ["Ringmaat"]: false,
       }));
     }
   }, [value]);

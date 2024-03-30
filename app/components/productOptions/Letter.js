@@ -18,13 +18,13 @@ export default function Letter({
       setError("* Veld mag niet leeg zijn");
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["letter"]: true,
+        ["Letter"]: true,
       }));
     } else {
       setError(null);
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["letter"]: false,
+        ["Letter"]: false,
       }));
     }
   }, [value]);

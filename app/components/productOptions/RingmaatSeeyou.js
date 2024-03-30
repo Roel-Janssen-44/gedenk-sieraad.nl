@@ -18,13 +18,13 @@ export default function RingmaatSeeyou({
       setError("* Veld mag niet leeg zijn");
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["ringmaatsy"]: true,
+        ["Ringmaatsy"]: true,
       }));
     } else {
       setError(null);
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["ringmaatsy"]: false,
+        ["Ringmaatsy"]: false,
       }));
     }
   }, [value]);

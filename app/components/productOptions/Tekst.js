@@ -23,19 +23,19 @@ export default function Tekst({
   useEffect(() => {
     if (Array.isArray(value)) {
       const tekstBinnenZijdeRing = value.find(
-        (item) => item.key === "tekstBinnenZijdeRing"
+        (item) => item.key === "Tekstbinnenzijdering"
       ).value;
       const lettertypeValue = value.find(
-        (item) => item.key === "lettertype"
+        (item) => item.key === "Lettertype"
       ).value;
       const initialenValue = value.find(
-        (item) => item.key === "initialen"
+        (item) => item.key === "Initialen"
       ).value;
       const extraWoordValue = value.find(
-        (item) => item.key === "extraWoord"
+        (item) => item.key === "Extrawoord"
       ).value;
-      const datumValue = value.find((item) => item.key === "datum").value;
-      const naamValue = value.find((item) => item.key === "naam").value;
+      const datumValue = value.find((item) => item.key === "Datum").value;
+      const naamValue = value.find((item) => item.key === "Naam").value;
       const woord1Value = value.find((item) => item.key === "1 woord").value;
       const woord2Value = value.find((item) => item.key === "2 woorden").value;
       const woord3Value = value.find((item) => item.key === "3 woorden").value;
@@ -46,32 +46,32 @@ export default function Tekst({
           if (initialenValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["initialen"]: "Veld initiaal mag niet leeg zijn",
+              ["Initialen"]: "Veld initiaal mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["initialen"]: "",
+              ["Initialen"]: "",
             }));
           }
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
-            ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["naam"]: "",
-            ["datum"]: "",
-            ["tekstBinnenZijdeRing"]: "",
+            ["Tekstbinnenzijdering"]: "",
+            ["Extrawoord"]: "",
+            ["Naam"]: "",
+            ["Datum"]: "",
+            ["Tekstbinnenzijdering"]: "",
             ["woord1"]: "",
             ["woord2"]: "",
             ["woord3"]: "",
@@ -81,13 +81,13 @@ export default function Tekst({
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,
-            ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["lettertype"]: "",
-            ["naam"]: "",
-            ["datum"]: "",
-            ["tekstBinnenZijdeRing"]: "",
+            ["Tekstbinnenzijdering"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Lettertype"]: "",
+            ["Naam"]: "",
+            ["Datum"]: "",
+            ["Tekstbinnenzijdering"]: "",
             ["woord1"]: "",
             ["woord2"]: "",
             ["woord3"]: "",
@@ -99,12 +99,12 @@ export default function Tekst({
           if (extraWoordValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["extraWoord"]: "* Veld extraWoord mag niet leeg zijn",
+              ["Extrawoord"]: "* Veld extraWoord mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["extraWoord"]: "",
+              ["Extrawoord"]: "",
             }));
             if (extraWoordValue == "1 extra woord") {
               if (woord1Value == "") {
@@ -131,22 +131,22 @@ export default function Tekst({
               if (lettertypeValue == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "* Kies een lettertype",
+                  ["Lettertype"]: "* Kies een lettertype",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "",
+                  ["Lettertype"]: "",
                 }));
               }
               setError((prevState) => ({
                 ...prevState,
-                ["tekstBinnenZijdeRing"]: "",
-                ["extraWoord"]: "",
-                ["initialen"]: "",
-                ["naam"]: "",
-                ["datum"]: "",
-                ["tekstBinnenZijdeRing"]: "",
+                ["Tekstbinnenzijdering"]: "",
+                ["Extrawoord"]: "",
+                ["Initialen"]: "",
+                ["Naam"]: "",
+                ["Datum"]: "",
+                ["Tekstbinnenzijdering"]: "",
                 ["woord2"]: "",
                 ["woord3"]: "",
                 ["woord4"]: "",
@@ -177,22 +177,22 @@ export default function Tekst({
               if (lettertypeValue == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "* Kies een lettertype",
+                  ["Lettertype"]: "* Kies een lettertype",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "",
+                  ["Lettertype"]: "",
                 }));
               }
               setError((prevState) => ({
                 ...prevState,
-                ["tekstBinnenZijdeRing"]: "",
-                ["extraWoord"]: "",
-                ["initialen"]: "",
-                ["naam"]: "",
-                ["datum"]: "",
-                ["tekstBinnenZijdeRing"]: "",
+                ["Tekstbinnenzijdering"]: "",
+                ["Extrawoord"]: "",
+                ["Initialen"]: "",
+                ["Naam"]: "",
+                ["Datum"]: "",
+                ["Tekstbinnenzijdering"]: "",
                 ["woord1"]: "",
                 ["woord3"]: "",
                 ["woord4"]: "",
@@ -200,16 +200,16 @@ export default function Tekst({
             } else {
               setError((prevState) => ({
                 ...prevState,
-                ["tekstBinnenZijdeRing"]: "",
-                ["extraWoord"]: "",
-                ["initialen"]: "",
-                ["naam"]: "",
-                ["datum"]: "",
-                ["tekstBinnenZijdeRing"]: "",
+                ["Tekstbinnenzijdering"]: "",
+                ["Extrawoord"]: "",
+                ["Initialen"]: "",
+                ["Naam"]: "",
+                ["Datum"]: "",
+                ["Tekstbinnenzijdering"]: "",
                 ["woord1"]: "",
                 ["woord3"]: "",
                 ["woord4"]: "",
-                ["lettertype"]: "",
+                ["Lettertype"]: "",
               }));
             }
           }
@@ -219,32 +219,32 @@ export default function Tekst({
           if (datumValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "Veld datum mag niet leeg zijn",
+              ["Datum"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "",
+              ["Datum"]: "",
             }));
           }
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
-            ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["naam"]: "",
-            ["tekstBinnenZijdeRing"]: "",
+            ["Tekstbinnenzijdering"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Naam"]: "",
+            ["Tekstbinnenzijdering"]: "",
             ["woord1"]: "",
             ["woord2"]: "",
             ["woord3"]: "",
@@ -255,32 +255,32 @@ export default function Tekst({
           if (naamValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "Veld naam mag niet leeg zijn",
+              ["Naam"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "",
+              ["Naam"]: "",
             }));
           }
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
-            ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["datum"]: "",
-            ["tekstBinnenZijdeRing"]: "",
+            ["Tekstbinnenzijdering"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Datum"]: "",
+            ["Tekstbinnenzijdering"]: "",
             ["woord1"]: "",
             ["woord2"]: "",
             ["woord3"]: "",
@@ -291,47 +291,48 @@ export default function Tekst({
           if (naamValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "Veld naam mag niet leeg zijn",
+              ["Naam"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "",
+              ["Naam"]: "",
             }));
           }
           if (datumValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "Veld datum mag niet leeg zijn",
+              ["Datum"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "",
+              ["Datum"]: "",
             }));
           }
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
-            ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["tekstBinnenZijdeRing"]: "",
+            ["Tekstbinnenzijdering"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Tekstbinnenzijdering"]: "",
             ["woord1"]: "",
             ["woord2"]: "",
             ["woord3"]: "",
             ["woord4"]: "",
           }));
+          break;
         case "1 woord":
           if (woord1Value == "") {
             setError((prevState) => ({
@@ -357,22 +358,22 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
-            ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["naam"]: "",
-            ["datum"]: "",
-            ["tekstBinnenZijdeRing"]: "",
+            ["Tekstbinnenzijdering"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Naam"]: "",
+            ["Datum"]: "",
+            ["Tekstbinnenzijdering"]: "",
             ["woord2"]: "",
             ["woord3"]: "",
             ["woord4"]: "",
@@ -403,22 +404,22 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
-            ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["naam"]: "",
-            ["datum"]: "",
-            ["tekstBinnenZijdeRing"]: "",
+            ["Tekstbinnenzijdering"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Naam"]: "",
+            ["Datum"]: "",
+            ["Tekstbinnenzijdering"]: "",
             ["woord1"]: "",
             ["woord3"]: "",
             ["woord4"]: "",
@@ -449,22 +450,22 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
-            ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["naam"]: "",
-            ["datum"]: "",
-            ["tekstBinnenZijdeRing"]: "",
+            ["Tekstbinnenzijdering"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Naam"]: "",
+            ["Datum"]: "",
+            ["Tekstbinnenzijdering"]: "",
             ["woord1"]: "",
             ["woord2"]: "",
             ["woord4"]: "",
@@ -495,22 +496,22 @@ export default function Tekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
-            ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["naam"]: "",
-            ["datum"]: "",
-            ["tekstBinnenZijdeRing"]: "",
+            ["Tekstbinnenzijdering"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Naam"]: "",
+            ["Datum"]: "",
+            ["Tekstbinnenzijdering"]: "",
             ["woord1"]: "",
             ["woord2"]: "",
             ["woord3"]: "",
@@ -520,12 +521,12 @@ export default function Tekst({
           if (tekstBinnenZijdeRing == "") {
             setError((prevState) => ({
               ...prevState,
-              ["tekstBinnenZijdeRing"]: "Veld mag niet leeg zijn",
+              ["Tekstbinnenzijdering"]: "Veld mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["tekstBinnenZijdeRing"]: "",
+              ["Tekstbinnenzijdering"]: "",
             }));
           }
       }
@@ -545,7 +546,7 @@ export default function Tekst({
       ) {
         setError((prevState) => ({
           ...prevState,
-          ["tekstBinnenZijdeRing"]: "",
+          ["Tekstbinnenzijdering"]: "",
         }));
       }
     }
@@ -570,14 +571,14 @@ export default function Tekst({
 
   const [values, setValues] = useState([
     {
-      key: "tekstBinnenZijdeRing",
+      key: "Tekstbinnenzijdering",
       value: value?.tekstBinnenZijdeRing?.value || "",
     },
-    { key: "lettertype", value: value?.lettertype?.value || "" },
-    { key: "initialen", value: value?.initialen?.value || "" },
-    { key: "extraWoord", value: value?.extraWoord?.value || "" },
-    { key: "datum", value: value?.datum?.value || "" },
-    { key: "naam", value: value?.naam?.value || "" },
+    { key: "Lettertype", value: value?.lettertype?.value || "" },
+    { key: "Initialen", value: value?.initialen?.value || "" },
+    { key: "Extrawoord", value: value?.extraWoord?.value || "" },
+    { key: "Datum", value: value?.datum?.value || "" },
+    { key: "Naam", value: value?.naam?.value || "" },
     { key: "1 woord", value: value?.woord1?.value || "" },
     { key: "2 woorden", value: value?.woord2?.value || "" },
     { key: "3 woorden", value: value?.woord3?.value || "" },
@@ -595,19 +596,19 @@ export default function Tekst({
   }, [values]);
 
   const handleChange = (changedKey, newValue) => {
-    if (changedKey === "tekstBinnenZijdeRing") {
+    if (changedKey === "Tekstbinnenzijdering") {
       if (
         !newValue.includes("Initialen/letters/tekens") ||
         !newValue.includes("Hartje ♥ symbool")
       ) {
         setValues((prevValues) =>
           prevValues.map((item) =>
-            item.key === "extraWoord" ? { ...item, value: "" } : item
+            item.key === "Extrawoord" ? { ...item, value: "" } : item
           )
         );
         setError((prevState) => ({
           ...prevState,
-          ["extraWoord"]: "",
+          ["Extrawoord"]: "",
         }));
       }
     }
@@ -619,10 +620,10 @@ export default function Tekst({
     onChange(values);
   };
   const tekstBinnenZijdeRingValue = values.find(
-    (item) => item.key === "tekstBinnenZijdeRing"
+    (item) => item.key === "Tekstbinnenzijdering"
   ).value;
   const extraWoordValue = values.find(
-    (item) => item.key === "extraWoord"
+    (item) => item.key === "Extrawoord"
   ).value;
 
   useEffect(() => {
@@ -635,13 +636,13 @@ export default function Tekst({
       <div className="relative">
         {showErrors && (
           <p className="absolute  -bottom-6 left-0 text-red-700">
-            {error["tekstBinnenZijdeRing"]}
+            {error["Tekstbinnenzijdering"]}
           </p>
         )}
         <InputSelect
           value={tekstBinnenZijdeRingValue}
           onChange={(newTekstValue) =>
-            handleChange("tekstBinnenZijdeRing", newTekstValue)
+            handleChange("Tekstbinnenzijdering", newTekstValue)
           }
           title="Tekst binnenzijde ring:"
           options={tekstBinnenZijdeRingOptions}
@@ -653,13 +654,13 @@ export default function Tekst({
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["extraWoord"]}
+              {error["Extrawoord"]}
             </p>
           )}
           <InputSelect
             value={extraWoordValue}
             onChange={(newExtraWoordValue) =>
-              handleChange("extraWoord", newExtraWoordValue)
+              handleChange("Extrawoord", newExtraWoordValue)
             }
             title="Extra woorden:"
             options={extraWoordenOptions}
@@ -670,13 +671,13 @@ export default function Tekst({
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["initialen"]}
+              {error["Initialen"]}
             </p>
           )}
           <InputTextField
-            value={values.find((item) => item.key === "initialen")?.value || ""}
+            value={values.find((item) => item.key === "Initialen")?.value || ""}
             onChange={(newInitialenValue) =>
-              handleChange("initialen", newInitialenValue)
+              handleChange("Initialen", newInitialenValue)
             }
             title="Initialen/letters/tekens:"
           />
@@ -687,12 +688,12 @@ export default function Tekst({
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["naam"]}
+              {error["Naam"]}
             </p>
           )}
           <InputTextField
-            value={values.find((item) => item.key === "naam")?.value || ""}
-            onChange={(newNaamValue) => handleChange("naam", newNaamValue)}
+            value={values.find((item) => item.key === "Naam")?.value || ""}
+            onChange={(newNaamValue) => handleChange("Naam", newNaamValue)}
             title="Naam:"
           />
         </div>
@@ -702,12 +703,12 @@ export default function Tekst({
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["datum"]}
+              {error["Datum"]}
             </p>
           )}
           <InputDate
-            value={values.find((item) => item.key === "datum")?.value || ""}
-            onChange={(newDateValue) => handleChange("datum", newDateValue)}
+            value={values.find((item) => item.key === "Datum")?.value || ""}
+            onChange={(newDateValue) => handleChange("Datum", newDateValue)}
             title="Datum:"
           />
         </div>
@@ -791,15 +792,15 @@ export default function Tekst({
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["lettertype"]}
+              {error["Lettertype"]}
             </p>
           )}
           <InputImageSwatchLarge
             value={
-              values.find((item) => item.key === "lettertype")?.value || ""
+              values.find((item) => item.key === "Lettertype")?.value || ""
             }
             onChange={(newLettertypeValue) =>
-              handleChange("lettertype", newLettertypeValue)
+              handleChange("Lettertype", newLettertypeValue)
             }
             title="Lettertype:"
             options={lettertypeOptions}

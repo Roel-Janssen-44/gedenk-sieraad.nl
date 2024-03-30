@@ -24,45 +24,45 @@ export default function ParaCord({
   useEffect(() => {
     if (Array.isArray(value)) {
       const paraCrodSingle = value.find(
-        (item) => item.key === "paracordSingle"
+        (item) => item.key === "Paracordsingle"
       ).value;
       const paracordMulti = value.find(
-        (item) => item.key === "paracordMulti"
+        (item) => item.key === "Paracordmulti"
       ).value;
 
       if (paraCrodSingle != "" && paracordMulti.length == 2) {
         setError([]);
         setOptionErrors((prevState) => ({
           ...prevState,
-          ["paracord"]: false,
+          ["Paracord"]: false,
         }));
       } else {
         setOptionErrors((prevState) => ({
           ...prevState,
-          ["paracord"]: true,
+          ["Paracord"]: true,
         }));
         if (paraCrodSingle == "") {
           setError((prevState) => ({
             ...prevState,
-            ["paracordSingle"]: "* Kies een optie",
+            ["Paracordsingle"]: "* Kies een optie",
           }));
         } else {
           setError((prevState) => ({
             ...prevState,
-            ["paracordSingle"]: "",
+            ["Paracordsingle"]: "",
           }));
         }
-        console.log("paracordMulti");
+        console.log("Paracordmulti");
         console.log(paracordMulti);
         if (paracordMulti.length !== 2) {
           setError((prevState) => ({
             ...prevState,
-            ["paracordMulti"]: "* Selecteer twee extra paracords",
+            ["Paracordmulti"]: "* Selecteer twee extra paracords",
           }));
         } else {
           setError((prevState) => ({
             ...prevState,
-            ["paracordMulti"]: "",
+            ["Paracordmulti"]: "",
           }));
         }
       }
@@ -70,8 +70,8 @@ export default function ParaCord({
   }, [value]);
 
   const [values, setValues] = useState([
-    { key: "paracordSingle", value: value?.paracordSingle?.value || "" },
-    { key: "paracordMulti", value: value?.paracordMulti?.value || [] },
+    { key: "Paracordsingle", value: value?.paracordSingle?.value || "" },
+    { key: "Paracordmulti", value: value?.paracordMulti?.value || [] },
   ]);
 
   const isInitialRender = useRef(true);
@@ -86,11 +86,11 @@ export default function ParaCord({
   }, [values]);
 
   const handleChange = (changedKey, newValue) => {
-    if (changedKey == "paracordMulti") {
+    if (changedKey == "Paracordmulti") {
       if (newValue.length > 2) {
         setError((prevState) => ({
           ...prevState,
-          ["paracordMulti"]: "* Selecteer maximaal twee extra paracords",
+          ["Paracordmulti"]: "* Selecteer maximaal twee extra paracords",
         }));
         setOpenSnackbar(true);
         setValues((prevValues) => prevValues.map((item) => item));
@@ -127,18 +127,18 @@ export default function ParaCord({
       <div className="relative">
         {showErrors && (
           <p className="absolute  -bottom-6 left-0 text-red-700">
-            {error["paracordSingle"]}
+            {error["Paracordsingle"]}
           </p>
         )}
         <div className="flex flex-row gap-6">
           <div className="min-w-[150px]">
             <InputRadio
               value={
-                values.find((item) => item.key === "paracordSingle")?.value ||
+                values.find((item) => item.key === "Paracordsingle")?.value ||
                 ""
               }
               onChange={(paracordSingle) =>
-                handleChange("paracordSingle", paracordSingle)
+                handleChange("Paracordsingle", paracordSingle)
               }
               title="Para koord 1e keuze:"
               options={paraCordOptions}
@@ -154,16 +154,16 @@ export default function ParaCord({
       <div className="relative">
         {showErrors && (
           <p className="absolute  -bottom-6 left-0 text-red-700">
-            {error["paracordMulti"]}
+            {error["Paracordmulti"]}
           </p>
         )}
         <InputSelect
           multiple={true}
           value={
-            values.find((item) => item.key === "paracordMulti")?.value || ""
+            values.find((item) => item.key === "Paracordmulti")?.value || ""
           }
           onChange={(paracordMulti) =>
-            handleChange("paracordMulti", paracordMulti)
+            handleChange("Paracordmulti", paracordMulti)
           }
           title="Para koord extra:"
           options={paraCordOptions}

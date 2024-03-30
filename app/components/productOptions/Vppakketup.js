@@ -18,10 +18,10 @@ export default function Vppakketup({
   useEffect(() => {
     if (Array.isArray(value)) {
       const keuzeValue = value.find(
-        (item) => item.key === "vppakketKeuze"
+        (item) => item.key === "Vppakketkeuze"
       ).value;
       const uploadValue = value.find(
-        (item) => item.key === "vppakketUpload"
+        (item) => item.key === "Vppakketupload"
       ).value;
 
       if (
@@ -44,23 +44,23 @@ export default function Vppakketup({
         if (keuzeValue == "") {
           setError((prevState) => ({
             ...prevState,
-            ["vppakketKeuze"]: "* Kies een optie",
+            ["Vppakketkeuze"]: "* Kies een optie",
           }));
         } else {
           setError((prevState) => ({
             ...prevState,
-            ["vppakketKeuze"]: "",
+            ["Vppakketkeuze"]: "",
           }));
         }
         if (uploadValue == "") {
           setError((prevState) => ({
             ...prevState,
-            ["vppakketUpload"]: "* Upload een bestand",
+            ["Vppakketupload"]: "* Upload een bestand",
           }));
         } else {
           setError((prevState) => ({
             ...prevState,
-            ["vppakketUpload"]: "",
+            ["Vppakketupload"]: "",
           }));
         }
       }
@@ -68,8 +68,8 @@ export default function Vppakketup({
   }, [value]);
 
   const [values, setValues] = useState([
-    { key: "vppakketKeuze", value: value?.vppakketKeuze?.value || "" },
-    { key: "vppakketUpload", value: value?.vppakketUpload?.value || "" },
+    { key: "Vppakketkeuze", value: value?.vppakketKeuze?.value || "" },
+    { key: "Vppakketupload", value: value?.vppakketUpload?.value || "" },
   ]);
 
   const isInitialRender = useRef(true);
@@ -94,7 +94,7 @@ export default function Vppakketup({
   };
 
   const vppakketKeuzeTekst = values.find(
-    (item) => item.key === "vppakketKeuze"
+    (item) => item.key === "Vppakketkeuze"
   ).value;
 
   return (
@@ -102,14 +102,14 @@ export default function Vppakketup({
       <div className="relative">
         {showErrors && (
           <p className="absolute  -bottom-6 left-0 text-red-700">
-            {error["vppakketKeuze"]}
+            {error["Vppakketkeuze"]}
           </p>
         )}
         <InputRadio
           value={
-            values.find((item) => item.key === "vppakketKeuze")?.value || ""
+            values.find((item) => item.key === "Vppakketkeuze")?.value || ""
           }
-          onChange={(uploadValue) => handleChange("vppakketKeuze", uploadValue)}
+          onChange={(uploadValue) => handleChange("Vppakketkeuze", uploadValue)}
           title="Maak een keuze:"
           options={vppakketKeuzeOptions}
         />
@@ -120,7 +120,7 @@ export default function Vppakketup({
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
               {" "}
-              {error["vppakketUpload"]}
+              {error["Vppakketupload"]}
             </p>
           )}
           <InputFile

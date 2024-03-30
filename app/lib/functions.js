@@ -78,13 +78,7 @@ export function calculatePrice(selectedOptions, optionSets) {
       }
     }
 
-    // To do print
-    console.log("optionKey");
-    console.log(optionKey);
-
     if (optionKey === "printOptions") {
-      console.log("printOptions");
-      console.log(selectedTargetValue);
       for (let i = 0; i < selectedTargetValue.length; i++) {
         if (selectedTargetValue[i].key === "keuze2") {
           if (selectedTargetValue[i].value == "Ja") {
@@ -97,8 +91,6 @@ export function calculatePrice(selectedOptions, optionSets) {
           }
         }
       }
-      // const price = findPriceByValue(optionSets, "extraWoordenOptions", value);
-      // totalPrice += price || 0;
     }
 
     if (typeof selectedTargetValue == "string") {

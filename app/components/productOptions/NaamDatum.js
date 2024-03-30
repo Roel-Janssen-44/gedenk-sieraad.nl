@@ -26,7 +26,7 @@ export default function NaamDatum({
   useEffect(() => {
     if (Array.isArray(value)) {
       const graveerTekstAchterzijde = value.find(
-        (item) => item.key === "naamDatum"
+        (item) => item.key === "Naamdatum"
       ).value;
       const voorvoegselValue = value.find(
         (item) => item.key === "voorvoegsel"
@@ -42,7 +42,7 @@ export default function NaamDatum({
           setError([]);
           setOptionErrors((prevState) => ({
             ...prevState,
-            ["naamdatum"]: false,
+            ["Naamdatum"]: false,
           }));
           break;
         case "Naam":
@@ -183,12 +183,12 @@ export default function NaamDatum({
           if (graveerTekstAchterzijde == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naamDatum"]: "* Kies een optie",
+              ["Naamdatum"]: "* Kies een optie",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["naamDatum"]: "",
+              ["Naamdatum"]: "",
             }));
           }
           break;
@@ -203,19 +203,19 @@ export default function NaamDatum({
     if (allValuescorrect) {
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["naamdatum"]: false,
+        ["Naamdatum"]: false,
       }));
     } else {
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["naamdatum"]: true,
+        ["Naamdatum"]: true,
       }));
     }
   }, [error]);
 
   const [values, setValues] = useState([
     {
-      key: "naamDatum",
+      key: "Naamdatum",
       value: value?.graveerTekstAchterzijde?.value || "",
     },
     { key: "naam", value: value?.naam?.value || "" },
@@ -246,7 +246,7 @@ export default function NaamDatum({
   };
 
   const graveerTekstAchterzijdeTekst = values.find(
-    (item) => item.key === "naamDatum"
+    (item) => item.key === "Naamdatum"
   ).value;
 
   return (
@@ -254,14 +254,14 @@ export default function NaamDatum({
       <div className="relative">
         {showErrors && (
           <p className="absolute -bottom-6 left-0 text-red-700">
-            {error["naamDatum"]}
+            {error["Naamdatum"]}
           </p>
         )}
 
         <InputSelect
-          value={values.find((item) => item.key === "naamDatum")?.value || ""}
+          value={values.find((item) => item.key === "Naamdatum")?.value || ""}
           onChange={(newGraveerTekstValue) =>
-            handleChange("naamDatum", newGraveerTekstValue)
+            handleChange("Naamdatum", newGraveerTekstValue)
           }
           title="Gravure:"
           options={naamDatumOptions}

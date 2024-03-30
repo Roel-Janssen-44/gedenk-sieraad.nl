@@ -25,50 +25,50 @@ export default function Print({
 
   useEffect(() => {
     if (Array.isArray(value)) {
-      const keuze1Value = value.find((item) => item.key === "keuze1").value;
-      const keuze2Value = value.find((item) => item.key === "keuze2").value;
-      const upload1Value = value.find((item) => item.key === "upload1").value;
-      const upload2Value = value.find((item) => item.key === "upload2").value;
-      const keuze3Value = value.find((item) => item.key === "keuze3").value;
+      const keuze1Value = value.find((item) => item.key === "Keuze1").value;
+      const keuze2Value = value.find((item) => item.key === "Keuze2").value;
+      const upload1Value = value.find((item) => item.key === "Upload1").value;
+      const upload2Value = value.find((item) => item.key === "Upload2").value;
+      const keuze3Value = value.find((item) => item.key === "Keuze3").value;
 
       switch (keuze1Value) {
         case "Ik heb al een digitaal bestand van vinger/voet/hand/pootafdruk of gravure en wil dit nu uploaden":
           setError((prevState) => ({
             ...prevState,
-            ["keuze3"]: "",
+            ["Keuze3"]: "",
           }));
           if (keuze2Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["keuze2"]: "* Maak een keuze",
+              ["Keuze2"]: "* Maak een keuze",
             }));
           } else if (keuze2Value == "Ja") {
             if (upload2Value == null) {
               setError((prevState) => ({
                 ...prevState,
-                ["upload2"]: "* Upload een bestand",
+                ["Upload2"]: "* Upload een bestand",
               }));
             } else {
               setError((prevState) => ({
                 ...prevState,
-                ["upload2"]: "",
+                ["Upload2"]: "",
               }));
             }
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["keuze2"]: "",
+              ["Keuze2"]: "",
             }));
           }
           if (upload1Value == null) {
             setError((prevState) => ({
               ...prevState,
-              ["upload1"]: "* Upload een bestand",
+              ["Upload1"]: "* Upload een bestand",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["upload1"]: "",
+              ["Upload1"]: "",
             }));
           }
           break;
@@ -76,25 +76,25 @@ export default function Print({
         case "Ik wil eerst een gratis hand/voet/pootafdruk pakket ontvangen.":
           setError((prevState) => ({
             ...prevState,
-            ["keuze2"]: "",
-            ["keuze3"]: "",
-            ["upload1"]: "",
-            ["upload2"]: "",
+            ["Keuze2"]: "",
+            ["Keuze3"]: "",
+            ["Upload1"]: "",
+            ["Upload2"]: "",
           }));
           if (keuze3Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["keuze3"]: "* Maak een keuze",
+              ["Keuze3"]: "* Maak een keuze",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["keuze3"]: "",
+              ["Keuze3"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
-            ["keuze2"]: "",
+            ["Keuze2"]: "",
           }));
           break;
         default:
@@ -103,12 +103,12 @@ export default function Print({
       if (keuze1Value == "") {
         setError((prevState) => ({
           ...prevState,
-          ["keuze1"]: "* Kies een optie",
+          ["Keuze1"]: "* Kies een optie",
         }));
       } else {
         setError((prevState) => ({
           ...prevState,
-          ["keuze1"]: "",
+          ["Keuze1"]: "",
         }));
       }
     }
@@ -136,13 +136,13 @@ export default function Print({
 
   const [values, setValues] = useState([
     {
-      key: "keuze1",
+      key: "Keuze1",
       value: value?.print?.value || "",
     },
-    { key: "keuze2", value: value?.keuze2?.value || "" },
-    { key: "upload1", value: value?.upload1?.value || "" },
-    { key: "upload2", value: value?.upload2?.value || "" },
-    { key: "keuze3", value: value?.keuze3?.value || "" },
+    { key: "Keuze2", value: value?.keuze2?.value || "" },
+    { key: "Upload1", value: value?.upload1?.value || "" },
+    { key: "Upload2", value: value?.upload2?.value || "" },
+    { key: "Keuze3", value: value?.keuze3?.value || "" },
   ]);
 
   const isInitialRender = useRef(true);
@@ -157,20 +157,20 @@ export default function Print({
   }, [values]);
 
   const handleChange = (changedKey, newValue) => {
-    if (changedKey === "keuze1") {
+    if (changedKey === "Keuze1") {
       if (
         newValue ==
         "Ik heb al een digitaal bestand van vinger/voet/hand/pootafdruk of gravure en wil dit nu uploaden "
       ) {
         setValues((prevValues) =>
           prevValues.map((item) =>
-            item.key === "keuze3" ? { ...item, value: "" } : item
+            item.key === "Keuze3" ? { ...item, value: "" } : item
           )
         );
       } else {
         setValues((prevValues) =>
           prevValues.map((item) =>
-            item.key === "keuze2" ? { ...item, value: "" } : item
+            item.key === "Keuze2" ? { ...item, value: "" } : item
           )
         );
       }
@@ -185,22 +185,22 @@ export default function Print({
     onChange(values);
   };
 
-  const printKeuze = values.find((item) => item.key === "keuze1").value;
-  const printKeuze2 = values.find((item) => item.key === "keuze2").value;
+  const printKeuze = values.find((item) => item.key === "Keuze1").value;
+  const printKeuze2 = values.find((item) => item.key === "Keuze2").value;
 
   return (
     <>
       <div className="relative">
         {showErrors && (
           <p className="absolute -bottom-6 left-0 text-red-700">
-            {error["keuze1"]}
+            {error["Keuze1"]}
           </p>
         )}
 
         <InputRadio
-          value={values.find((item) => item.key === "keuze1")?.value || ""}
+          value={values.find((item) => item.key === "Keuze1")?.value || ""}
           onChange={(newKeuze1TekstValue) =>
-            handleChange("keuze1", newKeuze1TekstValue)
+            handleChange("Keuze1", newKeuze1TekstValue)
           }
           title="Tekst:"
           options={printKeuze1Options}
@@ -212,13 +212,13 @@ export default function Print({
           <div className="relative">
             {showErrors && (
               <p className="absolute -bottom-6 left-0 text-red-700">
-                {error["upload1"]}
+                {error["Upload1"]}
               </p>
             )}
             <InputFile
-              value={values.find((item) => item.key === "upload1")?.value || ""}
+              value={values.find((item) => item.key === "Upload1")?.value || ""}
               onChange={(newUpload1Value) =>
-                handleChange("upload1", newUpload1Value)
+                handleChange("Upload1", newUpload1Value)
               }
               title="Bestand 1:"
               options={printKeuze2Options}
@@ -228,13 +228,13 @@ export default function Print({
           <div className="relative">
             {showErrors && (
               <p className="absolute -bottom-6 left-0 text-red-700">
-                {error["keuze2"]}
+                {error["Keuze2"]}
               </p>
             )}
             <InputSelect
-              value={values.find((item) => item.key === "keuze2")?.value || ""}
+              value={values.find((item) => item.key === "Keuze2")?.value || ""}
               onChange={(newKeuze2Value) =>
-                handleChange("keuze2", newKeuze2Value)
+                handleChange("Keuze2", newKeuze2Value)
               }
               title="Tweede bestand uploaden:"
               options={printKeuze2Options}
@@ -244,15 +244,15 @@ export default function Print({
             <div className="relative">
               {showErrors && (
                 <p className="absolute -bottom-6 left-0 text-red-700">
-                  {error["upload2"]}
+                  {error["Upload2"]}
                 </p>
               )}
               <InputFile
                 value={
-                  values.find((item) => item.key === "upload2")?.value || ""
+                  values.find((item) => item.key === "Upload2")?.value || ""
                 }
                 onChange={(newUpload2Value) =>
-                  handleChange("upload2", newUpload2Value)
+                  handleChange("Upload2", newUpload2Value)
                 }
                 title="Bestand 2:"
                 options={printKeuze2Options}
@@ -269,13 +269,13 @@ export default function Print({
           <div className="relative">
             {showErrors && (
               <p className="absolute -bottom-6 left-0 text-red-700">
-                {error["keuze3"]}
+                {error["Keuze3"]}
               </p>
             )}
             <InputSelect
-              value={values.find((item) => item.key === "keuze3")?.value || ""}
+              value={values.find((item) => item.key === "Keuze3")?.value || ""}
               onChange={(newKeuze3Value) =>
-                handleChange("keuze3", newKeuze3Value)
+                handleChange("Keuze3", newKeuze3Value)
               }
               title="Aantal bestanden:"
               options={printKeuze3Options}

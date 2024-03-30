@@ -29,19 +29,19 @@ export default function GraveerTekst({
   useEffect(() => {
     if (Array.isArray(value)) {
       const graveerTekstValue = value.find(
-        (item) => item.key === "graveerTekst"
+        (item) => item.key === "Graveertekst"
       ).value;
       const lettertypeValue = value.find(
-        (item) => item.key === "lettertype"
+        (item) => item.key === "Lettertype"
       ).value;
       const initialenValue = value.find(
-        (item) => item.key === "initialen"
+        (item) => item.key === "Initialen"
       ).value;
       const extraWoordValue = value.find(
-        (item) => item.key === "extraWoord"
+        (item) => item.key === "Extrawoord"
       ).value;
-      const datumValue = value.find((item) => item.key === "datum").value;
-      const naamValue = value.find((item) => item.key === "naam").value;
+      const datumValue = value.find((item) => item.key === "Datum").value;
+      const naamValue = value.find((item) => item.key === "Naam").value;
       const woord1Value = value.find((item) => item.key === "1 woord").value;
       const woord2Value = value.find((item) => item.key === "2 woorden").value;
       const woord3Value = value.find((item) => item.key === "3 woorden").value;
@@ -52,32 +52,32 @@ export default function GraveerTekst({
           if (initialenValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["initialen"]: "Veld initiaal mag niet leeg zijn",
+              ["Initialen"]: "Veld initiaal mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["initialen"]: "",
+              ["Initialen"]: "",
             }));
           }
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
             ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["naam"]: "",
-            ["datum"]: "",
-            ["graveerTekst"]: "",
+            ["Extrawoord"]: "",
+            ["Naam"]: "",
+            ["Datum"]: "",
+            ["Graveertekst"]: "",
             ["woord1"]: "",
             ["woord2"]: "",
             ["woord3"]: "",
@@ -88,12 +88,12 @@ export default function GraveerTekst({
           setError((prevState) => ({
             ...prevState,
             ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["lettertype"]: "",
-            ["naam"]: "",
-            ["datum"]: "",
-            ["graveerTekst"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Lettertype"]: "",
+            ["Naam"]: "",
+            ["Datum"]: "",
+            ["Graveertekst"]: "",
             ["woord1"]: "",
             ["woord2"]: "",
             ["woord3"]: "",
@@ -105,12 +105,12 @@ export default function GraveerTekst({
           if (extraWoordValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["extraWoord"]: "* Veld extraWoord mag niet leeg zijn",
+              ["Extrawoord"]: "* Veld extraWoord mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["extraWoord"]: "",
+              ["Extrawoord"]: "",
             }));
             if (extraWoordValue == "1 extra woord") {
               if (woord1Value == "") {
@@ -137,22 +137,22 @@ export default function GraveerTekst({
               if (lettertypeValue == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "* Kies een lettertype",
+                  ["Lettertype"]: "* Kies een lettertype",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "",
+                  ["Lettertype"]: "",
                 }));
               }
               setError((prevState) => ({
                 ...prevState,
                 ["tekstBinnenZijdeRing"]: "",
-                ["extraWoord"]: "",
-                ["initialen"]: "",
-                ["naam"]: "",
-                ["datum"]: "",
-                ["graveerTekst"]: "",
+                ["Extrawoord"]: "",
+                ["Initialen"]: "",
+                ["Naam"]: "",
+                ["Datum"]: "",
+                ["Graveertekst"]: "",
                 ["woord2"]: "",
                 ["woord3"]: "",
                 ["woord4"]: "",
@@ -183,22 +183,22 @@ export default function GraveerTekst({
               if (lettertypeValue == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "* Kies een lettertype",
+                  ["Lettertype"]: "* Kies een lettertype",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "",
+                  ["Lettertype"]: "",
                 }));
               }
               setError((prevState) => ({
                 ...prevState,
                 ["tekstBinnenZijdeRing"]: "",
-                ["extraWoord"]: "",
-                ["initialen"]: "",
-                ["naam"]: "",
-                ["datum"]: "",
-                ["graveerTekst"]: "",
+                ["Extrawoord"]: "",
+                ["Initialen"]: "",
+                ["Naam"]: "",
+                ["Datum"]: "",
+                ["Graveertekst"]: "",
                 ["woord1"]: "",
                 ["woord3"]: "",
                 ["woord4"]: "",
@@ -207,15 +207,15 @@ export default function GraveerTekst({
               setError((prevState) => ({
                 ...prevState,
                 ["tekstBinnenZijdeRing"]: "",
-                ["extraWoord"]: "",
-                ["initialen"]: "",
-                ["naam"]: "",
-                ["datum"]: "",
-                ["graveerTekst"]: "",
+                ["Extrawoord"]: "",
+                ["Initialen"]: "",
+                ["Naam"]: "",
+                ["Datum"]: "",
+                ["Graveertekst"]: "",
                 ["woord1"]: "",
                 ["woord3"]: "",
                 ["woord4"]: "",
-                ["lettertype"]: "",
+                ["Lettertype"]: "",
               }));
             }
           }
@@ -225,32 +225,32 @@ export default function GraveerTekst({
           if (datumValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "Veld datum mag niet leeg zijn",
+              ["Datum"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "",
+              ["Datum"]: "",
             }));
           }
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
             ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["naam"]: "",
-            ["graveerTekst"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Naam"]: "",
+            ["Graveertekst"]: "",
             ["woord1"]: "",
             ["woord2"]: "",
             ["woord3"]: "",
@@ -261,32 +261,32 @@ export default function GraveerTekst({
           if (naamValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "Veld naam mag niet leeg zijn",
+              ["Naam"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "",
+              ["Naam"]: "",
             }));
           }
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
             ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["datum"]: "",
-            ["graveerTekst"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Datum"]: "",
+            ["Graveertekst"]: "",
             ["woord1"]: "",
             ["woord2"]: "",
             ["woord3"]: "",
@@ -297,47 +297,48 @@ export default function GraveerTekst({
           if (naamValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "Veld naam mag niet leeg zijn",
+              ["Naam"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "",
+              ["Naam"]: "",
             }));
           }
           if (datumValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "Veld datum mag niet leeg zijn",
+              ["Datum"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "",
+              ["Datum"]: "",
             }));
           }
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
             ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["graveerTekst"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Graveertekst"]: "",
             ["woord1"]: "",
             ["woord2"]: "",
             ["woord3"]: "",
             ["woord4"]: "",
           }));
+          break;
         case "1 woord":
           if (woord1Value == "") {
             setError((prevState) => ({
@@ -363,22 +364,22 @@ export default function GraveerTekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
             ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["naam"]: "",
-            ["datum"]: "",
-            ["graveerTekst"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Naam"]: "",
+            ["Datum"]: "",
+            ["Graveertekst"]: "",
             ["woord2"]: "",
             ["woord3"]: "",
             ["woord4"]: "",
@@ -409,22 +410,22 @@ export default function GraveerTekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
             ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["naam"]: "",
-            ["datum"]: "",
-            ["graveerTekst"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Naam"]: "",
+            ["Datum"]: "",
+            ["Graveertekst"]: "",
             ["woord1"]: "",
             ["woord3"]: "",
             ["woord4"]: "",
@@ -455,22 +456,22 @@ export default function GraveerTekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
             ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["naam"]: "",
-            ["datum"]: "",
-            ["graveerTekst"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Naam"]: "",
+            ["Datum"]: "",
+            ["Graveertekst"]: "",
             ["woord1"]: "",
             ["woord2"]: "",
             ["woord4"]: "",
@@ -501,22 +502,22 @@ export default function GraveerTekst({
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "Kies een lettertype",
+              ["Lettertype"]: "Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
             ["tekstBinnenZijdeRing"]: "",
-            ["extraWoord"]: "",
-            ["initialen"]: "",
-            ["naam"]: "",
-            ["datum"]: "",
-            ["graveerTekst"]: "",
+            ["Extrawoord"]: "",
+            ["Initialen"]: "",
+            ["Naam"]: "",
+            ["Datum"]: "",
+            ["Graveertekst"]: "",
             ["woord1"]: "",
             ["woord2"]: "",
             ["woord3"]: "",
@@ -526,12 +527,12 @@ export default function GraveerTekst({
           if (graveerTekstValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["graveerTekst"]: "Veld mag niet leeg zijn",
+              ["Graveertekst"]: "Veld mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["graveerTekst"]: "",
+              ["Graveertekst"]: "",
             }));
           }
       }
@@ -551,7 +552,7 @@ export default function GraveerTekst({
       ) {
         setError((prevState) => ({
           ...prevState,
-          ["graveerTekst"]: "",
+          ["Graveertekst"]: "",
         }));
       }
     }
@@ -566,26 +567,26 @@ export default function GraveerTekst({
     if (allValuescorrect) {
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["graveerTekst"]: false,
+        ["Graveertekst"]: false,
       }));
     } else {
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["graveerTekst"]: true,
+        ["Graveertekst"]: true,
       }));
     }
   }, [error]);
 
   const [values, setValues] = useState([
     {
-      key: "graveerTekst",
+      key: "Graveertekst",
       value: value?.graveerTekst?.value || "",
     },
-    { key: "lettertype", value: value?.lettertype?.value || "" },
-    { key: "initialen", value: value?.initialen?.value || "" },
-    { key: "extraWoord", value: value?.extraWoord?.value || "" },
-    { key: "datum", value: value?.datum?.value || "" },
-    { key: "naam", value: value?.naam?.value || "" },
+    { key: "Lettertype", value: value?.lettertype?.value || "" },
+    { key: "Initialen", value: value?.initialen?.value || "" },
+    { key: "Extrawoord", value: value?.extraWoord?.value || "" },
+    { key: "Datum", value: value?.datum?.value || "" },
+    { key: "Naam", value: value?.naam?.value || "" },
     { key: "1 woord", value: value?.woord1?.value || "" },
     { key: "2 woorden", value: value?.woord2?.value || "" },
     { key: "3 woorden", value: value?.woord3?.value || "" },
@@ -604,14 +605,14 @@ export default function GraveerTekst({
   }, [values]);
 
   const handleChange = (changedKey, newValue) => {
-    if (changedKey === "graveerTekst") {
+    if (changedKey === "Graveertekst") {
       if (
         !newValue.includes("Initialen/letters/tekens") ||
         !newValue.includes("Hartje ♥ symbool")
       ) {
         setValues((prevValues) =>
           prevValues.map((item) =>
-            item.key === "extraWoord" ? { ...item, value: "" } : item
+            item.key === "Extrawoord" ? { ...item, value: "" } : item
           )
         );
       }
@@ -625,10 +626,10 @@ export default function GraveerTekst({
     onChange(values);
   };
   const graveerTekstValue = values.find(
-    (item) => item.key === "graveerTekst"
+    (item) => item.key === "Graveertekst"
   ).value;
   const extraWoordValue = values.find(
-    (item) => item.key === "extraWoord"
+    (item) => item.key === "Extrawoord"
   ).value;
 
   return (
@@ -636,13 +637,13 @@ export default function GraveerTekst({
       <div className="relative">
         {showErrors && (
           <p className="absolute  -bottom-6 left-0 text-red-700">
-            {error["graveerTekst"]}
+            {error["Graveertekst"]}
           </p>
         )}
         <InputSelect
           value={graveerTekstValue}
           onChange={(newTekstValue) =>
-            handleChange("graveerTekst", newTekstValue)
+            handleChange("Graveertekst", newTekstValue)
           }
           title="Graveertekst:"
           options={graveerTekstOptions}
@@ -655,13 +656,13 @@ export default function GraveerTekst({
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["extraWoord"]}
+              {error["Extrawoord"]}
             </p>
           )}
           <InputSelect
             value={extraWoordValue}
             onChange={(newExtraWoordValue) =>
-              handleChange("extraWoord", newExtraWoordValue)
+              handleChange("Extrawoord", newExtraWoordValue)
             }
             title="Extra woorden:"
             options={extraWoordenOptions}
@@ -672,13 +673,13 @@ export default function GraveerTekst({
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["initialen"]}
+              {error["Initialen"]}
             </p>
           )}
           <InputTextField
-            value={values.find((item) => item.key === "initialen")?.value || ""}
+            value={values.find((item) => item.key === "Initialen")?.value || ""}
             onChange={(newInitialenValue) =>
-              handleChange("initialen", newInitialenValue)
+              handleChange("Initialen", newInitialenValue)
             }
             title="Initialen/letters/tekens:"
           />
@@ -689,12 +690,12 @@ export default function GraveerTekst({
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["naam"]}
+              {error["Naam"]}
             </p>
           )}
           <InputTextField
-            value={values.find((item) => item.key === "naam")?.value || ""}
-            onChange={(newNaamValue) => handleChange("naam", newNaamValue)}
+            value={values.find((item) => item.key === "Naam")?.value || ""}
+            onChange={(newNaamValue) => handleChange("Naam", newNaamValue)}
             title="Naam:"
           />
         </div>
@@ -704,12 +705,12 @@ export default function GraveerTekst({
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["datum"]}
+              {error["Datum"]}
             </p>
           )}
           <InputDate
-            value={values.find((item) => item.key === "datum")?.value || ""}
-            onChange={(newDateValue) => handleChange("datum", newDateValue)}
+            value={values.find((item) => item.key === "Datum")?.value || ""}
+            onChange={(newDateValue) => handleChange("Datum", newDateValue)}
             title="Datum:"
           />
         </div>
@@ -793,15 +794,15 @@ export default function GraveerTekst({
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["lettertype"]}
+              {error["Lettertype"]}
             </p>
           )}
           <InputImageSwatchLarge
             value={
-              values.find((item) => item.key === "lettertype")?.value || ""
+              values.find((item) => item.key === "Lettertype")?.value || ""
             }
             onChange={(newLettertypeValue) =>
-              handleChange("lettertype", newLettertypeValue)
+              handleChange("Lettertype", newLettertypeValue)
             }
             title="Lettertype:"
             options={lettertypeOptions}

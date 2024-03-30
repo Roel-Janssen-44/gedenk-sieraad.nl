@@ -23,13 +23,13 @@ export default function Vulset({
       setError("* Kies een optie");
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["vulset"]: true,
+        ["Vulset"]: true,
       }));
     } else {
       setError(null);
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["vulset"]: false,
+        ["Vulset"]: false,
       }));
     }
   }, [value]);

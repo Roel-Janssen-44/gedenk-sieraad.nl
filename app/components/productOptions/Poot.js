@@ -15,23 +15,23 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
 
   useEffect(() => {
     if (Array.isArray(value)) {
-      const poot = value.find((item) => item.key === "poot").value;
-      const keuze2Value = value.find((item) => item.key === "keuze2").value;
-      const uploadValue = value.find((item) => item.key === "upload").value;
+      const poot = value.find((item) => item.key === "Poot").value;
+      const keuze2Value = value.find((item) => item.key === "Keuze2").value;
+      const uploadValue = value.find((item) => item.key === "Upload").value;
 
       switch (poot) {
         case "Standaard pootafdruk":
           setError([]);
           setOptionErrors((prevState) => ({
             ...prevState,
-            ["poot"]: false,
+            ["Poot"]: false,
           }));
           break;
         case "Eigen pootafdruk":
           if (keuze2Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["keuze2"]: "* Kies een optie",
+              ["Keuze2"]: "* Kies een optie",
             }));
           } else if (
             keuze2Value ==
@@ -40,30 +40,30 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
             if (uploadValue == null) {
               setError((prevState) => ({
                 ...prevState,
-                ["upload"]: "* Upload een bestand",
+                ["Upload"]: "* Upload een bestand",
               }));
             } else {
               setError((prevState) => ({
                 ...prevState,
-                ["upload"]: "",
+                ["Upload"]: "",
               }));
             }
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["keuze2"]: "",
+              ["Keuze2"]: "",
             }));
           }
         default:
           if (poot == "") {
             setError((prevState) => ({
               ...prevState,
-              ["poot"]: "* Kies een optie",
+              ["Poot"]: "* Kies een optie",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["poot"]: "",
+              ["Poot"]: "",
             }));
           }
           break;
@@ -78,23 +78,23 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
     if (allValuescorrect) {
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["poot"]: false,
+        ["Poot"]: false,
       }));
     } else {
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["poot"]: true,
+        ["Poot"]: true,
       }));
     }
   }, [error]);
 
   const [values, setValues] = useState([
     {
-      key: "poot",
+      key: "Poot",
       value: value?.poot?.value || "",
     },
-    { key: "keuze2", value: value?.keuze2?.value || "" },
-    { key: "upload", value: value?.upload?.value || "" },
+    { key: "Keuze2", value: value?.keuze2?.value || "" },
+    { key: "Upload", value: value?.upload?.value || "" },
   ]);
 
   const isInitialRender = useRef(true);
@@ -118,22 +118,22 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
     onChange(values);
   };
 
-  const pootKeuze = values.find((item) => item.key === "poot").value;
-  const pootKeuze2 = values.find((item) => item.key === "keuze2").value;
+  const pootKeuze = values.find((item) => item.key === "Poot").value;
+  const pootKeuze2 = values.find((item) => item.key === "Keuze2").value;
 
   return (
     <>
       <div className="relative">
         {showErrors && (
           <p className="absolute -bottom-6 left-0 text-red-700">
-            {error["poot"]}
+            {error["Poot"]}
           </p>
         )}
 
         <InputRadio
-          value={values.find((item) => item.key === "poot")?.value || ""}
+          value={values.find((item) => item.key === "Poot")?.value || ""}
           onChange={(newPootTekstValue) =>
-            handleChange("poot", newPootTekstValue)
+            handleChange("Poot", newPootTekstValue)
           }
           title="Poot:"
           options={pootKeuze1Options}
@@ -143,13 +143,13 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
         <div className="relative">
           {showErrors && (
             <p className="absolute -bottom-6 left-0 text-red-700">
-              {error["keuze2"]}
+              {error["Keuze2"]}
             </p>
           )}
           <InputRadio
-            value={values.find((item) => item.key === "keuze2")?.value || ""}
+            value={values.find((item) => item.key === "Keuze2")?.value || ""}
             onChange={(newKeuze2Value) =>
-              handleChange("keuze2", newKeuze2Value)
+              handleChange("Keuze2", newKeuze2Value)
             }
             title="Maak een keuze:"
             options={pootKeuze2Options}
@@ -162,12 +162,12 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
           <div className="relative">
             {showErrors && (
               <p className="absolute -bottom-6 left-0 text-red-700">
-                {error["upload"]}
+                {error["Upload"]}
               </p>
             )}
             <InputFile
               onChange={(newUploadValue) =>
-                handleChange("upload", newUploadValue)
+                handleChange("Upload", newUploadValue)
               }
               title="Bestand toevoegen:"
               setError={setError}

@@ -24,10 +24,10 @@ export default function Satijnen({
   useEffect(() => {
     if (Array.isArray(value)) {
       const paraCrodSingle = value.find(
-        (item) => item.key === "satijnenSingle"
+        (item) => item.key === "Satijnensingle"
       ).value;
       const satijnenMulti = value.find(
-        (item) => item.key === "satijnenMulti"
+        (item) => item.key === "Satijnenmulti"
       ).value;
 
       if (paraCrodSingle != "" && satijnenMulti.length == 4) {
@@ -44,25 +44,25 @@ export default function Satijnen({
         if (paraCrodSingle == "") {
           setError((prevState) => ({
             ...prevState,
-            ["satijnenSingle"]: "* Kies een optie",
+            ["Satijnensingle"]: "* Kies een optie",
           }));
         } else {
           setError((prevState) => ({
             ...prevState,
-            ["satijnenSingle"]: "",
+            ["Satijnensingle"]: "",
           }));
         }
-        console.log("satijnenMulti");
+        console.log("Satijnenmulti");
         console.log(satijnenMulti);
         if (satijnenMulti.length !== 4) {
           setError((prevState) => ({
             ...prevState,
-            ["satijnenMulti"]: "* Selecteer vier extra satijnens",
+            ["Satijnenmulti"]: "* Selecteer vier extra satijnens",
           }));
         } else {
           setError((prevState) => ({
             ...prevState,
-            ["satijnenMulti"]: "",
+            ["Satijnenmulti"]: "",
           }));
         }
       }
@@ -70,8 +70,8 @@ export default function Satijnen({
   }, [value]);
 
   const [values, setValues] = useState([
-    { key: "satijnenSingle", value: value?.satijnenSingle?.value || "" },
-    { key: "satijnenMulti", value: value?.satijnenMulti?.value || [] },
+    { key: "Satijnensingle", value: value?.satijnenSingle?.value || "" },
+    { key: "Satijnenmulti", value: value?.satijnenMulti?.value || [] },
   ]);
 
   const isInitialRender = useRef(true);
@@ -86,11 +86,11 @@ export default function Satijnen({
   }, [values]);
 
   const handleChange = (changedKey, newValue) => {
-    if (changedKey == "satijnenMulti") {
+    if (changedKey == "Satijnenmulti") {
       if (newValue.length > 4) {
         setError((prevState) => ({
           ...prevState,
-          ["satijnenMulti"]: "* Selecteer maximaal vier extra satijnen",
+          ["Satijnenmulti"]: "* Selecteer maximaal vier extra satijnen",
         }));
         setOpenSnackbar(true);
         setValues((prevValues) => prevValues.map((item) => item));
@@ -127,18 +127,18 @@ export default function Satijnen({
       <div className="relative">
         {showErrors && (
           <p className="absolute  -bottom-6 left-0 text-red-700">
-            {error["satijnenSingle"]}
+            {error["Satijnensingle"]}
           </p>
         )}
         <div className="flex flex-row gap-6">
           <div className="min-w-[150px]">
             <InputSelect
               value={
-                values.find((item) => item.key === "satijnenSingle")?.value ||
+                values.find((item) => item.key === "Satijnensingle")?.value ||
                 ""
               }
               onChange={(satijnenSingle) =>
-                handleChange("satijnenSingle", satijnenSingle)
+                handleChange("Satijnensingle", satijnenSingle)
               }
               title="Satijnen armbandje 1e keuze:"
               options={satijnenOptions}
@@ -159,16 +159,16 @@ export default function Satijnen({
       <div className="relative">
         {showErrors && (
           <p className="absolute -bottom-6 left-0 text-red-700">
-            {error["satijnenMulti"]}
+            {error["Satijnenmulti"]}
           </p>
         )}
         <InputSelect
           multiple={true}
           value={
-            values.find((item) => item.key === "satijnenMulti")?.value || ""
+            values.find((item) => item.key === "Satijnenmulti")?.value || ""
           }
           onChange={(satijnenMulti) =>
-            handleChange("satijnenMulti", satijnenMulti)
+            handleChange("Satijnenmulti", satijnenMulti)
           }
           title="Satijnen armbandjes extra:"
           options={satijnenOptions}

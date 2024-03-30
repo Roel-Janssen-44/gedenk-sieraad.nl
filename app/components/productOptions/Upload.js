@@ -17,13 +17,13 @@ export default function Upload({
       setError("* Upload een afbeelding");
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["upload"]: true,
+        ["Upload"]: true,
       }));
     } else {
       setError(null);
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["upload"]: false,
+        ["Upload"]: false,
       }));
     }
   }, [value]);

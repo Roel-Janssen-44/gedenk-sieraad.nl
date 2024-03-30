@@ -23,11 +23,6 @@ export default function Gravure({
   const [error, setError] = useState([]);
 
   useEffect(() => {
-    console.log("error in gravure optionset");
-    console.log(error);
-  }, [error]);
-
-  useEffect(() => {
     if (Array.isArray(value)) {
       const gravure = value.find((item) => item.key === "Gravure").value;
       const lettertypeValue = value.find(
@@ -47,8 +42,6 @@ export default function Gravure({
       const woord4Value = value.find((item) => item.key === "4 woorden").value;
       const uploadValue = value.find((item) => item.key === "Upload").value;
 
-      console.log("gravure value");
-      console.log(gravure);
       switch (gravure) {
         case "Initialen/letters/tekens":
           if (initialenValue == "") {
@@ -80,10 +73,10 @@ export default function Gravure({
             ["Naam"]: "",
             ["Datum"]: "",
             ["Gravure"]: "",
-            ["woord1"]: "",
-            ["woord2"]: "",
-            ["woord3"]: "",
-            ["woord4"]: "",
+            ["Woord1"]: "",
+            ["Woord2"]: "",
+            ["Woord3"]: "",
+            ["Woord4"]: "",
           }));
           break;
         case "Geen tekst":
@@ -96,10 +89,10 @@ export default function Gravure({
             ["Naam"]: "",
             ["Datum"]: "",
             ["Gravure"]: "",
-            ["woord1"]: "",
-            ["woord2"]: "",
-            ["woord3"]: "",
-            ["woord4"]: "",
+            ["Woord1"]: "",
+            ["Woord2"]: "",
+            ["Woord3"]: "",
+            ["Woord4"]: "",
           }));
           break;
         case "Hartje ♥ symbool":
@@ -118,22 +111,22 @@ export default function Gravure({
               if (woord1Value == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1"]: "* Dit veld mag niet leeg zijn",
+                  ["Woord1"]: "* Dit veld mag niet leeg zijn",
                 }));
               } else if (woord1Value.includes(" ")) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1"]: "* Dit veld mag geen spatie bevatten",
+                  ["Woord1"]: "* Dit veld mag geen spatie bevatten",
                 }));
               } else if (woord1Value.length > 11) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1"]: "* Gebruik maximaal 11 karakters",
+                  ["Woord1"]: "* Gebruik maximaal 11 karakters",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1"]: "",
+                  ["Woord1"]: "",
                 }));
               }
               if (lettertypeValue == "") {
@@ -155,31 +148,31 @@ export default function Gravure({
                 ["Naam"]: "",
                 ["Datum"]: "",
                 ["Gravure"]: "",
-                ["woord2"]: "",
-                ["woord3"]: "",
-                ["woord4"]: "",
+                ["Woord2"]: "",
+                ["Woord3"]: "",
+                ["Woord4"]: "",
               }));
             } else if (extraWoordValue == "2 extra woorden") {
               if (woord2Value == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2"]: "* Dit veld mag niet leeg zijn",
+                  ["Woord2"]: "* Dit veld mag niet leeg zijn",
                 }));
               } else if (woord2Value.split(" ").length > 2) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2"]:
+                  ["Woord2"]:
                     "* Dit veld mag niet meer dan één spatie bevatten",
                 }));
               } else if (woord2Value.length > 18) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2"]: "* Gebruik maximaal 18 karakters",
+                  ["Woord2"]: "* Gebruik maximaal 18 karakters",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2"]: "",
+                  ["Woord2"]: "",
                 }));
               }
               if (lettertypeValue == "") {
@@ -201,9 +194,9 @@ export default function Gravure({
                 ["Naam"]: "",
                 ["Datum"]: "",
                 ["Gravure"]: "",
-                ["woord1"]: "",
-                ["woord3"]: "",
-                ["woord4"]: "",
+                ["Woord1"]: "",
+                ["Woord3"]: "",
+                ["Woord4"]: "",
               }));
             } else {
               setError((prevState) => ({
@@ -214,9 +207,9 @@ export default function Gravure({
                 ["Naam"]: "",
                 ["Datum"]: "",
                 ["Gravure"]: "",
-                ["woord1"]: "",
-                ["woord3"]: "",
-                ["woord4"]: "",
+                ["Woord1"]: "",
+                ["Woord3"]: "",
+                ["Woord4"]: "",
                 ["Lettertype"]: "",
               }));
             }
@@ -253,10 +246,10 @@ export default function Gravure({
             ["Initialen"]: "",
             ["Naam"]: "",
             ["Gravure"]: "",
-            ["woord1"]: "",
-            ["woord2"]: "",
-            ["woord3"]: "",
-            ["woord4"]: "",
+            ["Woord1"]: "",
+            ["Woord2"]: "",
+            ["Woord3"]: "",
+            ["Woord4"]: "",
           }));
           break;
         case "Naam":
@@ -289,14 +282,13 @@ export default function Gravure({
             ["Initialen"]: "",
             ["Datum"]: "",
             ["Gravure"]: "",
-            ["woord1"]: "",
-            ["woord2"]: "",
-            ["woord3"]: "",
-            ["woord4"]: "",
+            ["Woord1"]: "",
+            ["Woord2"]: "",
+            ["Woord3"]: "",
+            ["Woord4"]: "",
           }));
           break;
         case "Naam en datum":
-          console.log("case Naam en datum");
           if (naamValue == "") {
             setError((prevState) => ({
               ...prevState,
@@ -336,32 +328,33 @@ export default function Gravure({
             ["ExtraWoord"]: "",
             ["Initialen"]: "",
             ["Gravure"]: "",
-            ["woord1"]: "",
-            ["woord2"]: "",
-            ["woord3"]: "",
-            ["woord4"]: "",
+            ["Woord1"]: "",
+            ["Woord2"]: "",
+            ["Woord3"]: "",
+            ["Woord4"]: "",
           }));
+          break;
 
         case "1 woord":
           if (woord1Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord1"]: "Dit veld mag niet leeg zijn",
+              ["Woord1"]: "Dit veld mag niet leeg zijn",
             }));
           } else if (woord1Value.includes(" ")) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1"]: "Dit veld mag geen spatie bevatten",
+              ["Woord1"]: "Dit veld mag geen spatie bevatten",
             }));
           } else if (woord1Value.length > 11) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1"]: "Gebruik maximaal 11 karakters",
+              ["Woord1"]: "Gebruik maximaal 11 karakters",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord1"]: "",
+              ["Woord1"]: "",
             }));
           }
           if (lettertypeValue == "") {
@@ -383,31 +376,31 @@ export default function Gravure({
             ["Naam"]: "",
             ["Datum"]: "",
             ["Gravure"]: "",
-            ["woord2"]: "",
-            ["woord3"]: "",
-            ["woord4"]: "",
+            ["Woord2"]: "",
+            ["Woord3"]: "",
+            ["Woord4"]: "",
           }));
           break;
         case "2 woorden":
           if (woord2Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord2"]: "Veld woord 2 mag niet leeg zijn",
+              ["Woord2"]: "Veld woord 2 mag niet leeg zijn",
             }));
           } else if (woord2Value.length > 18) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2"]: "Gebruik maximaal 18 karakters",
+              ["Woord2"]: "Gebruik maximaal 18 karakters",
             }));
           } else if (woord2Value.split(" ").length > 2) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2"]: "Dit veld mag niet meer dan één spatie bevatten",
+              ["Woord2"]: "Dit veld mag niet meer dan één spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord2"]: "",
+              ["Woord2"]: "",
             }));
           }
           if (lettertypeValue == "") {
@@ -429,31 +422,31 @@ export default function Gravure({
             ["Naam"]: "",
             ["Datum"]: "",
             ["Gravure"]: "",
-            ["woord1"]: "",
-            ["woord3"]: "",
-            ["woord4"]: "",
+            ["Woord1"]: "",
+            ["Woord3"]: "",
+            ["Woord4"]: "",
           }));
           break;
         case "3 woorden":
           if (woord3Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord3"]: "Veld woord 3 mag niet leeg zijn",
+              ["Woord3"]: "Veld woord 3 mag niet leeg zijn",
             }));
           } else if (woord3Value.length > 24) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3"]: "Gebruik maximaal 24 karakters",
+              ["Woord3"]: "Gebruik maximaal 24 karakters",
             }));
           } else if (woord3Value.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3"]: "Dit veld mag niet meer dan twee spaties bevatten",
+              ["Woord3"]: "Dit veld mag niet meer dan twee spaties bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord3"]: "",
+              ["Woord3"]: "",
             }));
           }
           if (lettertypeValue == "") {
@@ -475,31 +468,31 @@ export default function Gravure({
             ["Naam"]: "",
             ["Datum"]: "",
             ["Gravure"]: "",
-            ["woord1"]: "",
-            ["woord2"]: "",
-            ["woord4"]: "",
+            ["Woord1"]: "",
+            ["Woord2"]: "",
+            ["Woord4"]: "",
           }));
           break;
         case "4 woorden":
           if (woord4Value == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord4"]: "Veld woord 4 mag niet leeg zijn",
+              ["Woord4"]: "Veld woord 4 mag niet leeg zijn",
             }));
           } else if (woord4Value.length > 30) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4"]: "Gebruik maximaal 30 karakters",
+              ["Woord4"]: "Gebruik maximaal 30 karakters",
             }));
           } else if (woord4Value.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4"]: "Dit veld mag niet meer dan drie spatie bevatten",
+              ["Woord4"]: "Dit veld mag niet meer dan drie spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord4"]: "",
+              ["Woord4"]: "",
             }));
           }
           if (lettertypeValue == "") {
@@ -521,9 +514,9 @@ export default function Gravure({
             ["Naam"]: "",
             ["Datum"]: "",
             ["Gravure"]: "",
-            ["woord1"]: "",
-            ["woord2"]: "",
-            ["woord3"]: "",
+            ["Woord1"]: "",
+            ["Woord2"]: "",
+            ["Woord3"]: "",
           }));
           break;
         case "Voet/handafdruk":
@@ -549,10 +542,10 @@ export default function Gravure({
             ["Initialen"]: "",
             ["Naam"]: "",
             ["Datum"]: "",
-            ["woord1"]: "",
-            ["woord2"]: "",
-            ["woord3"]: "",
-            ["woord4"]: "",
+            ["Woord1"]: "",
+            ["Woord2"]: "",
+            ["Woord3"]: "",
+            ["Woord4"]: "",
             ["Lettertype"]: "",
           }));
           break;
@@ -632,11 +625,6 @@ export default function Gravure({
     { key: "Upload", value: value?.upload?.value || "" },
   ]);
 
-  useEffect(() => {
-    console.log("error in option");
-    console.log(error);
-  }, [error, values]);
-
   const isInitialRender = useRef(true);
 
   useEffect(() => {
@@ -678,11 +666,16 @@ export default function Gravure({
     (item) => item.key === "ExtraWoord"
   ).value;
 
+  useEffect(() => {
+    console.log("error in gravure optionset");
+    console.log(error);
+  }, [error, values]);
+
   return (
     <>
       <div className="relative">
         {showErrors && (
-          <p className="absolute  -bottom-6 left-0 text-red-700">
+          <p className="absolute -bottom-6 left-0 text-red-700">
             {error["Gravure"]}
           </p>
         )}
@@ -697,7 +690,7 @@ export default function Gravure({
       {(gravure == "Hartje ♥ symbool" || gravure == "Infinity ∞ teken") && (
         <div className="relative">
           {showErrors && (
-            <p className="absolute  -bottom-6 left-0 text-red-700">
+            <p className="absolute -bottom-6 left-0 text-red-700">
               {error["ExtraWoord"]}
             </p>
           )}
@@ -714,7 +707,7 @@ export default function Gravure({
       {gravure == "Initialen/letters/tekens" && (
         <div className="relative">
           {showErrors && (
-            <p className="absolute  -bottom-6 left-0 text-red-700">
+            <p className="absolute -bottom-6 left-0 text-red-700">
               {error["Initialen"]}
             </p>
           )}
@@ -730,7 +723,7 @@ export default function Gravure({
       {(gravure == "Naam" || gravure == "Naam en datum") && (
         <div className="relative">
           {showErrors && (
-            <p className="absolute  -bottom-6 left-0 text-red-700">
+            <p className="absolute -bottom-6 left-0 text-red-700">
               {error["Naam"]}
             </p>
           )}
@@ -744,7 +737,7 @@ export default function Gravure({
       {(gravure == "Datum" || gravure == "Naam en datum") && (
         <div className="relative">
           {showErrors && (
-            <p className="absolute  -bottom-6 left-0 text-red-700">
+            <p className="absolute -bottom-6 left-0 text-red-700">
               {error["Datum"]}
             </p>
           )}
@@ -758,8 +751,8 @@ export default function Gravure({
       {(gravure == "1 woord" || extraWoordValue == "1 extra woord") && (
         <div className="relative">
           {showErrors && (
-            <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["woord1"]}
+            <p className="absolute -bottom-6 left-0 text-red-700">
+              {error["Woord1"]}
             </p>
           )}
           <InputTextField
@@ -774,8 +767,8 @@ export default function Gravure({
       {(gravure == "2 woorden" || extraWoordValue == "2 extra woorden") && (
         <div className="relative">
           {showErrors && (
-            <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["woord2"]}
+            <p className="absolute -bottom-6 left-0 text-red-700">
+              {error["Woord2"]}
             </p>
           )}
           <InputTextField
@@ -790,8 +783,8 @@ export default function Gravure({
       {gravure == "3 woorden" && (
         <div className="relative">
           {showErrors && (
-            <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["woord3"]}
+            <p className="absolute -bottom-6 left-0 text-red-700">
+              {error["Woord3"]}
             </p>
           )}
           <InputTextField
@@ -806,8 +799,8 @@ export default function Gravure({
       {gravure == "4 woorden" && (
         <div className="relative">
           {showErrors && (
-            <p className="absolute  -bottom-6 left-0 text-red-700">
-              {error["woord4"]}
+            <p className="absolute -bottom-6 left-0 text-red-700">
+              {error["Woord4"]}
             </p>
           )}
           <InputTextField
@@ -831,7 +824,7 @@ export default function Gravure({
         extraWoordValue == "2 extra woorden") && (
         <div className="relative">
           {showErrors && (
-            <p className="absolute  -bottom-6 left-0 text-red-700">
+            <p className="absolute -bottom-6 left-0 text-red-700">
               {error["Lettertype"]}
             </p>
           )}
@@ -856,7 +849,7 @@ export default function Gravure({
         gravure == "Twee vingerafdrukken in hartvorm") && (
         <div className="relative">
           {showErrors && (
-            <p className="absolute  -bottom-6 left-0 text-red-700">
+            <p className="absolute -bottom-6 left-0 text-red-700">
               {error["Upload"]}
             </p>
           )}

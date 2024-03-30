@@ -466,6 +466,7 @@ export default function Positie({
             ["woord3Links"]: "",
             ["woord4Links"]: "",
           }));
+          break;
         case "1 woord":
           if (woord1ValueLinks == "") {
             setError((prevState) => ({
@@ -992,6 +993,7 @@ export default function Positie({
             ["woord3Midden"]: "",
             ["woord4Midden"]: "",
           }));
+          break;
         case "1 woord":
           if (woord1ValueMidden == "") {
             setError((prevState) => ({
@@ -1519,6 +1521,7 @@ export default function Positie({
             ["woord3Rechts"]: "",
             ["woord4Rechts"]: "",
           }));
+          break;
         case "1 woord":
           if (woord1ValueRechts == "") {
             setError((prevState) => ({
@@ -2046,6 +2049,7 @@ export default function Positie({
             ["woord3Achter"]: "",
             ["woord4Achter"]: "",
           }));
+          break;
         case "1 woord":
           if (woord1ValueAchter == "") {
             setError((prevState) => ({

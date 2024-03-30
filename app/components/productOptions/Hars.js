@@ -18,7 +18,7 @@ export default function HarsKleur({
   useEffect(() => {
     if (Array.isArray(value)) {
       const harsKleurValue = value.find(
-        (item) => item.key === "harsKleur"
+        (item) => item.key === "Harskleur"
       ).value;
       const glitterValue = value.find((item) => item.key === "glitter").value;
 
@@ -36,12 +36,12 @@ export default function HarsKleur({
         if (harsKleurValue == "") {
           setError((prevState) => ({
             ...prevState,
-            ["harsKleur"]: "* Kies een harskleur",
+            ["Harskleur"]: "* Kies een harskleur",
           }));
         } else {
           setError((prevState) => ({
             ...prevState,
-            ["harsKleur"]: "",
+            ["Harskleur"]: "",
           }));
         }
         if (glitterValue == "") {
@@ -60,7 +60,7 @@ export default function HarsKleur({
   }, [value]);
 
   const [values, setValues] = useState([
-    { key: "harsKleur", value: value?.harsKleur?.value || "" },
+    { key: "Harskleur", value: value?.harsKleur?.value || "" },
     { key: "glitter", value: value?.glitter?.value || "" },
   ]);
 
@@ -90,12 +90,12 @@ export default function HarsKleur({
       <div className="relative">
         {showErrors && (
           <p className="absolute  -bottom-6 left-0 text-red-700">
-            {error["harsKleur"]}
+            {error["Harskleur"]}
           </p>
         )}
         <InputImageSwatch
-          value={values.find((item) => item.key === "harsKleur")?.value || ""}
-          onChange={(newHarsValue) => handleChange("harsKleur", newHarsValue)}
+          value={values.find((item) => item.key === "Harskleur")?.value || ""}
+          onChange={(newHarsValue) => handleChange("Harskleur", newHarsValue)}
           title="Harskleur:"
           options={harsKleurOptions}
         />

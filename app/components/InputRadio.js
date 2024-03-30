@@ -1,7 +1,13 @@
 import Image from "next/image";
+import { useState } from "react";
 import { RadioGroup, FormControlLabel, Radio } from "@mui/material";
+import { Button, Modal } from "@mui/material";
 
 export default function InputRadio({ onChange, title, options, multiple }) {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <div>
       <div className="flex flex-wrap items-center text-sm mb-2">
@@ -28,13 +34,34 @@ export default function InputRadio({ onChange, title, options, multiple }) {
                 onChange={(e) => onChange(e.target.value)}
               />
               {option?.imageUrl && (
-                <Image
-                  aria-hidden
-                  src={option.imageUrl}
-                  alt="Option descriptive image"
-                  width={125}
-                  height={125}
-                />
+                <>
+                  <Button onClick={handleOpen}>
+                    <Image
+                      aria-hidden
+                      src={option.imageUrl}
+                      alt="Option descriptive image"
+                      width={125}
+                      height={125}
+                    />
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <div className="fixed overflow-hidden left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[528px] max-h-[528px]">
+                      <Image
+                        aria-hidden
+                        src={option.imageUrl}
+                        alt="Option descriptive image"
+                        width={528}
+                        height={528}
+                        className="rouned-lg"
+                      />
+                    </div>
+                  </Modal>
+                </>
               )}
             </>
           );
