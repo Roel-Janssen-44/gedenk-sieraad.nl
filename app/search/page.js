@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import Search from "@/components/Search";
 
 export const metadata = {
@@ -8,7 +10,9 @@ export const metadata = {
 export default async function SearchPage() {
   return (
     <div className="">
-      <Search />
+      <Suspense>
+        <Search />
+      </Suspense>
     </div>
   );
 }
