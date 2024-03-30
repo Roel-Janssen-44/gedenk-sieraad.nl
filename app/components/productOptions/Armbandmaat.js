@@ -18,13 +18,13 @@ export default function Armbandmaat({
       setError("* Veld mag niet leeg zijn");
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["armbandmaat"]: true,
+        ["Armbandmaat"]: true,
       }));
     } else {
       setError(null);
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["armbandmaat"]: false,
+        ["Armbandmaat"]: false,
       }));
     }
   }, [value]);

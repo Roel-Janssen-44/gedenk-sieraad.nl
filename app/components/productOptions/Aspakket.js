@@ -18,13 +18,13 @@ export default function Aspakket({
       setError("* Kies een optie");
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["aspakket"]: true,
+        ["Aspakket"]: true,
       }));
     } else {
       setError(null);
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["aspakket"]: false,
+        ["Aspakket"]: false,
       }));
     }
   }, [value]);

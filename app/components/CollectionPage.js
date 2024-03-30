@@ -9,51 +9,47 @@ import FilterCollection from "@/components/FilterCollection";
 import SortCollection from "@/components/SortCollection";
 import NotFound from "@/components/NotFound";
 
-export default function CollectionPage({ searchParams, collection }) {
-  const sortKey = searchParams.Sorteer;
-  const material = searchParams.Materiaal || null;
-  const vendor = searchParams.Merk || null;
-  const minPrice = searchParams.MinPrijs || null;
-  const maxPrice = searchParams.MaxPrijs || null;
+export default function CollectionPage({ collection }) {
+  // console.log("searchParams");
+  // console.log(searchParams);
+  // console.log(vendor);
 
-  console.log("searchParams");
-  console.log(searchParams);
-  console.log(vendor);
+  // const [products, setProducts] = useState([]);
 
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/api/getCollectionProducts", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            collectionHandle: collection.handle,
-            material,
-            vendor,
-            minPrice,
-            maxPrice,
-            sortKey,
-          }),
-        });
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const fetchedProducts = await response.json();
-        setProducts(fetchedProducts);
-      } catch (error) {
-        console.log("Error fetching collection products:", error);
-      }
-    };
-    fetchData();
-  }, [collection.handle, searchParams]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch("/api/getCollectionProducts", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           collectionHandle: collection.handle,
+  //           material,
+  //           vendor,
+  //           minPrice,
+  //           maxPrice,
+  //           sortKey,
+  //         }),
+  //         next: { revalidate: 3600 },
+  //       });
+  //       if (!response.ok) {
+  //         throw new Error("Network response was not ok");
+  //       }
+  //       const fetchedProducts = await response.json();
+  //       setProducts(fetchedProducts);
+  //     } catch (error) {
+  //       console.log("Error fetching collection products:", error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [collection.handle, searchParams]);
+  if (!collection) return <p> nuiks</p>;
 
   return (
-    <div className="container flex flex-col gap-8 md:flex-row">
-      <FilterCollection products={products} />
+    <div className="relative container flex flex-col gap-8 md:flex-row">
+      <FilterCollection products={collection.products.nodes} />
       <div className="flex-1">
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 border-[1px] border-gray-200 p-4 mb-8 bg-white rounded-md">
           <div className="min-w-[150px]">
@@ -70,7 +66,7 @@ export default function CollectionPage({ searchParams, collection }) {
           </div>
         </div>
         <SortCollection />
-        <ProductGrid collectionProducts={products} />
+        <ProductGrid collectionProducts={collection.products.nodes} />
       </div>
     </div>
   );

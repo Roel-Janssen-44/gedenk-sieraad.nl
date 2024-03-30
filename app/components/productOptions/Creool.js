@@ -18,13 +18,13 @@ export default function Creool({
       setError("* Veld mag niet leeg zijn");
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["creool"]: true,
+        ["Creool"]: true,
       }));
     } else {
       setError(null);
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["creool"]: false,
+        ["Creool"]: false,
       }));
     }
   }, [value]);

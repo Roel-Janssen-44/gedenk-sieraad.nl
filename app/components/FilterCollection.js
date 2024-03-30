@@ -15,7 +15,7 @@ export default function FilterCollection({ products }) {
   };
 
   return (
-    <div className="relative">
+    <div className="w-auto">
       {/* Pc filters */}
       <div className="hidden xl:block xl:w-[265px]">
         <FilterCollectionFilters products={products} />

@@ -515,7 +515,6 @@ function Product({
     });
 
     if (tags.includes("positie")) {
-      console.log("positions");
       extraImages?.forEach((image) => {
         newThumbnails.push(image);
       });
@@ -650,6 +649,7 @@ function Product({
                     ? item.value
                         .map((nestedItem) => ({
                           key: nestedItem.key,
+                          // To do array attributes
                           value:
                             nestedItem.value !== "" ? nestedItem.value : null,
                         }))

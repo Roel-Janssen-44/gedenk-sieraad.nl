@@ -47,6 +47,7 @@ export const useCartDrawer = () => {
 
 export default function RootLayout({ shopData, children }) {
   const [cartDrawerIsOpen, setCartDrawerIsOpen] = useState(false);
+
   return (
     <>
       <ShopifyProvider
@@ -57,12 +58,13 @@ export default function RootLayout({ shopData, children }) {
         languageIsoCode="NL"
       >
         <CartProvider
-          onLineAdd={() => {
-            console.log("a line is being added");
-          }}
-          onLineAddComplete={() => {
-            console.log("a line has been added");
-          }}
+        // onLineAdd={() => {
+        //   console.log("a line is being added");
+        // setCartDrawerIsOpen(true)
+        // }}
+        // onLineAddComplete={() => {
+        //   console.log("a line has been added");
+        // }}
         >
           <CartContext.Provider value={setCartDrawerIsOpen}>
             <ThemeProvider theme={theme}>

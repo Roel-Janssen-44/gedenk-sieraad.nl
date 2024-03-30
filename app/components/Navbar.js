@@ -148,6 +148,7 @@ export default function Navbar({
                   if (menuItem.items[0] == undefined) {
                     return (
                       <Link
+                        scroll={false}
                         key={"menu_item" + menuItem.id}
                         target="_blank"
                         rel="nofollow"
@@ -169,6 +170,7 @@ export default function Navbar({
                           className="flex                           
                           relative before:absolute before:left-0 before:-translate-x-[101%] before:bottom-2 before:h-[2px] before:w-full before:bg-white hover:before:translate-x-0 before:transition-all overflow-hidden"
                           href={itemPathAfterDotCom}
+                          scroll={false}
                           // onClick={() => {
                           //   scrollTo({
                           //     top: 0,
@@ -192,6 +194,7 @@ export default function Navbar({
                                   key={"menuChildItem" + menuChildItem.url}
                                 >
                                   <Link
+                                    scroll={false}
                                     href={childPathAfterDotCom}
                                     className={`py-3 px-2 flex w-full text-left ${
                                       index !== 0

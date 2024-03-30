@@ -18,13 +18,13 @@ export default function Aszijde({
       setError("* Kies een optie");
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["aszijde"]: true,
+        ["Aszijde"]: true,
       }));
     } else {
       setError(null);
       setOptionErrors((prevState) => ({
         ...prevState,
-        ["aszijde"]: false,
+        ["Aszijde"]: false,
       }));
     }
   }, [value]);

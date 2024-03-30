@@ -146,33 +146,31 @@ export default function FilterDrawerFilters({ products }) {
     setExpanded(isExpanded ? panel : false);
   };
 
-  console.log("products");
-  console.log(products);
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    if (material) {
-      params.set("Materiaal", material);
-    } else {
-      params.delete("Materiaal");
-    }
-    if (vendor) {
-      params.set("Merk", vendor);
-    } else {
-      params.delete("Merk");
-    }
-    replace(`${pathname}?${params.toString()}`);
-  }, [vendor, material]);
+  // useEffect(() => {
+  //   const params = new URLSearchParams(searchParams);
+  //   if (material) {
+  //     params.set("Materiaal", material);
+  //   } else {
+  //     params.delete("Materiaal");
+  //   }
+  //   if (vendor) {
+  //     params.set("Merk", vendor);
+  //   } else {
+  //     params.delete("Merk");
+  //   }
+  //   replace(`${pathname}?${params.toString()}`);
+  // }, [vendor, material]);
 
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    if (minPrice) {
-      params.set("MinPrijs", minPrice);
-    }
-    if (maxPrice) {
-      params.set("MaxPrijs", maxPrice);
-    }
-    replace(`${pathname}?${params.toString()}`);
-  }, [minPrice, maxPrice]);
+  // useEffect(() => {
+  //   const params = new URLSearchParams(searchParams);
+  //   if (minPrice) {
+  //     params.set("MinPrijs", minPrice);
+  //   }
+  //   if (maxPrice) {
+  //     params.set("MaxPrijs", maxPrice);
+  //   }
+  //   replace(`${pathname}?${params.toString()}`);
+  // }, [minPrice, maxPrice]);
 
   let vendors = {
     elegant: {
@@ -260,8 +258,6 @@ export default function FilterDrawerFilters({ products }) {
     } else {
       product.options[0].values.forEach((option) => {
         if (option == material) {
-          console.log("inside if statement");
-
           if (product.vendor === "Elegant hand made") {
             vendors["elegant"].amount++;
           } else if (product.vendor === "Exquisite hand made") {
@@ -410,7 +406,12 @@ export default function FilterDrawerFilters({ products }) {
                       }
                       label={material.name + ` (${material.amount})`}
                       className="mb-1.5 last:mb-0 "
-                      onChange={(e) => setMaterial(e.target.value)}
+                      onChange={(e) => {
+                        const params = new URLSearchParams(searchParams);
+                        params.set("Materiaal", e.target.value);
+                        replace(`${pathname}?${params.toString()}`);
+                        setMaterial(e.target.value);
+                      }}
                     />
                   );
                 }
@@ -418,6 +419,9 @@ export default function FilterDrawerFilters({ products }) {
 
               <Button
                 onClick={() => {
+                  const params = new URLSearchParams(searchParams);
+                  params.delete("Materiaal");
+                  replace(`${pathname}?${params.toString()}`);
                   setMaterial(null);
                 }}
                 size="large"
@@ -441,25 +445,36 @@ export default function FilterDrawerFilters({ products }) {
               value={vendor}
             >
               {Object.keys(vendors).map((vendorKey) => (
-                <FormControlLabel
-                  key={"vendorfacet" + vendors[vendorKey].name}
-                  value={vendors[vendorKey].name}
-                  control={
-                    <Radio
-                      disabled={vendors[vendorKey].amount === 0}
-                      sx={{ "&.Mui-checked": { color: "#222" } }}
-                    />
-                  }
-                  label={
-                    vendors[vendorKey].name + ` (${vendors[vendorKey].amount})`
-                  }
-                  className="mb-1.5 last:mb-0 "
-                  onChange={(e) => setVendor(e.target.value)}
-                />
+                <>
+                  <FormControlLabel
+                    key={"vendorfacet" + vendors[vendorKey].name}
+                    value={vendors[vendorKey].name}
+                    control={
+                      <Radio
+                        disabled={vendors[vendorKey].amount === 0}
+                        sx={{ "&.Mui-checked": { color: "#222" } }}
+                      />
+                    }
+                    label={
+                      vendors[vendorKey].name +
+                      ` (${vendors[vendorKey].amount})`
+                    }
+                    className="mb-1.5 last:mb-0 "
+                    onChange={(e) => {
+                      const params = new URLSearchParams(searchParams);
+                      params.set("Merk", e.target.value);
+                      replace(`${pathname}?${params.toString()}`);
+                      setVendor(e.target.value);
+                    }}
+                  />
+                </>
               ))}
               <Button
                 variant="outlined"
                 onClick={() => {
+                  const params = new URLSearchParams(searchParams);
+                  params.delete("Merk");
+                  replace(`${pathname}?${params.toString()}`);
                   setVendor(null);
                 }}
                 size="large"
@@ -483,7 +498,19 @@ export default function FilterDrawerFilters({ products }) {
           type="number"
           value={minPrice}
           variant="outlined"
-          onChange={(e) => setMinPrice(e.target.value)}
+          onBlur={(e) => {
+            const params = new URLSearchParams(searchParams);
+            if (e.target.value === "") {
+              params.delete("MinPrijs");
+            } else {
+              params.set("MinPrijs", e.target.value);
+            }
+            replace(`${pathname}?${params.toString()}`);
+            setMinPrice(e.target.value);
+          }}
+          onChange={(e) => {
+            setMinPrice(e.target.value);
+          }}
           InputProps={{
             startAdornment: <InputAdornment position="start">€</InputAdornment>,
           }}
@@ -493,10 +520,21 @@ export default function FilterDrawerFilters({ products }) {
         </div>
         <TextField
           type="number"
-          // max={price.max}
           value={maxPrice}
           variant="outlined"
-          onChange={(e) => setMaxPrice(e.target.value)}
+          onBlur={(e) => {
+            const params = new URLSearchParams(searchParams);
+            if (e.target.value === "") {
+              params.delete("MaxPrijs");
+            } else {
+              params.set("MaxPrijs", e.target.value);
+            }
+            replace(`${pathname}?${params.toString()}`);
+            setMaxPrice(e.target.value);
+          }}
+          onChange={(e) => {
+            setMaxPrice(e.target.value);
+          }}
           InputProps={{
             startAdornment: <InputAdornment position="start">€</InputAdornment>,
           }}
@@ -504,8 +542,12 @@ export default function FilterDrawerFilters({ products }) {
         <div>
           <Button
             onClick={() => {
-              setMinPrice(null);
-              setMaxPrice(null);
+              setMinPrice(0);
+              setMaxPrice(9999);
+              const params = new URLSearchParams(searchParams);
+              params.delete("MinPrijs");
+              params.delete("MaxPrijs");
+              replace(`${pathname}?${params.toString()}`);
             }}
             size="large"
             variant="outlined"
@@ -518,9 +560,12 @@ export default function FilterDrawerFilters({ products }) {
           className="bg-primary w-full mt-8"
           variant="contained"
           size="large"
-          // onClick={() => {
-          //   // To do add scroll to top
-          // }}
+          onClick={() => {
+            window.scrollTo({
+              top: 200,
+              behavior: "smooth",
+            });
+          }}
         >
           Producten zoeken
         </Button>
