@@ -48,7 +48,7 @@ export const voorvoegselOptions = [
     price: 0,
   },
   {
-    value: "hartje ♥ symbool",
+    value: "Hartje ♥ symbool",
     price: 9.95,
   },
   {
@@ -84,7 +84,7 @@ export const pootKeuze2Options = [
   {
     value: "Ik wil eerst een gratis pootafdruk pakket ontvangen.",
     price: 0,
-    imageUrl: "/images/handafdruk.png",
+    imageUrl: "/images/pootafdruk.jpg",
   },
 ];
 
@@ -98,15 +98,15 @@ export const printKeuze1Options = [
     // value:
     //   "Ik wil eerst een gratis vingerafdrukpakket ontvangen.(selecteer dan ook bij gravure: vingerafdruk)",
     value: "Ik wil eerst een gratis vingerafdruk pakket ontvangen.",
+    imageUrl: "/images/vingerafdruk.png",
     price: 0,
-    imageUrl: "/images/handafdruk.png",
   },
   {
     value: "Ik wil eerst een gratis hand/voet/pootafdruk pakket ontvangen.",
     // value:
     //   "Ik wil eerst een gratis hand/voet/pootafdrukpakket ontvangen.(selecteer dan ook bij gravure: hand/voetafdruk of pootafdruk)",
     price: 0,
-    imageUrl: "/images/vingerafdruk.png",
+    imageUrl: "/images/handafdruk.png",
   },
 ];
 

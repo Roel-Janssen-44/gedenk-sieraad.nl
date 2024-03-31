@@ -114,8 +114,8 @@ export default function Print({
     }
   }, [value]);
 
-  console.log("errors");
-  console.log(error);
+  // console.log("errors");
+  // console.log(error);
 
   useEffect(() => {
     const allValuescorrect = Object.values(error).every(
@@ -160,11 +160,21 @@ export default function Print({
     if (changedKey === "Keuze1") {
       if (
         newValue ==
-        "Ik heb al een digitaal bestand van vinger/voet/hand/pootafdruk of gravure en wil dit nu uploaden "
+        "Ik heb al een digitaal bestand van vinger/voet/hand/pootafdruk of gravure en wil dit nu uploaden"
       ) {
         setValues((prevValues) =>
           prevValues.map((item) =>
             item.key === "Keuze3" ? { ...item, value: "" } : item
+          )
+        );
+      } else if (
+        newValue == "Ik wil eerst een gratis vingerafdruk pakket ontvangen." ||
+        newValue ==
+          "Ik wil eerst een gratis hand/voet/pootafdruk pakket ontvangen."
+      ) {
+        setValues((prevValues) =>
+          prevValues.map((item) =>
+            item.key === "Keuze2" ? { ...item, value: "" } : item
           )
         );
       } else {

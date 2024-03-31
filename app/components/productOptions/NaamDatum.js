@@ -263,7 +263,7 @@ export default function NaamDatum({
           onChange={(newGraveerTekstValue) =>
             handleChange("Naamdatum", newGraveerTekstValue)
           }
-          title="Gravure:"
+          title="Graveertekst achterzijde:"
           options={naamDatumOptions}
         />
       </div>

@@ -45,132 +45,132 @@ export default function Positie({
   useEffect(() => {
     if (Array.isArray(value)) {
       const gravureLinks = value.find(
-        (item) => item.key === "gravureLinks"
+        (item) => item.key === "Gravurelinks"
       ).value;
       const initialenValueLinks = value.find(
-        (item) => item.key === "initialenLinks"
+        (item) => item.key === "Initialenlinks"
       ).value;
       const datumValueLinks = value.find(
-        (item) => item.key === "datumLinks"
+        (item) => item.key === "Datumlinks"
       ).value;
       const naamValueLinks = value.find(
-        (item) => item.key === "naamLinks"
+        (item) => item.key === "Naamlinks"
       ).value;
       const woord1ValueLinks = value.find(
-        (item) => item.key === "1 woordLinks"
+        (item) => item.key === "1 woordlinks"
       ).value;
       const woord2ValueLinks = value.find(
-        (item) => item.key === "2 woordenLinks"
+        (item) => item.key === "2 woordenlinks"
       ).value;
       const woord3ValueLinks = value.find(
-        (item) => item.key === "3 woordenLinks"
+        (item) => item.key === "3 woordenlinks"
       ).value;
       const woord4ValueLinks = value.find(
-        (item) => item.key === "4 woordenLinks"
+        (item) => item.key === "4 woordenlinks"
       ).value;
       const uploadValueLinks = value.find(
-        (item) => item.key === "uploadLinks"
+        (item) => item.key === "Uploadlinks"
       ).value;
 
       const gravureMidden = value.find(
-        (item) => item.key === "gravureMidden"
+        (item) => item.key === "Gravuremidden"
       ).value;
       const initialenValueMidden = value.find(
-        (item) => item.key === "initialenMidden"
+        (item) => item.key === "Initialenmidden"
       ).value;
       const datumValueMidden = value.find(
-        (item) => item.key === "datumMidden"
+        (item) => item.key === "Datummidden"
       ).value;
       const naamValueMidden = value.find(
-        (item) => item.key === "naamMidden"
+        (item) => item.key === "Naammidden"
       ).value;
       const woord1ValueMidden = value.find(
-        (item) => item.key === "1 woordMidden"
+        (item) => item.key === "1 woordmidden"
       ).value;
       const woord2ValueMidden = value.find(
-        (item) => item.key === "2 woordenMidden"
+        (item) => item.key === "2 woordenmidden"
       ).value;
       const woord3ValueMidden = value.find(
-        (item) => item.key === "3 woordenMidden"
+        (item) => item.key === "3 woordenmidden"
       ).value;
       const woord4ValueMidden = value.find(
-        (item) => item.key === "4 woordenMidden"
+        (item) => item.key === "4 woordenmidden"
       ).value;
       const uploadValueMidden = value.find(
-        (item) => item.key === "uploadMidden"
+        (item) => item.key === "uploadmidden"
       ).value;
 
       const gravureRechts = value.find(
-        (item) => item.key === "gravureRechts"
+        (item) => item.key === "Gravurerechts"
       ).value;
       const initialenValueRechts = value.find(
-        (item) => item.key === "initialenRechts"
+        (item) => item.key === "Initialenrechts"
       ).value;
       const datumValueRechts = value.find(
-        (item) => item.key === "datumRechts"
+        (item) => item.key === "Datumrechts"
       ).value;
       const naamValueRechts = value.find(
-        (item) => item.key === "naamRechts"
+        (item) => item.key === "Naamrechts"
       ).value;
       const woord1ValueRechts = value.find(
-        (item) => item.key === "1 woordRechts"
+        (item) => item.key === "1 woordrechts"
       ).value;
       const woord2ValueRechts = value.find(
-        (item) => item.key === "2 woordenRechts"
+        (item) => item.key === "2 woordenrechts"
       ).value;
       const woord3ValueRechts = value.find(
-        (item) => item.key === "3 woordenRechts"
+        (item) => item.key === "3 woordenrechts"
       ).value;
       const woord4ValueRechts = value.find(
-        (item) => item.key === "4 woordenRechts"
+        (item) => item.key === "4 woordenrechts"
       ).value;
       const uploadValueRechts = value.find(
-        (item) => item.key === "uploadRechts"
+        (item) => item.key === "uploadrechts"
       ).value;
 
       const gravureAchter = value.find(
-        (item) => item.key === "gravureAchter"
+        (item) => item.key === "Gravureachter"
       ).value;
       const initialenValueAchter = value.find(
-        (item) => item.key === "initialenAchter"
+        (item) => item.key === "Initialenachter"
       ).value;
       const datumValueAchter = value.find(
-        (item) => item.key === "datumAchter"
+        (item) => item.key === "Datumachter"
       ).value;
       const naamValueAchter = value.find(
-        (item) => item.key === "naamAchter"
+        (item) => item.key === "Naamachter"
       ).value;
       const woord1ValueAchter = value.find(
-        (item) => item.key === "1 woordAchter"
+        (item) => item.key === "1 woordachter"
       ).value;
       const woord2ValueAchter = value.find(
-        (item) => item.key === "2 woordenAchter"
+        (item) => item.key === "2 woordenachter"
       ).value;
       const woord3ValueAchter = value.find(
-        (item) => item.key === "3 woordenAchter"
+        (item) => item.key === "3 woordenachter"
       ).value;
       const woord4ValueAchter = value.find(
-        (item) => item.key === "4 woordenAchter"
+        (item) => item.key === "4 woordenachter"
       ).value;
       const uploadValueAchter = value.find(
-        (item) => item.key === "uploadAchter"
+        (item) => item.key === "Uploadachter"
       ).value;
 
       const lettertypeValue = value.find(
-        (item) => item.key === "lettertype"
+        (item) => item.key === "Lettertype"
       ).value;
 
       const extraWoordLinks = values.find(
-        (item) => item.key === "extraWoordLinks"
+        (item) => item.key === "Extrawoordlinks"
       ).value;
       const extraWoordMidden = values.find(
-        (item) => item.key === "extraWoordMidden"
+        (item) => item.key === "Extrawoordmidden"
       ).value;
       const extraWoordRechts = values.find(
-        (item) => item.key === "extraWoordRechts"
+        (item) => item.key === "Extrawoordrechts"
       ).value;
       const extraWoordAchter = values.find(
-        (item) => item.key === "extraWoordAchter"
+        (item) => item.key === "Extrawoordachter"
       ).value;
 
       switch (gravureLinks) {
@@ -178,12 +178,12 @@ export default function Positie({
           if (initialenValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
-              ["initialenLinks"]: "Veld initiaal mag niet leeg zijn",
+              ["Initialenlinks"]: "Veld initiaal mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["initialenLinks"]: "",
+              ["Initialenlinks"]: "",
             }));
           }
           // if (lettertypeValueLinks == "") {
@@ -199,11 +199,11 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureLinks"]: "",
-            ["extraWoordLinks"]: "",
-            ["naamLinks"]: "",
-            ["datumLinks"]: "",
-            ["gravureLinks"]: "",
+            ["Gravurelinks"]: "",
+            ["Extrawoordlinks"]: "",
+            ["Naamlinks"]: "",
+            ["Datumlinks"]: "",
+            ["Gravurelinks"]: "",
             ["woord1Links"]: "",
             ["woord2Links"]: "",
             ["woord3Links"]: "",
@@ -213,13 +213,13 @@ export default function Positie({
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,
-            ["gravureLinks"]: "",
-            ["initialenLinks"]: "",
-            ["extraWoordLinks"]: "",
+            ["Gravurelinks"]: "",
+            ["Initialenlinks"]: "",
+            ["Extrawoordlinks"]: "",
             // ["lettertypeLinks"]: "",
-            ["naamLinks"]: "",
-            ["datumLinks"]: "",
-            ["gravureLinks"]: "",
+            ["Naamlinks"]: "",
+            ["Datumlinks"]: "",
+            ["Gravurelinks"]: "",
             ["woord1Links"]: "",
             ["woord2Links"]: "",
             ["woord3Links"]: "",
@@ -230,11 +230,11 @@ export default function Positie({
         case "Infinity ∞ teken":
           // setError((prevState) => ({
           //   ...prevState,
-          //   ["gravureLinks"]: "",
-          //   ["initialenLinks"]: "",
-          //   ["naamLinks"]: "",
-          //   ["datumLinks"]: "",
-          //   ["gravureLinks"]: "",
+          //   ["Gravurelinks"]: "",
+          //   ["Initialenlinks"]: "",
+          //   ["Naamlinks"]: "",
+          //   ["Datumlinks"]: "",
+          //   ["Gravurelinks"]: "",
           //   ["woord1Links"]: "",
           //   ["woord3Links"]: "",
           //   ["woord4Links"]: "",
@@ -275,22 +275,22 @@ export default function Positie({
               if (lettertypeValue == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "* Kies een lettertype",
+                  ["Lettertype"]: "* Kies een lettertype",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "",
+                  ["Lettertype"]: "",
                 }));
               }
               setError((prevState) => ({
                 ...prevState,
-                ["gravureLinks"]: "",
-                ["extraWoordLinks"]: "",
-                ["initialenLinks"]: "",
-                ["naamLinks"]: "",
-                ["datumLinks"]: "",
-                ["gravureLinks"]: "",
+                ["Gravurelinks"]: "",
+                ["Extrawoordlinks"]: "",
+                ["Initialenlinks"]: "",
+                ["Naamlinks"]: "",
+                ["Datumlinks"]: "",
+                ["Gravurelinks"]: "",
                 // ["woord1Links"]: "",
                 ["woord2Links"]: "",
                 ["woord3Links"]: "",
@@ -321,12 +321,12 @@ export default function Positie({
               }
               setError((prevState) => ({
                 ...prevState,
-                ["gravureLinks"]: "",
-                ["extraWoordLinks"]: "",
-                ["initialenLinks"]: "",
-                ["naamLinks"]: "",
-                ["datumLinks"]: "",
-                ["gravureLinks"]: "",
+                ["Gravurelinks"]: "",
+                ["Extrawoordlinks"]: "",
+                ["Initialenlinks"]: "",
+                ["Naamlinks"]: "",
+                ["Datumlinks"]: "",
+                ["Gravurelinks"]: "",
                 ["woord1Links"]: "",
                 ["woord3Links"]: "",
                 ["woord4Links"]: "",
@@ -334,12 +334,12 @@ export default function Positie({
             } else {
               setError((prevState) => ({
                 ...prevState,
-                ["gravureLinks"]: "",
-                ["extraWoordLinks"]: "",
-                ["initialenLinks"]: "",
-                ["naamLinks"]: "",
-                ["datumLinks"]: "",
-                ["gravureLinks"]: "",
+                ["Gravurelinks"]: "",
+                ["Extrawoordlinks"]: "",
+                ["Initialenlinks"]: "",
+                ["Naamlinks"]: "",
+                ["Datumlinks"]: "",
+                ["Gravurelinks"]: "",
                 ["woord1Links"]: "",
                 ["woord2Links"]: "",
                 ["woord3Links"]: "",
@@ -353,12 +353,12 @@ export default function Positie({
           if (datumValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datumLinks"]: "Veld datum mag niet leeg zijn",
+              ["Datumlinks"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["datumLinks"]: "",
+              ["Datumlinks"]: "",
             }));
           }
           // if (lettertypeValueLinks == "") {
@@ -374,11 +374,11 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureLinks"]: "",
-            ["initialenLinks"]: "",
-            ["naamLinks"]: "",
-            ["gravureLinks"]: "",
-            ["extraWoordLinks"]: "",
+            ["Gravurelinks"]: "",
+            ["Initialenlinks"]: "",
+            ["Naamlinks"]: "",
+            ["Gravurelinks"]: "",
+            ["Extrawoordlinks"]: "",
             ["woord1Links"]: "",
             ["woord2Links"]: "",
             ["woord3Links"]: "",
@@ -389,12 +389,12 @@ export default function Positie({
           if (naamValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naamLinks"]: "Veld naam mag niet leeg zijn",
+              ["Naamlinks"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["naamLinks"]: "",
+              ["Naamlinks"]: "",
             }));
           }
           // if (lettertypeValueLinks == "") {
@@ -410,11 +410,11 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureLinks"]: "",
-            ["initialenLinks"]: "",
-            ["datumLinks"]: "",
-            ["gravureLinks"]: "",
-            ["extraWoordLinks"]: "",
+            ["Gravurelinks"]: "",
+            ["Initialenlinks"]: "",
+            ["Datumlinks"]: "",
+            ["Gravurelinks"]: "",
+            ["Extrawoordlinks"]: "",
             ["woord1Links"]: "",
             ["woord2Links"]: "",
             ["woord3Links"]: "",
@@ -425,23 +425,23 @@ export default function Positie({
           if (naamValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naamLinks"]: "Veld naam mag niet leeg zijn",
+              ["Naamlinks"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["naamLinks"]: "",
+              ["Naamlinks"]: "",
             }));
           }
           if (datumValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datumLinks"]: "Veld datum mag niet leeg zijn",
+              ["Datumlinks"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["datumLinks"]: "",
+              ["Datumlinks"]: "",
             }));
           }
           // if (lettertypeValueLinks == "") {
@@ -457,10 +457,10 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureLinks"]: "",
-            ["initialenLinks"]: "",
-            ["gravureLinks"]: "",
-            ["extraWoordLinks"]: "",
+            ["Gravurelinks"]: "",
+            ["Initialenlinks"]: "",
+            ["Gravurelinks"]: "",
+            ["Extrawoordlinks"]: "",
             ["woord1Links"]: "",
             ["woord2Links"]: "",
             ["woord3Links"]: "",
@@ -502,12 +502,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureLinks"]: "",
-            ["initialenLinks"]: "",
-            ["naamLinks"]: "",
-            ["datumLinks"]: "",
-            ["gravureLinks"]: "",
-            ["extraWoordLinks"]: "",
+            ["Gravurelinks"]: "",
+            ["Initialenlinks"]: "",
+            ["Naamlinks"]: "",
+            ["Datumlinks"]: "",
+            ["Gravurelinks"]: "",
+            ["Extrawoordlinks"]: "",
             ["woord2Links"]: "",
             ["woord3Links"]: "",
             ["woord4Links"]: "",
@@ -548,12 +548,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureLinks"]: "",
-            ["initialenLinks"]: "",
-            ["naamLinks"]: "",
-            ["datumLinks"]: "",
-            ["gravureLinks"]: "",
-            ["extraWoordLinks"]: "",
+            ["Gravurelinks"]: "",
+            ["Initialenlinks"]: "",
+            ["Naamlinks"]: "",
+            ["Datumlinks"]: "",
+            ["Gravurelinks"]: "",
+            ["Extrawoordlinks"]: "",
             ["woord1Links"]: "",
             ["woord3Links"]: "",
             ["woord4Links"]: "",
@@ -595,12 +595,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureLinks"]: "",
-            ["initialenLinks"]: "",
-            ["naamLinks"]: "",
-            ["datumLinks"]: "",
-            ["gravureLinks"]: "",
-            ["extraWoordLinks"]: "",
+            ["Gravurelinks"]: "",
+            ["Initialenlinks"]: "",
+            ["Naamlinks"]: "",
+            ["Datumlinks"]: "",
+            ["Gravurelinks"]: "",
+            ["Extrawoordlinks"]: "",
             ["woord1Links"]: "",
             ["woord2Links"]: "",
             ["woord4Links"]: "",
@@ -642,12 +642,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureLinks"]: "",
-            ["initialenLinks"]: "",
-            ["naamLinks"]: "",
-            ["extraWoordLinks"]: "",
-            ["datumLinks"]: "",
-            ["gravureLinks"]: "",
+            ["Gravurelinks"]: "",
+            ["Initialenlinks"]: "",
+            ["Naamlinks"]: "",
+            ["Extrawoordlinks"]: "",
+            ["Datumlinks"]: "",
+            ["Gravurelinks"]: "",
             ["woord1Links"]: "",
             ["woord2Links"]: "",
             ["woord3Links"]: "",
@@ -662,20 +662,20 @@ export default function Positie({
           if (uploadValueLinks == "" || uploadValueLinks == null) {
             setError((prevState) => ({
               ...prevState,
-              ["uploadLinks"]: "* Upload een bestand",
+              ["Uploadlinks"]: "* Upload een bestand",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["uploadLinks"]: "",
+              ["Uploadlinks"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
-            ["initialenLinks"]: "",
-            ["naamLinks"]: "",
-            ["datumLinks"]: "",
-            ["extraWoordLinks"]: "",
+            ["Initialenlinks"]: "",
+            ["Naamlinks"]: "",
+            ["Datumlinks"]: "",
+            ["Extrawoordlinks"]: "",
             ["woord1Links"]: "",
             ["woord2Links"]: "",
             ["woord3Links"]: "",
@@ -690,12 +690,12 @@ export default function Positie({
           ) {
             setError((prevState) => ({
               ...prevState,
-              ["gravureLinks"]: "Veld mag niet leeg zijn",
+              ["Gravurelinks"]: "Veld mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["gravureLinks"]: "",
+              ["Gravurelinks"]: "",
             }));
           }
       }
@@ -705,12 +705,12 @@ export default function Positie({
           if (initialenValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
-              ["initialenMidden"]: "Veld initiaal mag niet leeg zijn",
+              ["Initialenmidden"]: "Veld initiaal mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["initialenMidden"]: "",
+              ["Initialenmidden"]: "",
             }));
           }
           // if (lettertypeValueMidden == "") {
@@ -726,11 +726,11 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureMidden"]: "",
-            ["extraWoordMidden"]: "",
-            ["naamMidden"]: "",
-            ["datumMidden"]: "",
-            ["gravureMidden"]: "",
+            ["Gravuremidden"]: "",
+            ["Extrawoordmidden"]: "",
+            ["Naammidden"]: "",
+            ["Datummidden"]: "",
+            ["Gravuremidden"]: "",
             ["woord1Midden"]: "",
             ["woord2Midden"]: "",
             ["woord3Midden"]: "",
@@ -740,13 +740,13 @@ export default function Positie({
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,
-            ["gravureMidden"]: "",
-            ["initialenMidden"]: "",
-            ["extraWoordMidden"]: "",
+            ["Gravuremidden"]: "",
+            ["Initialenmidden"]: "",
+            ["Extrawoordmidden"]: "",
             // ["lettertypeMidden"]: "",
-            ["naamMidden"]: "",
-            ["datumMidden"]: "",
-            ["gravureMidden"]: "",
+            ["Naammidden"]: "",
+            ["Datummidden"]: "",
+            ["Gravuremidden"]: "",
             ["woord1Midden"]: "",
             ["woord2Midden"]: "",
             ["woord3Midden"]: "",
@@ -757,11 +757,11 @@ export default function Positie({
         case "Infinity ∞ teken":
           // setError((prevState) => ({
           //   ...prevState,
-          //   ["gravureMidden"]: "",
-          //   ["initialenMidden"]: "",
-          //   ["naamMidden"]: "",
-          //   ["datumMidden"]: "",
-          //   ["gravureMidden"]: "",
+          //   ["Gravuremidden"]: "",
+          //   ["Initialenmidden"]: "",
+          //   ["Naammidden"]: "",
+          //   ["Datummidden"]: "",
+          //   ["Gravuremidden"]: "",
           //   ["woord1Midden"]: "",
           //   ["woord3Midden"]: "",
           //   ["woord4Midden"]: "",
@@ -802,22 +802,22 @@ export default function Positie({
               if (lettertypeValue == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "* Kies een lettertype",
+                  ["Lettertype"]: "* Kies een lettertype",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "",
+                  ["Lettertype"]: "",
                 }));
               }
               setError((prevState) => ({
                 ...prevState,
-                ["gravureMidden"]: "",
-                ["extraWoordMidden"]: "",
-                ["initialenMidden"]: "",
-                ["naamMidden"]: "",
-                ["datumMidden"]: "",
-                ["gravureMidden"]: "",
+                ["Gravuremidden"]: "",
+                ["Extrawoordmidden"]: "",
+                ["Initialenmidden"]: "",
+                ["Naammidden"]: "",
+                ["Datummidden"]: "",
+                ["Gravuremidden"]: "",
                 // ["woord1Midden"]: "",
                 ["woord2Midden"]: "",
                 ["woord3Midden"]: "",
@@ -848,12 +848,12 @@ export default function Positie({
               }
               setError((prevState) => ({
                 ...prevState,
-                ["gravureMidden"]: "",
-                ["extraWoordMidden"]: "",
-                ["initialenMidden"]: "",
-                ["naamMidden"]: "",
-                ["datumMidden"]: "",
-                ["gravureMidden"]: "",
+                ["Gravuremidden"]: "",
+                ["Extrawoordmidden"]: "",
+                ["Initialenmidden"]: "",
+                ["Naammidden"]: "",
+                ["Datummidden"]: "",
+                ["Gravuremidden"]: "",
                 ["woord1Midden"]: "",
                 ["woord3Midden"]: "",
                 ["woord4Midden"]: "",
@@ -861,12 +861,12 @@ export default function Positie({
             } else {
               setError((prevState) => ({
                 ...prevState,
-                ["gravureMidden"]: "",
-                ["extraWoordMidden"]: "",
-                ["initialenMidden"]: "",
-                ["naamMidden"]: "",
-                ["datumMidden"]: "",
-                ["gravureMidden"]: "",
+                ["Gravuremidden"]: "",
+                ["Extrawoordmidden"]: "",
+                ["Initialenmidden"]: "",
+                ["Naammidden"]: "",
+                ["Datummidden"]: "",
+                ["Gravuremidden"]: "",
                 ["woord1Midden"]: "",
                 ["woord2Midden"]: "",
                 ["woord3Midden"]: "",
@@ -880,12 +880,12 @@ export default function Positie({
           if (datumValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datumMidden"]: "Veld datum mag niet leeg zijn",
+              ["Datummidden"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["datumMidden"]: "",
+              ["Datummidden"]: "",
             }));
           }
           // if (lettertypeValueMidden == "") {
@@ -901,11 +901,11 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureMidden"]: "",
-            ["initialenMidden"]: "",
-            ["naamMidden"]: "",
-            ["gravureMidden"]: "",
-            ["extraWoordMidden"]: "",
+            ["Gravuremidden"]: "",
+            ["Initialenmidden"]: "",
+            ["Naammidden"]: "",
+            ["Gravuremidden"]: "",
+            ["Extrawoordmidden"]: "",
             ["woord1Midden"]: "",
             ["woord2Midden"]: "",
             ["woord3Midden"]: "",
@@ -916,12 +916,12 @@ export default function Positie({
           if (naamValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naamMidden"]: "Veld naam mag niet leeg zijn",
+              ["Naammidden"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["naamMidden"]: "",
+              ["Naammidden"]: "",
             }));
           }
           // if (lettertypeValueMidden == "") {
@@ -937,11 +937,11 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureMidden"]: "",
-            ["initialenMidden"]: "",
-            ["datumMidden"]: "",
-            ["gravureMidden"]: "",
-            ["extraWoordMidden"]: "",
+            ["Gravuremidden"]: "",
+            ["Initialenmidden"]: "",
+            ["Datummidden"]: "",
+            ["Gravuremidden"]: "",
+            ["Extrawoordmidden"]: "",
             ["woord1Midden"]: "",
             ["woord2Midden"]: "",
             ["woord3Midden"]: "",
@@ -952,23 +952,23 @@ export default function Positie({
           if (naamValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naamMidden"]: "Veld naam mag niet leeg zijn",
+              ["Naammidden"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["naamMidden"]: "",
+              ["Naammidden"]: "",
             }));
           }
           if (datumValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datumMidden"]: "Veld datum mag niet leeg zijn",
+              ["Datummidden"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["datumMidden"]: "",
+              ["Datummidden"]: "",
             }));
           }
           // if (lettertypeValueMidden == "") {
@@ -984,10 +984,10 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureMidden"]: "",
-            ["initialenMidden"]: "",
-            ["gravureMidden"]: "",
-            ["extraWoordMidden"]: "",
+            ["Gravuremidden"]: "",
+            ["Initialenmidden"]: "",
+            ["Gravuremidden"]: "",
+            ["Extrawoordmidden"]: "",
             ["woord1Midden"]: "",
             ["woord2Midden"]: "",
             ["woord3Midden"]: "",
@@ -1029,12 +1029,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureMidden"]: "",
-            ["initialenMidden"]: "",
-            ["naamMidden"]: "",
-            ["datumMidden"]: "",
-            ["gravureMidden"]: "",
-            ["extraWoordMidden"]: "",
+            ["Gravuremidden"]: "",
+            ["Initialenmidden"]: "",
+            ["Naammidden"]: "",
+            ["Datummidden"]: "",
+            ["Gravuremidden"]: "",
+            ["Extrawoordmidden"]: "",
             ["woord2Midden"]: "",
             ["woord3Midden"]: "",
             ["woord4Midden"]: "",
@@ -1076,12 +1076,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureMidden"]: "",
-            ["initialenMidden"]: "",
-            ["naamMidden"]: "",
-            ["datumMidden"]: "",
-            ["gravureMidden"]: "",
-            ["extraWoordMidden"]: "",
+            ["Gravuremidden"]: "",
+            ["Initialenmidden"]: "",
+            ["Naammidden"]: "",
+            ["Datummidden"]: "",
+            ["Gravuremidden"]: "",
+            ["Extrawoordmidden"]: "",
             ["woord1Midden"]: "",
             ["woord3Midden"]: "",
             ["woord4Midden"]: "",
@@ -1123,12 +1123,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureMidden"]: "",
-            ["initialenMidden"]: "",
-            ["naamMidden"]: "",
-            ["datumMidden"]: "",
-            ["gravureMidden"]: "",
-            ["extraWoordMidden"]: "",
+            ["Gravuremidden"]: "",
+            ["Initialenmidden"]: "",
+            ["Naammidden"]: "",
+            ["Datummidden"]: "",
+            ["Gravuremidden"]: "",
+            ["Extrawoordmidden"]: "",
             ["woord1Midden"]: "",
             ["woord2Midden"]: "",
             ["woord4Midden"]: "",
@@ -1170,12 +1170,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureMidden"]: "",
-            ["initialenMidden"]: "",
-            ["naamMidden"]: "",
-            ["extraWoordMidden"]: "",
-            ["datumMidden"]: "",
-            ["gravureMidden"]: "",
+            ["Gravuremidden"]: "",
+            ["Initialenmidden"]: "",
+            ["Naammidden"]: "",
+            ["Extrawoordmidden"]: "",
+            ["Datummidden"]: "",
+            ["Gravuremidden"]: "",
             ["woord1Midden"]: "",
             ["woord2Midden"]: "",
             ["woord3Midden"]: "",
@@ -1190,20 +1190,20 @@ export default function Positie({
           if (uploadValueMidden == "" || uploadValueMidden == null) {
             setError((prevState) => ({
               ...prevState,
-              ["uploadMidden"]: "* Upload een bestand",
+              ["uploadmidden"]: "* Upload een bestand",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["uploadMidden"]: "",
+              ["uploadmidden"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
-            ["initialenMidden"]: "",
-            ["naamMidden"]: "",
-            ["datumMidden"]: "",
-            ["extraWoordMidden"]: "",
+            ["Initialenmidden"]: "",
+            ["Naammidden"]: "",
+            ["Datummidden"]: "",
+            ["Extrawoordmidden"]: "",
             ["woord1Midden"]: "",
             ["woord2Midden"]: "",
             ["woord3Midden"]: "",
@@ -1218,12 +1218,12 @@ export default function Positie({
           ) {
             setError((prevState) => ({
               ...prevState,
-              ["gravureMidden"]: "Veld mag niet leeg zijn",
+              ["Gravuremidden"]: "Veld mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["gravureMidden"]: "",
+              ["Gravuremidden"]: "",
             }));
           }
       }
@@ -1233,12 +1233,12 @@ export default function Positie({
           if (initialenValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
-              ["initialenRechts"]: "Veld initiaal mag niet leeg zijn",
+              ["Initialenrechts"]: "Veld initiaal mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["initialenRechts"]: "",
+              ["Initialenrechts"]: "",
             }));
           }
           // if (lettertypeValueRechts == "") {
@@ -1254,11 +1254,11 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureRechts"]: "",
-            ["extraWoordRechts"]: "",
-            ["naamRechts"]: "",
-            ["datumRechts"]: "",
-            ["gravureRechts"]: "",
+            ["Gravurerechts"]: "",
+            ["Extrawoordrechts"]: "",
+            ["Naamrechts"]: "",
+            ["Datumrechts"]: "",
+            ["Gravurerechts"]: "",
             ["woord1Rechts"]: "",
             ["woord2Rechts"]: "",
             ["woord3Rechts"]: "",
@@ -1268,13 +1268,13 @@ export default function Positie({
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,
-            ["gravureRechts"]: "",
-            ["initialenRechts"]: "",
-            ["extraWoordRechts"]: "",
+            ["Gravurerechts"]: "",
+            ["Initialenrechts"]: "",
+            ["Extrawoordrechts"]: "",
             // ["lettertypeRechts"]: "",
-            ["naamRechts"]: "",
-            ["datumRechts"]: "",
-            ["gravureRechts"]: "",
+            ["Naamrechts"]: "",
+            ["Datumrechts"]: "",
+            ["Gravurerechts"]: "",
             ["woord1Rechts"]: "",
             ["woord2Rechts"]: "",
             ["woord3Rechts"]: "",
@@ -1285,11 +1285,11 @@ export default function Positie({
         case "Infinity ∞ teken":
           // setError((prevState) => ({
           //   ...prevState,
-          //   ["gravureRechts"]: "",
-          //   ["initialenRechts"]: "",
-          //   ["naamRechts"]: "",
-          //   ["datumRechts"]: "",
-          //   ["gravureRechts"]: "",
+          //   ["Gravurerechts"]: "",
+          //   ["Initialenrechts"]: "",
+          //   ["Naamrechts"]: "",
+          //   ["Datumrechts"]: "",
+          //   ["Gravurerechts"]: "",
           //   ["woord1Rechts"]: "",
           //   ["woord3Rechts"]: "",
           //   ["woord4Rechts"]: "",
@@ -1330,22 +1330,22 @@ export default function Positie({
               if (lettertypeValue == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "* Kies een lettertype",
+                  ["Lettertype"]: "* Kies een lettertype",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "",
+                  ["Lettertype"]: "",
                 }));
               }
               setError((prevState) => ({
                 ...prevState,
-                ["gravureRechts"]: "",
-                ["extraWoordRechts"]: "",
-                ["initialenRechts"]: "",
-                ["naamRechts"]: "",
-                ["datumRechts"]: "",
-                ["gravureRechts"]: "",
+                ["Gravurerechts"]: "",
+                ["Extrawoordrechts"]: "",
+                ["Initialenrechts"]: "",
+                ["Naamrechts"]: "",
+                ["Datumrechts"]: "",
+                ["Gravurerechts"]: "",
                 // ["woord1Rechts"]: "",
                 ["woord2Rechts"]: "",
                 ["woord3Rechts"]: "",
@@ -1376,12 +1376,12 @@ export default function Positie({
               }
               setError((prevState) => ({
                 ...prevState,
-                ["gravureRechts"]: "",
-                ["extraWoordRechts"]: "",
-                ["initialenRechts"]: "",
-                ["naamRechts"]: "",
-                ["datumRechts"]: "",
-                ["gravureRechts"]: "",
+                ["Gravurerechts"]: "",
+                ["Extrawoordrechts"]: "",
+                ["Initialenrechts"]: "",
+                ["Naamrechts"]: "",
+                ["Datumrechts"]: "",
+                ["Gravurerechts"]: "",
                 ["woord1Rechts"]: "",
                 ["woord3Rechts"]: "",
                 ["woord4Rechts"]: "",
@@ -1389,12 +1389,12 @@ export default function Positie({
             } else {
               setError((prevState) => ({
                 ...prevState,
-                ["gravureRechts"]: "",
-                ["extraWoordRechts"]: "",
-                ["initialenRechts"]: "",
-                ["naamRechts"]: "",
-                ["datumRechts"]: "",
-                ["gravureRechts"]: "",
+                ["Gravurerechts"]: "",
+                ["Extrawoordrechts"]: "",
+                ["Initialenrechts"]: "",
+                ["Naamrechts"]: "",
+                ["Datumrechts"]: "",
+                ["Gravurerechts"]: "",
                 ["woord1Rechts"]: "",
                 ["woord2Rechts"]: "",
                 ["woord3Rechts"]: "",
@@ -1408,12 +1408,12 @@ export default function Positie({
           if (datumValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datumRechts"]: "Veld datum mag niet leeg zijn",
+              ["Datumrechts"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["datumRechts"]: "",
+              ["Datumrechts"]: "",
             }));
           }
           // if (lettertypeValueRechts == "") {
@@ -1429,11 +1429,11 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureRechts"]: "",
-            ["initialenRechts"]: "",
-            ["naamRechts"]: "",
-            ["gravureRechts"]: "",
-            ["extraWoordRechts"]: "",
+            ["Gravurerechts"]: "",
+            ["Initialenrechts"]: "",
+            ["Naamrechts"]: "",
+            ["Gravurerechts"]: "",
+            ["Extrawoordrechts"]: "",
             ["woord1Rechts"]: "",
             ["woord2Rechts"]: "",
             ["woord3Rechts"]: "",
@@ -1444,12 +1444,12 @@ export default function Positie({
           if (naamValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naamRechts"]: "Veld naam mag niet leeg zijn",
+              ["Naamrechts"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["naamRechts"]: "",
+              ["Naamrechts"]: "",
             }));
           }
           // if (lettertypeValueRechts == "") {
@@ -1465,11 +1465,11 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureRechts"]: "",
-            ["initialenRechts"]: "",
-            ["datumRechts"]: "",
-            ["gravureRechts"]: "",
-            ["extraWoordRechts"]: "",
+            ["Gravurerechts"]: "",
+            ["Initialenrechts"]: "",
+            ["Datumrechts"]: "",
+            ["Gravurerechts"]: "",
+            ["Extrawoordrechts"]: "",
             ["woord1Rechts"]: "",
             ["woord2Rechts"]: "",
             ["woord3Rechts"]: "",
@@ -1480,23 +1480,23 @@ export default function Positie({
           if (naamValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naamRechts"]: "Veld naam mag niet leeg zijn",
+              ["Naamrechts"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["naamRechts"]: "",
+              ["Naamrechts"]: "",
             }));
           }
           if (datumValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datumRechts"]: "Veld datum mag niet leeg zijn",
+              ["Datumrechts"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["datumRechts"]: "",
+              ["Datumrechts"]: "",
             }));
           }
           // if (lettertypeValueRechts == "") {
@@ -1512,10 +1512,10 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureRechts"]: "",
-            ["initialenRechts"]: "",
-            ["gravureRechts"]: "",
-            ["extraWoordRechts"]: "",
+            ["Gravurerechts"]: "",
+            ["Initialenrechts"]: "",
+            ["Gravurerechts"]: "",
+            ["Extrawoordrechts"]: "",
             ["woord1Rechts"]: "",
             ["woord2Rechts"]: "",
             ["woord3Rechts"]: "",
@@ -1557,12 +1557,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureRechts"]: "",
-            ["initialenRechts"]: "",
-            ["naamRechts"]: "",
-            ["datumRechts"]: "",
-            ["gravureRechts"]: "",
-            ["extraWoordRechts"]: "",
+            ["Gravurerechts"]: "",
+            ["Initialenrechts"]: "",
+            ["Naamrechts"]: "",
+            ["Datumrechts"]: "",
+            ["Gravurerechts"]: "",
+            ["Extrawoordrechts"]: "",
             ["woord2Rechts"]: "",
             ["woord3Rechts"]: "",
             ["woord4Rechts"]: "",
@@ -1604,12 +1604,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureRechts"]: "",
-            ["initialenRechts"]: "",
-            ["naamRechts"]: "",
-            ["datumRechts"]: "",
-            ["gravureRechts"]: "",
-            ["extraWoordRechts"]: "",
+            ["Gravurerechts"]: "",
+            ["Initialenrechts"]: "",
+            ["Naamrechts"]: "",
+            ["Datumrechts"]: "",
+            ["Gravurerechts"]: "",
+            ["Extrawoordrechts"]: "",
             ["woord1Rechts"]: "",
             ["woord3Rechts"]: "",
             ["woord4Rechts"]: "",
@@ -1651,12 +1651,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureRechts"]: "",
-            ["initialenRechts"]: "",
-            ["naamRechts"]: "",
-            ["datumRechts"]: "",
-            ["gravureRechts"]: "",
-            ["extraWoordRechts"]: "",
+            ["Gravurerechts"]: "",
+            ["Initialenrechts"]: "",
+            ["Naamrechts"]: "",
+            ["Datumrechts"]: "",
+            ["Gravurerechts"]: "",
+            ["Extrawoordrechts"]: "",
             ["woord1Rechts"]: "",
             ["woord2Rechts"]: "",
             ["woord4Rechts"]: "",
@@ -1698,12 +1698,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureRechts"]: "",
-            ["initialenRechts"]: "",
-            ["naamRechts"]: "",
-            ["extraWoordRechts"]: "",
-            ["datumRechts"]: "",
-            ["gravureRechts"]: "",
+            ["Gravurerechts"]: "",
+            ["Initialenrechts"]: "",
+            ["Naamrechts"]: "",
+            ["Extrawoordrechts"]: "",
+            ["Datumrechts"]: "",
+            ["Gravurerechts"]: "",
             ["woord1Rechts"]: "",
             ["woord2Rechts"]: "",
             ["woord3Rechts"]: "",
@@ -1718,20 +1718,20 @@ export default function Positie({
           if (uploadValueRechts == "" || uploadValueRechts == null) {
             setError((prevState) => ({
               ...prevState,
-              ["uploadRechts"]: "* Upload een bestand",
+              ["uploadrechts"]: "* Upload een bestand",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["uploadRechts"]: "",
+              ["uploadrechts"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
-            ["initialenRechts"]: "",
-            ["naamRechts"]: "",
-            ["datumRechts"]: "",
-            ["extraWoordRechts"]: "",
+            ["Initialenrechts"]: "",
+            ["Naamrechts"]: "",
+            ["Datumrechts"]: "",
+            ["Extrawoordrechts"]: "",
             ["woord1Rechts"]: "",
             ["woord2Rechts"]: "",
             ["woord3Rechts"]: "",
@@ -1746,12 +1746,12 @@ export default function Positie({
           ) {
             setError((prevState) => ({
               ...prevState,
-              ["gravureRechts"]: "Veld mag niet leeg zijn",
+              ["Gravurerechts"]: "Veld mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["gravureRechts"]: "",
+              ["Gravurerechts"]: "",
             }));
           }
       }
@@ -1761,12 +1761,12 @@ export default function Positie({
           if (initialenValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
-              ["initialenAchter"]: "Veld initiaal mag niet leeg zijn",
+              ["Initialenachter"]: "Veld initiaal mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["initialenAchter"]: "",
+              ["Initialenachter"]: "",
             }));
           }
           // if (lettertypeValueAchter == "") {
@@ -1782,11 +1782,11 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureAchter"]: "",
-            ["extraWoordAchter"]: "",
-            ["naamAchter"]: "",
-            ["datumAchter"]: "",
-            ["gravureAchter"]: "",
+            ["Gravureachter"]: "",
+            ["Extrawoordachter"]: "",
+            ["Naamachter"]: "",
+            ["Datumachter"]: "",
+            ["Gravureachter"]: "",
             ["woord1Achter"]: "",
             ["woord2Achter"]: "",
             ["woord3Achter"]: "",
@@ -1796,13 +1796,13 @@ export default function Positie({
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,
-            ["gravureAchter"]: "",
-            ["initialenAchter"]: "",
-            ["extraWoordAchter"]: "",
+            ["Gravureachter"]: "",
+            ["Initialenachter"]: "",
+            ["Extrawoordachter"]: "",
             // ["lettertypeAchter"]: "",
-            ["naamAchter"]: "",
-            ["datumAchter"]: "",
-            ["gravureAchter"]: "",
+            ["Naamachter"]: "",
+            ["Datumachter"]: "",
+            ["Gravureachter"]: "",
             ["woord1Achter"]: "",
             ["woord2Achter"]: "",
             ["woord3Achter"]: "",
@@ -1813,11 +1813,11 @@ export default function Positie({
         case "Infinity ∞ teken":
           // setError((prevState) => ({
           //   ...prevState,
-          //   ["gravureAchter"]: "",
-          //   ["initialenAchter"]: "",
-          //   ["naamAchter"]: "",
-          //   ["datumAchter"]: "",
-          //   ["gravureAchter"]: "",
+          //   ["Gravureachter"]: "",
+          //   ["Initialenachter"]: "",
+          //   ["Naamachter"]: "",
+          //   ["Datumachter"]: "",
+          //   ["Gravureachter"]: "",
           //   ["woord1Achter"]: "",
           //   ["woord3Achter"]: "",
           //   ["woord4Achter"]: "",
@@ -1858,22 +1858,22 @@ export default function Positie({
               if (lettertypeValue == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "* Kies een lettertype",
+                  ["Lettertype"]: "* Kies een lettertype",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["lettertype"]: "",
+                  ["Lettertype"]: "",
                 }));
               }
               setError((prevState) => ({
                 ...prevState,
-                ["gravureAchter"]: "",
-                ["extraWoordAchter"]: "",
-                ["initialenAchter"]: "",
-                ["naamAchter"]: "",
-                ["datumAchter"]: "",
-                ["gravureAchter"]: "",
+                ["Gravureachter"]: "",
+                ["Extrawoordachter"]: "",
+                ["Initialenachter"]: "",
+                ["Naamachter"]: "",
+                ["Datumachter"]: "",
+                ["Gravureachter"]: "",
                 // ["woord1Achter"]: "",
                 ["woord2Achter"]: "",
                 ["woord3Achter"]: "",
@@ -1904,12 +1904,12 @@ export default function Positie({
               }
               setError((prevState) => ({
                 ...prevState,
-                ["gravureAchter"]: "",
-                ["extraWoordAchter"]: "",
-                ["initialenAchter"]: "",
-                ["naamAchter"]: "",
-                ["datumAchter"]: "",
-                ["gravureAchter"]: "",
+                ["Gravureachter"]: "",
+                ["Extrawoordachter"]: "",
+                ["Initialenachter"]: "",
+                ["Naamachter"]: "",
+                ["Datumachter"]: "",
+                ["Gravureachter"]: "",
                 ["woord1Achter"]: "",
                 ["woord3Achter"]: "",
                 ["woord4Achter"]: "",
@@ -1917,12 +1917,12 @@ export default function Positie({
             } else {
               setError((prevState) => ({
                 ...prevState,
-                ["gravureAchter"]: "",
-                ["extraWoordAchter"]: "",
-                ["initialenAchter"]: "",
-                ["naamAchter"]: "",
-                ["datumAchter"]: "",
-                ["gravureAchter"]: "",
+                ["Gravureachter"]: "",
+                ["Extrawoordachter"]: "",
+                ["Initialenachter"]: "",
+                ["Naamachter"]: "",
+                ["Datumachter"]: "",
+                ["Gravureachter"]: "",
                 ["woord1Achter"]: "",
                 ["woord2Achter"]: "",
                 ["woord3Achter"]: "",
@@ -1936,12 +1936,12 @@ export default function Positie({
           if (datumValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datumAchter"]: "Veld datum mag niet leeg zijn",
+              ["Datumachter"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["datumAchter"]: "",
+              ["Datumachter"]: "",
             }));
           }
           // if (lettertypeValueAchter == "") {
@@ -1957,11 +1957,11 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureAchter"]: "",
-            ["initialenAchter"]: "",
-            ["naamAchter"]: "",
-            ["gravureAchter"]: "",
-            ["extraWoordAchter"]: "",
+            ["Gravureachter"]: "",
+            ["Initialenachter"]: "",
+            ["Naamachter"]: "",
+            ["Gravureachter"]: "",
+            ["Extrawoordachter"]: "",
             ["woord1Achter"]: "",
             ["woord2Achter"]: "",
             ["woord3Achter"]: "",
@@ -1972,12 +1972,12 @@ export default function Positie({
           if (naamValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naamAchter"]: "Veld naam mag niet leeg zijn",
+              ["Naamachter"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["naamAchter"]: "",
+              ["Naamachter"]: "",
             }));
           }
           // if (lettertypeValueAchter == "") {
@@ -1993,11 +1993,11 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureAchter"]: "",
-            ["initialenAchter"]: "",
-            ["datumAchter"]: "",
-            ["gravureAchter"]: "",
-            ["extraWoordAchter"]: "",
+            ["Gravureachter"]: "",
+            ["Initialenachter"]: "",
+            ["Datumachter"]: "",
+            ["Gravureachter"]: "",
+            ["Extrawoordachter"]: "",
             ["woord1Achter"]: "",
             ["woord2Achter"]: "",
             ["woord3Achter"]: "",
@@ -2008,23 +2008,23 @@ export default function Positie({
           if (naamValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naamAchter"]: "Veld naam mag niet leeg zijn",
+              ["Naamachter"]: "Veld naam mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["naamAchter"]: "",
+              ["Naamachter"]: "",
             }));
           }
           if (datumValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datumAchter"]: "Veld datum mag niet leeg zijn",
+              ["Datumachter"]: "Veld datum mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["datumAchter"]: "",
+              ["Datumachter"]: "",
             }));
           }
           // if (lettertypeValueAchter == "") {
@@ -2040,10 +2040,10 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureAchter"]: "",
-            ["initialenAchter"]: "",
-            ["gravureAchter"]: "",
-            ["extraWoordAchter"]: "",
+            ["Gravureachter"]: "",
+            ["Initialenachter"]: "",
+            ["Gravureachter"]: "",
+            ["Extrawoordachter"]: "",
             ["woord1Achter"]: "",
             ["woord2Achter"]: "",
             ["woord3Achter"]: "",
@@ -2085,12 +2085,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureAchter"]: "",
-            ["initialenAchter"]: "",
-            ["naamAchter"]: "",
-            ["datumAchter"]: "",
-            ["gravureAchter"]: "",
-            ["extraWoordAchter"]: "",
+            ["Gravureachter"]: "",
+            ["Initialenachter"]: "",
+            ["Naamachter"]: "",
+            ["Datumachter"]: "",
+            ["Gravureachter"]: "",
+            ["Extrawoordachter"]: "",
             ["woord2Achter"]: "",
             ["woord3Achter"]: "",
             ["woord4Achter"]: "",
@@ -2132,12 +2132,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureAchter"]: "",
-            ["initialenAchter"]: "",
-            ["naamAchter"]: "",
-            ["datumAchter"]: "",
-            ["gravureAchter"]: "",
-            ["extraWoordAchter"]: "",
+            ["Gravureachter"]: "",
+            ["Initialenachter"]: "",
+            ["Naamachter"]: "",
+            ["Datumachter"]: "",
+            ["Gravureachter"]: "",
+            ["Extrawoordachter"]: "",
             ["woord1Achter"]: "",
             ["woord3Achter"]: "",
             ["woord4Achter"]: "",
@@ -2179,12 +2179,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureAchter"]: "",
-            ["initialenAchter"]: "",
-            ["naamAchter"]: "",
-            ["datumAchter"]: "",
-            ["gravureAchter"]: "",
-            ["extraWoordAchter"]: "",
+            ["Gravureachter"]: "",
+            ["Initialenachter"]: "",
+            ["Naamachter"]: "",
+            ["Datumachter"]: "",
+            ["Gravureachter"]: "",
+            ["Extrawoordachter"]: "",
             ["woord1Achter"]: "",
             ["woord2Achter"]: "",
             ["woord4Achter"]: "",
@@ -2226,12 +2226,12 @@ export default function Positie({
           // }
           setError((prevState) => ({
             ...prevState,
-            ["gravureAchter"]: "",
-            ["initialenAchter"]: "",
-            ["naamAchter"]: "",
-            ["extraWoordAchter"]: "",
-            ["datumAchter"]: "",
-            ["gravureAchter"]: "",
+            ["Gravureachter"]: "",
+            ["Initialenachter"]: "",
+            ["Naamachter"]: "",
+            ["Extrawoordachter"]: "",
+            ["Datumachter"]: "",
+            ["Gravureachter"]: "",
             ["woord1Achter"]: "",
             ["woord2Achter"]: "",
             ["woord3Achter"]: "",
@@ -2246,20 +2246,20 @@ export default function Positie({
           if (uploadValueAchter == "" || uploadValueAchter == null) {
             setError((prevState) => ({
               ...prevState,
-              ["uploadAchter"]: "* Upload een bestand",
+              ["Uploadachter"]: "* Upload een bestand",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["uploadAchter"]: "",
+              ["Uploadachter"]: "",
             }));
           }
           setError((prevState) => ({
             ...prevState,
-            ["initialenAchter"]: "",
-            ["naamAchter"]: "",
-            ["datumAchter"]: "",
-            ["extraWoordAchter"]: "",
+            ["Initialenachter"]: "",
+            ["Naamachter"]: "",
+            ["Datumachter"]: "",
+            ["Extrawoordachter"]: "",
             ["woord1Achter"]: "",
             ["woord2Achter"]: "",
             ["woord3Achter"]: "",
@@ -2274,12 +2274,12 @@ export default function Positie({
           ) {
             setError((prevState) => ({
               ...prevState,
-              ["gravureAchter"]: "Veld mag niet leeg zijn",
+              ["Gravureachter"]: "Veld mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["gravureAchter"]: "",
+              ["Gravureachter"]: "",
             }));
           }
       }
@@ -2322,12 +2322,12 @@ export default function Positie({
         if (lettertypeValue == "") {
           setError((prevState) => ({
             ...prevState,
-            ["lettertype"]: "Kies een lettertype",
+            ["Lettertype"]: "Kies een lettertype",
           }));
         } else {
           setError((prevState) => ({
             ...prevState,
-            ["lettertype"]: "",
+            ["Lettertype"]: "",
           }));
         }
       }
@@ -2353,7 +2353,7 @@ export default function Positie({
       ) {
         setError((prevState) => ({
           ...prevState,
-          ["gravureLinks"]: "",
+          ["Gravurelinks"]: "",
         }));
       }
       if (
@@ -2377,7 +2377,7 @@ export default function Positie({
       ) {
         setError((prevState) => ({
           ...prevState,
-          ["gravureMidden"]: "",
+          ["Gravuremidden"]: "",
         }));
       }
       if (
@@ -2401,7 +2401,7 @@ export default function Positie({
       ) {
         setError((prevState) => ({
           ...prevState,
-          ["gravureRechts"]: "",
+          ["Gravurerechts"]: "",
         }));
       }
       if (
@@ -2425,7 +2425,7 @@ export default function Positie({
       ) {
         setError((prevState) => ({
           ...prevState,
-          ["gravureAchter"]: "",
+          ["Gravureachter"]: "",
         }));
       }
     }
@@ -2451,59 +2451,59 @@ export default function Positie({
 
   const [values, setValues] = useState([
     {
-      key: "gravureLinks",
+      key: "Gravurelinks",
       value: value?.gravureLinks?.value || "",
     },
-    { key: "initialenLinks", value: value?.initialenLinks?.value || "" },
-    { key: "datumLinks", value: value?.datumLinks?.value || "" },
-    { key: "naamLinks", value: value?.naamLinks?.value || "" },
-    { key: "1 woordLinks", value: value?.woord1Links?.value || "" },
-    { key: "2 woordenLinks", value: value?.woord2Links?.value || "" },
-    { key: "3 woordenLinks", value: value?.woord3Links?.value || "" },
-    { key: "4 woordenLinks", value: value?.woord4Links?.value || "" },
-    { key: "uploadLinks", value: value?.uploadLinks?.value || "" },
-    { key: "extraWoordLinks", value: value?.extraWoordLinks?.value || "" },
+    { key: "Initialenlinks", value: value?.initialenLinks?.value || "" },
+    { key: "Datumlinks", value: value?.datumLinks?.value || "" },
+    { key: "Naamlinks", value: value?.naamLinks?.value || "" },
+    { key: "1 woordlinks", value: value?.woord1Links?.value || "" },
+    { key: "2 woordenlinks", value: value?.woord2Links?.value || "" },
+    { key: "3 woordenlinks", value: value?.woord3Links?.value || "" },
+    { key: "4 woordenlinks", value: value?.woord4Links?.value || "" },
+    { key: "Uploadlinks", value: value?.uploadLinks?.value || "" },
+    { key: "Extrawoordlinks", value: value?.extraWoordLinks?.value || "" },
     {
-      key: "gravureMidden",
+      key: "Gravuremidden",
       value: value?.gravureMidden?.value || "",
     },
-    { key: "initialenMidden", value: value?.initialenMidden?.value || "" },
-    { key: "datumMidden", value: value?.datumMidden?.value || "" },
-    { key: "naamMidden", value: value?.naamMidden?.value || "" },
-    { key: "1 woordMidden", value: value?.woord1Midden?.value || "" },
-    { key: "2 woordenMidden", value: value?.woord2Midden?.value || "" },
-    { key: "3 woordenMidden", value: value?.woord3Midden?.value || "" },
-    { key: "4 woordenMidden", value: value?.woord4Midden?.value || "" },
-    { key: "uploadMidden", value: value?.uploadMidden?.value || "" },
-    { key: "extraWoordMidden", value: value?.extraWoordMidden?.value || "" },
+    { key: "Initialenmidden", value: value?.initialenMidden?.value || "" },
+    { key: "Datummidden", value: value?.datumMidden?.value || "" },
+    { key: "Naammidden", value: value?.naamMidden?.value || "" },
+    { key: "1 woordmidden", value: value?.woord1Midden?.value || "" },
+    { key: "2 woordenmidden", value: value?.woord2Midden?.value || "" },
+    { key: "3 woordenmidden", value: value?.woord3Midden?.value || "" },
+    { key: "4 woordenmidden", value: value?.woord4Midden?.value || "" },
+    { key: "uploadmidden", value: value?.uploadMidden?.value || "" },
+    { key: "Extrawoordmidden", value: value?.extraWoordMidden?.value || "" },
     {
-      key: "gravureRechts",
+      key: "Gravurerechts",
       value: value?.gravureRechts?.value || "",
     },
-    { key: "initialenRechts", value: value?.initialenRechts?.value || "" },
-    { key: "datumRechts", value: value?.datumRechts?.value || "" },
-    { key: "naamRechts", value: value?.naamRechts?.value || "" },
-    { key: "1 woordRechts", value: value?.woord1Rechts?.value || "" },
-    { key: "2 woordenRechts", value: value?.woord2Rechts?.value || "" },
-    { key: "3 woordenRechts", value: value?.woord3Rechts?.value || "" },
-    { key: "4 woordenRechts", value: value?.woord4Rechts?.value || "" },
-    { key: "uploadRechts", value: value?.uploadRechts?.value || "" },
-    { key: "extraWoordRechts", value: value?.extraWoordRechts?.value || "" },
+    { key: "Initialenrechts", value: value?.initialenRechts?.value || "" },
+    { key: "Datumrechts", value: value?.datumRechts?.value || "" },
+    { key: "Naamrechts", value: value?.naamRechts?.value || "" },
+    { key: "1 woordrechts", value: value?.woord1Rechts?.value || "" },
+    { key: "2 woordenrechts", value: value?.woord2Rechts?.value || "" },
+    { key: "3 woordenrechts", value: value?.woord3Rechts?.value || "" },
+    { key: "4 woordenrechts", value: value?.woord4Rechts?.value || "" },
+    { key: "uploadrechts", value: value?.uploadRechts?.value || "" },
+    { key: "Extrawoordrechts", value: value?.extraWoordRechts?.value || "" },
     {
-      key: "gravureAchter",
+      key: "Gravureachter",
       value: value?.gravureAchter?.value || "",
     },
-    { key: "initialenAchter", value: value?.initialenAchter?.value || "" },
-    { key: "datumAchter", value: value?.datumAchter?.value || "" },
-    { key: "naamAchter", value: value?.naamAchter?.value || "" },
-    { key: "1 woordAchter", value: value?.woord1Achter?.value || "" },
-    { key: "2 woordenAchter", value: value?.woord2Achter?.value || "" },
-    { key: "3 woordenAchter", value: value?.woord3Achter?.value || "" },
-    { key: "4 woordenAchter", value: value?.woord4Achter?.value || "" },
-    { key: "uploadAchter", value: value?.uploadAchter?.value || "" },
-    { key: "extraWoordAchter", value: value?.extraWoordAchter?.value || "" },
+    { key: "Initialenachter", value: value?.initialenAchter?.value || "" },
+    { key: "Datumachter", value: value?.datumAchter?.value || "" },
+    { key: "Naamachter", value: value?.naamAchter?.value || "" },
+    { key: "1 woordachter", value: value?.woord1Achter?.value || "" },
+    { key: "2 woordenachter", value: value?.woord2Achter?.value || "" },
+    { key: "3 woordenachter", value: value?.woord3Achter?.value || "" },
+    { key: "4 woordenachter", value: value?.woord4Achter?.value || "" },
+    { key: "Uploadachter", value: value?.uploadAchter?.value || "" },
+    { key: "Extrawoordachter", value: value?.extraWoordAchter?.value || "" },
 
-    { key: "lettertype", value: value?.lettertype?.value || "" },
+    { key: "Lettertype", value: value?.lettertype?.value || "" },
   ]);
 
   useEffect(() => {
@@ -2536,28 +2536,28 @@ export default function Positie({
 
     onChange(values);
   };
-  const gravureLinks = values.find((item) => item.key === "gravureLinks").value;
+  const gravureLinks = values.find((item) => item.key === "Gravurelinks").value;
   const gravureMidden = values.find(
-    (item) => item.key === "gravureMidden"
+    (item) => item.key === "Gravuremidden"
   ).value;
   const gravureRechts = values.find(
-    (item) => item.key === "gravureRechts"
+    (item) => item.key === "Gravurerechts"
   ).value;
   const gravureAchter = values.find(
-    (item) => item.key === "gravureAchter"
+    (item) => item.key === "Gravureachter"
   ).value;
 
   const extraWoordLinks = values.find(
-    (item) => item.key === "extraWoordLinks"
+    (item) => item.key === "Extrawoordlinks"
   ).value;
   const extraWoordMidden = values.find(
-    (item) => item.key === "extraWoordMidden"
+    (item) => item.key === "Extrawoordmidden"
   ).value;
   const extraWoordRechts = values.find(
-    (item) => item.key === "extraWoordRechts"
+    (item) => item.key === "Extrawoordrechts"
   ).value;
   const extraWoordAchter = values.find(
-    (item) => item.key === "extraWoordAchter"
+    (item) => item.key === "Extrawoordachter"
   ).value;
 
   return (
@@ -2582,7 +2582,11 @@ export default function Positie({
                       sx={{ "&.Mui-checked": { color: "#222" } }}
                     />
                   }
-                  label={option.name == "Achter" ? "Achterzijde" : option.name}
+                  label={
+                    option.name == "Achter"
+                      ? "Graveertekst achterzijde"
+                      : option.name
+                  }
                 />
               </div>
             ))}
@@ -2855,15 +2859,15 @@ export default function Positie({
         <div className="relative">
           {showErrors && (
             <p className="absolute  -bottom-6  left-0 text-red-700">
-              {error["lettertype"]}
+              {error["Lettertype"]}
             </p>
           )}
           <InputImageSwatchLarge
             value={
-              values.find((item) => item.key === "lettertype")?.value || ""
+              values.find((item) => item.key === "Lettertype")?.value || ""
             }
             onChange={(newLettertypeValue) =>
-              handleChange("lettertype", newLettertypeValue)
+              handleChange("Lettertype", newLettertypeValue)
             }
             title="Lettertype:"
             options={lettertypeOptions}

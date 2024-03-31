@@ -30,35 +30,27 @@ export function calculatePrice(selectedOptions, optionSets) {
 
     if (optionKey === "positieOptions") {
       for (let i = 0; i < selectedTargetValue.length; i++) {
-        if (selectedTargetValue[i].key === "gravureLinks") {
+        if (selectedTargetValue[i].key === "GravureLinks") {
           const value = selectedTargetValue[i].value;
-          const price = findPriceByValue(optionSets, "gravure", value);
+          const price = findPriceByValue(optionSets, "Gravure", value);
           totalPrice += price || 0;
-        } else if (selectedTargetValue[i].key === "gravureMidden") {
+        } else if (selectedTargetValue[i].key === "GravureMidden") {
           const value = selectedTargetValue[i].value;
-          const price = findPriceByValue(optionSets, "gravure", value);
+          const price = findPriceByValue(optionSets, "Gravure", value);
           totalPrice += price || 0;
-        } else if (selectedTargetValue[i].key === "gravureRechts") {
+        } else if (selectedTargetValue[i].key === "GravureRechts") {
           const value = selectedTargetValue[i].value;
-          const price = findPriceByValue(optionSets, "gravure", value);
+          const price = findPriceByValue(optionSets, "Gravure", value);
           totalPrice += price || 0;
-        } else if (selectedTargetValue[i].key === "gravureAchter") {
+        } else if (selectedTargetValue[i].key === "GravureAchter") {
           const value = selectedTargetValue[i].value;
-          const price = findPriceByValue(optionSets, "gravure", value);
+          const price = findPriceByValue(optionSets, "Gravure", value);
           totalPrice += price || 0;
-        } else if (selectedTargetValue[i].key === "extraWoordLinks") {
+        } else if (selectedTargetValue[i].key === "ExtraWoordLinks") {
           const value = selectedTargetValue[i].value;
-          const price = findPriceByValue(optionSets, "extraWoorden", value);
+          const price = findPriceByValue(optionSets, "ExtraWoorden", value);
           totalPrice += price || 0;
-        } else if (selectedTargetValue[i].key === "extraWoordMidden") {
-          const value = selectedTargetValue[i].value;
-          const price = findPriceByValue(
-            optionSets,
-            "extraWoordenOptions",
-            value
-          );
-          totalPrice += price || 0;
-        } else if (selectedTargetValue[i].key === "extraWoordRechts") {
+        } else if (selectedTargetValue[i].key === "ExtraWoordMidden") {
           const value = selectedTargetValue[i].value;
           const price = findPriceByValue(
             optionSets,
@@ -66,7 +58,15 @@ export function calculatePrice(selectedOptions, optionSets) {
             value
           );
           totalPrice += price || 0;
-        } else if (selectedTargetValue[i].key === "extraWoordAchter") {
+        } else if (selectedTargetValue[i].key === "ExtraWoordRechts") {
+          const value = selectedTargetValue[i].value;
+          const price = findPriceByValue(
+            optionSets,
+            "extraWoordenOptions",
+            value
+          );
+          totalPrice += price || 0;
+        } else if (selectedTargetValue[i].key === "ExtraWoordAchter") {
           const value = selectedTargetValue[i].value;
           const price = findPriceByValue(
             optionSets,
@@ -80,12 +80,12 @@ export function calculatePrice(selectedOptions, optionSets) {
 
     if (optionKey === "printOptions") {
       for (let i = 0; i < selectedTargetValue.length; i++) {
-        if (selectedTargetValue[i].key === "keuze2") {
+        if (selectedTargetValue[i].key === "Keuze2") {
           if (selectedTargetValue[i].value == "Ja") {
             totalPrice += 99.0;
           }
         }
-        if (selectedTargetValue[i].key === "keuze3") {
+        if (selectedTargetValue[i].key === "Keuze3") {
           if (selectedTargetValue[i].value == "Bestand 2") {
             totalPrice += 99.0;
           }
@@ -101,7 +101,7 @@ export function calculatePrice(selectedOptions, optionSets) {
       totalPrice += selectedOptionSet.price || 0;
     } else {
       selectedTargetValue?.forEach((selectedTarget) => {
-        if (selectedTarget.key === "extraWoord") {
+        if (selectedTarget.key === "ExtraWoord") {
           if (selectedTarget.value == "1 extra woord") {
             totalPrice += 14.95;
           } else if (selectedTarget.value == "2 extra woorden") {
