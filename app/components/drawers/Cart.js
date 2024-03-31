@@ -33,7 +33,7 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
       <div className="h-screen flex flex-col w-full max-w-sm">
         <div className="mb-8 bg-primary text-white">
           <div className="flex container h-16 items-center justify-between">
-            <h2 className="text-lg font-medium">Winkelwagen</h2>
+            <h2 className="text-lg font-medium">Winkelmandje</h2>
             <div className="flex items-center z-40">
               <IconButton
                 size="large"
@@ -49,7 +49,7 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+        <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6 overflow-hidden">
           <ul role="list" className="-my-6 divide-y divide-gray-200">
             {lines?.map((line) => (
               <div key={"cart_line" + line.id}>
@@ -89,12 +89,12 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
                         {line.attributes?.map((attribute) => (
                           <p
                             key={"selectedAttributes_" + attribute.value}
-                            className="mt-1 text-sm text-gray-500 font-bold"
+                            className="mt-1 text-sm text-gray-500 select-none font-bold"
                           >
                             {attribute.key.charAt(0).toUpperCase() +
                               attribute.key.toLowerCase().slice(1)}
                             :{" "}
-                            <span className="font-normal">
+                            <span className="break-all font-normal select-all">
                               {attribute.value}
                             </span>
                           </p>
@@ -140,7 +140,7 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
                 size="large"
                 href={checkoutUrl}
                 variant="contained"
-                className="w-full mt-6 py-3 lowercase text-lg bg-primary text-white"
+                className="w-full mt-6 py-3 normal-case text-lg bg-primary text-white"
               >
                 Ga door naar de kassa
               </Button>
@@ -151,9 +151,9 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
                     size="large"
                     href={"/collections/all"}
                     variant="text"
-                    className="py-3 pl-0 lowercase"
+                    className="py-3 pl-0 normal-case"
                   >
-                    Ga door met shoppen
+                    ga verder met shoppen
                   </Button>
                 </p>
               </div>

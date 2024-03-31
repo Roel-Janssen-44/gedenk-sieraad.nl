@@ -165,7 +165,7 @@ export default function ParaCord({
           onChange={(paracordMulti) =>
             handleChange("Paracordmulti", paracordMulti)
           }
-          title="Para koord extra:"
+          title="Para koord (2 extra kleuren):"
           options={paraCordOptions}
         />
       </div>

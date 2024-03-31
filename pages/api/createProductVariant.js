@@ -9,7 +9,7 @@ const handler = async (req, res) => {
   const method = "POST";
   const apiVersion = "2023-10";
 
-  console.log(req.body);
+  // console.log(req.body);
 
   const extraOptions = req.body.variantData.extraOptions;
 
@@ -78,7 +78,8 @@ const handler = async (req, res) => {
   try {
     const response = await fetch(url, options);
     const data = await response.json();
-
+    // console.log("create product response");
+    // console.log(data);
     return res.end(JSON.stringify({ succes: data }));
   } catch (error) {
     return res.end(JSON.stringify({ error: error.message }));

@@ -277,7 +277,7 @@ export default function ProductPage({ product }) {
       </div>
       <div className="flex flex-wrap items-center container mx-auto lg:max-w-5xl">
         <span className="bg-primary p-4 px-6 text-white rounded-t">
-          <span className="font-bold w-full -mb-2">Product bescrhijving:</span>
+          <span className="font-bold w-full -mb-2">Productbeschrijving:</span>
         </span>
         {isClient ? (
           <p
@@ -550,10 +550,10 @@ function Product({
           <span>
             {selectedVariant?.price?.amount && (
               <Price
-                value={
+                value={(
                   parseFloat(selectedVariant?.price?.amount) +
                   parseFloat(calculatePrice(extraOptions, OptionSets))
-                }
+                ).toFixed(2)}
               />
             )}
 
@@ -644,46 +644,106 @@ function Product({
 
               if (extraOptions.length > 0) {
                 e.preventDefault();
-                const extraOptionsArray = extraOptions.flatMap((item) =>
-                  Array.isArray(item.value)
-                    ? item.value
-                        .map((nestedItem) => ({
-                          key: nestedItem.key,
-                          // To do array attributes
-                          value:
-                            nestedItem.value !== "" ? nestedItem.value : null,
-                        }))
-                        .filter((nestedItem) => nestedItem.value !== null)
-                    : item.value !== ""
-                    ? [{ key: item.key, value: item.value }]
-                    : []
-                );
-                const createdProductVariant = createProductVariant(
-                  product,
-                  extraOptions,
-                  selectedVariant.id
-                )
-                  .then((createdProductVariant) => {
-                    const newVariantId = `gid://shopify/ProductVariant/${createdProductVariant.succes.variant.id}`;
-                    linesAdd([
-                      {
-                        merchandiseId: newVariantId,
-                        quantity: 1,
-                        attributes: extraOptionsArray,
-                      },
-                    ]);
-                    openCartDrawer(true);
-                  })
-                  .catch((error) => {
-                    console.error("Error creating product variant:", error);
+                // const extraOptionsArray = extraOptions.flatMap((item) =>
+                //   Array.isArray(item.value)
+                //     ? item.value
+                //         .map((nestedItem) => ({
+                //           key: nestedItem.key,
+                //           // To do array attributes
+                //           value:
+                //             nestedItem.value !== "" ? nestedItem.value : null,
+                //         }))
+                //         .filter((nestedItem) => nestedItem.value !== null)
+                //     : item.value !== ""
+                //     ? [{ key: item.key, value: item.value }]
+                //     : []
+                // );
+
+                console.log("extraOptions before");
+                console.log(extraOptions);
+
+                // const extraOptionsArray = extraOptions
+                //   .filter((option) => option.value !== "") // Filter out objects with empty string value
+                //   .flatMap((option) => {
+                //     if (Array.isArray(option.value)) {
+                //       return {
+                //         key: option.key,
+                //         value: option.value.join(", "),
+                //       };
+                //     } else {
+                //       return option;
+                //     }
+                //   });
+                const extraOptionsArray = extraOptions
+                  .filter((option) => option.value != " ")
+                  .flatMap((item) => {
+                    console.log("item");
+                    console.log(item.value);
+                    console.log(item.value[0]);
+
+                    // if (item[0])
+                    return Array.isArray(item.value)
+                      ? item.value
+                          .map((nestedItem) => ({
+                            key: nestedItem.key,
+                            // To do array attributes
+                            value:
+                              nestedItem.value && nestedItem.value !== ""
+                                ? nestedItem.value.trim()
+                                : null,
+                          }))
+                          .filter((nestedItem) => nestedItem.value !== null)
+                      : null;
+                    // : item.value && item.value.trim() !== ""
+                    // ? [{ key: item.key, value: item.value.trim() }]
+                    // : [];
                   });
-              } else {
-                linesAdd([
-                  {
-                    merchandiseId: selectedVariant.id,
-                    quantity: 1,
-                  },
-                ]);
+
+                // const options = [
+                //   {key : "Upload", value : "uploadlink"},
+                //   {key : "otheroption", value : [
+                //     {key : "otheroption1", value : "otheroption1"},
+                //     {key : "otheroption2", value : "otheroption2"},
+                //   ]},
+                //   {key : "armabanden", value : ["1", "2", "3", "4"]},
+                // ]
+
+                // const options = [
+                //   {key : "Upload", value : "uploadlink"},
+                //   {key : "otheroption1", value : "otheroption1"},
+                //   {key : "otheroption2", value : "otheroption2"},
+                //   {key : "armabanden", value : "1, 2, 3, 4" },
+                // ]
+
+                console.log("extraOptionsArray after");
+                console.log(extraOptionsArray);
+
+                //   const createdProductVariant = createProductVariant(
+                //     product,
+                //     extraOptions,
+                //     selectedVariant.id
+                //   )
+                //     .then((createdProductVariant) => {
+                //       const newVariantId = `gid://shopify/ProductVariant/${createdProductVariant.succes.variant.id}`;
+                //       linesAdd([
+                //         {
+                //           merchandiseId: newVariantId,
+                //           quantity: 1,
+                //           attributes: extraOptionsArray,
+                //         },
+                //       ]);
+                //       openCartDrawer(true);
+                //     })
+                //     .catch((error) => {
+                //       console.error("Error creating product variant:", error);
+                //     });
+                // } else {
+                //   linesAdd([
+                //     {
+                //       merchandiseId: selectedVariant.id,
+                //       quantity: 1,
+                //     },
+                //   ]);
                 openCartDrawer(true);
               }
             }}

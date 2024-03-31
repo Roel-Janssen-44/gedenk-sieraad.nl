@@ -170,7 +170,7 @@ export default function Satijnen({
           onChange={(satijnenMulti) =>
             handleChange("Satijnenmulti", satijnenMulti)
           }
-          title="Satijnen armbandjes extra:"
+          title="Satijnen armbandjes (4 extra kleuren):"
           options={satijnenOptions}
         />
       </div>
