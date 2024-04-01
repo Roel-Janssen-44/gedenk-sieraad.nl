@@ -718,32 +718,32 @@ function Product({
                 console.log("extraOptionsArray after");
                 console.log(extraOptionsArray);
 
-                //   const createdProductVariant = createProductVariant(
-                //     product,
-                //     extraOptions,
-                //     selectedVariant.id
-                //   )
-                //     .then((createdProductVariant) => {
-                //       const newVariantId = `gid://shopify/ProductVariant/${createdProductVariant.succes.variant.id}`;
-                //       linesAdd([
-                //         {
-                //           merchandiseId: newVariantId,
-                //           quantity: 1,
-                //           attributes: extraOptionsArray,
-                //         },
-                //       ]);
-                //       openCartDrawer(true);
-                //     })
-                //     .catch((error) => {
-                //       console.error("Error creating product variant:", error);
-                //     });
-                // } else {
-                //   linesAdd([
-                //     {
-                //       merchandiseId: selectedVariant.id,
-                //       quantity: 1,
-                //     },
-                //   ]);
+                const createdProductVariant = createProductVariant(
+                  product,
+                  extraOptions,
+                  selectedVariant.id
+                )
+                  .then((createdProductVariant) => {
+                    const newVariantId = `gid://shopify/ProductVariant/${createdProductVariant.succes.variant.id}`;
+                    linesAdd([
+                      {
+                        merchandiseId: newVariantId,
+                        quantity: 1,
+                        attributes: extraOptionsArray,
+                      },
+                    ]);
+                    openCartDrawer(true);
+                  })
+                  .catch((error) => {
+                    console.error("Error creating product variant:", error);
+                  });
+              } else {
+                linesAdd([
+                  {
+                    merchandiseId: selectedVariant.id,
+                    quantity: 1,
+                  },
+                ]);
                 openCartDrawer(true);
               }
             }}
