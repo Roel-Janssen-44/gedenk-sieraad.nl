@@ -662,51 +662,17 @@ function Product({
                 console.log("extraOptions before");
                 console.log(extraOptions);
 
-                // const extraOptionsArray = extraOptions
-                //   .filter((option) => option.value !== "") // Filter out objects with empty string value
-                //   .flatMap((option) => {
-                //     if (Array.isArray(option.value)) {
-                //       return {
-                //         key: option.key,
-                //         value: option.value.join(", "),
-                //       };
-                //     } else {
-                //       return option;
-                //     }
-                //   });
-                const extraOptionsArray = extraOptions
-                  .filter((option) => option.value != " ")
-                  .flatMap((item) => {
-                    console.log("item");
-                    console.log(item.value);
-                    console.log(item.value[0]);
-
-                    // if (item[0])
-                    return Array.isArray(item.value)
-                      ? item.value
-                          .map((nestedItem) => ({
-                            key: nestedItem.key,
-                            // To do array attributes
-                            value:
-                              nestedItem.value && nestedItem.value !== ""
-                                ? nestedItem.value.trim()
-                                : null,
-                          }))
-                          .filter((nestedItem) => nestedItem.value !== null)
-                      : null;
-                    // : item.value && item.value.trim() !== ""
-                    // ? [{ key: item.key, value: item.value.trim() }]
-                    // : [];
-                  });
-
-                // const options = [
-                //   {key : "Upload", value : "uploadlink"},
-                //   {key : "otheroption", value : [
-                //     {key : "otheroption1", value : "otheroption1"},
-                //     {key : "otheroption2", value : "otheroption2"},
-                //   ]},
-                //   {key : "armabanden", value : ["1", "2", "3", "4"]},
-                // ]
+                const options = [
+                  { key: "Upload", value: "uploadlink" },
+                  {
+                    key: "otheroption",
+                    value: [
+                      { key: "otheroption1", value: "otheroption1" },
+                      { key: "otheroption2", value: "otheroption2" },
+                    ],
+                  },
+                  { key: "armabanden", value: ["1", "2", "3", "4"] },
+                ];
 
                 // const options = [
                 //   {key : "Upload", value : "uploadlink"},
@@ -714,6 +680,64 @@ function Product({
                 //   {key : "otheroption2", value : "otheroption2"},
                 //   {key : "armabanden", value : "1, 2, 3, 4" },
                 // ]
+
+                const extraOptionsArray = extraOptions.flatMap((item) => {
+                  if (typeof item.value == "string") {
+                    return {
+                      key: item.key,
+                      value: item.value,
+                    };
+                  } else if (typeof item.value == "object") {
+                    if (typeof item.value[0].value == "object") {
+                      let newOptions = [];
+                      if (typeof item.value[0].value == "string") {
+                        if (item.value[0].value != "") {
+                          let newString = "";
+                          item.value.forEach((value, index) => {
+                            if (index > 0) {
+                              newString += ` , ${value.value}`;
+                            } else {
+                              newString += value.value;
+                            }
+                          });
+                          return {
+                            key: item.key,
+                            value: newString,
+                          };
+                        }
+                      }
+                      return newOptions;
+                    } else {
+                      let newOptions = [];
+                      item.value.forEach((nestedItem) => {
+                        if (typeof nestedItem.value == "object") {
+                          let newString = "";
+                          nestedItem.value.forEach(
+                            (nestedNestedItem, index) => {
+                              if (index > 0) {
+                                newString += ` , ${nestedNestedItem}`;
+                              } else {
+                                newString += nestedNestedItem;
+                              }
+                            }
+                          );
+                          newOptions.push({
+                            key: nestedItem.key,
+                            value: newString,
+                          });
+                        } else {
+                          if (nestedItem.value != "") {
+                            newOptions.push({
+                              key: nestedItem.key,
+                              value: nestedItem.value,
+                            });
+                          }
+                        }
+                      });
+                      return newOptions;
+                    }
+                  }
+                });
 
                 console.log("extraOptionsArray after");
                 console.log(extraOptionsArray);

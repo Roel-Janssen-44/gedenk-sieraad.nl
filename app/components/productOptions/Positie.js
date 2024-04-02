@@ -243,12 +243,12 @@ export default function Positie({
           if (extraWoordLinks == "") {
             setError((prevState) => ({
               ...prevState,
-              ["extraWoord"]: "* Veld extraWoord mag niet leeg zijn",
+              ["extraWoordLinks"]: "* Veld extraWoord mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["extraWoord"]: "",
+              ["extraWoordLinks"]: "",
             }));
             if (extraWoordLinks == "1 extra woord") {
               if (woord1ValueLinks == "") {
@@ -2596,22 +2596,26 @@ export default function Positie({
       {checkmark.map((option, index) => {
         if (option.status) {
           const gravureOption =
-            values.find((item) => item.key === `gravure${option.name}`)
-              ?.value || "";
+            values.find(
+              (item) => item.key === `Gravure${option.name.toLowerCase()}`
+            )?.value || "";
           return (
             <div className="flex flex-col gap-6" key={option.name}>
               <div className="relative">
                 {showErrors && (
                   <p className="absolute  -bottom-6 left-0 text-red-700">
-                    {error[`gravure${option.name}`]}
+                    {error[`Gravure${option.name.toLowerCase()}`]}
                   </p>
                 )}
                 <InputSelect
                   value={gravureOption}
                   onChange={(newTekstValue) => {
-                    handleChange(`gravure${option.name}`, newTekstValue);
+                    handleChange(
+                      `Gravure${option.name.toLowerCase()}`,
+                      newTekstValue
+                    );
                   }}
-                  title={`gravure ${option.name.toLowerCase()}: `}
+                  title={`Gravure ${option.name.toLowerCase()}: `}
                   options={gravureOptions}
                 />
               </div>
@@ -2620,18 +2624,19 @@ export default function Positie({
                 <div className="relative">
                   {showErrors && (
                     <p className="absolute  -bottom-6 left-0 text-red-700">
-                      {error[`extraWoord`]}
+                      {error[`ExtraWoord`]}
                     </p>
                   )}
                   <InputSelect
                     value={
                       values.find(
-                        (item) => item.key === `extraWoord${option.name}`
+                        (item) =>
+                          item.key === `Extrawoord${option.name.toLowerCase()}`
                       )?.value || ""
                     }
                     onChange={(newExtraWoordValue) =>
                       handleChange(
-                        `extraWoord${option.name}`,
+                        `Extrawoord${option.name.toLowerCase()}`,
                         newExtraWoordValue
                       )
                     }
@@ -2644,17 +2649,21 @@ export default function Positie({
                 <div className="relative">
                   {showErrors && (
                     <p className="absolute  -bottom-6 left-0 text-red-700">
-                      {error[`initialenLinks${option.name}`]}
+                      {error[`Initialen${option.name.toLowerCase()}`]}
                     </p>
                   )}
                   <InputTextField
                     value={
                       values.find(
-                        (item) => item.key === `initialen${option.name}`
+                        (item) =>
+                          item.key === `Initialen${option.name.toLowerCase()}`
                       )?.value || ""
                     }
                     onChange={(newInitialenValue) =>
-                      handleChange(`initialen${option.name}`, newInitialenValue)
+                      handleChange(
+                        `Initialen${option.name.toLowerCase()}`,
+                        newInitialenValue
+                      )
                     }
                     title="Initialen/letters/tekens:"
                   />
@@ -2665,16 +2674,21 @@ export default function Positie({
                 <div className="relative">
                   {showErrors && (
                     <p className="absolute  -bottom-6 left-0 text-red-700">
-                      {error[`naam${option.name}`]}
+                      {error[`Naam${option.name.toLowerCase()}`]}
                     </p>
                   )}
                   <InputTextField
                     value={
-                      values.find((item) => item.key === `naam${option.name}`)
-                        ?.value || ""
+                      values.find(
+                        (item) =>
+                          item.key === `Naam${option.name.toLowerCase()}`
+                      )?.value || ""
                     }
                     onChange={(newNaamValue) =>
-                      handleChange(`naam${option.name}`, newNaamValue)
+                      handleChange(
+                        `Naam${option.name.toLowerCase()}`,
+                        newNaamValue
+                      )
                     }
                     title="Naam:"
                   />
@@ -2685,38 +2699,49 @@ export default function Positie({
                 <div className="relative">
                   {showErrors && (
                     <p className="absolute  -bottom-6 left-0 text-red-700">
-                      {error[`datum${option.name}`]}
+                      {error[`Datum${option.name.toLowerCase()}`]}
                     </p>
                   )}
                   <InputDate
                     value={
-                      values.find((item) => item.key === `datum${option.name}`)
-                        ?.value || ""
+                      values.find(
+                        (item) =>
+                          item.key === `Datum${option.name.toLowerCase()}`
+                      )?.value || ""
                     }
                     onChange={(newDateValue) =>
-                      handleChange(`datum${option.name}`, newDateValue)
+                      handleChange(
+                        `Datum${option.name.toLowerCase()}`,
+                        newDateValue
+                      )
                     }
                     title="Datum:"
                   />
                 </div>
               )}
               {(gravureOption == "1 woord" ||
-                values.find((item) => item.key === `extraWoord${option.name}`)
-                  ?.value == "1 extra woord") && (
+                values.find(
+                  (item) =>
+                    item.key === `Extrawoord${option.name.toLowerCase()}`
+                )?.value == "1 extra woord") && (
                 <div className="relative">
                   {showErrors && (
                     <p className="absolute  -bottom-6 left-0 text-red-700">
-                      {error[`woord1${option.name}`]}
+                      {error[`Woord1${option.name.toLowerCase()}`]}
                     </p>
                   )}
                   <InputTextField
                     value={
                       values.find(
-                        (item) => item.key === `1 woord${option.name}`
+                        (item) =>
+                          item.key === `1 woord${option.name.toLowerCase()}`
                       )?.value || ""
                     }
                     onChange={(new1WoordValue) =>
-                      handleChange(`1 woord${option.name}`, new1WoordValue)
+                      handleChange(
+                        `1 woord${option.name.toLowerCase()}`,
+                        new1WoordValue
+                      )
                     }
                     title="1 Woord:"
                   />
@@ -2724,22 +2749,28 @@ export default function Positie({
               )}
 
               {(gravureOption == "2 woorden" ||
-                values.find((item) => item.key === `extraWoord${option.name}`)
-                  ?.value == "2 extra woorden") && (
+                values.find(
+                  (item) =>
+                    item.key === `Extrawoord${option.name.toLowerCase()}`
+                )?.value == "2 extra woorden") && (
                 <div className="relative">
                   {showErrors && (
                     <p className="absolute  -bottom-6 left-0 text-red-700">
-                      {error[`woord2${option.name}`]}
+                      {error[`Woord2${option.name.toLowerCase()}`]}
                     </p>
                   )}
                   <InputTextField
                     value={
                       values.find(
-                        (item) => item.key === `2 woorden${option.name}`
+                        (item) =>
+                          item.key === `2 woorden${option.name.toLowerCase()}`
                       )?.value || ""
                     }
                     onChange={(new2WoordenValue) =>
-                      handleChange(`2 woorden${option.name}`, new2WoordenValue)
+                      handleChange(
+                        `2 woorden${option.name.toLowerCase()}`,
+                        new2WoordenValue
+                      )
                     }
                     title="2 Woorden:"
                   />
@@ -2749,17 +2780,21 @@ export default function Positie({
                 <div className="relative">
                   {showErrors && (
                     <p className="absolute  -bottom-6 left-0 text-red-700">
-                      {error[`woord3${option.name}`]}
+                      {error[`Woord3${option.name.toLowerCase()}`]}
                     </p>
                   )}
                   <InputTextField
                     value={
                       values.find(
-                        (item) => item.key === `3 woorden${option.name}`
+                        (item) =>
+                          item.key === `3 woorden${option.name.toLowerCase()}`
                       )?.value || ""
                     }
                     onChange={(new3WoordenValue) =>
-                      handleChange(`3 woorden${option.name}`, new3WoordenValue)
+                      handleChange(
+                        `3 woorden${option.name.toLowerCase()}`,
+                        new3WoordenValue
+                      )
                     }
                     title="3 Woorden:"
                   />
@@ -2769,17 +2804,21 @@ export default function Positie({
                 <div className="relative">
                   {showErrors && (
                     <p className="absolute  -bottom-6 left-0 text-red-700">
-                      {error[`woord4${option.name}`]}
+                      {error[`Woord4${option.name.toLowerCase()}`]}
                     </p>
                   )}
                   <InputTextField
                     value={
                       values.find(
-                        (item) => item.key === `4 woorden${option.name}`
+                        (item) =>
+                          item.key === `4 woorden${option.name.toLowerCase()}`
                       )?.value || ""
                     }
                     onChange={(new4WoordenValue) =>
-                      handleChange(`4 woorden${option.name}`, new4WoordenValue)
+                      handleChange(
+                        `4 woorden${option.name.toLowerCase()}`,
+                        new4WoordenValue
+                      )
                     }
                     title="4 Woorden:"
                   />
@@ -2796,18 +2835,23 @@ export default function Positie({
                 <div className="relative">
                   {showErrors && (
                     <p className="absolute  -bottom-6 left-0 text-red-700">
-                      {error[`upload${option.name}`]}
+                      {error[`Upload${option.name}`]}
                     </p>
                   )}
                   <InputFile
                     setError={setError}
                     title="Bestand toevoegen:"
                     onChange={(newUploadValue) =>
-                      handleChange(`upload${option.name}`, newUploadValue)
+                      handleChange(
+                        `Upload${option.name.toLowerCase()}`,
+                        newUploadValue
+                      )
                     }
                     value={
-                      values.find((item) => item.key === `upload${option.name}`)
-                        ?.value || ""
+                      values.find(
+                        (item) =>
+                          item.key === `Upload${option.name.toLowerCase()}`
+                      )?.value || ""
                     }
                   />
                 </div>
