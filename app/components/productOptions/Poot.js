@@ -19,6 +19,9 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
       const keuze2Value = value.find((item) => item.key === "Keuze2").value;
       const uploadValue = value.find((item) => item.key === "Upload").value;
 
+      console.log("uploadValue");
+      console.log(uploadValue);
+
       switch (poot) {
         case "Standaard pootafdruk":
           setError([]);
@@ -28,6 +31,8 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
           }));
           break;
         case "Eigen pootafdruk":
+          console.log("keuze2Value");
+          console.log(keuze2Value);
           if (keuze2Value == "") {
             setError((prevState) => ({
               ...prevState,
@@ -35,9 +40,9 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
             }));
           } else if (
             keuze2Value ==
-            "Ik heb al een digitaal bestand van vinger/voet/hand/pootafdruk of gravure en wil dit nu uploaden"
+            "Ik heb al een digitaal bestand van een pootafdruk en wil dit nu uploaden"
           ) {
-            if (uploadValue == null) {
+            if (uploadValue == null || uploadValue == "") {
               setError((prevState) => ({
                 ...prevState,
                 ["Upload"]: "* Upload een bestand",
@@ -54,6 +59,7 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
               ["Keuze2"]: "",
             }));
           }
+          break;
         default:
           if (poot == "") {
             setError((prevState) => ({
@@ -86,6 +92,11 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
         ["Poot"]: true,
       }));
     }
+  }, [error]);
+
+  useEffect(() => {
+    console.log("errors in poot");
+    console.log(error);
   }, [error]);
 
   const [values, setValues] = useState([

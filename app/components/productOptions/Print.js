@@ -186,6 +186,8 @@ export default function Print({
       }
     }
 
+    console.log("changedKey, newValue");
+    console.log(changedKey, newValue);
     setValues((prevValues) =>
       prevValues.map((item) =>
         item.key === changedKey ? { ...item, value: newValue } : item
@@ -197,6 +199,16 @@ export default function Print({
 
   const printKeuze = values.find((item) => item.key === "Keuze1").value;
   const printKeuze2 = values.find((item) => item.key === "Keuze2").value;
+
+  // useState(() => {
+  //   console.log("print errors");
+  //   console.log(error);
+  // }, [error, values]);
+
+  useEffect(() => {
+    console.log("errors in print");
+    console.log(error);
+  }, [error]);
 
   return (
     <>

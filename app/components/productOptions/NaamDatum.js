@@ -29,12 +29,12 @@ export default function NaamDatum({
         (item) => item.key === "Naamdatum"
       ).value;
       const voorvoegselValue = value.find(
-        (item) => item.key === "voorvoegsel"
+        (item) => item.key === "Voorvoegsel"
       ).value;
-      const naamValue = value.find((item) => item.key === "naam").value;
-      const datumValue = value.find((item) => item.key === "datum").value;
+      const naamValue = value.find((item) => item.key === "Naam").value;
+      const datumValue = value.find((item) => item.key === "Datum").value;
       const lettertypeValue = value.find(
-        (item) => item.key === "lettertype"
+        (item) => item.key === "Lettertype"
       ).value;
 
       switch (graveerTekstAchterzijde) {
@@ -49,136 +49,144 @@ export default function NaamDatum({
           if (naamValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "* Vul een naam in",
+              ["Naam"]: "* Vul een naam in",
             }));
           } else if (naamValue.length > 14) {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "* Vul maximaal 14 karakters in",
+              ["Naam"]: "* Vul maximaal 14 karakters in",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "",
+              ["Naam"]: "",
             }));
           }
+
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["Lettertype"]: "* Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
+
           if (voorvoegselValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["voorvoegsel"]: "* Maak een keuze",
+              ["Voorvoegsel"]: "* Maak een keuze",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["voorvoegsel"]: "",
+              ["Voorvoegsel"]: "",
             }));
           }
 
           setError((prevState) => ({
             ...prevState,
-            ["datum"]: "",
+            ["Datum"]: "",
+            ["Naamdatum"]: "",
           }));
+
+          break;
 
         case "Datum":
           if (datumValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "* Vul een datum in",
+              ["Datum"]: "* Vul een datum in",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "",
+              ["Datum"]: "",
             }));
           }
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["Lettertype"]: "* Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           if (voorvoegselValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["voorvoegsel"]: "* Maak een keuze",
+              ["Voorvoegsel"]: "* Maak een keuze",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["voorvoegsel"]: "",
+              ["Voorvoegsel"]: "",
             }));
           }
 
           setError((prevState) => ({
             ...prevState,
-            ["naam"]: "",
+            ["Naam"]: "",
           }));
+
+          break;
         case "Naam + datum":
           if (naamValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "* Vul een naam in",
+              ["Naam"]: "* Vul een naam in",
             }));
           } else if (naamValue.length > 14) {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "* Vul maximaal 14 karakters in",
+              ["Naam"]: "* Vul maximaal 14 karakters in",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["naam"]: "",
+              ["Naam"]: "",
             }));
           }
           if (datumValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "* Vul een datum in",
+              ["Datum"]: "* Vul een datum in",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["datum"]: "",
+              ["Datum"]: "",
             }));
           }
           if (lettertypeValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "* Kies een lettertype",
+              ["Lettertype"]: "* Kies een lettertype",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["lettertype"]: "",
+              ["Lettertype"]: "",
             }));
           }
           if (voorvoegselValue == "") {
             setError((prevState) => ({
               ...prevState,
-              ["voorvoegsel"]: "* Maak een keuze",
+              ["Voorvoegsel"]: "* Maak een keuze",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["voorvoegsel"]: "",
+              ["Voorvoegsel"]: "",
             }));
           }
+          break;
         default:
           if (graveerTekstAchterzijde == "") {
             setError((prevState) => ({
@@ -218,10 +226,10 @@ export default function NaamDatum({
       key: "Naamdatum",
       value: value?.graveerTekstAchterzijde?.value || "",
     },
-    { key: "naam", value: value?.naam?.value || "" },
-    { key: "datum", value: value?.datum?.value || "" },
-    { key: "lettertype", value: value?.lettertype?.value || "" },
-    { key: "voorvoegsel", value: value?.voorvoegsel?.value || "" },
+    { key: "Naam", value: value?.naam?.value || "" },
+    { key: "Datum", value: value?.datum?.value || "" },
+    { key: "Lettertype", value: value?.lettertype?.value || "" },
+    { key: "Voorvoegsel", value: value?.voorvoegsel?.value || "" },
   ]);
 
   const isInitialRender = useRef(true);
@@ -272,12 +280,12 @@ export default function NaamDatum({
         <div className="relative">
           {showErrors && (
             <p className="absolute -bottom-6 left-0 text-red-700">
-              {error["naam"]}
+              {error["Naam"]}
             </p>
           )}
           <InputTextField
-            value={values.find((item) => item.key === "naam")?.value || ""}
-            onChange={(newNaamValue) => handleChange("naam", newNaamValue)}
+            value={values.find((item) => item.key === "Naam")?.value || ""}
+            onChange={(newNaamValue) => handleChange("Naam", newNaamValue)}
             title="Naam:"
           />
         </div>
@@ -287,11 +295,11 @@ export default function NaamDatum({
         <div className="relative">
           {showErrors && (
             <p className="absolute -bottom-6 left-0 text-red-700">
-              {error["datum"]}
+              {error["Datum"]}
             </p>
           )}
           <InputDate
-            onChange={(newDatumValue) => handleChange("datum", newDatumValue)}
+            onChange={(newDatumValue) => handleChange("Datum", newDatumValue)}
             title="Datum:"
           />
         </div>
@@ -302,15 +310,15 @@ export default function NaamDatum({
             <div className="relative">
               {showErrors && (
                 <p className="absolute -bottom-6 left-0 text-red-700">
-                  {error["voorvoegsel"]}
+                  {error["Voorvoegsel"]}
                 </p>
               )}
               <InputSelect
                 value={
-                  values.find((item) => item.key === "voorvoegsel")?.value || ""
+                  values.find((item) => item.key === "Voorvoegsel")?.value || ""
                 }
                 onChange={(newVoorvoegselValue) =>
-                  handleChange("voorvoegsel", newVoorvoegselValue)
+                  handleChange("Voorvoegsel", newVoorvoegselValue)
                 }
                 title="Graveertekst voorvoegsel:"
                 options={voorvoegselOptions}
@@ -319,15 +327,15 @@ export default function NaamDatum({
             <div className="relative">
               {showErrors && (
                 <p className="absolute -bottom-6 left-0 text-red-700">
-                  {error["lettertype"]}
+                  {error["Lettertype"]}
                 </p>
               )}
               <InputImageSwatchLarge
                 value={
-                  values.find((item) => item.key === "lettertype")?.value || ""
+                  values.find((item) => item.key === "Lettertype")?.value || ""
                 }
                 onChange={(newLettertypeValue) =>
-                  handleChange("lettertype", newLettertypeValue)
+                  handleChange("Lettertype", newLettertypeValue)
                 }
                 title="Lettertype:"
                 options={lettertypeOptions}

@@ -681,63 +681,72 @@ function Product({
                 //   {key : "armabanden", value : "1, 2, 3, 4" },
                 // ]
 
-                const extraOptionsArray = extraOptions.flatMap((item) => {
-                  if (typeof item.value == "string") {
-                    return {
-                      key: item.key,
-                      value: item.value,
-                    };
-                  } else if (typeof item.value == "object") {
-                    if (typeof item.value[0].value == "object") {
-                      let newOptions = [];
-                      if (typeof item.value[0].value == "string") {
-                        if (item.value[0].value != "") {
-                          let newString = "";
-                          item.value.forEach((value, index) => {
-                            if (index > 0) {
-                              newString += ` , ${value.value}`;
-                            } else {
-                              newString += value.value;
-                            }
-                          });
-                          return {
-                            key: item.key,
-                            value: newString,
-                          };
-                        }
-                      }
-                      return newOptions;
-                    } else {
-                      let newOptions = [];
-                      item.value.forEach((nestedItem) => {
-                        if (typeof nestedItem.value == "object") {
-                          let newString = "";
-                          nestedItem.value.forEach(
-                            (nestedNestedItem, index) => {
+                const extraOptionsArray = extraOptions
+                  .filter((item) => {
+                    if (item.value != null) {
+                      return item;
+                    }
+                  })
+
+                  .flatMap((item) => {
+                    if (typeof item.value == "string") {
+                      return {
+                        key: item.key,
+                        value: item.value,
+                      };
+                    } else if (typeof item.value == "object") {
+                      console.log("item.value");
+                      console.log(item.value);
+                      if (typeof item.value[0].value == "object") {
+                        let newOptions = [];
+                        if (typeof item.value[0].value == "string") {
+                          if (item.value[0].value != "") {
+                            let newString = "";
+                            item.value.forEach((value, index) => {
                               if (index > 0) {
-                                newString += ` , ${nestedNestedItem}`;
+                                newString += `, ${value.value}`;
                               } else {
-                                newString += nestedNestedItem;
+                                newString += value.value;
                               }
-                            }
-                          );
-                          newOptions.push({
-                            key: nestedItem.key,
-                            value: newString,
-                          });
-                        } else {
-                          if (nestedItem.value != "") {
-                            newOptions.push({
-                              key: nestedItem.key,
-                              value: nestedItem.value,
                             });
+                            return {
+                              key: item.key,
+                              value: newString,
+                            };
                           }
                         }
-                      });
-                      return newOptions;
+                        return newOptions;
+                      } else {
+                        let newOptions = [];
+                        item.value.forEach((nestedItem) => {
+                          if (typeof nestedItem.value == "object") {
+                            let newString = "";
+                            nestedItem.value.forEach(
+                              (nestedNestedItem, index) => {
+                                if (index > 0) {
+                                  newString += ` , ${nestedNestedItem}`;
+                                } else {
+                                  newString += nestedNestedItem;
+                                }
+                              }
+                            );
+                            newOptions.push({
+                              key: nestedItem.key,
+                              value: newString,
+                            });
+                          } else {
+                            if (nestedItem.value != "") {
+                              newOptions.push({
+                                key: nestedItem.key,
+                                value: nestedItem.value,
+                              });
+                            }
+                          }
+                        });
+                        return newOptions;
+                      }
                     }
-                  }
-                });
+                  });
 
                 console.log("extraOptionsArray after");
                 console.log(extraOptionsArray);
@@ -747,17 +756,18 @@ function Product({
                   extraOptions,
                   selectedVariant.id
                 )
-                  .then((createdProductVariant) => {
-                    const newVariantId = `gid://shopify/ProductVariant/${createdProductVariant.succes.variant.id}`;
-                    linesAdd([
-                      {
-                        merchandiseId: newVariantId,
-                        quantity: 1,
-                        attributes: extraOptionsArray,
-                      },
-                    ]);
-                    openCartDrawer(true);
-                  })
+                  .then(openCartDrawer(true))
+                  // .then((createdProductVariant) => {
+                  //   const newVariantId = `gid://shopify/ProductVariant/${createdProductVariant.succes.variant.id}`;
+                  //   linesAdd([
+                  //     {
+                  //       merchandiseId: newVariantId,
+                  //       quantity: 1,
+                  //       attributes: extraOptionsArray,
+                  //     },
+                  //   ]);
+                  //   openCartDrawer(true);
+                  // })
                   .catch((error) => {
                     console.error("Error creating product variant:", error);
                   });
