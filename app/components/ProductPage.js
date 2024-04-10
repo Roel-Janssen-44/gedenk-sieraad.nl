@@ -756,18 +756,18 @@ function Product({
                   extraOptions,
                   selectedVariant.id
                 )
-                  .then(openCartDrawer(true))
-                  // .then((createdProductVariant) => {
-                  //   const newVariantId = `gid://shopify/ProductVariant/${createdProductVariant.succes.variant.id}`;
-                  //   linesAdd([
-                  //     {
-                  //       merchandiseId: newVariantId,
-                  //       quantity: 1,
-                  //       attributes: extraOptionsArray,
-                  //     },
-                  //   ]);
-                  //   openCartDrawer(true);
-                  // })
+                  // .then(openCartDrawer(true))
+                  .then((createdProductVariant) => {
+                    const newVariantId = `gid://shopify/ProductVariant/${createdProductVariant.succes.variant.id}`;
+                    linesAdd([
+                      {
+                        merchandiseId: newVariantId,
+                        quantity: 1,
+                        attributes: extraOptionsArray,
+                      },
+                    ]);
+                    openCartDrawer(true);
+                  })
                   .catch((error) => {
                     console.error("Error creating product variant:", error);
                   });

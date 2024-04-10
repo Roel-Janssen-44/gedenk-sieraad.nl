@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 
-export default function InputFile({ onChange, title, value, setError }) {
+export default function InputFile({ id, onChange, title, value, setError }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -33,6 +33,7 @@ export default function InputFile({ onChange, title, value, setError }) {
         if (response.ok) {
           const data = await response.json();
           setImageUrl(data.url);
+
           console.log("File uploaded successfully!");
           setLoading(false);
         } else {
@@ -47,10 +48,11 @@ export default function InputFile({ onChange, title, value, setError }) {
       // setError("Fout tijdens het uploaden van het bestand" + error);
       console.error("Error uploading file:", error);
     }
+    onChange(`test inputfile ${id}`, "test value");
   }, [selectedFile]);
 
   useEffect(() => {
-    onChange(imageUrl);
+    onChange(id, imageUrl);
   }, [imageUrl]);
 
   const handleFileUpload = (event) => {
@@ -86,7 +88,7 @@ export default function InputFile({ onChange, title, value, setError }) {
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
-        htmlFor="dropzone-file"
+        htmlFor={`dropzone-file-${id}`}
         className="w-full xs:w-auto border-2 border-dashed hover:border-transparent sm:inline-block px-3 py-3 xs:px-5 md:px-8 md:py-4 shadow text-gray-800 relative flex flex-col items-center justify-center h-auto rounded-lg cursor-pointer bg-gray-200  hover:bg-gray-300 duration-150"
       >
         <>
@@ -136,7 +138,7 @@ export default function InputFile({ onChange, title, value, setError }) {
           </div>
         </>
         <input
-          id="dropzone-file"
+          id={`dropzone-file-${id}`}
           type="file"
           className="hidden"
           onChange={handleFileUpload}
@@ -154,9 +156,7 @@ export default function InputFile({ onChange, title, value, setError }) {
           </div>
         )}
         {loading && (
-          // <div className="inline-block">
           <CircularProgress className="w-10 h-10 absolute top-1/2 -translate-y-1/2 left-8 z-30" />
-          // </div>
         )}
       </label>
     </div>

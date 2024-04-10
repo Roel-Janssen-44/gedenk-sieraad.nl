@@ -5,9 +5,6 @@ import { useState, useEffect, useRef } from "react";
 import InputSelect from "../InputSelect";
 import InputRadio from "../InputRadio";
 import InputFile from "../InputFile";
-import InputTextField from "../InputTextField";
-import InputImageSwatchLarge from "../InputImageSwatchLarge";
-import InputDate from "../InputDate";
 
 import {
   printKeuze1Options,
@@ -43,6 +40,10 @@ export default function Print({
               ["Keuze2"]: "* Maak een keuze",
             }));
           } else if (keuze2Value == "Ja") {
+            setError((prevState) => ({
+              ...prevState,
+              ["Keuze2"]: "",
+            }));
             if (upload2Value == null) {
               setError((prevState) => ({
                 ...prevState,
@@ -114,9 +115,6 @@ export default function Print({
     }
   }, [value]);
 
-  // console.log("errors");
-  // console.log(error);
-
   useEffect(() => {
     const allValuescorrect = Object.values(error).every(
       (value) => value === ""
@@ -156,7 +154,20 @@ export default function Print({
     onChange(values);
   }, [values]);
 
+  // const handleChange = (changedItem) => {
+  //   if (!changedItem) return;
+
+  //   const { key, value } = changedItem;
+  //   setValues((prevValues) =>
+  //     prevValues.map((item) => (item.key === key ? { ...item, value } : item))
+  //   );
+
+  //   onChange(values);
+  // };
   const handleChange = (changedKey, newValue) => {
+    console.log("changedKey, newValue");
+    console.log(changedKey, newValue);
+
     if (changedKey === "Keuze1") {
       if (
         newValue ==
@@ -186,8 +197,6 @@ export default function Print({
       }
     }
 
-    console.log("changedKey, newValue");
-    console.log(changedKey, newValue);
     setValues((prevValues) =>
       prevValues.map((item) =>
         item.key === changedKey ? { ...item, value: newValue } : item
@@ -199,11 +208,6 @@ export default function Print({
 
   const printKeuze = values.find((item) => item.key === "Keuze1").value;
   const printKeuze2 = values.find((item) => item.key === "Keuze2").value;
-
-  // useState(() => {
-  //   console.log("print errors");
-  //   console.log(error);
-  // }, [error, values]);
 
   useEffect(() => {
     console.log("errors in print");
@@ -218,7 +222,6 @@ export default function Print({
             {error["Keuze1"]}
           </p>
         )}
-
         <InputRadio
           value={values.find((item) => item.key === "Keuze1")?.value || ""}
           onChange={(newKeuze1TekstValue) =>
@@ -238,10 +241,10 @@ export default function Print({
               </p>
             )}
             <InputFile
+              key="Upload1"
+              id={"Upload1"}
               value={values.find((item) => item.key === "Upload1")?.value || ""}
-              onChange={(newUpload1Value) =>
-                handleChange("Upload1", newUpload1Value)
-              }
+              onChange={handleChange}
               title="Bestand 1:"
               options={printKeuze2Options}
               setError={setError}
@@ -270,12 +273,12 @@ export default function Print({
                 </p>
               )}
               <InputFile
+                key="Uploadasd"
+                id="Upload2"
                 value={
                   values.find((item) => item.key === "Upload2")?.value || ""
                 }
-                onChange={(newUpload2Value) =>
-                  handleChange("Upload2", newUpload2Value)
-                }
+                onChange={handleChange}
                 title="Bestand 2:"
                 options={printKeuze2Options}
                 setError={setError}

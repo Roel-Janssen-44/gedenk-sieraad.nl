@@ -5,26 +5,12 @@ import {
   CartLineQuantity,
   CartLineQuantityAdjustButton,
 } from "@shopify/hydrogen-react";
-import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-
-import { styled, alpha } from "@mui/material/styles";
-
 import Price from "@/components/Price";
-
-import ShoppingBagRoundedIcon from "@mui/icons-material/ShoppingBagRounded";
-import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
-import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
-
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
-import InputBase from "@mui/material/InputBase";
 
 export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
   const { cost, checkoutUrl, lines } = useCart();
