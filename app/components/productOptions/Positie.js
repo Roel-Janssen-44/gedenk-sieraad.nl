@@ -2733,7 +2733,7 @@ export default function Positie({
                       sx={{ "&.Mui-checked": { color: "#222" } }}
                     />
                   }
-                  label={option.name == "Achter" ? "Aachterzijde" : option.name}
+                  label={option.name == "Achter" ? "Achterzijde" : option.name}
                 />
               </div>
             ))}
