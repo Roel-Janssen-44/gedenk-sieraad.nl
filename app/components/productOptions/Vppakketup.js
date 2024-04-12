@@ -124,6 +124,7 @@ export default function Vppakketup({
             </p>
           )}
           <InputFile
+            id={"Vppakketupload"}
             setError={setError}
             title="Bestand toevoegen:"
             onChange={handleChange}

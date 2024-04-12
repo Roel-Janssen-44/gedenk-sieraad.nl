@@ -125,6 +125,7 @@ export default function InputFile({ id, onChange, title, value, setError }) {
                 }`}
               >
                 .PNG, .JPG, .JPEG of .WEBP zijn toegestaan
+                {/* // To do - aangeven max upload grootte */}
               </p>
             </div>
             <p

@@ -25,14 +25,16 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
       switch (poot) {
         case "Standaard pootafdruk":
           setError([]);
-          setOptionErrors((prevState) => ({
+          setError((prevState) => ({
             ...prevState,
-            ["Poot"]: false,
+            ["Poot"]: "",
           }));
           break;
         case "Eigen pootafdruk":
-          console.log("keuze2Value");
-          console.log(keuze2Value);
+          setError((prevState) => ({
+            ...prevState,
+            ["Poot"]: "",
+          }));
           if (keuze2Value == "") {
             setError((prevState) => ({
               ...prevState,
@@ -42,6 +44,10 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
             keuze2Value ==
             "Ik heb al een digitaal bestand van een pootafdruk en wil dit nu uploaden"
           ) {
+            setError((prevState) => ({
+              ...prevState,
+              ["Keuze2"]: "",
+            }));
             if (uploadValue == null || uploadValue == "") {
               setError((prevState) => ({
                 ...prevState,
@@ -176,10 +182,14 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
                 {error["Upload"]}
               </p>
             )}
+
             <InputFile
-              onChange={(newUploadValue) =>
-                handleChange("Upload", newUploadValue)
-              }
+              id={"Upload"}
+              value={values.find((item) => item.key === "Upload")?.value || ""}
+              onChange={handleChange}
+              // onChange={(newUploadValue) =>
+              //   handleChange("Upload", newUploadValue)
+              // }
               title="Bestand toevoegen:"
               setError={setError}
             />

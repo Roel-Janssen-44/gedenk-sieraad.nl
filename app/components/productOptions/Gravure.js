@@ -854,11 +854,10 @@ export default function Gravure({
             </p>
           )}
           <InputFile
+            id={"Upload"}
             setError={setError}
             title="Bestand toevoegen:"
-            onChange={(newUploadValue) =>
-              handleChange("Upload", newUploadValue)
-            }
+            onChange={handleChange}
             value={value}
           />
         </div>

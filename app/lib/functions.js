@@ -23,33 +23,41 @@ export function checkForActiveMaterial(activeMaterialList, activeMaterial) {
 export function calculatePrice(selectedOptions, optionSets) {
   let totalPrice = 0;
   for (let i = 0; i < selectedOptions.length; i++) {
+    // console.log("selectedOptions[i]");
+    // console.log(selectedOptions[i]);
+
     if (selectedOptions[i].key != "upload") {
       const optionKey = selectedOptions[i].key + "Options";
       const currentOptionSet = findOptionSet(optionSets, optionKey);
       const selectedTargetValue = selectedOptions[i].value;
+
       if (optionKey === "positieOptions") {
         for (let i = 0; i < selectedTargetValue.length; i++) {
-          if (selectedTargetValue[i].key === "GravureLinks") {
+          if (selectedTargetValue[i].key === "Gravurelinks") {
             const value = selectedTargetValue[i].value;
             const price = findPriceByValue(optionSets, "Gravure", value);
             totalPrice += price || 0;
-          } else if (selectedTargetValue[i].key === "GravureMidden") {
+          } else if (selectedTargetValue[i].key === "Gravuremidden") {
             const value = selectedTargetValue[i].value;
             const price = findPriceByValue(optionSets, "Gravure", value);
             totalPrice += price || 0;
-          } else if (selectedTargetValue[i].key === "GravureRechts") {
+          } else if (selectedTargetValue[i].key === "Gravurerechts") {
             const value = selectedTargetValue[i].value;
             const price = findPriceByValue(optionSets, "Gravure", value);
             totalPrice += price || 0;
-          } else if (selectedTargetValue[i].key === "GravureAchter") {
+          } else if (selectedTargetValue[i].key === "Gravureachter") {
             const value = selectedTargetValue[i].value;
             const price = findPriceByValue(optionSets, "Gravure", value);
             totalPrice += price || 0;
-          } else if (selectedTargetValue[i].key === "ExtraWoordLinks") {
+          } else if (
+            selectedTargetValue[i].key.toLowerCase() === "extraoordlinks"
+          ) {
             const value = selectedTargetValue[i].value;
             const price = findPriceByValue(optionSets, "ExtraWoorden", value);
             totalPrice += price || 0;
-          } else if (selectedTargetValue[i].key === "ExtraWoordMidden") {
+          } else if (
+            selectedTargetValue[i].key.toLowerCase() === "extrawoordmidden"
+          ) {
             const value = selectedTargetValue[i].value;
             const price = findPriceByValue(
               optionSets,
@@ -57,7 +65,9 @@ export function calculatePrice(selectedOptions, optionSets) {
               value
             );
             totalPrice += price || 0;
-          } else if (selectedTargetValue[i].key === "ExtraWoordRechts") {
+          } else if (
+            selectedTargetValue[i].key.toLowerCase() === "extrawoordrechts"
+          ) {
             const value = selectedTargetValue[i].value;
             const price = findPriceByValue(
               optionSets,
@@ -65,7 +75,9 @@ export function calculatePrice(selectedOptions, optionSets) {
               value
             );
             totalPrice += price || 0;
-          } else if (selectedTargetValue[i].key === "ExtraWoordAchter") {
+          } else if (
+            selectedTargetValue[i].key.toLowerCase() === "extrawoordachter"
+          ) {
             const value = selectedTargetValue[i].value;
             const price = findPriceByValue(
               optionSets,

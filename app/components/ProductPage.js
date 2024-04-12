@@ -718,6 +718,9 @@ function Product({
                         return newOptions;
                       } else {
                         let newOptions = [];
+                        // console.log("item.value check for error");
+                        // console.log("item.value");
+                        // console.log(item.value);
                         item.value.forEach((nestedItem) => {
                           if (typeof nestedItem.value == "object") {
                             let newString = "";

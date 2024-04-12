@@ -175,6 +175,10 @@ export default function Positie({
 
       switch (gravureLinks) {
         case "Initialen/letters/tekens":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadlinks"]: "",
+          }));
           if (initialenValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
@@ -228,6 +232,10 @@ export default function Positie({
           break;
         case "Hartje ♥ symbool":
         case "Infinity ∞ teken":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadlinks"]: "",
+          }));
           // setError((prevState) => ({
           //   ...prevState,
           //   ["Gravurelinks"]: "",
@@ -243,12 +251,12 @@ export default function Positie({
           if (extraWoordLinks == "") {
             setError((prevState) => ({
               ...prevState,
-              ["extraWoordLinks"]: "* Veld extraWoord mag niet leeg zijn",
+              ["ExtrawoordLinks"]: "* Veld extraWoord mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["extraWoordLinks"]: "",
+              ["ExtrawoordLinks"]: "",
             }));
             if (extraWoordLinks == "1 extra woord") {
               if (woord1ValueLinks == "") {
@@ -350,6 +358,10 @@ export default function Positie({
 
           break;
         case "Datum":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadlinks"]: "",
+          }));
           if (datumValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
@@ -386,6 +398,10 @@ export default function Positie({
           }));
           break;
         case "Naam":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadlinks"]: "",
+          }));
           if (naamValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
@@ -422,6 +438,10 @@ export default function Positie({
           }));
           break;
         case "Naam en datum":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadlinks"]: "",
+          }));
           if (naamValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
@@ -468,6 +488,10 @@ export default function Positie({
           }));
           break;
         case "1 woord":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadlinks"]: "",
+          }));
           if (woord1ValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
@@ -514,6 +538,10 @@ export default function Positie({
           }));
           break;
         case "2 woorden":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadlinks"]: "",
+          }));
           if (woord2ValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
@@ -560,6 +588,10 @@ export default function Positie({
           }));
           break;
         case "3 woorden":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadlinks"]: "",
+          }));
           if (woord3ValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
@@ -607,6 +639,10 @@ export default function Positie({
           }));
           break;
         case "4 woorden":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadlinks"]: "",
+          }));
           if (woord4ValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
@@ -702,6 +738,10 @@ export default function Positie({
 
       switch (gravureMidden) {
         case "Initialen/letters/tekens":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadmidden"]: "",
+          }));
           if (initialenValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
@@ -740,6 +780,7 @@ export default function Positie({
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,
+            ["Uploadmidden"]: "",
             ["Gravuremidden"]: "",
             ["Initialenmidden"]: "",
             ["Extrawoordmidden"]: "",
@@ -755,6 +796,10 @@ export default function Positie({
           break;
         case "Hartje ♥ symbool":
         case "Infinity ∞ teken":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadmidden"]: "",
+          }));
           // setError((prevState) => ({
           //   ...prevState,
           //   ["Gravuremidden"]: "",
@@ -877,6 +922,10 @@ export default function Positie({
 
           break;
         case "Datum":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadmidden"]: "",
+          }));
           if (datumValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
@@ -913,6 +962,10 @@ export default function Positie({
           }));
           break;
         case "Naam":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadmidden"]: "",
+          }));
           if (naamValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
@@ -949,6 +1002,10 @@ export default function Positie({
           }));
           break;
         case "Naam en datum":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadmidden"]: "",
+          }));
           if (naamValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
@@ -995,6 +1052,10 @@ export default function Positie({
           }));
           break;
         case "1 woord":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadmidden"]: "",
+          }));
           if (woord1ValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
@@ -1041,6 +1102,10 @@ export default function Positie({
           }));
           break;
         case "2 woorden":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadmidden"]: "",
+          }));
           if (woord2ValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
@@ -1088,6 +1153,10 @@ export default function Positie({
           }));
           break;
         case "3 woorden":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadmidden"]: "",
+          }));
           if (woord3ValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
@@ -1135,6 +1204,10 @@ export default function Positie({
           }));
           break;
         case "4 woorden":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadmidden"]: "",
+          }));
           if (woord4ValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
@@ -1230,6 +1303,10 @@ export default function Positie({
 
       switch (gravureRechts) {
         case "Initialen/letters/tekens":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadrechts"]: "",
+          }));
           if (initialenValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
@@ -1268,6 +1345,7 @@ export default function Positie({
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,
+            ["Uploadrechts"]: "",
             ["Gravurerechts"]: "",
             ["Initialenrechts"]: "",
             ["Extrawoordrechts"]: "",
@@ -1283,6 +1361,10 @@ export default function Positie({
           break;
         case "Hartje ♥ symbool":
         case "Infinity ∞ teken":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadrechts"]: "",
+          }));
           // setError((prevState) => ({
           //   ...prevState,
           //   ["Gravurerechts"]: "",
@@ -1405,6 +1487,10 @@ export default function Positie({
 
           break;
         case "Datum":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadrechts"]: "",
+          }));
           if (datumValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
@@ -1441,6 +1527,10 @@ export default function Positie({
           }));
           break;
         case "Naam":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadrechts"]: "",
+          }));
           if (naamValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
@@ -1477,6 +1567,10 @@ export default function Positie({
           }));
           break;
         case "Naam en datum":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadrechts"]: "",
+          }));
           if (naamValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
@@ -1523,6 +1617,10 @@ export default function Positie({
           }));
           break;
         case "1 woord":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadrechts"]: "",
+          }));
           if (woord1ValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
@@ -1569,6 +1667,10 @@ export default function Positie({
           }));
           break;
         case "2 woorden":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadrechts"]: "",
+          }));
           if (woord2ValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
@@ -1616,6 +1718,10 @@ export default function Positie({
           }));
           break;
         case "3 woorden":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadrechts"]: "",
+          }));
           if (woord3ValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
@@ -1663,6 +1769,10 @@ export default function Positie({
           }));
           break;
         case "4 woorden":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadrechts"]: "",
+          }));
           if (woord4ValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
@@ -1758,6 +1868,10 @@ export default function Positie({
 
       switch (gravureAchter) {
         case "Initialen/letters/tekens":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadachter"]: "",
+          }));
           if (initialenValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
@@ -1796,6 +1910,7 @@ export default function Positie({
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,
+            ["Uploadachter"]: "",
             ["Gravureachter"]: "",
             ["Initialenachter"]: "",
             ["Extrawoordachter"]: "",
@@ -1811,6 +1926,10 @@ export default function Positie({
           break;
         case "Hartje ♥ symbool":
         case "Infinity ∞ teken":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadachter"]: "",
+          }));
           // setError((prevState) => ({
           //   ...prevState,
           //   ["Gravureachter"]: "",
@@ -1933,6 +2052,10 @@ export default function Positie({
 
           break;
         case "Datum":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadachter"]: "",
+          }));
           if (datumValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
@@ -1969,6 +2092,10 @@ export default function Positie({
           }));
           break;
         case "Naam":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadachter"]: "",
+          }));
           if (naamValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
@@ -2005,6 +2132,10 @@ export default function Positie({
           }));
           break;
         case "Naam en datum":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadachter"]: "",
+          }));
           if (naamValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
@@ -2051,6 +2182,10 @@ export default function Positie({
           }));
           break;
         case "1 woord":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadachter"]: "",
+          }));
           if (woord1ValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
@@ -2097,6 +2232,10 @@ export default function Positie({
           }));
           break;
         case "2 woorden":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadachter"]: "",
+          }));
           if (woord2ValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
@@ -2144,6 +2283,10 @@ export default function Positie({
           }));
           break;
         case "3 woorden":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadachter"]: "",
+          }));
           if (woord3ValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
@@ -2191,6 +2334,10 @@ export default function Positie({
           }));
           break;
         case "4 woorden":
+          setError((prevState) => ({
+            ...prevState,
+            ["Uploadachter"]: "",
+          }));
           if (woord4ValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
@@ -2433,6 +2580,10 @@ export default function Positie({
 
   useEffect(() => {
     if (!error) return;
+
+    console.log("errors in positie");
+    console.log(error);
+
     const allValuescorrect = Object.values(error).every(
       (value) => value === ""
     );
@@ -2624,7 +2775,7 @@ export default function Positie({
                 <div className="relative">
                   {showErrors && (
                     <p className="absolute  -bottom-6 left-0 text-red-700">
-                      {error[`ExtraWoord`]}
+                      {error[`Extrawoord${option.name}`]}
                     </p>
                   )}
                   <InputSelect
@@ -2839,14 +2990,10 @@ export default function Positie({
                     </p>
                   )}
                   <InputFile
+                    id={`Upload${option.name.toLowerCase()}`}
                     setError={setError}
                     title="Bestand toevoegen:"
-                    onChange={(newUploadValue) =>
-                      handleChange(
-                        `Upload${option.name.toLowerCase()}`,
-                        newUploadValue
-                      )
-                    }
+                    onChange={handleChange}
                     value={
                       values.find(
                         (item) =>

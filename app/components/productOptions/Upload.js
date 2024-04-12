@@ -38,6 +38,7 @@ export default function Upload({
         <p className="absolute  -bottom-6 left-0 text-red-700">{error}</p>
       )}
       <InputFile
+        id={"Upload"}
         setError={setError}
         title="Bestand toevoegen:"
         onChange={handleChange}
