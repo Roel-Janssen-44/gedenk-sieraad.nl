@@ -2687,6 +2687,7 @@ export default function Positie({
 
     onChange(values);
   };
+
   const gravureLinks = values.find((item) => item.key === "Gravurelinks").value;
   const gravureMidden = values.find(
     (item) => item.key === "Gravuremidden"
@@ -2710,6 +2711,10 @@ export default function Positie({
   const extraWoordAchter = values.find(
     (item) => item.key === "Extrawoordachter"
   ).value;
+
+  useEffect(() => {
+    onChange(values);
+  }, []);
 
   return (
     <>

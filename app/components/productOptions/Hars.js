@@ -85,6 +85,10 @@ export default function HarsKleur({
     onChange(values);
   };
 
+  useEffect(() => {
+    onChange(values);
+  }, []);
+
   return (
     <>
       <div className="relative">

@@ -257,6 +257,10 @@ export default function NaamDatum({
     (item) => item.key === "Naamdatum"
   ).value;
 
+  useEffect(() => {
+    onChange(values);
+  }, []);
+
   return (
     <>
       <div className="relative">

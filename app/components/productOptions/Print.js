@@ -214,6 +214,10 @@ export default function Print({
     console.log(error);
   }, [error]);
 
+  useEffect(() => {
+    onChange(values);
+  }, []);
+
   return (
     <>
       <div className="relative">

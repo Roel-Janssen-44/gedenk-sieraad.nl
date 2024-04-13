@@ -138,6 +138,10 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
   const pootKeuze = values.find((item) => item.key === "Poot").value;
   const pootKeuze2 = values.find((item) => item.key === "Keuze2").value;
 
+  useEffect(() => {
+    onChange(values);
+  }, []);
+
   return (
     <>
       <div className="relative">

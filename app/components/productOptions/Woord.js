@@ -632,6 +632,10 @@ export default function GraveerTekst({
     (item) => item.key === "Extrawoord"
   ).value;
 
+  useEffect(() => {
+    onChange(values);
+  }, []);
+
   return (
     <>
       <div className="relative">

@@ -671,6 +671,10 @@ export default function Gravure({
     console.log(error);
   }, [error, values]);
 
+  useEffect(() => {
+    onChange(values);
+  }, []);
+
   return (
     <>
       <div className="relative">

@@ -46,6 +46,10 @@ export default function Upload({
   //   console.log(error);
   // }, [error, values]);
 
+  useEffect(() => {
+    onChange(values);
+  }, []);
+
   return (
     <div className="relative">
       {showErrors && (

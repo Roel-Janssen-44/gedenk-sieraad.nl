@@ -122,6 +122,10 @@ export default function ParaCord({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  useEffect(() => {
+    onChange(values);
+  }, []);
+
   return (
     <>
       <div className="relative">

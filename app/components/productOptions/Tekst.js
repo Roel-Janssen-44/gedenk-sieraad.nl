@@ -631,6 +631,10 @@ export default function Tekst({
     console.log(error);
   }, [error, values]);
 
+  useEffect(() => {
+    onChange(values);
+  }, []);
+
   return (
     <>
       <div className="relative">

@@ -97,6 +97,10 @@ export default function Vppakketup({
     (item) => item.key === "Vppakketkeuze"
   ).value;
 
+  useEffect(() => {
+    onChange(values);
+  }, []);
+
   return (
     <>
       <div className="relative">

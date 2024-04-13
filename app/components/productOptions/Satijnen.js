@@ -85,6 +85,10 @@ export default function Satijnen({
     onChange(values);
   }, [values]);
 
+  useEffect(() => {
+    onChange(values);
+  }, []);
+
   const handleChange = (changedKey, newValue) => {
     if (changedKey == "Satijnenmulti") {
       if (newValue.length > 4) {
