@@ -154,7 +154,7 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
               size="large"
               href={"/collections/all"}
               variant="contained"
-              className="w-full mt-6 py-3 lowercase text-lg bg-primary text-white"
+              className="w-full mt-6 py-3 normal-case text-lg bg-primary text-white"
             >
               Start met shoppen
             </Button>
