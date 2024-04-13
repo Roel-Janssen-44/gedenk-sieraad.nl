@@ -12,6 +12,10 @@ export default function Upload({
 }) {
   const [error, setError] = useState(null);
 
+  const [values, setValues] = useState([
+    { key: "Upload", value: value?.Upload?.value || "" },
+  ]);
+
   useEffect(() => {
     if (values[0].value == null) {
       setError("* Upload een afbeelding");
@@ -26,11 +30,8 @@ export default function Upload({
         ["Upload"]: false,
       }));
     }
-  }, [value]);
+  }, [values]);
 
-  const [values, setValues] = useState([
-    { key: "Upload", value: value?.Upload?.value || "" },
-  ]);
   const handleChange = (changedKey, newValue) => {
     setValues((prevValues) =>
       prevValues.map((item) =>
