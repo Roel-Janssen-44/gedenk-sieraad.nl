@@ -944,7 +944,7 @@ export const satijnenOptions = [
   },
 ];
 
-export const naamDatumOptions = [
+export const naamdatumOptions = [
   {
     value: "Geen",
     price: 0,

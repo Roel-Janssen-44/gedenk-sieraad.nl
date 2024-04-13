@@ -48,7 +48,7 @@ export default function InputFile({ id, onChange, title, value, setError }) {
       // setError("Fout tijdens het uploaden van het bestand" + error);
       console.error("Error uploading file:", error);
     }
-    onChange(`test inputfile ${id}`, "test value");
+    // onChange(`test inputfile ${id}`, "test value");
   }, [selectedFile]);
 
   useEffect(() => {

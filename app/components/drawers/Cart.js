@@ -51,7 +51,9 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
                       <div>
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <h3>
-                            <a href="#">{line.merchandise.product.handle}</a>
+                            <a href="#">
+                              {line.merchandise.product.handle.toUpperCase()}
+                            </a>
                           </h3>
                           <p className="ml-4">
                             <Price value={line.cost.totalAmount.amount} />
@@ -114,8 +116,10 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
             <p>Subtotaal:</p>
             <p>
               {cost?.subtotalAmount?.amount && (
-                <Price value={cost.subtotalAmount.amount} />
-              )}{" "}
+                <Price
+                  value={parseFloat(cost.subtotalAmount.amount).toFixed(2)}
+                />
+              )}
               {!cost?.subtotalAmount?.amount && "0.00"}
             </p>
           </div>

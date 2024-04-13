@@ -1,5 +1,3 @@
-// import { c } from "tar";
-
 export function checkForActiveMaterial(activeMaterialList, activeMaterial) {
   if (
     zilver.includes(activeMaterial) &&
@@ -100,6 +98,16 @@ export function calculatePrice(selectedOptions, optionSets) {
             if (selectedTargetValue[i].value == "Bestand 2") {
               totalPrice += 99.0;
             }
+          }
+        }
+      }
+
+      if (optionKey === "tekstOptions") {
+        for (let i = 0; i < selectedTargetValue.length; i++) {
+          if (selectedTargetValue[i].key == "Tekstbinnenzijdering") {
+            const value = selectedTargetValue[i].value;
+            const price = findPriceByValue(optionSets, "Gravure", value);
+            totalPrice += price || 0;
           }
         }
       }

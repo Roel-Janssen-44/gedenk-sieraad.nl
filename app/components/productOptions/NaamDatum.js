@@ -9,7 +9,7 @@ import InputTextField from "../InputTextField";
 import InputImageSwatchLarge from "../InputImageSwatchLarge";
 
 import {
-  naamDatumOptions,
+  naamdatumOptions,
   lettertypeOptions,
   voorvoegselOptions,
 } from "./optionSets";
@@ -272,7 +272,7 @@ export default function NaamDatum({
             handleChange("Naamdatum", newGraveerTekstValue)
           }
           title="Graveertekst:"
-          options={naamDatumOptions}
+          options={naamdatumOptions}
         />
       </div>
       {(graveerTekstAchterzijdeTekst === "Naam" ||

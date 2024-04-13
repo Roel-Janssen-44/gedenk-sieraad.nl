@@ -13,7 +13,7 @@ export default function Upload({
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (value.length === 0) {
+    if (values[0].value == null) {
       setError("* Upload een afbeelding");
       setOptionErrors((prevState) => ({
         ...prevState,
@@ -28,9 +28,23 @@ export default function Upload({
     }
   }, [value]);
 
-  const handleChange = (newValue) => {
-    onChange(newValue);
+  const [values, setValues] = useState([
+    { key: "Upload", value: value?.Upload?.value || "" },
+  ]);
+  const handleChange = (changedKey, newValue) => {
+    setValues((prevValues) =>
+      prevValues.map((item) =>
+        item.key === changedKey ? { ...item, value: newValue } : item
+      )
+    );
+
+    onChange(newValue, "Upload");
   };
+
+  // useEffect(() => {
+  //   console.log("upload errors");
+  //   console.log(error);
+  // }, [error, values]);
 
   return (
     <div className="relative">

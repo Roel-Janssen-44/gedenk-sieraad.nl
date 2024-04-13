@@ -97,7 +97,7 @@ export default function Positie({
         (item) => item.key === "4 woordenmidden"
       ).value;
       const uploadValueMidden = value.find(
-        (item) => item.key === "uploadmidden"
+        (item) => item.key === "Uploadmidden"
       ).value;
 
       const gravureRechts = value.find(
@@ -125,7 +125,7 @@ export default function Positie({
         (item) => item.key === "4 woordenrechts"
       ).value;
       const uploadValueRechts = value.find(
-        (item) => item.key === "uploadrechts"
+        (item) => item.key === "Uploadrechts"
       ).value;
 
       const gravureAchter = value.find(
@@ -208,10 +208,10 @@ export default function Positie({
             ["Naamlinks"]: "",
             ["Datumlinks"]: "",
             ["Gravurelinks"]: "",
-            ["woord1Links"]: "",
-            ["woord2Links"]: "",
-            ["woord3Links"]: "",
-            ["woord4Links"]: "",
+            ["Woord1links"]: "",
+            ["Woord2links"]: "",
+            ["Woord3links"]: "",
+            ["woord4links"]: "",
           }));
           break;
         case "Geen tekst":
@@ -224,10 +224,10 @@ export default function Positie({
             ["Naamlinks"]: "",
             ["Datumlinks"]: "",
             ["Gravurelinks"]: "",
-            ["woord1Links"]: "",
-            ["woord2Links"]: "",
-            ["woord3Links"]: "",
-            ["woord4Links"]: "",
+            ["Woord1links"]: "",
+            ["Woord2links"]: "",
+            ["Woord3links"]: "",
+            ["woord4links"]: "",
           }));
           break;
         case "Hartje ♥ symbool":
@@ -243,9 +243,9 @@ export default function Positie({
           //   ["Naamlinks"]: "",
           //   ["Datumlinks"]: "",
           //   ["Gravurelinks"]: "",
-          //   ["woord1Links"]: "",
-          //   ["woord3Links"]: "",
-          //   ["woord4Links"]: "",
+          //   ["Woord1links"]: "",
+          //   ["Woord3links"]: "",
+          //   ["woord4links"]: "",
           //   // ["lettertypeLinks"]: "",
           // }));
           if (extraWoordLinks == "") {
@@ -262,22 +262,22 @@ export default function Positie({
               if (woord1ValueLinks == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Links"]: "* Dit veld mag niet leeg zijn",
+                  ["Woord1links"]: "* Dit veld mag niet leeg zijn",
                 }));
               } else if (woord1ValueLinks.includes(" ")) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Links"]: "* Dit veld mag geen spatie bevatten",
+                  ["Woord1links"]: "* Dit veld mag geen spatie bevatten",
                 }));
               } else if (woord1ValueLinks.length > 11) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Links"]: "* Gebruik maximaal 11 karakters",
+                  ["Woord1links"]: "* Gebruik maximaal 11 karakters",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Links"]: "",
+                  ["Woord1links"]: "",
                 }));
               }
               if (lettertypeValue == "") {
@@ -299,32 +299,32 @@ export default function Positie({
                 ["Naamlinks"]: "",
                 ["Datumlinks"]: "",
                 ["Gravurelinks"]: "",
-                // ["woord1Links"]: "",
-                ["woord2Links"]: "",
-                ["woord3Links"]: "",
-                ["woord4Links"]: "",
+                // ["Woord1links"]: "",
+                ["Woord2links"]: "",
+                ["Woord3links"]: "",
+                ["woord4links"]: "",
               }));
             } else if (extraWoordLinks == "2 extra woorden") {
               if (woord2ValueLinks == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Links"]: "* Dit veld mag niet leeg zijn",
+                  ["Woord2links"]: "* Dit veld mag niet leeg zijn",
                 }));
               } else if (woord2ValueLinks.split(" ").length > 2) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Links"]:
+                  ["Woord2links"]:
                     "* Dit veld mag niet meer dan één spatie bevatten",
                 }));
               } else if (woord2ValueLinks.length > 18) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Links"]: "* Gebruik maximaal 18 karakters",
+                  ["Woord2links"]: "* Gebruik maximaal 18 karakters",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Links"]: "",
+                  ["Woord2links"]: "",
                 }));
               }
               setError((prevState) => ({
@@ -335,9 +335,9 @@ export default function Positie({
                 ["Naamlinks"]: "",
                 ["Datumlinks"]: "",
                 ["Gravurelinks"]: "",
-                ["woord1Links"]: "",
-                ["woord3Links"]: "",
-                ["woord4Links"]: "",
+                ["Woord1links"]: "",
+                ["Woord3links"]: "",
+                ["woord4links"]: "",
               }));
             } else {
               setError((prevState) => ({
@@ -348,10 +348,10 @@ export default function Positie({
                 ["Naamlinks"]: "",
                 ["Datumlinks"]: "",
                 ["Gravurelinks"]: "",
-                ["woord1Links"]: "",
-                ["woord2Links"]: "",
-                ["woord3Links"]: "",
-                ["woord4Links"]: "",
+                ["Woord1links"]: "",
+                ["Woord2links"]: "",
+                ["Woord3links"]: "",
+                ["Woord4Links"]: "",
               }));
             }
           }
@@ -391,10 +391,10 @@ export default function Positie({
             ["Naamlinks"]: "",
             ["Gravurelinks"]: "",
             ["Extrawoordlinks"]: "",
-            ["woord1Links"]: "",
-            ["woord2Links"]: "",
-            ["woord3Links"]: "",
-            ["woord4Links"]: "",
+            ["Woord1links"]: "",
+            ["Woord2links"]: "",
+            ["Woord3links"]: "",
+            ["Woord4Links"]: "",
           }));
           break;
         case "Naam":
@@ -431,10 +431,10 @@ export default function Positie({
             ["Datumlinks"]: "",
             ["Gravurelinks"]: "",
             ["Extrawoordlinks"]: "",
-            ["woord1Links"]: "",
-            ["woord2Links"]: "",
-            ["woord3Links"]: "",
-            ["woord4Links"]: "",
+            ["Woord1links"]: "",
+            ["Woord2links"]: "",
+            ["Woord3links"]: "",
+            ["Woord4Links"]: "",
           }));
           break;
         case "Naam en datum":
@@ -481,10 +481,10 @@ export default function Positie({
             ["Initialenlinks"]: "",
             ["Gravurelinks"]: "",
             ["Extrawoordlinks"]: "",
-            ["woord1Links"]: "",
-            ["woord2Links"]: "",
-            ["woord3Links"]: "",
-            ["woord4Links"]: "",
+            ["Woord1links"]: "",
+            ["Woord2links"]: "",
+            ["Woord3links"]: "",
+            ["woord4links"]: "",
           }));
           break;
         case "1 woord":
@@ -495,22 +495,22 @@ export default function Positie({
           if (woord1ValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Links"]: "Dit veld mag niet leeg zijn",
+              ["Woord1links"]: "Dit veld mag niet leeg zijn",
             }));
           } else if (woord1ValueLinks.includes(" ")) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Links"]: "Dit veld mag geen spatie bevatten",
+              ["Woord1links"]: "Dit veld mag geen spatie bevatten",
             }));
           } else if (woord1ValueLinks.length > 11) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Links"]: "Gebruik maximaal 11 karakters",
+              ["Woord1links"]: "Gebruik maximaal 11 karakters",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Links"]: "",
+              ["Woord1links"]: "",
             }));
           }
           // if (lettertypeValueLinks == "") {
@@ -532,9 +532,9 @@ export default function Positie({
             ["Datumlinks"]: "",
             ["Gravurelinks"]: "",
             ["Extrawoordlinks"]: "",
-            ["woord2Links"]: "",
-            ["woord3Links"]: "",
-            ["woord4Links"]: "",
+            ["Woord2links"]: "",
+            ["Woord3links"]: "",
+            ["woord4links"]: "",
           }));
           break;
         case "2 woorden":
@@ -545,22 +545,22 @@ export default function Positie({
           if (woord2ValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Links"]: "Veld woord 2 mag niet leeg zijn",
+              ["Woord2links"]: "Veld woord 2 mag niet leeg zijn",
             }));
           } else if (woord2ValueLinks.length > 18) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Links"]: "Gebruik maximaal 18 karakters",
+              ["Woord2links"]: "Gebruik maximaal 18 karakters",
             }));
           } else if (woord2ValueLinks.split(" ").length > 2) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Links"]: "Dit veld mag niet meer dan één spatie bevatten",
+              ["Woord2links"]: "Dit veld mag niet meer dan één spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Links"]: "",
+              ["Woord2links"]: "",
             }));
           }
           // if (lettertypeValueLinks == "") {
@@ -582,9 +582,9 @@ export default function Positie({
             ["Datumlinks"]: "",
             ["Gravurelinks"]: "",
             ["Extrawoordlinks"]: "",
-            ["woord1Links"]: "",
-            ["woord3Links"]: "",
-            ["woord4Links"]: "",
+            ["Woord1links"]: "",
+            ["Woord3links"]: "",
+            ["woord4links"]: "",
           }));
           break;
         case "3 woorden":
@@ -595,23 +595,23 @@ export default function Positie({
           if (woord3ValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Links"]: "Veld woord 3 mag niet leeg zijn",
+              ["Woord3links"]: "Veld woord 3 mag niet leeg zijn",
             }));
           } else if (woord3ValueLinks.length > 24) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Links"]: "Gebruik maximaal 24 karakters",
+              ["Woord3links"]: "Gebruik maximaal 24 karakters",
             }));
           } else if (woord3ValueLinks.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Links"]:
+              ["Woord3links"]:
                 "Dit veld mag niet meer dan twee spaties bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Links"]: "",
+              ["Woord3links"]: "",
             }));
           }
           // if (lettertypeValueLinks == "") {
@@ -633,9 +633,9 @@ export default function Positie({
             ["Datumlinks"]: "",
             ["Gravurelinks"]: "",
             ["Extrawoordlinks"]: "",
-            ["woord1Links"]: "",
-            ["woord2Links"]: "",
-            ["woord4Links"]: "",
+            ["Woord1links"]: "",
+            ["Woord2links"]: "",
+            ["woord4links"]: "",
           }));
           break;
         case "4 woorden":
@@ -646,23 +646,23 @@ export default function Positie({
           if (woord4ValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Links"]: "Veld woord 4 mag niet leeg zijn",
+              ["woord4links"]: "Veld woord 4 mag niet leeg zijn",
             }));
           } else if (woord4ValueLinks.length > 30) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Links"]: "Gebruik maximaal 30 karakters",
+              ["woord4links"]: "Gebruik maximaal 30 karakters",
             }));
           } else if (woord4ValueLinks.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Links"]:
+              ["woord4links"]:
                 "Dit veld mag niet meer dan drie spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Links"]: "",
+              ["woord4links"]: "",
             }));
           }
           // if (lettertypeValueLinks == "") {
@@ -684,9 +684,9 @@ export default function Positie({
             ["Extrawoordlinks"]: "",
             ["Datumlinks"]: "",
             ["Gravurelinks"]: "",
-            ["woord1Links"]: "",
-            ["woord2Links"]: "",
-            ["woord3Links"]: "",
+            ["Woord1links"]: "",
+            ["Woord2links"]: "",
+            ["Woord3links"]: "",
           }));
           break;
         case "Voet/handafdruk":
@@ -712,10 +712,10 @@ export default function Positie({
             ["Naamlinks"]: "",
             ["Datumlinks"]: "",
             ["Extrawoordlinks"]: "",
-            ["woord1Links"]: "",
-            ["woord2Links"]: "",
-            ["woord3Links"]: "",
-            ["woord4Links"]: "",
+            ["Woord1links"]: "",
+            ["Woord2links"]: "",
+            ["Woord3links"]: "",
+            ["woord4links"]: "",
             // ["lettertypeLinks"]: "",
           }));
           break;
@@ -771,10 +771,10 @@ export default function Positie({
             ["Naammidden"]: "",
             ["Datummidden"]: "",
             ["Gravuremidden"]: "",
-            ["woord1Midden"]: "",
-            ["woord2Midden"]: "",
-            ["woord3Midden"]: "",
-            ["woord4Midden"]: "",
+            ["Woord1midden"]: "",
+            ["Woord2midden"]: "",
+            ["Woord3midden"]: "",
+            ["Woord4midden"]: "",
           }));
           break;
         case "Geen tekst":
@@ -788,10 +788,10 @@ export default function Positie({
             ["Naammidden"]: "",
             ["Datummidden"]: "",
             ["Gravuremidden"]: "",
-            ["woord1Midden"]: "",
-            ["woord2Midden"]: "",
-            ["woord3Midden"]: "",
-            ["woord4Midden"]: "",
+            ["Woord1midden"]: "",
+            ["Woord2midden"]: "",
+            ["Woord3midden"]: "",
+            ["Woord4midden"]: "",
           }));
           break;
         case "Hartje ♥ symbool":
@@ -807,9 +807,9 @@ export default function Positie({
           //   ["Naammidden"]: "",
           //   ["Datummidden"]: "",
           //   ["Gravuremidden"]: "",
-          //   ["woord1Midden"]: "",
-          //   ["woord3Midden"]: "",
-          //   ["woord4Midden"]: "",
+          //   ["Woord1midden"]: "",
+          //   ["Woord3midden"]: "",
+          //   ["Woord4midden"]: "",
           //   // ["lettertypeMidden"]: "",
           // }));
           if (extraWoordMidden == "") {
@@ -826,22 +826,22 @@ export default function Positie({
               if (woord1ValueMidden == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Midden"]: "* Dit veld mag niet leeg zijn",
+                  ["Woord1midden"]: "* Dit veld mag niet leeg zijn",
                 }));
               } else if (woord1ValueMidden.includes(" ")) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Midden"]: "* Dit veld mag geen spatie bevatten",
+                  ["Woord1midden"]: "* Dit veld mag geen spatie bevatten",
                 }));
               } else if (woord1ValueMidden.length > 11) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Midden"]: "* Gebruik maximaal 11 karakters",
+                  ["Woord1midden"]: "* Gebruik maximaal 11 karakters",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Midden"]: "",
+                  ["Woord1midden"]: "",
                 }));
               }
               if (lettertypeValue == "") {
@@ -863,32 +863,32 @@ export default function Positie({
                 ["Naammidden"]: "",
                 ["Datummidden"]: "",
                 ["Gravuremidden"]: "",
-                // ["woord1Midden"]: "",
-                ["woord2Midden"]: "",
-                ["woord3Midden"]: "",
-                ["woord4Midden"]: "",
+                // ["Woord1midden"]: "",
+                ["Woord2midden"]: "",
+                ["Woord3midden"]: "",
+                ["Woord4midden"]: "",
               }));
             } else if (extraWoordMidden == "2 extra woorden") {
               if (woord2ValueMidden == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Midden"]: "* Dit veld mag niet leeg zijn",
+                  ["Woord2midden"]: "* Dit veld mag niet leeg zijn",
                 }));
               } else if (woord2ValueMidden.split(" ").length > 2) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Midden"]:
+                  ["Woord2midden"]:
                     "* Dit veld mag niet meer dan één spatie bevatten",
                 }));
               } else if (woord2ValueMidden.length > 18) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Midden"]: "* Gebruik maximaal 18 karakters",
+                  ["Woord2midden"]: "* Gebruik maximaal 18 karakters",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Midden"]: "",
+                  ["Woord2midden"]: "",
                 }));
               }
               setError((prevState) => ({
@@ -899,9 +899,9 @@ export default function Positie({
                 ["Naammidden"]: "",
                 ["Datummidden"]: "",
                 ["Gravuremidden"]: "",
-                ["woord1Midden"]: "",
-                ["woord3Midden"]: "",
-                ["woord4Midden"]: "",
+                ["Woord1midden"]: "",
+                ["Woord3midden"]: "",
+                ["Woord4midden"]: "",
               }));
             } else {
               setError((prevState) => ({
@@ -912,10 +912,10 @@ export default function Positie({
                 ["Naammidden"]: "",
                 ["Datummidden"]: "",
                 ["Gravuremidden"]: "",
-                ["woord1Midden"]: "",
-                ["woord2Midden"]: "",
-                ["woord3Midden"]: "",
-                ["woord4Midden"]: "",
+                ["Woord1midden"]: "",
+                ["Woord2midden"]: "",
+                ["Woord3midden"]: "",
+                ["Woord4midden"]: "",
               }));
             }
           }
@@ -955,10 +955,10 @@ export default function Positie({
             ["Naammidden"]: "",
             ["Gravuremidden"]: "",
             ["Extrawoordmidden"]: "",
-            ["woord1Midden"]: "",
-            ["woord2Midden"]: "",
-            ["woord3Midden"]: "",
-            ["woord4Midden"]: "",
+            ["Woord1midden"]: "",
+            ["Woord2midden"]: "",
+            ["Woord3midden"]: "",
+            ["Woord4midden"]: "",
           }));
           break;
         case "Naam":
@@ -995,10 +995,10 @@ export default function Positie({
             ["Datummidden"]: "",
             ["Gravuremidden"]: "",
             ["Extrawoordmidden"]: "",
-            ["woord1Midden"]: "",
-            ["woord2Midden"]: "",
-            ["woord3Midden"]: "",
-            ["woord4Midden"]: "",
+            ["Woord1midden"]: "",
+            ["Woord2midden"]: "",
+            ["Woord3midden"]: "",
+            ["Woord4midden"]: "",
           }));
           break;
         case "Naam en datum":
@@ -1045,10 +1045,10 @@ export default function Positie({
             ["Initialenmidden"]: "",
             ["Gravuremidden"]: "",
             ["Extrawoordmidden"]: "",
-            ["woord1Midden"]: "",
-            ["woord2Midden"]: "",
-            ["woord3Midden"]: "",
-            ["woord4Midden"]: "",
+            ["Woord1midden"]: "",
+            ["Woord2midden"]: "",
+            ["Woord3midden"]: "",
+            ["Woord4midden"]: "",
           }));
           break;
         case "1 woord":
@@ -1059,22 +1059,22 @@ export default function Positie({
           if (woord1ValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Midden"]: "Dit veld mag niet leeg zijn",
+              ["Woord1midden"]: "Dit veld mag niet leeg zijn",
             }));
           } else if (woord1ValueMidden.includes(" ")) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Midden"]: "Dit veld mag geen spatie bevatten",
+              ["Woord1midden"]: "Dit veld mag geen spatie bevatten",
             }));
           } else if (woord1ValueMidden.length > 11) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Midden"]: "Gebruik maximaal 11 karakters",
+              ["Woord1midden"]: "Gebruik maximaal 11 karakters",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Midden"]: "",
+              ["Woord1midden"]: "",
             }));
           }
           // if (lettertypeValueMidden == "") {
@@ -1096,9 +1096,9 @@ export default function Positie({
             ["Datummidden"]: "",
             ["Gravuremidden"]: "",
             ["Extrawoordmidden"]: "",
-            ["woord2Midden"]: "",
-            ["woord3Midden"]: "",
-            ["woord4Midden"]: "",
+            ["Woord2midden"]: "",
+            ["Woord3midden"]: "",
+            ["Woord4midden"]: "",
           }));
           break;
         case "2 woorden":
@@ -1109,23 +1109,23 @@ export default function Positie({
           if (woord2ValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Midden"]: "Veld woord 2 mag niet leeg zijn",
+              ["Woord2midden"]: "Veld woord 2 mag niet leeg zijn",
             }));
           } else if (woord2ValueMidden.length > 18) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Midden"]: "Gebruik maximaal 18 karakters",
+              ["Woord2midden"]: "Gebruik maximaal 18 karakters",
             }));
           } else if (woord2ValueMidden.split(" ").length > 2) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Midden"]:
+              ["Woord2midden"]:
                 "Dit veld mag niet meer dan één spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Midden"]: "",
+              ["Woord2midden"]: "",
             }));
           }
           // if (lettertypeValueMidden == "") {
@@ -1147,9 +1147,9 @@ export default function Positie({
             ["Datummidden"]: "",
             ["Gravuremidden"]: "",
             ["Extrawoordmidden"]: "",
-            ["woord1Midden"]: "",
-            ["woord3Midden"]: "",
-            ["woord4Midden"]: "",
+            ["Woord1midden"]: "",
+            ["Woord3midden"]: "",
+            ["Woord4midden"]: "",
           }));
           break;
         case "3 woorden":
@@ -1160,23 +1160,23 @@ export default function Positie({
           if (woord3ValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Midden"]: "Veld woord 3 mag niet leeg zijn",
+              ["Woord3midden"]: "Veld woord 3 mag niet leeg zijn",
             }));
           } else if (woord3ValueMidden.length > 24) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Midden"]: "Gebruik maximaal 24 karakters",
+              ["Woord3midden"]: "Gebruik maximaal 24 karakters",
             }));
           } else if (woord3ValueMidden.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Midden"]:
+              ["Woord3midden"]:
                 "Dit veld mag niet meer dan twee spaties bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Midden"]: "",
+              ["Woord3midden"]: "",
             }));
           }
           // if (lettertypeValueMidden == "") {
@@ -1198,9 +1198,9 @@ export default function Positie({
             ["Datummidden"]: "",
             ["Gravuremidden"]: "",
             ["Extrawoordmidden"]: "",
-            ["woord1Midden"]: "",
-            ["woord2Midden"]: "",
-            ["woord4Midden"]: "",
+            ["Woord1midden"]: "",
+            ["Woord2midden"]: "",
+            ["Woord4midden"]: "",
           }));
           break;
         case "4 woorden":
@@ -1211,23 +1211,23 @@ export default function Positie({
           if (woord4ValueMidden == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Midden"]: "Veld woord 4 mag niet leeg zijn",
+              ["Woord4midden"]: "Veld woord 4 mag niet leeg zijn",
             }));
           } else if (woord4ValueMidden.length > 30) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Midden"]: "Gebruik maximaal 30 karakters",
+              ["Woord4midden"]: "Gebruik maximaal 30 karakters",
             }));
           } else if (woord4ValueMidden.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Midden"]:
+              ["Woord4midden"]:
                 "Dit veld mag niet meer dan drie spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Midden"]: "",
+              ["Woord4midden"]: "",
             }));
           }
           // if (lettertypeValueMidden == "") {
@@ -1249,9 +1249,9 @@ export default function Positie({
             ["Extrawoordmidden"]: "",
             ["Datummidden"]: "",
             ["Gravuremidden"]: "",
-            ["woord1Midden"]: "",
-            ["woord2Midden"]: "",
-            ["woord3Midden"]: "",
+            ["Woord1midden"]: "",
+            ["Woord2midden"]: "",
+            ["Woord3midden"]: "",
           }));
           break;
         case "Voet/handafdruk":
@@ -1263,12 +1263,12 @@ export default function Positie({
           if (uploadValueMidden == "" || uploadValueMidden == null) {
             setError((prevState) => ({
               ...prevState,
-              ["uploadmidden"]: "* Upload een bestand",
+              ["Uploadmidden"]: "* Upload een bestand",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["uploadmidden"]: "",
+              ["Uploadmidden"]: "",
             }));
           }
           setError((prevState) => ({
@@ -1277,10 +1277,10 @@ export default function Positie({
             ["Naammidden"]: "",
             ["Datummidden"]: "",
             ["Extrawoordmidden"]: "",
-            ["woord1Midden"]: "",
-            ["woord2Midden"]: "",
-            ["woord3Midden"]: "",
-            ["woord4Midden"]: "",
+            ["Woord1midden"]: "",
+            ["Woord2midden"]: "",
+            ["Woord3midden"]: "",
+            ["Woord4midden"]: "",
             // ["lettertypeMidden"]: "",
           }));
           break;
@@ -1336,10 +1336,10 @@ export default function Positie({
             ["Naamrechts"]: "",
             ["Datumrechts"]: "",
             ["Gravurerechts"]: "",
-            ["woord1Rechts"]: "",
-            ["woord2Rechts"]: "",
-            ["woord3Rechts"]: "",
-            ["woord4Rechts"]: "",
+            ["Woord1rechts"]: "",
+            ["Woord2rechts"]: "",
+            ["Woord3rechts"]: "",
+            ["Woord4rechts"]: "",
           }));
           break;
         case "Geen tekst":
@@ -1353,10 +1353,10 @@ export default function Positie({
             ["Naamrechts"]: "",
             ["Datumrechts"]: "",
             ["Gravurerechts"]: "",
-            ["woord1Rechts"]: "",
-            ["woord2Rechts"]: "",
-            ["woord3Rechts"]: "",
-            ["woord4Rechts"]: "",
+            ["Woord1rechts"]: "",
+            ["Woord2rechts"]: "",
+            ["Woord3rechts"]: "",
+            ["Woord4rechts"]: "",
           }));
           break;
         case "Hartje ♥ symbool":
@@ -1372,9 +1372,9 @@ export default function Positie({
           //   ["Naamrechts"]: "",
           //   ["Datumrechts"]: "",
           //   ["Gravurerechts"]: "",
-          //   ["woord1Rechts"]: "",
-          //   ["woord3Rechts"]: "",
-          //   ["woord4Rechts"]: "",
+          //   ["Woord1rechts"]: "",
+          //   ["Woord3rechts"]: "",
+          //   ["Woord4rechts"]: "",
           //   // ["lettertypeRechts"]: "",
           // }));
           if (extraWoordRechts == "") {
@@ -1391,22 +1391,22 @@ export default function Positie({
               if (woord1ValueRechts == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Rechts"]: "* Dit veld mag niet leeg zijn",
+                  ["Woord1rechts"]: "* Dit veld mag niet leeg zijn",
                 }));
               } else if (woord1ValueRechts.includes(" ")) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Rechts"]: "* Dit veld mag geen spatie bevatten",
+                  ["Woord1rechts"]: "* Dit veld mag geen spatie bevatten",
                 }));
               } else if (woord1ValueRechts.length > 11) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Rechts"]: "* Gebruik maximaal 11 karakters",
+                  ["Woord1rechts"]: "* Gebruik maximaal 11 karakters",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Rechts"]: "",
+                  ["Woord1rechts"]: "",
                 }));
               }
               if (lettertypeValue == "") {
@@ -1428,32 +1428,32 @@ export default function Positie({
                 ["Naamrechts"]: "",
                 ["Datumrechts"]: "",
                 ["Gravurerechts"]: "",
-                // ["woord1Rechts"]: "",
-                ["woord2Rechts"]: "",
-                ["woord3Rechts"]: "",
-                ["woord4Rechts"]: "",
+                // ["Woord1rechts"]: "",
+                ["Woord2rechts"]: "",
+                ["Woord3rechts"]: "",
+                ["Woord4rechts"]: "",
               }));
             } else if (extraWoordRechts == "2 extra woorden") {
               if (woord2ValueRechts == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Rechts"]: "* Dit veld mag niet leeg zijn",
+                  ["Woord2rechts"]: "* Dit veld mag niet leeg zijn",
                 }));
               } else if (woord2ValueRechts.split(" ").length > 2) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Rechts"]:
+                  ["Woord2rechts"]:
                     "* Dit veld mag niet meer dan één spatie bevatten",
                 }));
               } else if (woord2ValueRechts.length > 18) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Rechts"]: "* Gebruik maximaal 18 karakters",
+                  ["Woord2rechts"]: "* Gebruik maximaal 18 karakters",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Rechts"]: "",
+                  ["Woord2rechts"]: "",
                 }));
               }
               setError((prevState) => ({
@@ -1464,9 +1464,9 @@ export default function Positie({
                 ["Naamrechts"]: "",
                 ["Datumrechts"]: "",
                 ["Gravurerechts"]: "",
-                ["woord1Rechts"]: "",
-                ["woord3Rechts"]: "",
-                ["woord4Rechts"]: "",
+                ["Woord1rechts"]: "",
+                ["Woord3rechts"]: "",
+                ["Woord4rechts"]: "",
               }));
             } else {
               setError((prevState) => ({
@@ -1477,10 +1477,10 @@ export default function Positie({
                 ["Naamrechts"]: "",
                 ["Datumrechts"]: "",
                 ["Gravurerechts"]: "",
-                ["woord1Rechts"]: "",
-                ["woord2Rechts"]: "",
-                ["woord3Rechts"]: "",
-                ["woord4Rechts"]: "",
+                ["Woord1rechts"]: "",
+                ["Woord2rechts"]: "",
+                ["Woord3rechts"]: "",
+                ["Woord4rechts"]: "",
               }));
             }
           }
@@ -1520,10 +1520,10 @@ export default function Positie({
             ["Naamrechts"]: "",
             ["Gravurerechts"]: "",
             ["Extrawoordrechts"]: "",
-            ["woord1Rechts"]: "",
-            ["woord2Rechts"]: "",
-            ["woord3Rechts"]: "",
-            ["woord4Rechts"]: "",
+            ["Woord1rechts"]: "",
+            ["Woord2rechts"]: "",
+            ["Woord3rechts"]: "",
+            ["Woord4rechts"]: "",
           }));
           break;
         case "Naam":
@@ -1560,10 +1560,10 @@ export default function Positie({
             ["Datumrechts"]: "",
             ["Gravurerechts"]: "",
             ["Extrawoordrechts"]: "",
-            ["woord1Rechts"]: "",
-            ["woord2Rechts"]: "",
-            ["woord3Rechts"]: "",
-            ["woord4Rechts"]: "",
+            ["Woord1rechts"]: "",
+            ["Woord2rechts"]: "",
+            ["Woord3rechts"]: "",
+            ["Woord4rechts"]: "",
           }));
           break;
         case "Naam en datum":
@@ -1610,10 +1610,10 @@ export default function Positie({
             ["Initialenrechts"]: "",
             ["Gravurerechts"]: "",
             ["Extrawoordrechts"]: "",
-            ["woord1Rechts"]: "",
-            ["woord2Rechts"]: "",
-            ["woord3Rechts"]: "",
-            ["woord4Rechts"]: "",
+            ["Woord1rechts"]: "",
+            ["Woord2rechts"]: "",
+            ["Woord3rechts"]: "",
+            ["Woord4rechts"]: "",
           }));
           break;
         case "1 woord":
@@ -1624,22 +1624,22 @@ export default function Positie({
           if (woord1ValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Rechts"]: "Dit veld mag niet leeg zijn",
+              ["Woord1rechts"]: "Dit veld mag niet leeg zijn",
             }));
           } else if (woord1ValueRechts.includes(" ")) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Rechts"]: "Dit veld mag geen spatie bevatten",
+              ["Woord1rechts"]: "Dit veld mag geen spatie bevatten",
             }));
           } else if (woord1ValueRechts.length > 11) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Rechts"]: "Gebruik maximaal 11 karakters",
+              ["Woord1rechts"]: "Gebruik maximaal 11 karakters",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Rechts"]: "",
+              ["Woord1rechts"]: "",
             }));
           }
           // if (lettertypeValueRechts == "") {
@@ -1661,9 +1661,9 @@ export default function Positie({
             ["Datumrechts"]: "",
             ["Gravurerechts"]: "",
             ["Extrawoordrechts"]: "",
-            ["woord2Rechts"]: "",
-            ["woord3Rechts"]: "",
-            ["woord4Rechts"]: "",
+            ["Woord2rechts"]: "",
+            ["Woord3rechts"]: "",
+            ["Woord4rechts"]: "",
           }));
           break;
         case "2 woorden":
@@ -1674,23 +1674,23 @@ export default function Positie({
           if (woord2ValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Rechts"]: "Veld woord 2 mag niet leeg zijn",
+              ["Woord2rechts"]: "Veld woord 2 mag niet leeg zijn",
             }));
           } else if (woord2ValueRechts.length > 18) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Rechts"]: "Gebruik maximaal 18 karakters",
+              ["Woord2rechts"]: "Gebruik maximaal 18 karakters",
             }));
           } else if (woord2ValueRechts.split(" ").length > 2) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Rechts"]:
+              ["Woord2rechts"]:
                 "Dit veld mag niet meer dan één spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Rechts"]: "",
+              ["Woord2rechts"]: "",
             }));
           }
           // if (lettertypeValueRechts == "") {
@@ -1712,9 +1712,9 @@ export default function Positie({
             ["Datumrechts"]: "",
             ["Gravurerechts"]: "",
             ["Extrawoordrechts"]: "",
-            ["woord1Rechts"]: "",
-            ["woord3Rechts"]: "",
-            ["woord4Rechts"]: "",
+            ["Woord1rechts"]: "",
+            ["Woord3rechts"]: "",
+            ["Woord4rechts"]: "",
           }));
           break;
         case "3 woorden":
@@ -1725,23 +1725,23 @@ export default function Positie({
           if (woord3ValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Rechts"]: "Veld woord 3 mag niet leeg zijn",
+              ["Woord3rechts"]: "Veld woord 3 mag niet leeg zijn",
             }));
           } else if (woord3ValueRechts.length > 24) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Rechts"]: "Gebruik maximaal 24 karakters",
+              ["Woord3rechts"]: "Gebruik maximaal 24 karakters",
             }));
           } else if (woord3ValueRechts.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Rechts"]:
+              ["Woord3rechts"]:
                 "Dit veld mag niet meer dan twee spaties bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Rechts"]: "",
+              ["Woord3rechts"]: "",
             }));
           }
           // if (lettertypeValueRechts == "") {
@@ -1763,9 +1763,9 @@ export default function Positie({
             ["Datumrechts"]: "",
             ["Gravurerechts"]: "",
             ["Extrawoordrechts"]: "",
-            ["woord1Rechts"]: "",
-            ["woord2Rechts"]: "",
-            ["woord4Rechts"]: "",
+            ["Woord1rechts"]: "",
+            ["Woord2rechts"]: "",
+            ["Woord4rechts"]: "",
           }));
           break;
         case "4 woorden":
@@ -1776,23 +1776,23 @@ export default function Positie({
           if (woord4ValueRechts == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Rechts"]: "Veld woord 4 mag niet leeg zijn",
+              ["Woord4rechts"]: "Veld woord 4 mag niet leeg zijn",
             }));
           } else if (woord4ValueRechts.length > 30) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Rechts"]: "Gebruik maximaal 30 karakters",
+              ["Woord4rechts"]: "Gebruik maximaal 30 karakters",
             }));
           } else if (woord4ValueRechts.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Rechts"]:
+              ["Woord4rechts"]:
                 "Dit veld mag niet meer dan drie spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Rechts"]: "",
+              ["Woord4rechts"]: "",
             }));
           }
           // if (lettertypeValueRechts == "") {
@@ -1814,9 +1814,9 @@ export default function Positie({
             ["Extrawoordrechts"]: "",
             ["Datumrechts"]: "",
             ["Gravurerechts"]: "",
-            ["woord1Rechts"]: "",
-            ["woord2Rechts"]: "",
-            ["woord3Rechts"]: "",
+            ["Woord1rechts"]: "",
+            ["Woord2rechts"]: "",
+            ["Woord3rechts"]: "",
           }));
           break;
         case "Voet/handafdruk":
@@ -1828,12 +1828,12 @@ export default function Positie({
           if (uploadValueRechts == "" || uploadValueRechts == null) {
             setError((prevState) => ({
               ...prevState,
-              ["uploadrechts"]: "* Upload een bestand",
+              ["Uploadrechts"]: "* Upload een bestand",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["uploadrechts"]: "",
+              ["Uploadrechts"]: "",
             }));
           }
           setError((prevState) => ({
@@ -1842,10 +1842,10 @@ export default function Positie({
             ["Naamrechts"]: "",
             ["Datumrechts"]: "",
             ["Extrawoordrechts"]: "",
-            ["woord1Rechts"]: "",
-            ["woord2Rechts"]: "",
-            ["woord3Rechts"]: "",
-            ["woord4Rechts"]: "",
+            ["Woord1rechts"]: "",
+            ["Woord2rechts"]: "",
+            ["Woord3rechts"]: "",
+            ["Woord4rechts"]: "",
             // ["lettertypeRechts"]: "",
           }));
           break;
@@ -1901,10 +1901,10 @@ export default function Positie({
             ["Naamachter"]: "",
             ["Datumachter"]: "",
             ["Gravureachter"]: "",
-            ["woord1Achter"]: "",
-            ["woord2Achter"]: "",
-            ["woord3Achter"]: "",
-            ["woord4Achter"]: "",
+            ["Woord1achter"]: "",
+            ["Woord2achter"]: "",
+            ["Woord3achter"]: "",
+            ["Woord4achter"]: "",
           }));
           break;
         case "Geen tekst":
@@ -1918,10 +1918,10 @@ export default function Positie({
             ["Naamachter"]: "",
             ["Datumachter"]: "",
             ["Gravureachter"]: "",
-            ["woord1Achter"]: "",
-            ["woord2Achter"]: "",
-            ["woord3Achter"]: "",
-            ["woord4Achter"]: "",
+            ["Woord1achter"]: "",
+            ["Woord2achter"]: "",
+            ["Woord3achter"]: "",
+            ["Woord4achter"]: "",
           }));
           break;
         case "Hartje ♥ symbool":
@@ -1937,9 +1937,9 @@ export default function Positie({
           //   ["Naamachter"]: "",
           //   ["Datumachter"]: "",
           //   ["Gravureachter"]: "",
-          //   ["woord1Achter"]: "",
-          //   ["woord3Achter"]: "",
-          //   ["woord4Achter"]: "",
+          //   ["Woord1achter"]: "",
+          //   ["Woord3achter"]: "",
+          //   ["Woord4achter"]: "",
           //   // ["lettertypeAchter"]: "",
           // }));
           if (extraWoordAchter == "") {
@@ -1956,22 +1956,22 @@ export default function Positie({
               if (woord1ValueAchter == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Achter"]: "* Dit veld mag niet leeg zijn",
+                  ["Woord1achter"]: "* Dit veld mag niet leeg zijn",
                 }));
               } else if (woord1ValueAchter.includes(" ")) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Achter"]: "* Dit veld mag geen spatie bevatten",
+                  ["Woord1achter"]: "* Dit veld mag geen spatie bevatten",
                 }));
               } else if (woord1ValueAchter.length > 11) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Achter"]: "* Gebruik maximaal 11 karakters",
+                  ["Woord1achter"]: "* Gebruik maximaal 11 karakters",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord1Achter"]: "",
+                  ["Woord1achter"]: "",
                 }));
               }
               if (lettertypeValue == "") {
@@ -1993,32 +1993,32 @@ export default function Positie({
                 ["Naamachter"]: "",
                 ["Datumachter"]: "",
                 ["Gravureachter"]: "",
-                // ["woord1Achter"]: "",
-                ["woord2Achter"]: "",
-                ["woord3Achter"]: "",
-                ["woord4Achter"]: "",
+                // ["Woord1achter"]: "",
+                ["Woord2achter"]: "",
+                ["Woord3achter"]: "",
+                ["Woord4achter"]: "",
               }));
             } else if (extraWoordAchter == "2 extra woorden") {
               if (woord2ValueAchter == "") {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Achter"]: "* Dit veld mag niet leeg zijn",
+                  ["Woord2achter"]: "* Dit veld mag niet leeg zijn",
                 }));
               } else if (woord2ValueAchter.split(" ").length > 2) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Achter"]:
+                  ["Woord2achter"]:
                     "* Dit veld mag niet meer dan één spatie bevatten",
                 }));
               } else if (woord2ValueAchter.length > 18) {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Achter"]: "* Gebruik maximaal 18 karakters",
+                  ["Woord2achter"]: "* Gebruik maximaal 18 karakters",
                 }));
               } else {
                 setError((prevState) => ({
                   ...prevState,
-                  ["woord2Achter"]: "",
+                  ["Woord2achter"]: "",
                 }));
               }
               setError((prevState) => ({
@@ -2029,9 +2029,9 @@ export default function Positie({
                 ["Naamachter"]: "",
                 ["Datumachter"]: "",
                 ["Gravureachter"]: "",
-                ["woord1Achter"]: "",
-                ["woord3Achter"]: "",
-                ["woord4Achter"]: "",
+                ["Woord1achter"]: "",
+                ["Woord3achter"]: "",
+                ["Woord4achter"]: "",
               }));
             } else {
               setError((prevState) => ({
@@ -2042,10 +2042,10 @@ export default function Positie({
                 ["Naamachter"]: "",
                 ["Datumachter"]: "",
                 ["Gravureachter"]: "",
-                ["woord1Achter"]: "",
-                ["woord2Achter"]: "",
-                ["woord3Achter"]: "",
-                ["woord4Achter"]: "",
+                ["Woord1achter"]: "",
+                ["Woord2achter"]: "",
+                ["Woord3achter"]: "",
+                ["Woord4achter"]: "",
               }));
             }
           }
@@ -2085,10 +2085,10 @@ export default function Positie({
             ["Naamachter"]: "",
             ["Gravureachter"]: "",
             ["Extrawoordachter"]: "",
-            ["woord1Achter"]: "",
-            ["woord2Achter"]: "",
-            ["woord3Achter"]: "",
-            ["woord4Achter"]: "",
+            ["Woord1achter"]: "",
+            ["Woord2achter"]: "",
+            ["Woord3achter"]: "",
+            ["Woord4achter"]: "",
           }));
           break;
         case "Naam":
@@ -2125,10 +2125,10 @@ export default function Positie({
             ["Datumachter"]: "",
             ["Gravureachter"]: "",
             ["Extrawoordachter"]: "",
-            ["woord1Achter"]: "",
-            ["woord2Achter"]: "",
-            ["woord3Achter"]: "",
-            ["woord4Achter"]: "",
+            ["Woord1achter"]: "",
+            ["Woord2achter"]: "",
+            ["Woord3achter"]: "",
+            ["Woord4achter"]: "",
           }));
           break;
         case "Naam en datum":
@@ -2175,10 +2175,10 @@ export default function Positie({
             ["Initialenachter"]: "",
             ["Gravureachter"]: "",
             ["Extrawoordachter"]: "",
-            ["woord1Achter"]: "",
-            ["woord2Achter"]: "",
-            ["woord3Achter"]: "",
-            ["woord4Achter"]: "",
+            ["Woord1achter"]: "",
+            ["Woord2achter"]: "",
+            ["Woord3achter"]: "",
+            ["Woord4achter"]: "",
           }));
           break;
         case "1 woord":
@@ -2189,22 +2189,22 @@ export default function Positie({
           if (woord1ValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Achter"]: "Dit veld mag niet leeg zijn",
+              ["Woord1achter"]: "Dit veld mag niet leeg zijn",
             }));
           } else if (woord1ValueAchter.includes(" ")) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Achter"]: "Dit veld mag geen spatie bevatten",
+              ["Woord1achter"]: "Dit veld mag geen spatie bevatten",
             }));
           } else if (woord1ValueAchter.length > 11) {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Achter"]: "Gebruik maximaal 11 karakters",
+              ["Woord1achter"]: "Gebruik maximaal 11 karakters",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord1Achter"]: "",
+              ["Woord1achter"]: "",
             }));
           }
           // if (lettertypeValueAchter == "") {
@@ -2226,9 +2226,9 @@ export default function Positie({
             ["Datumachter"]: "",
             ["Gravureachter"]: "",
             ["Extrawoordachter"]: "",
-            ["woord2Achter"]: "",
-            ["woord3Achter"]: "",
-            ["woord4Achter"]: "",
+            ["Woord2achter"]: "",
+            ["Woord3achter"]: "",
+            ["Woord4achter"]: "",
           }));
           break;
         case "2 woorden":
@@ -2239,23 +2239,23 @@ export default function Positie({
           if (woord2ValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Achter"]: "Veld woord 2 mag niet leeg zijn",
+              ["Woord2achter"]: "Veld woord 2 mag niet leeg zijn",
             }));
           } else if (woord2ValueAchter.length > 18) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Achter"]: "Gebruik maximaal 18 karakters",
+              ["Woord2achter"]: "Gebruik maximaal 18 karakters",
             }));
           } else if (woord2ValueAchter.split(" ").length > 2) {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Achter"]:
+              ["Woord2achter"]:
                 "Dit veld mag niet meer dan één spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord2Achter"]: "",
+              ["Woord2achter"]: "",
             }));
           }
           // if (lettertypeValueAchter == "") {
@@ -2277,9 +2277,9 @@ export default function Positie({
             ["Datumachter"]: "",
             ["Gravureachter"]: "",
             ["Extrawoordachter"]: "",
-            ["woord1Achter"]: "",
-            ["woord3Achter"]: "",
-            ["woord4Achter"]: "",
+            ["Woord1achter"]: "",
+            ["Woord3achter"]: "",
+            ["Woord4achter"]: "",
           }));
           break;
         case "3 woorden":
@@ -2290,23 +2290,23 @@ export default function Positie({
           if (woord3ValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Achter"]: "Veld woord 3 mag niet leeg zijn",
+              ["Woord3achter"]: "Veld woord 3 mag niet leeg zijn",
             }));
           } else if (woord3ValueAchter.length > 24) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Achter"]: "Gebruik maximaal 24 karakters",
+              ["Woord3achter"]: "Gebruik maximaal 24 karakters",
             }));
           } else if (woord3ValueAchter.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Achter"]:
+              ["Woord3achter"]:
                 "Dit veld mag niet meer dan twee spaties bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord3Achter"]: "",
+              ["Woord3achter"]: "",
             }));
           }
           // if (lettertypeValueAchter == "") {
@@ -2328,9 +2328,9 @@ export default function Positie({
             ["Datumachter"]: "",
             ["Gravureachter"]: "",
             ["Extrawoordachter"]: "",
-            ["woord1Achter"]: "",
-            ["woord2Achter"]: "",
-            ["woord4Achter"]: "",
+            ["Woord1achter"]: "",
+            ["Woord2achter"]: "",
+            ["Woord4achter"]: "",
           }));
           break;
         case "4 woorden":
@@ -2341,23 +2341,23 @@ export default function Positie({
           if (woord4ValueAchter == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Achter"]: "Veld woord 4 mag niet leeg zijn",
+              ["Woord4achter"]: "Veld woord 4 mag niet leeg zijn",
             }));
           } else if (woord4ValueAchter.length > 30) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Achter"]: "Gebruik maximaal 30 karakters",
+              ["Woord4achter"]: "Gebruik maximaal 30 karakters",
             }));
           } else if (woord4ValueAchter.split(" ").length > 3) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Achter"]:
+              ["Woord4achter"]:
                 "Dit veld mag niet meer dan drie spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord4Achter"]: "",
+              ["Woord4achter"]: "",
             }));
           }
           // if (lettertypeValueAchter == "") {
@@ -2379,9 +2379,9 @@ export default function Positie({
             ["Extrawoordachter"]: "",
             ["Datumachter"]: "",
             ["Gravureachter"]: "",
-            ["woord1Achter"]: "",
-            ["woord2Achter"]: "",
-            ["woord3Achter"]: "",
+            ["Woord1achter"]: "",
+            ["Woord2achter"]: "",
+            ["Woord3achter"]: "",
           }));
           break;
         case "Voet/handafdruk":
@@ -2407,10 +2407,10 @@ export default function Positie({
             ["Naamachter"]: "",
             ["Datumachter"]: "",
             ["Extrawoordachter"]: "",
-            ["woord1Achter"]: "",
-            ["woord2Achter"]: "",
-            ["woord3Achter"]: "",
-            ["woord4Achter"]: "",
+            ["Woord1achter"]: "",
+            ["Woord2achter"]: "",
+            ["Woord3achter"]: "",
+            ["Woord4achter"]: "",
             // ["lettertypeAchter"]: "",
           }));
           break;
@@ -2625,7 +2625,7 @@ export default function Positie({
     { key: "2 woordenmidden", value: value?.woord2Midden?.value || "" },
     { key: "3 woordenmidden", value: value?.woord3Midden?.value || "" },
     { key: "4 woordenmidden", value: value?.woord4Midden?.value || "" },
-    { key: "uploadmidden", value: value?.uploadMidden?.value || "" },
+    { key: "Uploadmidden", value: value?.uploadMidden?.value || "" },
     { key: "Extrawoordmidden", value: value?.extraWoordMidden?.value || "" },
     {
       key: "Gravurerechts",
@@ -2638,7 +2638,7 @@ export default function Positie({
     { key: "2 woordenrechts", value: value?.woord2Rechts?.value || "" },
     { key: "3 woordenrechts", value: value?.woord3Rechts?.value || "" },
     { key: "4 woordenrechts", value: value?.woord4Rechts?.value || "" },
-    { key: "uploadrechts", value: value?.uploadRechts?.value || "" },
+    { key: "Uploadrechts", value: value?.uploadRechts?.value || "" },
     { key: "Extrawoordrechts", value: value?.extraWoordRechts?.value || "" },
     {
       key: "Gravureachter",
@@ -2982,7 +2982,7 @@ export default function Positie({
                 <div className="relative">
                   {showErrors && (
                     <p className="absolute  -bottom-6 left-0 text-red-700">
-                      {error[`Upload${option.name}`]}
+                      {error[`Upload${option.name.toLowerCase()}`]}
                     </p>
                   )}
                   <InputFile
