@@ -39,6 +39,7 @@ export default function InputRadio({ onChange, title, options, multiple }) {
                     <Image
                       aria-hidden
                       src={option.imageUrl}
+                      className="rounded"
                       alt="Option descriptive image"
                       width={125}
                       height={125}

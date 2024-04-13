@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { Button, Modal } from "@mui/material";
 
 import InputImageSwatch from "../InputImageSwatch";
 import InputRadio from "../InputRadio";
-
 import { harsKleurOptions, glitterOptions } from "./optionSets";
 
 export default function HarsKleur({
@@ -13,6 +14,10 @@ export default function HarsKleur({
   setOptionErrors,
   showErrors,
 }) {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const [error, setError] = useState([]);
 
   useEffect(() => {
@@ -110,6 +115,9 @@ export default function HarsKleur({
             {error["glitter"]}
           </p>
         )}
+      </div>
+
+      <div className="flex flex-row">
         <InputRadio
           value={values.find((item) => item.key === "glitter")?.value || ""}
           onChange={(newGlitterValue) =>
@@ -118,7 +126,30 @@ export default function HarsKleur({
           title="Glitter:"
           options={glitterOptions}
         />
+        <Button onClick={handleOpen}>
+          <Image
+            src={"/images/glitter.webp"}
+            className="rounded"
+            width={150}
+            height={150}
+          />
+        </Button>
       </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="fixed overflow-hidden left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[528px] max-h-[528px]">
+          <Image
+            src={"/images/glitter.webp"}
+            className="mx-auto my-auto rounded-lg"
+            width={528}
+            height={528}
+          />
+        </div>
+      </Modal>
     </>
   );
 }

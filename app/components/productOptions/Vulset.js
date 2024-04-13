@@ -50,7 +50,12 @@ export default function Vulset({
           options={vulsetOptions}
         />
         <Button onClick={handleOpen}>
-          <Image src={"/images/vulset.webp"} width={150} height={150} />
+          <Image
+            src={"/images/vulset.webp"}
+            className="rounded"
+            width={150}
+            height={150}
+          />
         </Button>
       </div>
       <Modal
