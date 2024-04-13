@@ -92,7 +92,6 @@ export default function NaamDatum({
             ["Datum"]: "",
             ["Naamdatum"]: "",
           }));
-
           break;
 
         case "Datum":
@@ -129,7 +128,6 @@ export default function NaamDatum({
               ["Voorvoegsel"]: "",
             }));
           }
-
           setError((prevState) => ({
             ...prevState,
             ["Naam"]: "",
@@ -137,6 +135,10 @@ export default function NaamDatum({
 
           break;
         case "Naam + datum":
+          setError((prevState) => ({
+            ...prevState,
+            ["Naamdatum"]: "",
+          }));
           if (naamValue == "") {
             setError((prevState) => ({
               ...prevState,
