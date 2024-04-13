@@ -54,6 +54,11 @@ export default function GraveerTekst({
               ...prevState,
               ["Initialen"]: "Veld initiaal mag niet leeg zijn",
             }));
+          } else if (initialenValue.length > 6) {
+            setError((prevState) => ({
+              ...prevState,
+              ["Initialen"]: "* Gebruik maximaal 6 karakters",
+            }));
           } else {
             setError((prevState) => ({
               ...prevState,

@@ -184,6 +184,11 @@ export default function Positie({
               ...prevState,
               ["Initialenlinks"]: "Veld initiaal mag niet leeg zijn",
             }));
+          } else if (initialenValueLinks.length > 6) {
+            setError((prevState) => ({
+              ...prevState,
+              ["Initialenlinks"]: "* Gebruik maximaal 6 karakters",
+            }));
           } else {
             setError((prevState) => ({
               ...prevState,
@@ -746,6 +751,11 @@ export default function Positie({
             setError((prevState) => ({
               ...prevState,
               ["Initialenmidden"]: "Veld initiaal mag niet leeg zijn",
+            }));
+          } else if (initialenValueMidden.length > 6) {
+            setError((prevState) => ({
+              ...prevState,
+              ["Initialenmidden"]: "* Gebruik maximaal 6 karakters",
             }));
           } else {
             setError((prevState) => ({
@@ -1312,6 +1322,11 @@ export default function Positie({
               ...prevState,
               ["Initialenrechts"]: "Veld initiaal mag niet leeg zijn",
             }));
+          } else if (initialenValueRechts.length > 6) {
+            setError((prevState) => ({
+              ...prevState,
+              ["Initialenrechts"]: "* Gebruik maximaal 6 karakters",
+            }));
           } else {
             setError((prevState) => ({
               ...prevState,
@@ -1876,6 +1891,11 @@ export default function Positie({
             setError((prevState) => ({
               ...prevState,
               ["Initialenachter"]: "Veld initiaal mag niet leeg zijn",
+            }));
+          } else if (initialenValueAchter.length > 6) {
+            setError((prevState) => ({
+              ...prevState,
+              ["Initialenachter"]: "* Gebruik maximaal 6 karakters",
             }));
           } else {
             setError((prevState) => ({
