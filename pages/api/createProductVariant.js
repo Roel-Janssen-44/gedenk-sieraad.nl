@@ -9,8 +9,6 @@ const handler = async (req, res) => {
   const method = "POST";
   const apiVersion = "2023-10";
 
-  // console.log(req.body);
-
   const extraOptions = req.body.variantData.extraOptions;
 
   const product = req.body.variantData.product;

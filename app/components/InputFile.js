@@ -8,19 +8,21 @@ export default function InputFile({ id, onChange, title, value, setError }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [fileError, setFileError] = useState("");
 
   useEffect(() => {
     if (!selectedFile) {
-      // setError("Fout tijdens het uploaden van het bestand");
-      console.error("No file selected");
+      setError("No file selected");
       return;
     }
 
     try {
-      setLoading(true);
       const reader = new FileReader();
+      console.log("reader");
+      console.log(reader);
       reader.readAsDataURL(selectedFile);
 
+      setLoading(true);
       reader.onload = async () => {
         const response = await fetch("/api/fileUpload", {
           method: "POST",
@@ -32,23 +34,23 @@ export default function InputFile({ id, onChange, title, value, setError }) {
 
         if (response.ok) {
           const data = await response.json();
-          setImageUrl(data.url);
-
-          console.log("File uploaded successfully!");
           setLoading(false);
+          setImageUrl(data.url);
+          setFileError(null);
         } else {
           setLoading(false);
-          // setError("Fout tijdens het uploaden van het bestand");
-
-          console.error("Failed to upload file");
+          setFileError(
+            "* Kon het bestand niet uploaden. Zorg ervoor dat het bestand niet groter is dan 1MB en dat de bestandsnaam begint met een alphabetische letter."
+          );
         }
       };
     } catch (error) {
+      setFileError(
+        "* Kon het bestand niet uploaden. Zorg ervoor dat het bestand niet groter is dan 1MB en dat de bestandsnaam begint met een alphabetische letter."
+      );
       setLoading(false);
-      // setError("Fout tijdens het uploaden van het bestand" + error);
       console.error("Error uploading file:", error);
     }
-    // onChange(`test inputfile ${id}`, "test value");
   }, [selectedFile]);
 
   useEffect(() => {
@@ -56,18 +58,47 @@ export default function InputFile({ id, onChange, title, value, setError }) {
   }, [imageUrl]);
 
   const handleFileUpload = (event) => {
-    setLoading(true);
     const file = event.target.files[0];
-    setSelectedFile(file);
+    handleFileUploadCheck(file);
   };
 
   const handleDrop = (event) => {
-    setLoading(true);
     event.preventDefault();
 
     const file = event.dataTransfer.files[0];
-    setSelectedFile(file);
+    handleFileUploadCheck(file);
+
     event.currentTarget.classList.remove("border-primary");
+  };
+
+  const handleFileUploadCheck = (file) => {
+    setLoading(true);
+    console.log("file upload checks");
+    console.log(file);
+    if (file) {
+      console.log("File Type:", file.type);
+      console.log("File Size:", file.size);
+
+      if (file.size > 1024 * 1024) {
+        setFileError("Bestand mag niet groter zijn dan 1MB.");
+        setLoading(false);
+      } else if (
+        !["image/png", "image/jpeg", "image/webp", "image/jpg"].includes(
+          file.type
+        )
+      ) {
+        setFileError(
+          "Alleen de volgende bestandstype zijn toegestaan .PNG, .JPG, .JPEG, or .WEBP."
+        );
+        setLoading(false);
+      } else {
+        setSelectedFile(file);
+        setFileError(null);
+        setLoading(false);
+      }
+    } else {
+      setLoading(false);
+    }
   };
 
   const handleDragOver = (event) => {
@@ -124,7 +155,8 @@ export default function InputFile({ id, onChange, title, value, setError }) {
                   imageUrl || loading ? "text-transparent" : ""
                 }`}
               >
-                .PNG, .JPG, .JPEG of .WEBP zijn toegestaan
+                .PNG, .JPG, .JPEG of .WEBP zijn toegestaan <br />
+                Maximale bestandsgrootte: 1MB
                 {/* // To do - aangeven max upload grootte */}
               </p>
             </div>
@@ -160,6 +192,9 @@ export default function InputFile({ id, onChange, title, value, setError }) {
           <CircularProgress className="w-10 h-10 absolute top-1/2 -translate-y-1/2 left-8 z-30" />
         )}
       </label>
+      {(fileError != "" || fileError == null) && (
+        <p className="text-red-700 w-full text-left">{fileError}</p>
+      )}
     </div>
   );
 }

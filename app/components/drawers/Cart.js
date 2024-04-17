@@ -4,6 +4,7 @@ import {
   CartLineProvider,
   CartLineQuantity,
   CartLineQuantityAdjustButton,
+  useCartLine,
 } from "@shopify/hydrogen-react";
 import Price from "@/components/Price";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
@@ -13,7 +14,13 @@ import IconButton from "@mui/material/IconButton";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 
 export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
-  const { cost, checkoutUrl, lines } = useCart();
+  const {
+    cost,
+    checkoutUrl,
+    lines,
+    // cartFragment
+  } = useCart();
+  // console.log(cartFragment);
   return (
     <Drawer anchor="right" open={cartDrawerIsOpen} onClose={onClose}>
       <div className="h-screen flex flex-col w-full max-w-sm">
@@ -40,6 +47,7 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
             {lines?.map((line) => (
               <div key={"cart_line" + line.id}>
                 <CartLineProvider line={line}>
+                  <CartLineTest line={line} />
                   <li className="flex py-6">
                     <div className="h-24 relative w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <HydrogenImage
@@ -51,11 +59,14 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
                       <div>
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <h3>
-                            <a href="#">
-                              {line.merchandise.product.handle.toUpperCase()}
+                            <a
+                              href={`/products/${line.merchandise.product.handle.toLowerCase()}`}
+                            >
+                              {line.merchandise.product.title}
+                              {/* {line.merchandise.product.handle.toUpperCase()} */}
                             </a>
                           </h3>
-                          <p className="ml-4">
+                          <p className="ml-4 min-w-[70px] text-right">
                             <Price value={line.cost.totalAmount.amount} />
                           </p>
                         </div>
@@ -74,6 +85,16 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
                             </p>
                           );
                         })}
+                        {/* Sku */}
+                        <p className="mt-1 text-sm text-gray-500 font-bold">
+                          {/* Productnummer: {console.log("line")}
+                          To do - productnummer
+                          Productnummer: {console.log(line)} */}
+                          <span className="font-normal">
+                            {line.merchandise.sku}
+                          </span>
+                        </p>
+
                         {line.attributes?.map((attribute) => (
                           <p
                             key={"selectedAttributes_" + attribute.value}
@@ -163,4 +184,10 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
       </div>
     </Drawer>
   );
+}
+
+function CartLineTest({ line }) {
+  line = useCartLine();
+  console.log("cartLine");
+  console.log(line);
 }

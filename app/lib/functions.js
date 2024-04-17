@@ -20,10 +20,8 @@ export function checkForActiveMaterial(activeMaterialList, activeMaterial) {
 
 export function calculatePrice(selectedOptions, optionSets) {
   let totalPrice = 0;
-  for (let i = 0; i < selectedOptions.length; i++) {
-    // console.log("selectedOptions[i]");
-    // console.log(selectedOptions[i]);
 
+  for (let i = 0; i < selectedOptions.length; i++) {
     if (selectedOptions[i].key != "upload") {
       const optionKey = selectedOptions[i].key + "Options";
       const currentOptionSet = findOptionSet(optionSets, optionKey);

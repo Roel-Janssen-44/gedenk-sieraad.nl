@@ -637,51 +637,19 @@ function Product({
             className="bg-primary max-w-sm"
             onClick={(e) => {
               setShowErrors(true);
-              if (hasTrueValue)
+              if (hasTrueValue) {
                 return window.scrollTo({ top: 0, behavior: "smooth" });
+              }
 
               console.log("add to cart");
 
               if (extraOptions.length > 0) {
                 e.preventDefault();
-                // const extraOptionsArray = extraOptions.flatMap((item) =>
-                //   Array.isArray(item.value)
-                //     ? item.value
-                //         .map((nestedItem) => ({
-                //           key: nestedItem.key,
-                //           // To do array attributes
-                //           value:
-                //             nestedItem.value !== "" ? nestedItem.value : null,
-                //         }))
-                //         .filter((nestedItem) => nestedItem.value !== null)
-                //     : item.value !== ""
-                //     ? [{ key: item.key, value: item.value }]
-                //     : []
-                // );
 
                 console.log("extraOptions before");
                 console.log(extraOptions);
 
-                const options = [
-                  { key: "Upload", value: "uploadlink" },
-                  {
-                    key: "otheroption",
-                    value: [
-                      { key: "otheroption1", value: "otheroption1" },
-                      { key: "otheroption2", value: "otheroption2" },
-                    ],
-                  },
-                  { key: "armabanden", value: ["1", "2", "3", "4"] },
-                ];
-
-                // const options = [
-                //   {key : "Upload", value : "uploadlink"},
-                //   {key : "otheroption1", value : "otheroption1"},
-                //   {key : "otheroption2", value : "otheroption2"},
-                //   {key : "armabanden", value : "1, 2, 3, 4" },
-                // ]
-
-                const extraOptionsArray = extraOptions
+                let extraOptionsArray = extraOptions
                   .filter((item) => {
                     if (item.value != null) {
                       return item;
@@ -718,9 +686,6 @@ function Product({
                         return newOptions;
                       } else {
                         let newOptions = [];
-                        // console.log("item.value check for error");
-                        // console.log("item.value");
-                        // console.log(item.value);
                         item.value.forEach((nestedItem) => {
                           if (typeof nestedItem.value == "object") {
                             let newString = "";
@@ -752,6 +717,14 @@ function Product({
                   });
 
                 console.log("extraOptionsArray after");
+                console.log(extraOptionsArray);
+
+                extraOptionsArray.unshift({
+                  key: "Productnummer",
+                  value: selectedVariant.sku,
+                });
+
+                console.log("extraOptionsArray after after");
                 console.log(extraOptionsArray);
 
                 const createdProductVariant = createProductVariant(
