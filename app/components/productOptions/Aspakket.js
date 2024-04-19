@@ -13,10 +13,6 @@ export default function Aspakket({
 }) {
   const [error, setError] = useState(null);
 
-  // useEffect(() => {
-  //   onChange(value);
-  // }, []);
-
   useEffect(() => {
     if (value.length === 0) {
       setError("* Kies een optie");

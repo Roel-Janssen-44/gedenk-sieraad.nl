@@ -82,9 +82,11 @@ export default function Gravure({
             ["Woord2"]: "",
             ["Woord3"]: "",
             ["Woord4"]: "",
+            ["Upload"]: "",
           }));
           break;
         case "Geen tekst":
+        case "Geen":
           setError((prevState) => ({
             ...prevState,
             ["Gravure"]: "",
@@ -98,6 +100,7 @@ export default function Gravure({
             ["Woord2"]: "",
             ["Woord3"]: "",
             ["Woord4"]: "",
+            ["Upload"]: "",
           }));
           break;
         case "Hartje ♥ symbool":
@@ -156,6 +159,7 @@ export default function Gravure({
                 ["Woord2"]: "",
                 ["Woord3"]: "",
                 ["Woord4"]: "",
+                ["Upload"]: "",
               }));
             } else if (extraWoordValue == "2 extra woorden") {
               if (woord2Value == "") {
@@ -202,6 +206,7 @@ export default function Gravure({
                 ["Woord1"]: "",
                 ["Woord3"]: "",
                 ["Woord4"]: "",
+                ["Upload"]: "",
               }));
             } else {
               setError((prevState) => ({
@@ -216,6 +221,7 @@ export default function Gravure({
                 ["Woord3"]: "",
                 ["Woord4"]: "",
                 ["Lettertype"]: "",
+                ["Upload"]: "",
               }));
             }
           }
@@ -255,6 +261,7 @@ export default function Gravure({
             ["Woord2"]: "",
             ["Woord3"]: "",
             ["Woord4"]: "",
+            ["Upload"]: "",
           }));
           break;
         case "Naam":
@@ -291,6 +298,7 @@ export default function Gravure({
             ["Woord2"]: "",
             ["Woord3"]: "",
             ["Woord4"]: "",
+            ["Upload"]: "",
           }));
           break;
         case "Naam en datum":
@@ -337,6 +345,7 @@ export default function Gravure({
             ["Woord2"]: "",
             ["Woord3"]: "",
             ["Woord4"]: "",
+            ["Upload"]: "",
           }));
           break;
 
@@ -384,6 +393,7 @@ export default function Gravure({
             ["Woord2"]: "",
             ["Woord3"]: "",
             ["Woord4"]: "",
+            ["Upload"]: "",
           }));
           break;
         case "2 woorden":
@@ -430,6 +440,7 @@ export default function Gravure({
             ["Woord1"]: "",
             ["Woord3"]: "",
             ["Woord4"]: "",
+            ["Upload"]: "",
           }));
           break;
         case "3 woorden":
@@ -476,6 +487,7 @@ export default function Gravure({
             ["Woord1"]: "",
             ["Woord2"]: "",
             ["Woord4"]: "",
+            ["Upload"]: "",
           }));
           break;
         case "4 woorden":
@@ -522,6 +534,7 @@ export default function Gravure({
             ["Woord1"]: "",
             ["Woord2"]: "",
             ["Woord3"]: "",
+            ["Upload"]: "",
           }));
           break;
         case "Voet/handafdruk":

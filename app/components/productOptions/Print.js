@@ -154,20 +154,7 @@ export default function Print({
     onChange(values);
   }, [values]);
 
-  // const handleChange = (changedItem) => {
-  //   if (!changedItem) return;
-
-  //   const { key, value } = changedItem;
-  //   setValues((prevValues) =>
-  //     prevValues.map((item) => (item.key === key ? { ...item, value } : item))
-  //   );
-
-  //   onChange(values);
-  // };
   const handleChange = (changedKey, newValue) => {
-    console.log("changedKey, newValue");
-    console.log(changedKey, newValue);
-
     if (changedKey === "Keuze1") {
       if (
         newValue ==

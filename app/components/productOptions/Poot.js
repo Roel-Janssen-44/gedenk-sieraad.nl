@@ -24,10 +24,11 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
 
       switch (poot) {
         case "Standaard pootafdruk":
-          setError([]);
           setError((prevState) => ({
             ...prevState,
             ["Poot"]: "",
+            ["Keuze2"]: "",
+            ["Upload"]: "",
           }));
           break;
         case "Eigen pootafdruk":
@@ -191,9 +192,6 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
               id={"Upload"}
               value={values.find((item) => item.key === "Upload")?.value || ""}
               onChange={handleChange}
-              // onChange={(newUploadValue) =>
-              //   handleChange("Upload", newUploadValue)
-              // }
               title="Bestand toevoegen:"
               setError={setError}
             />

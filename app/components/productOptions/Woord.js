@@ -89,6 +89,7 @@ export default function GraveerTekst({
             ["woord4"]: "",
           }));
           break;
+        case "Geen":
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,

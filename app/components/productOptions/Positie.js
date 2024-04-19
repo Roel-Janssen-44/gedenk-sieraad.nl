@@ -217,8 +217,10 @@ export default function Positie({
             ["Woord2links"]: "",
             ["Woord3links"]: "",
             ["woord4links"]: "",
+            ["Uploadlinks"]: "",
           }));
           break;
+        case "Geen":
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,
@@ -233,6 +235,7 @@ export default function Positie({
             ["Woord2links"]: "",
             ["Woord3links"]: "",
             ["woord4links"]: "",
+            ["Uploadlinks"]: "",
           }));
           break;
         case "Hartje ♥ symbool":
@@ -256,12 +259,12 @@ export default function Positie({
           if (extraWoordLinks == "") {
             setError((prevState) => ({
               ...prevState,
-              ["ExtrawoordLinks"]: "* Veld extraWoord mag niet leeg zijn",
+              ["Extrawoordlinks"]: "* Veld extraWoord mag niet leeg zijn",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["ExtrawoordLinks"]: "",
+              ["Extrawoordlinks"]: "",
             }));
             if (extraWoordLinks == "1 extra woord") {
               if (woord1ValueLinks == "") {
@@ -308,6 +311,7 @@ export default function Positie({
                 ["Woord2links"]: "",
                 ["Woord3links"]: "",
                 ["woord4links"]: "",
+                ["Uploadlinks"]: "",
               }));
             } else if (extraWoordLinks == "2 extra woorden") {
               if (woord2ValueLinks == "") {
@@ -343,6 +347,7 @@ export default function Positie({
                 ["Woord1links"]: "",
                 ["Woord3links"]: "",
                 ["woord4links"]: "",
+                ["Uploadlinks"]: "",
               }));
             } else {
               setError((prevState) => ({
@@ -357,6 +362,7 @@ export default function Positie({
                 ["Woord2links"]: "",
                 ["Woord3links"]: "",
                 ["Woord4Links"]: "",
+                ["Uploadlinks"]: "",
               }));
             }
           }
@@ -400,6 +406,7 @@ export default function Positie({
             ["Woord2links"]: "",
             ["Woord3links"]: "",
             ["Woord4Links"]: "",
+            ["Uploadlinks"]: "",
           }));
           break;
         case "Naam":
@@ -440,6 +447,7 @@ export default function Positie({
             ["Woord2links"]: "",
             ["Woord3links"]: "",
             ["Woord4Links"]: "",
+            ["Uploadlinks"]: "",
           }));
           break;
         case "Naam en datum":
@@ -490,6 +498,7 @@ export default function Positie({
             ["Woord2links"]: "",
             ["Woord3links"]: "",
             ["woord4links"]: "",
+            ["Uploadlinks"]: "",
           }));
           break;
         case "1 woord":
@@ -540,6 +549,7 @@ export default function Positie({
             ["Woord2links"]: "",
             ["Woord3links"]: "",
             ["woord4links"]: "",
+            ["Uploadlinks"]: "",
           }));
           break;
         case "2 woorden":
@@ -590,6 +600,7 @@ export default function Positie({
             ["Woord1links"]: "",
             ["Woord3links"]: "",
             ["woord4links"]: "",
+            ["Uploadlinks"]: "",
           }));
           break;
         case "3 woorden":
@@ -641,6 +652,7 @@ export default function Positie({
             ["Woord1links"]: "",
             ["Woord2links"]: "",
             ["woord4links"]: "",
+            ["Uploadlinks"]: "",
           }));
           break;
         case "4 woorden":
@@ -692,6 +704,7 @@ export default function Positie({
             ["Woord1links"]: "",
             ["Woord2links"]: "",
             ["Woord3links"]: "",
+            ["Uploadlinks"]: "",
           }));
           break;
         case "Voet/handafdruk":
@@ -785,6 +798,7 @@ export default function Positie({
             ["Woord2midden"]: "",
             ["Woord3midden"]: "",
             ["Woord4midden"]: "",
+            ["Uploadmidden"]: "",
           }));
           break;
         case "Geen tekst":
@@ -802,6 +816,7 @@ export default function Positie({
             ["Woord2midden"]: "",
             ["Woord3midden"]: "",
             ["Woord4midden"]: "",
+            ["Uploadmidden"]: "",
           }));
           break;
         case "Hartje ♥ symbool":
@@ -877,6 +892,7 @@ export default function Positie({
                 ["Woord2midden"]: "",
                 ["Woord3midden"]: "",
                 ["Woord4midden"]: "",
+                ["Uploadmidden"]: "",
               }));
             } else if (extraWoordMidden == "2 extra woorden") {
               if (woord2ValueMidden == "") {
@@ -912,6 +928,7 @@ export default function Positie({
                 ["Woord1midden"]: "",
                 ["Woord3midden"]: "",
                 ["Woord4midden"]: "",
+                ["Uploadmidden"]: "",
               }));
             } else {
               setError((prevState) => ({
@@ -926,6 +943,7 @@ export default function Positie({
                 ["Woord2midden"]: "",
                 ["Woord3midden"]: "",
                 ["Woord4midden"]: "",
+                ["Uploadmidden"]: "",
               }));
             }
           }
@@ -969,6 +987,7 @@ export default function Positie({
             ["Woord2midden"]: "",
             ["Woord3midden"]: "",
             ["Woord4midden"]: "",
+            ["Uploadmidden"]: "",
           }));
           break;
         case "Naam":
@@ -1009,6 +1028,7 @@ export default function Positie({
             ["Woord2midden"]: "",
             ["Woord3midden"]: "",
             ["Woord4midden"]: "",
+            ["Uploadmidden"]: "",
           }));
           break;
         case "Naam en datum":
@@ -1059,6 +1079,7 @@ export default function Positie({
             ["Woord2midden"]: "",
             ["Woord3midden"]: "",
             ["Woord4midden"]: "",
+            ["Uploadmidden"]: "",
           }));
           break;
         case "1 woord":
@@ -1109,6 +1130,7 @@ export default function Positie({
             ["Woord2midden"]: "",
             ["Woord3midden"]: "",
             ["Woord4midden"]: "",
+            ["Uploadmidden"]: "",
           }));
           break;
         case "2 woorden":
@@ -1160,6 +1182,7 @@ export default function Positie({
             ["Woord1midden"]: "",
             ["Woord3midden"]: "",
             ["Woord4midden"]: "",
+            ["Uploadmidden"]: "",
           }));
           break;
         case "3 woorden":
@@ -1211,6 +1234,7 @@ export default function Positie({
             ["Woord1midden"]: "",
             ["Woord2midden"]: "",
             ["Woord4midden"]: "",
+            ["Uploadmidden"]: "",
           }));
           break;
         case "4 woorden":
@@ -1262,6 +1286,7 @@ export default function Positie({
             ["Woord1midden"]: "",
             ["Woord2midden"]: "",
             ["Woord3midden"]: "",
+            ["Uploadmidden"]: "",
           }));
           break;
         case "Voet/handafdruk":
@@ -1355,6 +1380,7 @@ export default function Positie({
             ["Woord2rechts"]: "",
             ["Woord3rechts"]: "",
             ["Woord4rechts"]: "",
+            ["Uploadrechts"]: "",
           }));
           break;
         case "Geen tekst":
@@ -1372,6 +1398,7 @@ export default function Positie({
             ["Woord2rechts"]: "",
             ["Woord3rechts"]: "",
             ["Woord4rechts"]: "",
+            ["Uploadrechts"]: "",
           }));
           break;
         case "Hartje ♥ symbool":
@@ -1447,6 +1474,7 @@ export default function Positie({
                 ["Woord2rechts"]: "",
                 ["Woord3rechts"]: "",
                 ["Woord4rechts"]: "",
+                ["Uploadrechts"]: "",
               }));
             } else if (extraWoordRechts == "2 extra woorden") {
               if (woord2ValueRechts == "") {
@@ -1482,6 +1510,7 @@ export default function Positie({
                 ["Woord1rechts"]: "",
                 ["Woord3rechts"]: "",
                 ["Woord4rechts"]: "",
+                ["Uploadrechts"]: "",
               }));
             } else {
               setError((prevState) => ({
@@ -1496,6 +1525,7 @@ export default function Positie({
                 ["Woord2rechts"]: "",
                 ["Woord3rechts"]: "",
                 ["Woord4rechts"]: "",
+                ["Uploadrechts"]: "",
               }));
             }
           }
@@ -1539,6 +1569,7 @@ export default function Positie({
             ["Woord2rechts"]: "",
             ["Woord3rechts"]: "",
             ["Woord4rechts"]: "",
+            ["Uploadrechts"]: "",
           }));
           break;
         case "Naam":
@@ -1579,6 +1610,7 @@ export default function Positie({
             ["Woord2rechts"]: "",
             ["Woord3rechts"]: "",
             ["Woord4rechts"]: "",
+            ["Uploadrechts"]: "",
           }));
           break;
         case "Naam en datum":
@@ -1629,6 +1661,7 @@ export default function Positie({
             ["Woord2rechts"]: "",
             ["Woord3rechts"]: "",
             ["Woord4rechts"]: "",
+            ["Uploadrechts"]: "",
           }));
           break;
         case "1 woord":
@@ -1679,6 +1712,7 @@ export default function Positie({
             ["Woord2rechts"]: "",
             ["Woord3rechts"]: "",
             ["Woord4rechts"]: "",
+            ["Uploadrechts"]: "",
           }));
           break;
         case "2 woorden":
@@ -1730,6 +1764,7 @@ export default function Positie({
             ["Woord1rechts"]: "",
             ["Woord3rechts"]: "",
             ["Woord4rechts"]: "",
+            ["Uploadrechts"]: "",
           }));
           break;
         case "3 woorden":
@@ -1781,6 +1816,7 @@ export default function Positie({
             ["Woord1rechts"]: "",
             ["Woord2rechts"]: "",
             ["Woord4rechts"]: "",
+            ["Uploadrechts"]: "",
           }));
           break;
         case "4 woorden":
@@ -1832,6 +1868,7 @@ export default function Positie({
             ["Woord1rechts"]: "",
             ["Woord2rechts"]: "",
             ["Woord3rechts"]: "",
+            ["Uploadrechts"]: "",
           }));
           break;
         case "Voet/handafdruk":
@@ -1925,6 +1962,7 @@ export default function Positie({
             ["Woord2achter"]: "",
             ["Woord3achter"]: "",
             ["Woord4achter"]: "",
+            ["Uploadachter"]: "",
           }));
           break;
         case "Geen tekst":
@@ -2017,6 +2055,7 @@ export default function Positie({
                 ["Woord2achter"]: "",
                 ["Woord3achter"]: "",
                 ["Woord4achter"]: "",
+                ["Uploadachter"]: "",
               }));
             } else if (extraWoordAchter == "2 extra woorden") {
               if (woord2ValueAchter == "") {
@@ -2052,6 +2091,7 @@ export default function Positie({
                 ["Woord1achter"]: "",
                 ["Woord3achter"]: "",
                 ["Woord4achter"]: "",
+                ["Uploadachter"]: "",
               }));
             } else {
               setError((prevState) => ({
@@ -2066,6 +2106,7 @@ export default function Positie({
                 ["Woord2achter"]: "",
                 ["Woord3achter"]: "",
                 ["Woord4achter"]: "",
+                ["Uploadachter"]: "",
               }));
             }
           }
@@ -2109,6 +2150,7 @@ export default function Positie({
             ["Woord2achter"]: "",
             ["Woord3achter"]: "",
             ["Woord4achter"]: "",
+            ["Uploadachter"]: "",
           }));
           break;
         case "Naam":
@@ -2149,6 +2191,7 @@ export default function Positie({
             ["Woord2achter"]: "",
             ["Woord3achter"]: "",
             ["Woord4achter"]: "",
+            ["Uploadachter"]: "",
           }));
           break;
         case "Naam en datum":
@@ -2199,6 +2242,7 @@ export default function Positie({
             ["Woord2achter"]: "",
             ["Woord3achter"]: "",
             ["Woord4achter"]: "",
+            ["Uploadachter"]: "",
           }));
           break;
         case "1 woord":
@@ -2249,6 +2293,7 @@ export default function Positie({
             ["Woord2achter"]: "",
             ["Woord3achter"]: "",
             ["Woord4achter"]: "",
+            ["Uploadachter"]: "",
           }));
           break;
         case "2 woorden":
@@ -2300,6 +2345,7 @@ export default function Positie({
             ["Woord1achter"]: "",
             ["Woord3achter"]: "",
             ["Woord4achter"]: "",
+            ["Uploadachter"]: "",
           }));
           break;
         case "3 woorden":
@@ -2351,6 +2397,7 @@ export default function Positie({
             ["Woord1achter"]: "",
             ["Woord2achter"]: "",
             ["Woord4achter"]: "",
+            ["Uploadachter"]: "",
           }));
           break;
         case "4 woorden":
@@ -2402,6 +2449,7 @@ export default function Positie({
             ["Woord1achter"]: "",
             ["Woord2achter"]: "",
             ["Woord3achter"]: "",
+            ["Uploadachter"]: "",
           }));
           break;
         case "Voet/handafdruk":
