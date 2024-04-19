@@ -12,7 +12,7 @@ export default function InputFile({ id, onChange, title, value, setError }) {
 
   useEffect(() => {
     if (!selectedFile) {
-      setError("No file selected");
+      setFileError("No file selected");
       return;
     }
 
