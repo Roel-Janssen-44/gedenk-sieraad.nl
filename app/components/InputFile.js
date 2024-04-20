@@ -12,14 +12,12 @@ export default function InputFile({ id, onChange, title, value, setError }) {
 
   useEffect(() => {
     if (!selectedFile) {
-      setFileError("No file selected");
+      setFileError("Geen bestand geselecteerd");
       return;
     }
 
     try {
       const reader = new FileReader();
-      console.log("reader");
-      console.log(reader);
       reader.readAsDataURL(selectedFile);
 
       setLoading(true);
@@ -73,12 +71,7 @@ export default function InputFile({ id, onChange, title, value, setError }) {
 
   const handleFileUploadCheck = (file) => {
     setLoading(true);
-    console.log("file upload checks");
-    console.log(file);
     if (file) {
-      console.log("File Type:", file.type);
-      console.log("File Size:", file.size);
-
       if (file.size > 1024 * 1024) {
         setFileError("Bestand mag niet groter zijn dan 1MB.");
         setLoading(false);

@@ -8,6 +8,7 @@ import ProductGrid from "@/components/ProductGrid";
 import FilterCollection from "@/components/FilterCollection";
 import SortCollection from "@/components/SortCollection";
 import NotFound from "@/components/NotFound";
+import sanitizeHtml from "sanitize-html-react";
 
 export default function CollectionPage({ collection }) {
   // console.log("searchParams");
@@ -45,8 +46,16 @@ export default function CollectionPage({ collection }) {
   //   };
   //   fetchData();
   // }, [collection.handle, searchParams]);
-  if (!collection) return <p> nuiks</p>;
 
+  // To do - error handling
+  // if (!collection) return <p> nuiks</p>;
+
+  const sanitizedHtmlDescription = sanitizeHtml(collection.descriptionHtml);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   return (
     <div className="relative container flex flex-col gap-8 md:flex-row">
       <FilterCollection products={collection.products.nodes} />
@@ -62,7 +71,19 @@ export default function CollectionPage({ collection }) {
           </div>
           <div className="">
             <h1 className="text-3xl font-roboto mb-4">{collection.title}</h1>
-            <p>{collection.description}</p>
+            {/* <p>{collection.description}</p> */}
+            {isClient ? (
+              <p
+                dangerouslySetInnerHTML={{ __html: sanitizedHtmlDescription }}
+                // className="border-[1px] border-gray-200 p-4 leading-7 tracking-wide"
+              ></p>
+            ) : (
+              <p
+              // className="w-full border-[1px] border-gray-200 p-4"
+              >
+                Aan het laden...
+              </p>
+            )}
           </div>
         </div>
         <SortCollection />

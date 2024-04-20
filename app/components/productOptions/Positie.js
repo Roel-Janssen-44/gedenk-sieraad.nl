@@ -216,7 +216,7 @@ export default function Positie({
             ["Woord1links"]: "",
             ["Woord2links"]: "",
             ["Woord3links"]: "",
-            ["woord4links"]: "",
+            ["Woord4links"]: "",
             ["Uploadlinks"]: "",
           }));
           break;
@@ -234,7 +234,7 @@ export default function Positie({
             ["Woord1links"]: "",
             ["Woord2links"]: "",
             ["Woord3links"]: "",
-            ["woord4links"]: "",
+            ["Woord4links"]: "",
             ["Uploadlinks"]: "",
           }));
           break;
@@ -253,7 +253,7 @@ export default function Positie({
           //   ["Gravurelinks"]: "",
           //   ["Woord1links"]: "",
           //   ["Woord3links"]: "",
-          //   ["woord4links"]: "",
+          //   ["Woord4links"]: "",
           //   // ["lettertypeLinks"]: "",
           // }));
           if (extraWoordLinks == "") {
@@ -310,7 +310,7 @@ export default function Positie({
                 // ["Woord1links"]: "",
                 ["Woord2links"]: "",
                 ["Woord3links"]: "",
-                ["woord4links"]: "",
+                ["Woord4links"]: "",
                 ["Uploadlinks"]: "",
               }));
             } else if (extraWoordLinks == "2 extra woorden") {
@@ -346,7 +346,7 @@ export default function Positie({
                 ["Gravurelinks"]: "",
                 ["Woord1links"]: "",
                 ["Woord3links"]: "",
-                ["woord4links"]: "",
+                ["Woord4links"]: "",
                 ["Uploadlinks"]: "",
               }));
             } else {
@@ -497,7 +497,7 @@ export default function Positie({
             ["Woord1links"]: "",
             ["Woord2links"]: "",
             ["Woord3links"]: "",
-            ["woord4links"]: "",
+            ["Woord4links"]: "",
             ["Uploadlinks"]: "",
           }));
           break;
@@ -548,7 +548,7 @@ export default function Positie({
             ["Extrawoordlinks"]: "",
             ["Woord2links"]: "",
             ["Woord3links"]: "",
-            ["woord4links"]: "",
+            ["Woord4links"]: "",
             ["Uploadlinks"]: "",
           }));
           break;
@@ -599,7 +599,7 @@ export default function Positie({
             ["Extrawoordlinks"]: "",
             ["Woord1links"]: "",
             ["Woord3links"]: "",
-            ["woord4links"]: "",
+            ["Woord4links"]: "",
             ["Uploadlinks"]: "",
           }));
           break;
@@ -651,7 +651,7 @@ export default function Positie({
             ["Extrawoordlinks"]: "",
             ["Woord1links"]: "",
             ["Woord2links"]: "",
-            ["woord4links"]: "",
+            ["Woord4links"]: "",
             ["Uploadlinks"]: "",
           }));
           break;
@@ -663,23 +663,23 @@ export default function Positie({
           if (woord4ValueLinks == "") {
             setError((prevState) => ({
               ...prevState,
-              ["woord4links"]: "Veld woord 4 mag niet leeg zijn",
+              ["Woord4links"]: "Veld woord 4 mag niet leeg zijn",
             }));
           } else if (woord4ValueLinks.length > 30) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4links"]: "Gebruik maximaal 30 karakters",
+              ["Woord4links"]: "Gebruik maximaal 30 karakters",
             }));
-          } else if (woord4ValueLinks.split(" ").length > 3) {
+          } else if (woord4ValueLinks.split(" ").length > 4) {
             setError((prevState) => ({
               ...prevState,
-              ["woord4links"]:
+              ["Woord4links"]:
                 "Dit veld mag niet meer dan drie spatie bevatten",
             }));
           } else {
             setError((prevState) => ({
               ...prevState,
-              ["woord4links"]: "",
+              ["Woord4links"]: "",
             }));
           }
           // if (lettertypeValueLinks == "") {
@@ -733,7 +733,7 @@ export default function Positie({
             ["Woord1links"]: "",
             ["Woord2links"]: "",
             ["Woord3links"]: "",
-            ["woord4links"]: "",
+            ["Woord4links"]: "",
             // ["lettertypeLinks"]: "",
           }));
           break;
@@ -801,6 +801,7 @@ export default function Positie({
             ["Uploadmidden"]: "",
           }));
           break;
+        case "Geen":
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,
@@ -1252,7 +1253,7 @@ export default function Positie({
               ...prevState,
               ["Woord4midden"]: "Gebruik maximaal 30 karakters",
             }));
-          } else if (woord4ValueMidden.split(" ").length > 3) {
+          } else if (woord4ValueMidden.split(" ").length > 4) {
             setError((prevState) => ({
               ...prevState,
               ["Woord4midden"]:
@@ -1383,6 +1384,7 @@ export default function Positie({
             ["Uploadrechts"]: "",
           }));
           break;
+        case "Geen":
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,
@@ -1834,7 +1836,7 @@ export default function Positie({
               ...prevState,
               ["Woord4rechts"]: "Gebruik maximaal 30 karakters",
             }));
-          } else if (woord4ValueRechts.split(" ").length > 3) {
+          } else if (woord4ValueRechts.split(" ").length > 4) {
             setError((prevState) => ({
               ...prevState,
               ["Woord4rechts"]:
@@ -1965,6 +1967,7 @@ export default function Positie({
             ["Uploadachter"]: "",
           }));
           break;
+        case "Geen":
         case "Geen tekst":
           setError((prevState) => ({
             ...prevState,
@@ -2415,7 +2418,7 @@ export default function Positie({
               ...prevState,
               ["Woord4achter"]: "Gebruik maximaal 30 karakters",
             }));
-          } else if (woord4ValueAchter.split(" ").length > 3) {
+          } else if (woord4ValueAchter.split(" ").length > 4) {
             setError((prevState) => ({
               ...prevState,
               ["Woord4achter"]:

@@ -25,7 +25,7 @@ export default function HarsKleur({
       const harsKleurValue = value.find(
         (item) => item.key === "Harskleur"
       ).value;
-      const glitterValue = value.find((item) => item.key === "glitter").value;
+      const glitterValue = value.find((item) => item.key === "Glitter").value;
 
       if (harsKleurValue != "" && glitterValue != "") {
         setError([]);
@@ -52,12 +52,12 @@ export default function HarsKleur({
         if (glitterValue == "") {
           setError((prevState) => ({
             ...prevState,
-            ["glitter"]: "* Kies een optie",
+            ["Glitter"]: "* Kies een optie",
           }));
         } else {
           setError((prevState) => ({
             ...prevState,
-            ["glitter"]: "",
+            ["Glitter"]: "",
           }));
         }
       }
@@ -66,7 +66,7 @@ export default function HarsKleur({
 
   const [values, setValues] = useState([
     { key: "Harskleur", value: value?.harsKleur?.value || "" },
-    { key: "glitter", value: value?.glitter?.value || "" },
+    { key: "Glitter", value: value?.glitter?.value || "" },
   ]);
 
   const isInitialRender = useRef(true);
@@ -112,16 +112,16 @@ export default function HarsKleur({
       <div className="relative">
         {showErrors && (
           <p className="absolute  -bottom-6 left-0 text-red-700">
-            {error["glitter"]}
+            {error["Glitter"]}
           </p>
         )}
       </div>
 
       <div className="flex flex-row">
         <InputRadio
-          value={values.find((item) => item.key === "glitter")?.value || ""}
+          value={values.find((item) => item.key === "Glitter")?.value || ""}
           onChange={(newGlitterValue) =>
-            handleChange("glitter", newGlitterValue)
+            handleChange("Glitter", newGlitterValue)
           }
           title="Glitter:"
           options={glitterOptions}

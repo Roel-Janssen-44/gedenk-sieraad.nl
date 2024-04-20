@@ -487,7 +487,7 @@ export default function Tekst({
               ...prevState,
               ["woord4"]: "Gebruik maximaal 30 karakters",
             }));
-          } else if (woord4Value.split(" ").length > 3) {
+          } else if (woord4Value.split(" ").length > 4) {
             setError((prevState) => ({
               ...prevState,
               ["woord4"]: "Dit veld mag niet meer dan drie spatie bevatten",

@@ -25,6 +25,7 @@ import sanitizeHtml from "sanitize-html-react";
 import * as OptionSets from "@/components/productOptions/optionSets";
 import { calculatePrice } from "@/lib/functions";
 import Zoom from "react-img-hover-zoom";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ProductPage({ product }) {
   let allMediaImages = [];
@@ -323,6 +324,9 @@ function Product({
   setActiveImage,
   setActiveThumbnailIndex,
 }) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const [tempHarskleur, setTempHarskleur] = useState(null);
   useEffect(() => {
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -348,13 +352,19 @@ function Product({
     (value) => value === true
   );
 
-  console.log("extraOptions");
-  console.log(extraOptions);
-  console.log("Total price:");
-  console.log(
-    parseFloat(selectedVariant?.price?.amount) +
-      parseFloat(calculatePrice(extraOptions, OptionSets))
-  );
+  useEffect(() => {
+    if (!hasTrueValue) {
+      setError("");
+    }
+  }, [optionErrors]);
+
+  // console.log("extraOptions");
+  // console.log(extraOptions);
+  // console.log("Total price:");
+  // console.log(
+  //   parseFloat(selectedVariant?.price?.amount) +
+  //     parseFloat(calculatePrice(extraOptions, OptionSets))
+  // );
 
   useEffect(() => {
     if (!selectedVariant) return;
@@ -536,8 +546,8 @@ function Product({
 
   const tags = product.tags;
 
-  console.log("tags");
-  console.log(tags);
+  // console.log("tags");
+  // console.log(tags);
 
   return (
     <div className="flex flex-col gap-8 2xl:mr-auto">
@@ -630,135 +640,156 @@ function Product({
             {selectedVariant?.sku || "Dit artikel bestaat niet"}
           </span>
         </div>
+        <p className="text-red-500 -mb-4">{error}</p>
         {selectedVariant && (
           <Button
             size="large"
             variant="contained"
-            className="bg-primary max-w-sm"
+            className="bg-primary max-w-sm relative"
             onClick={(e) => {
               setShowErrors(true);
+              setLoading(true);
               if (hasTrueValue) {
+                setLoading(false);
+                setError("* Niet alle velden zijn correct ingevuld.");
+                return;
                 return window.scrollTo({ top: 0, behavior: "smooth" });
               }
 
-              console.log("add to cart");
+              // console.log("add to cart");
 
-              if (extraOptions.length > 0) {
-                e.preventDefault();
+              try {
+                if (extraOptions.length > 0) {
+                  e.preventDefault();
 
-                console.log("extraOptions before");
-                console.log(extraOptions);
+                  // console.log("extraOptions before");
+                  // console.log(extraOptions);
 
-                let extraOptionsArray = extraOptions
-                  .filter((item) => {
-                    if (item.value != null) {
-                      return item;
-                    }
-                  })
+                  let extraOptionsArray = extraOptions
+                    .filter((item) => {
+                      if (item.value != null && item.value != "") {
+                        return item;
+                      }
+                    })
 
-                  .flatMap((item) => {
-                    if (typeof item.value == "string") {
-                      return {
-                        key: item.key,
-                        value: item.value,
-                      };
-                    } else if (typeof item.value == "object") {
-                      console.log("item.value");
-                      console.log(item.value);
-                      if (typeof item.value[0].value == "object") {
-                        let newOptions = [];
-                        if (typeof item.value[0].value == "string") {
-                          if (item.value[0].value != "") {
-                            let newString = "";
-                            item.value.forEach((value, index) => {
-                              if (index > 0) {
-                                newString += `, ${value.value}`;
-                              } else {
-                                newString += value.value;
-                              }
-                            });
-                            return {
-                              key: item.key,
-                              value: newString,
-                            };
-                          }
+                    .flatMap((item) => {
+                      if (typeof item.value == "string") {
+                        if (item.value != "") {
+                          return {
+                            key: item.key,
+                            value: item.value,
+                          };
                         }
-                        return newOptions;
-                      } else {
-                        let newOptions = [];
-                        item.value.forEach((nestedItem) => {
-                          if (typeof nestedItem.value == "object") {
-                            let newString = "";
-                            nestedItem.value.forEach(
-                              (nestedNestedItem, index) => {
+                      } else if (typeof item.value == "object") {
+                        console.log("item.value");
+                        console.log(item.value);
+                        if (typeof item.value[0].value == "object") {
+                          let newOptions = [];
+                          if (typeof item.value[0].value == "string") {
+                            if (item.value[0].value != "") {
+                              let newString = "";
+                              item.value.forEach((value, index) => {
                                 if (index > 0) {
-                                  newString += ` , ${nestedNestedItem}`;
+                                  newString += `, ${value.value}`;
                                 } else {
-                                  newString += nestedNestedItem;
+                                  newString += value.value;
                                 }
-                              }
-                            );
-                            newOptions.push({
-                              key: nestedItem.key,
-                              value: newString,
-                            });
-                          } else {
-                            if (nestedItem.value != "") {
-                              newOptions.push({
-                                key: nestedItem.key,
-                                value: nestedItem.value,
                               });
+                              return {
+                                key: item.key,
+                                value: newString,
+                              };
                             }
                           }
-                        });
-                        return newOptions;
+                          return newOptions;
+                        } else {
+                          let newOptions = [];
+                          item.value.forEach((nestedItem) => {
+                            if (typeof nestedItem.value == "object") {
+                              let newString = "";
+                              nestedItem.value.forEach(
+                                (nestedNestedItem, index) => {
+                                  if (index > 0) {
+                                    newString += ` , ${nestedNestedItem}`;
+                                  } else {
+                                    newString += nestedNestedItem;
+                                  }
+                                }
+                              );
+                              if (newString != "") {
+                                newOptions.push({
+                                  key: nestedItem.key,
+                                  value: newString,
+                                });
+                              }
+                            } else {
+                              if (nestedItem.value != "") {
+                                newOptions.push({
+                                  key: nestedItem.key,
+                                  value: nestedItem.value,
+                                });
+                              }
+                            }
+                          });
+                          return newOptions;
+                        }
                       }
-                    }
+                    });
+
+                  // console.log("extraOptionsArray after");
+                  // console.log(extraOptionsArray);
+
+                  extraOptionsArray.unshift({
+                    key: "Artikelnr",
+                    value: selectedVariant.sku,
                   });
 
-                console.log("extraOptionsArray after");
-                console.log(extraOptionsArray);
+                  // console.log("extraOptionsArray after after");
+                  // console.log(extraOptionsArray);
 
-                extraOptionsArray.unshift({
-                  key: "Productnummer",
-                  value: selectedVariant.sku,
-                });
-
-                console.log("extraOptionsArray after after");
-                console.log(extraOptionsArray);
-
-                const createdProductVariant = createProductVariant(
-                  product,
-                  extraOptions,
-                  selectedVariant.id
-                )
-                  // .then(openCartDrawer(true))
-                  .then((createdProductVariant) => {
-                    const newVariantId = `gid://shopify/ProductVariant/${createdProductVariant.succes.variant.id}`;
-                    linesAdd([
-                      {
-                        merchandiseId: newVariantId,
-                        quantity: 1,
-                        attributes: extraOptionsArray,
-                      },
-                    ]);
-                    openCartDrawer(true);
-                  })
-                  .catch((error) => {
-                    console.error("Error creating product variant:", error);
-                  });
-              } else {
-                linesAdd([
-                  {
-                    merchandiseId: selectedVariant.id,
-                    quantity: 1,
-                  },
-                ]);
-                openCartDrawer(true);
+                  const createdProductVariant = createProductVariant(
+                    product,
+                    extraOptions,
+                    selectedVariant.id
+                  )
+                    .then((createdProductVariant) => {
+                      const newVariantId = `gid://shopify/ProductVariant/${createdProductVariant.succes.variant.id}`;
+                      linesAdd([
+                        {
+                          merchandiseId: newVariantId,
+                          quantity: 1,
+                          attributes: extraOptionsArray,
+                        },
+                      ]);
+                      openCartDrawer(true);
+                    })
+                    .catch((error) => {
+                      setError(
+                        "* Er is iets fout gegaan bij het toevoegen van het product."
+                      );
+                      console.error("Error creating product variant:", error);
+                    });
+                } else {
+                  setError("");
+                  linesAdd([
+                    {
+                      merchandiseId: selectedVariant.id,
+                      quantity: 1,
+                    },
+                  ]);
+                  openCartDrawer(true);
+                }
+              } catch {
+                setError(
+                  "* Er is iets fout gegaan bij het toevoegen van het product."
+                );
+              } finally {
+                setLoading(false);
               }
             }}
           >
-            Voeg toe aan winkelmandje
+            {loading && <CircularProgress className="w-8 h-8" />}
+            {!loading && "Voeg toe aan winkelmandje"}
           </Button>
         )}
         {!selectedVariant && (

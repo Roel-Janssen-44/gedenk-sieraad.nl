@@ -89,7 +89,7 @@ query CollectionByHandle($collectionName: String!) {
   collectionData: collection(handle: $collectionName) {
     handle
     title
-    description
+    descriptionHtml
     image {
       altText
       height
@@ -148,7 +148,7 @@ const generateGraphQLQuery = ({
       collection(handle: "${collectionHandle}") {
         handle
         title
-        description
+        descriptionHtml
         image {
           altText
           height

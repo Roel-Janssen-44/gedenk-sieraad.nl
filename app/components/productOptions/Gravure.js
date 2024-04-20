@@ -501,7 +501,7 @@ export default function Gravure({
               ...prevState,
               ["Woord4"]: "Gebruik maximaal 30 karakters",
             }));
-          } else if (woord4Value.split(" ").length > 3) {
+          } else if (woord4Value.split(" ").length > 4) {
             setError((prevState) => ({
               ...prevState,
               ["Woord4"]: "Dit veld mag niet meer dan drie spatie bevatten",
