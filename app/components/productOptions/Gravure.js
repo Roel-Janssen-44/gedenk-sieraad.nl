@@ -504,7 +504,7 @@ export default function Gravure({
           } else if (woord4Value.split(" ").length > 4) {
             setError((prevState) => ({
               ...prevState,
-              ["Woord4"]: "Dit veld mag niet meer dan drie spatie bevatten",
+              ["Woord4"]: "Dit veld mag niet meer dan drie spaties bevatten",
             }));
           } else {
             setError((prevState) => ({

@@ -674,7 +674,7 @@ export default function Positie({
             setError((prevState) => ({
               ...prevState,
               ["Woord4links"]:
-                "Dit veld mag niet meer dan drie spatie bevatten",
+                "Dit veld mag niet meer dan drie spaties bevatten",
             }));
           } else {
             setError((prevState) => ({
@@ -1257,7 +1257,7 @@ export default function Positie({
             setError((prevState) => ({
               ...prevState,
               ["Woord4midden"]:
-                "Dit veld mag niet meer dan drie spatie bevatten",
+                "Dit veld mag niet meer dan drie spaties bevatten",
             }));
           } else {
             setError((prevState) => ({
@@ -1840,7 +1840,7 @@ export default function Positie({
             setError((prevState) => ({
               ...prevState,
               ["Woord4rechts"]:
-                "Dit veld mag niet meer dan drie spatie bevatten",
+                "Dit veld mag niet meer dan drie spaties bevatten",
             }));
           } else {
             setError((prevState) => ({
@@ -2422,7 +2422,7 @@ export default function Positie({
             setError((prevState) => ({
               ...prevState,
               ["Woord4achter"]:
-                "Dit veld mag niet meer dan drie spatie bevatten",
+                "Dit veld mag niet meer dan drie spaties bevatten",
             }));
           } else {
             setError((prevState) => ({

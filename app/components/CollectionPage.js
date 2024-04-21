@@ -71,18 +71,12 @@ export default function CollectionPage({ collection }) {
           </div>
           <div className="">
             <h1 className="text-3xl font-roboto mb-4">{collection.title}</h1>
-            {/* <p>{collection.description}</p> */}
             {isClient ? (
               <p
                 dangerouslySetInnerHTML={{ __html: sanitizedHtmlDescription }}
-                // className="border-[1px] border-gray-200 p-4 leading-7 tracking-wide"
               ></p>
             ) : (
-              <p
-              // className="w-full border-[1px] border-gray-200 p-4"
-              >
-                Aan het laden...
-              </p>
+              <p>Aan het laden...</p>
             )}
           </div>
         </div>

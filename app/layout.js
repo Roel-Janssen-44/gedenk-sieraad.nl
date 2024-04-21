@@ -10,6 +10,7 @@ import {
 import CookieBanner from "@/components/CookieBanner";
 
 import MainLayoutInnerWrapper from "@/components/MainLayoutInnerWrapper";
+// import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default async function RootLayout({ children }) {
         {/* To do SEO  */}
         {/* <Seo /> */}
       </head>
+      {/* <GoogleAnalytics /> */}
       <body className={`${montserrat.className}`}>
         <CookieBanner />
         <MainLayoutInnerWrapper shopData={shopDataJson.data}>
