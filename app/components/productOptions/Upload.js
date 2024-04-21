@@ -42,11 +42,6 @@ export default function Upload({
     onChange(newValue, "Upload");
   };
 
-  // useEffect(() => {
-  //   console.log("upload errors");
-  //   console.log(error);
-  // }, [error, values]);
-
   useEffect(() => {
     onChange(values);
   }, []);

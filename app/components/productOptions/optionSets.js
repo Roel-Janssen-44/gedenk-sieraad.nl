@@ -534,6 +534,33 @@ export const gravureOptions = [
   },
 ];
 
+export const gravureAfbeeldingOptions = [
+  {
+    value: "Voet/handafdruk",
+    price: 39.95,
+  },
+  {
+    value: "Poot/snuitafdruk",
+    price: 39.95,
+  },
+  {
+    value: "Echo",
+    price: 49.95,
+  },
+  {
+    value: "Vingerafdruk",
+    price: 75,
+  },
+  {
+    value: "Logo/handtekening",
+    price: 75,
+  },
+  {
+    value: "Twee vingerafdrukken in hartvorm",
+    price: 145,
+  },
+];
+
 export const lettertypeOptions = [
   {
     value: "Arial-black",

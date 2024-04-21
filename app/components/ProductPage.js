@@ -353,6 +353,8 @@ function Product({
   );
 
   useEffect(() => {
+    console.log("Option errors");
+    console.log(optionErrors);
     if (!hasTrueValue) {
       setError("");
     }
@@ -546,8 +548,8 @@ function Product({
 
   const tags = product.tags;
 
-  // console.log("tags");
-  // console.log(tags);
+  console.log("tags");
+  console.log(tags);
 
   return (
     <div className="flex flex-col gap-8 2xl:mr-auto">
@@ -681,8 +683,6 @@ function Product({
                           };
                         }
                       } else if (typeof item.value == "object") {
-                        console.log("item.value");
-                        console.log(item.value);
                         if (typeof item.value[0].value == "object") {
                           let newOptions = [];
                           if (typeof item.value[0].value == "string") {

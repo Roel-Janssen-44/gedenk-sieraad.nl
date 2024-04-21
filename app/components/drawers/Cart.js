@@ -4,7 +4,6 @@ import {
   CartLineProvider,
   CartLineQuantity,
   CartLineQuantityAdjustButton,
-  useCartLine,
 } from "@shopify/hydrogen-react";
 import Price from "@/components/Price";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
@@ -47,7 +46,6 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
             {lines?.map((line) => (
               <div key={"cart_line" + line.id}>
                 <CartLineProvider line={line}>
-                  <CartLineTest line={line} />
                   <li className="flex py-6">
                     <div className="h-24 relative w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <HydrogenImage
@@ -184,10 +182,4 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
       </div>
     </Drawer>
   );
-}
-
-function CartLineTest({ line }) {
-  line = useCartLine();
-  console.log("cartLine");
-  console.log(line);
 }
