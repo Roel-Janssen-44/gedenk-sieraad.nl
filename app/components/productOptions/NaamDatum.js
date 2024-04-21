@@ -131,8 +131,8 @@ export default function NaamDatum({
           setError((prevState) => ({
             ...prevState,
             ["Naam"]: "",
+            ["Naamdatum"]: "",
           }));
-
           break;
         case "Naam + datum":
           setError((prevState) => ({
