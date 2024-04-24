@@ -660,93 +660,93 @@ function Product({
 
               // console.log("add to cart");
 
-              try {
-                if (extraOptions.length > 0) {
-                  e.preventDefault();
+              if (extraOptions.length > 0) {
+                e.preventDefault();
 
-                  // console.log("extraOptions before");
-                  // console.log(extraOptions);
+                // console.log("extraOptions before");
+                // console.log(extraOptions);
 
-                  let extraOptionsArray = extraOptions
-                    .filter((item) => {
-                      if (item.value != null && item.value != "") {
-                        return item;
+                let extraOptionsArray = extraOptions
+                  .filter((item) => {
+                    if (item.value != null && item.value != "") {
+                      return item;
+                    }
+                  })
+
+                  .flatMap((item) => {
+                    if (typeof item.value == "string") {
+                      if (item.value != "") {
+                        return {
+                          key: item.key,
+                          value: item.value,
+                        };
                       }
-                    })
-
-                    .flatMap((item) => {
-                      if (typeof item.value == "string") {
-                        if (item.value != "") {
-                          return {
-                            key: item.key,
-                            value: item.value,
-                          };
+                    } else if (typeof item.value == "object") {
+                      if (typeof item.value[0].value == "object") {
+                        let newOptions = [];
+                        if (typeof item.value[0].value == "string") {
+                          if (item.value[0].value != "") {
+                            let newString = "";
+                            item.value.forEach((value, index) => {
+                              if (index > 0) {
+                                newString += `, ${value.value}`;
+                              } else {
+                                newString += value.value;
+                              }
+                            });
+                            return {
+                              key: item.key,
+                              value: newString,
+                            };
+                          }
                         }
-                      } else if (typeof item.value == "object") {
-                        if (typeof item.value[0].value == "object") {
-                          let newOptions = [];
-                          if (typeof item.value[0].value == "string") {
-                            if (item.value[0].value != "") {
-                              let newString = "";
-                              item.value.forEach((value, index) => {
+                        return newOptions;
+                      } else {
+                        let newOptions = [];
+                        item.value.forEach((nestedItem) => {
+                          if (typeof nestedItem.value == "object") {
+                            let newString = "";
+                            nestedItem.value?.forEach(
+                              (nestedNestedItem, index) => {
                                 if (index > 0) {
-                                  newString += `, ${value.value}`;
+                                  newString += ` , ${nestedNestedItem}`;
                                 } else {
-                                  newString += value.value;
+                                  newString += nestedNestedItem;
                                 }
-                              });
-                              return {
-                                key: item.key,
+                              }
+                            );
+                            if (newString != "") {
+                              newOptions.push({
+                                key: nestedItem.key,
                                 value: newString,
-                              };
+                              });
+                            }
+                          } else {
+                            if (nestedItem.value != "") {
+                              newOptions.push({
+                                key: nestedItem.key,
+                                value: nestedItem.value,
+                              });
                             }
                           }
-                          return newOptions;
-                        } else {
-                          let newOptions = [];
-                          item.value.forEach((nestedItem) => {
-                            if (typeof nestedItem.value == "object") {
-                              let newString = "";
-                              nestedItem.value.forEach(
-                                (nestedNestedItem, index) => {
-                                  if (index > 0) {
-                                    newString += ` , ${nestedNestedItem}`;
-                                  } else {
-                                    newString += nestedNestedItem;
-                                  }
-                                }
-                              );
-                              if (newString != "") {
-                                newOptions.push({
-                                  key: nestedItem.key,
-                                  value: newString,
-                                });
-                              }
-                            } else {
-                              if (nestedItem.value != "") {
-                                newOptions.push({
-                                  key: nestedItem.key,
-                                  value: nestedItem.value,
-                                });
-                              }
-                            }
-                          });
-                          return newOptions;
-                        }
+                        });
+                        return newOptions;
                       }
-                    });
-
-                  // console.log("extraOptionsArray after");
-                  // console.log(extraOptionsArray);
-
-                  extraOptionsArray.unshift({
-                    key: "Artikelnr",
-                    value: selectedVariant.sku,
+                    }
                   });
 
-                  // console.log("extraOptionsArray after after");
-                  // console.log(extraOptionsArray);
+                // console.log("extraOptionsArray after");
+                // console.log(extraOptionsArray);
 
+                extraOptionsArray.unshift({
+                  key: "Artikelnr",
+                  value: selectedVariant.sku,
+                });
+
+                // console.log("extraOptionsArray after after");
+                // console.log(extraOptionsArray);
+
+                try {
                   const createdProductVariant = createProductVariant(
                     product,
                     extraOptions,
@@ -769,23 +769,22 @@ function Product({
                       );
                       console.error("Error creating product variant:", error);
                     });
-                } else {
-                  setError("");
-                  linesAdd([
-                    {
-                      merchandiseId: selectedVariant.id,
-                      quantity: 1,
-                    },
-                  ]);
-                  openCartDrawer(true);
+                } catch {
+                  setError(
+                    "* Er is iets fout gegaan bij het toevoegen van het product."
+                  );
                 }
-              } catch {
-                setError(
-                  "* Er is iets fout gegaan bij het toevoegen van het product."
-                );
-              } finally {
-                setLoading(false);
+              } else {
+                setError("");
+                linesAdd([
+                  {
+                    merchandiseId: selectedVariant.id,
+                    quantity: 1,
+                  },
+                ]);
+                openCartDrawer(true);
               }
+              setLoading(false);
             }}
           >
             {loading && <CircularProgress className="w-8 h-8" />}

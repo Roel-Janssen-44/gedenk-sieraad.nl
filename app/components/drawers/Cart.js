@@ -61,11 +61,14 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
                               href={`/products/${line.merchandise.product.handle.toLowerCase()}`}
                             >
                               {line.merchandise.product.title}
-                              {/* {line.merchandise.product.handle.toUpperCase()} */}
                             </a>
                           </h3>
                           <p className="ml-4 min-w-[70px] text-right">
-                            <Price value={line.cost.totalAmount.amount} />
+                            <Price
+                              value={parseFloat(
+                                line.cost.totalAmount.amount
+                              ).toFixed(2)}
+                            />
                           </p>
                         </div>
                         {line.merchandise.selectedOptions.map((option) => {

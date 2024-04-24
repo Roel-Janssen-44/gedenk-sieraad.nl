@@ -166,27 +166,27 @@ export const creoolOptions = [
   },
   {
     value: "Creool glad 12 mm geelgoud 9 KT",
-    price: 295,
+    price: 329,
   },
   {
     value: "Creool glad 12 mm witgoud 9 KT",
-    price: 295,
+    price: 329,
   },
   {
     value: "Creool glad 12 mm roségoud 9 KT",
-    price: 295,
+    price: 329,
   },
   {
     value: "Creool met zirkonia's 12 mm geelgoud 9 KT",
-    price: 395,
+    price: 439,
   },
   {
     value: "Creool met zirkonia's 12 mm witgoud 9 KT",
-    price: 395,
+    price: 439,
   },
   {
     value: "Creool met zirkonia's 12 mm roségoud 9 KT",
-    price: 395,
+    price: 439,
   },
   {
     value: "Creool glad 14 mm geelgoud 9 KT",
@@ -238,27 +238,27 @@ export const creoolOptions = [
   },
   {
     value: "Creool glad 14 mm geelgoud 14 KT",
-    price: 595,
+    price: 629,
   },
   {
     value: "Creool glad 14 mm witgoud 14 KT",
-    price: 595,
+    price: 629,
   },
   {
     value: "Creool glad 14 mm roségoud 14 KT",
-    price: 595,
+    price: 629,
   },
   {
     value: "Creool met zirkonia's 14 mm geelgoud 14 KT",
-    price: 675,
+    price: 695,
   },
   {
     value: "Creool met zirkonia's 14 mm witgoud 14 KT",
-    price: 675,
+    price: 695,
   },
   {
     value: "Creool met zirkonia's 14 mm roségoud 14 KT",
-    price: 675,
+    price: 695,
   },
 ];
 
