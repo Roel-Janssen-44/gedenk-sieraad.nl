@@ -70,7 +70,7 @@ export default function Vppakketup({
           ...prevState,
           ["Vppakketkeuze"]: "",
           ["Gravure"]: "",
-          ["upload"]: "",
+          ["Upload"]: "",
         }));
       }
     }
