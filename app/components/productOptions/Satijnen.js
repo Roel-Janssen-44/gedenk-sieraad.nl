@@ -52,8 +52,6 @@ export default function Satijnen({
             ["Satijnensingle"]: "",
           }));
         }
-        console.log("Satijnenmulti");
-        console.log(satijnenMulti);
         if (satijnenMulti.length !== 4) {
           setError((prevState) => ({
             ...prevState,

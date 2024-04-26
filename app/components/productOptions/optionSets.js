@@ -950,11 +950,11 @@ export const satijnenOptions = [
     price: 0,
   },
   {
-    value: "12 Jade",
+    value: "12 Amethyst",
     price: 0,
   },
   {
-    value: "13 Amethyst",
+    value: "13 Fluoriet",
     price: 0,
   },
   {
@@ -966,7 +966,7 @@ export const satijnenOptions = [
     price: 0,
   },
   {
-    value: "16 Brown",
+    value: "16 Tijgeroog",
     price: 0,
   },
 ];

@@ -663,8 +663,8 @@ function Product({
               if (extraOptions.length > 0) {
                 e.preventDefault();
 
-                // console.log("extraOptions before");
-                // console.log(extraOptions);
+                console.log("extraOptions before");
+                console.log(extraOptions);
 
                 let extraOptionsArray = extraOptions
                   .filter((item) => {
@@ -743,8 +743,8 @@ function Product({
                   value: selectedVariant.sku,
                 });
 
-                // console.log("extraOptionsArray after after");
-                // console.log(extraOptionsArray);
+                console.log("extraOptionsArray after after");
+                console.log(extraOptionsArray);
 
                 try {
                   const createdProductVariant = createProductVariant(
@@ -769,9 +769,11 @@ function Product({
                       );
                       console.error("Error creating product variant:", error);
                     });
-                } catch {
+                } catch (e) {
+                  console.log("Error in adding product to cart");
+                  console.log(e);
                   setError(
-                    "* Er is iets fout gegaan bij het toevoegen van het product."
+                    `* Er is iets fout gegaan bij het toevoegen van het product. ${e}`
                   );
                 }
               } else {
