@@ -32,6 +32,10 @@ export default async function RootLayout({ children }) {
       </head>
       {/* <GoogleAnalytics /> */}
       <body className={`${montserrat.className}`}>
+        <div className="fixed bottom-4 rounded-lg left-4  w-[95%] text-white p-4 h-20 z-[9999] bg-red-600">
+          Er wordt momenteel aan de website gewerkt, het kan zijn dat sommige
+          functionaliteiten momenteel niet werken. (Bedankt voor uw geduld!)
+        </div>
         <CookieBanner />
         <MainLayoutInnerWrapper shopData={shopDataJson.data}>
           {children}
