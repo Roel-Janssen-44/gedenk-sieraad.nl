@@ -4,6 +4,7 @@ import {
   CartLineProvider,
   CartLineQuantity,
   CartLineQuantityAdjustButton,
+  CartCheckoutButton,
 } from "@shopify/hydrogen-react";
 import Price from "@/components/Price";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
@@ -13,13 +14,9 @@ import IconButton from "@mui/material/IconButton";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 
 export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
-  const {
-    cost,
-    checkoutUrl,
-    lines,
-    // cartFragment
-  } = useCart();
-  // console.log(cartFragment);
+  const { cost, checkoutUrl, lines } = useCart();
+  const cart = useCart();
+
   return (
     <Drawer anchor="right" open={cartDrawerIsOpen} onClose={onClose}>
       <div className="h-screen flex flex-col w-full max-w-sm">
@@ -146,6 +143,7 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
             </p>
           </div>
 
+          <CartCheckoutButton>Check out</CartCheckoutButton>
           {cost?.subtotalAmount?.amount != 0 && (
             <>
               <Button
