@@ -10,7 +10,7 @@ import {
 import CookieBanner from "@/components/CookieBanner";
 
 import MainLayoutInnerWrapper from "@/components/MainLayoutInnerWrapper";
-// import GoogleAnalytics from "@/components/GoogleAnalytics";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -30,7 +30,7 @@ export default async function RootLayout({ children }) {
         {/* To do SEO  */}
         {/* <Seo /> */}
       </head>
-      {/* <GoogleAnalytics /> */}
+      <GoogleAnalytics />
       <body className={`${montserrat.className}`}>
         {/* <div className="fixed bottom-4 rounded-lg left-4  w-[95%] text-white p-4 h-20 z-[9999] bg-red-600">
           Er wordt momenteel aan de website gewerkt, het kan zijn dat sommige

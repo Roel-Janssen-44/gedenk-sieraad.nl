@@ -289,11 +289,11 @@ export default function Navbar({
         menuItem={menuItem}
         onCloseAll={onCloseAll}
       />
-      {/* <TawkMessengerReact
+      <TawkMessengerReact
         propertyId="628d2b18b0d10b6f3e73d6c2"
         widgetId="1g3rn0mja"
         ref={tawkMessengerRef}
-      /> */}
+      />
     </>
   );
 }
