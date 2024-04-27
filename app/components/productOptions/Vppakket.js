@@ -66,10 +66,20 @@ export default function Vppakketup({
           }));
         }
       } else {
+        if (gravure != "") {
+          setError((prevState) => ({
+            ...prevState,
+            ["Gravure"]: "",
+          }));
+        } else {
+          setError((prevState) => ({
+            ...prevState,
+            ["Gravure"]: "* Maak een keuze",
+          }));
+        }
         setError((prevState) => ({
           ...prevState,
           ["Vppakketkeuze"]: "",
-          ["Gravure"]: "",
           ["Upload"]: "",
         }));
       }
@@ -154,46 +164,45 @@ export default function Vppakketup({
           title="Maak een keuze:"
           options={vppakketKeuzeOptions}
         />
+        <div className="relative">
+          {showErrors && (
+            <p className="absolute -bottom-6 left-0 text-red-700">
+              {error["Gravure"]}
+            </p>
+          )}
+          <InputSelect
+            value={gravure}
+            onChange={(newTekstValue) => handleChange("Gravure", newTekstValue)}
+            title="Gravure: "
+            options={gravureAfbeeldingOptions}
+          />
+        </div>
         {keuzeValue ==
           "Ik heb al een vingerafdruk/gravure en wil nu een bestand uploaden" && (
-          <div className="relative">
-            {showErrors && (
-              <p className="absolute -bottom-6 left-0 text-red-700">
-                {error["Gravure"]}
-              </p>
+          <>
+            {(gravure == "Voet/handafdruk" ||
+              gravure == "Poot/snuitafdruk" ||
+              gravure == "snuitafdruk" ||
+              gravure == "Echo" ||
+              gravure == "Vingerafdruk" ||
+              gravure == "Logo/handtekening" ||
+              gravure == "Twee vingerafdrukken in hartvorm") && (
+              <div className="relative">
+                {showErrors && (
+                  <p className="absolute -bottom-6 left-0 text-red-700">
+                    {error["Upload"]}
+                  </p>
+                )}
+                <InputFile
+                  id={"Upload"}
+                  setError={setError}
+                  title="Bestand toevoegen:"
+                  onChange={handleChange}
+                  value={value}
+                />
+              </div>
             )}
-            <InputSelect
-              value={gravure}
-              onChange={(newTekstValue) =>
-                handleChange("Gravure", newTekstValue)
-              }
-              title="Gravure: "
-              options={gravureAfbeeldingOptions}
-            />
-          </div>
-        )}
-
-        {(gravure == "Voet/handafdruk" ||
-          gravure == "Poot/snuitafdruk" ||
-          gravure == "snuitafdruk" ||
-          gravure == "Echo" ||
-          gravure == "Vingerafdruk" ||
-          gravure == "Logo/handtekening" ||
-          gravure == "Twee vingerafdrukken in hartvorm") && (
-          <div className="relative">
-            {showErrors && (
-              <p className="absolute -bottom-6 left-0 text-red-700">
-                {error["Upload"]}
-              </p>
-            )}
-            <InputFile
-              id={"Upload"}
-              setError={setError}
-              title="Bestand toevoegen:"
-              onChange={handleChange}
-              value={value}
-            />
-          </div>
+          </>
         )}
       </div>
     </>
