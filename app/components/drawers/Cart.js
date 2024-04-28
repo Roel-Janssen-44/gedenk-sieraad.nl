@@ -143,7 +143,6 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
             </p>
           </div>
 
-          <CartCheckoutButton>Check out</CartCheckoutButton>
           {cost?.subtotalAmount?.amount != 0 && (
             <>
               <Button
