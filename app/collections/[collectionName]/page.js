@@ -19,7 +19,9 @@ export async function generateMetadata({ params, searchParams }, parent) {
   const collectionJson = await collectionResponse.json();
 
   const previousImages = (await parent).openGraph?.images || [];
-
+  console.log("collectionJson");
+  console.log(collectionJson);
+  console.log(collectionJson.data);
   return {
     title: `${collectionJson.data.collectionData.title} -- gedenk-sieraad.nl`,
     description: collectionJson.data.collectionData.description,
@@ -89,6 +91,7 @@ query CollectionByHandle($collectionName: String!) {
   collectionData: collection(handle: $collectionName) {
     handle
     title
+    description
     descriptionHtml
     image {
       altText
