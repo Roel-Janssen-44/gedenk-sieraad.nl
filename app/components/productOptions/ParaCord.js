@@ -52,8 +52,6 @@ export default function ParaCord({
             ["Paracordsingle"]: "",
           }));
         }
-        console.log("Paracordmulti");
-        console.log(paracordMulti);
         if (paracordMulti.length !== 2) {
           setError((prevState) => ({
             ...prevState,

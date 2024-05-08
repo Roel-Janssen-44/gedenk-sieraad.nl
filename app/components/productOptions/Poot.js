@@ -19,9 +19,6 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
       const keuze2Value = value.find((item) => item.key === "Keuze2").value;
       const uploadValue = value.find((item) => item.key === "Upload").value;
 
-      console.log("uploadValue");
-      console.log(uploadValue);
-
       switch (poot) {
         case "Standaard pootafdruk":
           setError((prevState) => ({
@@ -99,11 +96,6 @@ export default function Poot({ value, onChange, setOptionErrors, showErrors }) {
         ["Poot"]: true,
       }));
     }
-  }, [error]);
-
-  useEffect(() => {
-    console.log("errors in poot");
-    console.log(error);
   }, [error]);
 
   const [values, setValues] = useState([

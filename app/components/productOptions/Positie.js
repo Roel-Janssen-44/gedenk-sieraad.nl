@@ -2652,9 +2652,6 @@ export default function Positie({
   useEffect(() => {
     if (!error) return;
 
-    console.log("errors in positie");
-    console.log(error);
-
     const allValuescorrect = Object.values(error).every(
       (value) => value === ""
     );
@@ -2728,16 +2725,9 @@ export default function Positie({
     { key: "Lettertype", value: value?.lettertype?.value || "" },
   ]);
 
-  useEffect(() => {
-    console.log("error in option");
-    console.log(error);
-  }, [error, values]);
-
   const isInitialRender = useRef(true);
 
   useEffect(() => {
-    console.log("values in option");
-    console.log(values);
     if (isInitialRender.current) {
       isInitialRender.current = false;
       return;
@@ -2747,9 +2737,6 @@ export default function Positie({
   }, [values]);
 
   const handleChange = (changedKey, newValue) => {
-    console.log("handle change");
-    console.log(changedKey, newValue);
-
     setValues((prevValues) =>
       prevValues.map((item) =>
         item.key === changedKey ? { ...item, value: newValue } : item

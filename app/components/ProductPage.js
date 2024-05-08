@@ -353,8 +353,6 @@ function Product({
   );
 
   useEffect(() => {
-    console.log("Option errors");
-    console.log(optionErrors);
     if (!hasTrueValue) {
       setError("");
     }
@@ -548,9 +546,6 @@ function Product({
 
   const tags = product.tags;
 
-  console.log("tags");
-  console.log(tags);
-
   return (
     <div className="flex flex-col gap-8 2xl:mr-auto">
       <div className="max-w-lg mx-auto flex flex-col gap-6 2xl:ml-0 xl:min-w-[500px]">
@@ -663,9 +658,6 @@ function Product({
               if (extraOptions.length > 0) {
                 e.preventDefault();
 
-                console.log("extraOptions before");
-                console.log(extraOptions);
-
                 let extraOptionsArray = extraOptions
                   .filter((item) => {
                     if (item.value != null && item.value != "") {
@@ -742,9 +734,6 @@ function Product({
                   key: "Artikelnr",
                   value: selectedVariant.sku,
                 });
-
-                console.log("extraOptionsArray after after");
-                console.log(extraOptionsArray);
 
                 try {
                   const createdProductVariant = createProductVariant(

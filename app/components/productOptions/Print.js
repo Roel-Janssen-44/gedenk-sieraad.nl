@@ -197,11 +197,6 @@ export default function Print({
   const printKeuze2 = values.find((item) => item.key === "Keuze2").value;
 
   useEffect(() => {
-    console.log("errors in print");
-    console.log(error);
-  }, [error]);
-
-  useEffect(() => {
     onChange(values);
   }, []);
 

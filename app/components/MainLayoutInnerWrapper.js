@@ -59,7 +59,7 @@ export default function RootLayout({ shopData, children }) {
       >
         <CartProvider
           onLineAdd={() => {
-            console.log("a line is being added");
+            // console.log("a line is being added");
             gtag("event", "add_to_cart", {
               currency: "USD",
               value: 30.03,

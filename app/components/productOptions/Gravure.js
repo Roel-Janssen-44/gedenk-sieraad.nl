@@ -685,11 +685,6 @@ export default function Gravure({
   ).value;
 
   useEffect(() => {
-    console.log("error in gravure optionset");
-    console.log(error);
-  }, [error, values]);
-
-  useEffect(() => {
     onChange(values);
   }, []);
 

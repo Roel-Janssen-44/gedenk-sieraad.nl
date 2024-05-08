@@ -83,15 +83,6 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
                             </p>
                           );
                         })}
-                        {/* Sku */}
-                        {/* <p className="mt-1 text-sm text-gray-500 font-bold">
-                          Productnummer: {console.log("line")}
-                          To do - productnummer
-                          Productnummer: {console.log(line)}
-                          <span className="font-normal">
-                            {line.merchandise.sku}
-                          </span>
-                        </p> */}
 
                         {line.attributes?.map((attribute) => (
                           <p

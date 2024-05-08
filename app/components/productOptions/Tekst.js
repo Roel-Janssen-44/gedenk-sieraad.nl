@@ -632,11 +632,6 @@ export default function Tekst({
   ).value;
 
   useEffect(() => {
-    console.log("error in optionset");
-    console.log(error);
-  }, [error, values]);
-
-  useEffect(() => {
     onChange(values);
   }, []);
 

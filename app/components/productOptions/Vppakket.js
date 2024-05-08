@@ -133,11 +133,6 @@ export default function Vppakketup({
     }
   }, [error]);
 
-  useEffect(() => {
-    console.log("error in Vppakket optionset");
-    console.log(error);
-  }, [error, values]);
-
   const vppakketKeuzeTekst = values.find(
     (item) => item.key === "Vppakketkeuze"
   ).value;

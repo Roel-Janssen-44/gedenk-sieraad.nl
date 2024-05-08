@@ -22,11 +22,6 @@ export default function GraveerTekst({
   const [error, setError] = useState([]);
 
   useEffect(() => {
-    console.log("current error messages");
-    console.log(error);
-  }, [error]);
-
-  useEffect(() => {
     if (Array.isArray(value)) {
       const graveerTekstValue = value.find(
         (item) => item.key === "Graveertekst"
@@ -565,8 +560,6 @@ export default function GraveerTekst({
   }, [value]);
 
   useEffect(() => {
-    console.log("error messages");
-    console.log(error);
     const allValuescorrect = Object.values(error).every(
       (value) => value === ""
     );

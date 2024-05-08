@@ -131,8 +131,5 @@ const createProductVariant = async (
 
   const final = await res.json();
 
-  console.log("finalData: ", final);
-
-  console.log("fetch after");
   return final;
 };

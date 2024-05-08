@@ -11,10 +11,6 @@ import NotFound from "@/components/NotFound";
 import sanitizeHtml from "sanitize-html-react";
 
 export default function CollectionPage({ collection }) {
-  // console.log("searchParams");
-  // console.log(searchParams);
-  // console.log(vendor);
-
   // const [products, setProducts] = useState([]);
 
   // useEffect(() => {
