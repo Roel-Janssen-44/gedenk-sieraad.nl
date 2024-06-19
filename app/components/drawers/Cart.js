@@ -20,29 +20,29 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
   const cart = useCart();
 
   const [cartNote, setCartNote] = useState(cart?.note || "");
-  // const [isInitialRender, setIsInitialRender] = useState(true);
-  // // console.log("cart log");
-  // // console.log(cart);
-  // // console.log("lines");
-  // // console.log(lines);
-  // // console.log("note");
-  // // console.log(cart.note);
+  const [isInitialRender, setIsInitialRender] = useState(true);
+  // console.log("cart log");
+  // console.log(cart);
+  // console.log("lines");
+  // console.log(lines);
+  // console.log("note");
+  // console.log(cart.note);
 
-  // useEffect(() => {
-  //   if (!isInitialRender) return;
-  //   if (cart?.note !== undefined && cart?.note !== cartNote) {
-  //     setIsInitialRender(false);
-  //     setCartNote(cart.note);
-  //   }
-  // }, [cart.note]);
+  useEffect(() => {
+    if (!isInitialRender) return;
+    if (cart?.note !== undefined && cart?.note !== cartNote) {
+      setIsInitialRender(false);
+      setCartNote(cart.note);
+    }
+  }, [cart.note]);
 
-  // useEffect(() => {
-  //   cart.noteUpdate(cartNote);
-  // }, [cartNote]);
+  useEffect(() => {
+    cart.noteUpdate(cartNote);
+  }, [cartNote]);
 
-  // const handleCartNoteChange = (value) => {
-  //   setCartNote(value);
-  // };
+  const handleCartNoteChange = (value) => {
+    setCartNote(value);
+  };
 
   return (
     <Drawer anchor="right" open={cartDrawerIsOpen} onClose={onClose}>
@@ -148,26 +148,28 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
           </ul>
         </div>
 
-        <div className="">
-          {/* <div className="px-4 py-6 mt-auto border-b-[1px] border-gray-200 mb-4">
-            <div className="flex flex-wrap items-center text-sm mb-2">
-              <span className="font-bold min-w-[140px]">
-                Bestelling instructies
-              </span>
+        <div className="px-4 pb-8">
+          {lines?.length != 0 && (
+            <div className="px-4 py-6 mt-auto border-b-[1px] border-gray-200 mb-4">
+              <div className="flex flex-wrap items-center text-sm mb-2">
+                <span className="font-bold min-w-[140px]">
+                  Bestelling instructies
+                </span>
+              </div>
+              <TextField
+                className="w-full"
+                onChange={(e) => {
+                  handleCartNoteChange(e.target.value);
+                }}
+                value={cartNote}
+                variant="outlined"
+                multiline
+                onBlur={(e) => {
+                  handleCartNoteChange(e.target.value);
+                }}
+              />
             </div>
-            <TextField
-              className="w-full"
-              onChange={(e) => {
-                handleCartNoteChange(e.target.value);
-              }}
-              value={cartNote}
-              variant="outlined"
-              multiline
-              onBlur={(e) => {
-                handleCartNoteChange(e.target.value);
-              }}
-            />
-          </div> */}
+          )}
 
           <div className="sm:px-6 flex justify-between text-base font-medium text-gray-900">
             <p>Subtotaal:</p>
