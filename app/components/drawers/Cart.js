@@ -19,7 +19,7 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
   const { cost, checkoutUrl, lines } = useCart();
   const cart = useCart();
 
-  // const [cartNote, setCartNote] = useState(cart?.note || "");
+  const [cartNote, setCartNote] = useState(cart?.note || "");
   // const [isInitialRender, setIsInitialRender] = useState(true);
   // // console.log("cart log");
   // // console.log(cart);
