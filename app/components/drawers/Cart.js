@@ -12,15 +12,15 @@ import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
-import { useState, useEffect } from "react";
-import { TextField } from "@mui/material";
+// import { useState, useEffect } from "react";
+// import { TextField } from "@mui/material";
 
 export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
   const { cost, checkoutUrl, lines } = useCart();
-  const cart = useCart();
+  // const cart = useCart();
 
-  const [cartNote, setCartNote] = useState(cart?.note || "");
-  const [isInitialRender, setIsInitialRender] = useState(true);
+  // const [cartNote, setCartNote] = useState(cart?.note || "");
+  // const [isInitialRender, setIsInitialRender] = useState(true);
   // console.log("cart log");
   // console.log(cart);
   // console.log("lines");
@@ -28,21 +28,21 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
   // console.log("note");
   // console.log(cart.note);
 
-  useEffect(() => {
-    if (!isInitialRender) return;
-    if (cart?.note !== undefined && cart?.note !== cartNote) {
-      setIsInitialRender(false);
-      setCartNote(cart.note);
-    }
-  }, [cart.note]);
+  // useEffect(() => {
+  //   if (!isInitialRender) return;
+  //   if (cart?.note !== undefined && cart?.note !== cartNote) {
+  //     setIsInitialRender(false);
+  //     setCartNote(cart.note);
+  //   }
+  // }, [cart.note]);
 
-  useEffect(() => {
-    cart.noteUpdate(cartNote);
-  }, [cartNote]);
+  // useEffect(() => {
+  //   cart.noteUpdate(cartNote);
+  // }, [cartNote]);
 
-  const handleCartNoteChange = (value) => {
-    setCartNote(value);
-  };
+  // const handleCartNoteChange = (value) => {
+  //   setCartNote(value);
+  // };
 
   return (
     <Drawer anchor="right" open={cartDrawerIsOpen} onClose={onClose}>
@@ -149,7 +149,7 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
         </div>
 
         <div className="px-4 pb-8">
-          {lines?.length != 0 && (
+          {/* {lines?.length != 0 && (
             <div className="px-4 py-6 mt-auto border-b-[1px] border-gray-200 mb-4">
               <div className="flex flex-wrap items-center text-sm mb-2">
                 <span className="font-bold min-w-[140px]">
@@ -169,7 +169,7 @@ export default function CartDrawer({ cartDrawerIsOpen, onClose }) {
                 }}
               />
             </div>
-          )}
+          )} */}
 
           <div className="sm:px-6 flex justify-between text-base font-medium text-gray-900">
             <p>Subtotaal:</p>
