@@ -1,6 +1,6 @@
 # gedenk-sieraad.nl - Webshop Project
 
-Dit is een webshop die is ontworpen voor een edelsmid met als doel haar markt positie uit te breiden door online verkoopvan sieraden.
+Dit is een webshop die is ontworpen voor een edelsmid met als doel haar markt positie uit te breiden door online verkoop van sieraden.
 
 ## Live site
 
