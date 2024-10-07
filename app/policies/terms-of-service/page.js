@@ -23,7 +23,7 @@ export default async function Page({ params }) {
   }
 
   return (
-    <div className="container">
+    <div className="container max-w-[767px]">
       {/* <h1 className="font-roboto text-3xl mb-10">Privacy verklaring</h1> */}
       <div className="info-page">
         <PageInfo page={pageJson.data.shop.termsOfService} />
