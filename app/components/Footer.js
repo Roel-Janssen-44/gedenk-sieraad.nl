@@ -7,7 +7,7 @@ import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 import NoteRoundedIcon from "@mui/icons-material/NoteRounded";
 export default function Navbar() {
   return (
-    <div className="py-20 mt-20 border-t-2 border-primary">
+    <div className="pt-20 mt-20 border-t-2 border-primary">
       <div className="container flex flex-col gap-8 md:flex-row md:flex-wrap md:items-center xl:flex-nowrap xl:items-start">
         <div className="max-w-md w-full mx-auto md:w-[336px] md:max-w-[336px]">
           <h4 className="font-roboto text-2xl mb-3">Info pagina&apos;s</h4>
@@ -494,6 +494,27 @@ export default function Navbar() {
             </Button>
           </a>
         </div>
+      </div>
+
+      <div className="border-t-2 mt-6 py-6 border-primary">
+        <ul className="container gap-6 flex flex-row flex-end items-center justify-end">
+          <li>
+            <a
+              className="py-1 block hover:opacity-60 transition-opacity"
+              href="/policies/privacy"
+            >
+              Privacy verklaring
+            </a>
+          </li>
+          <li>
+            <a
+              className="py-1 block hover:opacity-60 transition-opacity"
+              href="/policies/terms-of-service"
+            >
+              Algemene voorwaarden
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   );
