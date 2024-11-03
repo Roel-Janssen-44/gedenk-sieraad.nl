@@ -16,12 +16,12 @@ export default function ProductGridItem({ product }) {
           layout="raw"
           className={`w-full h-full object-scale-down ${
             product?.images?.nodes[1]?.url != undefined
-              ? "group-hover:opacity-0 transition-all duration-500"
+              ? "md:group-hover:opacity-0 transition-all duration-500"
               : ""
           }`}
         />
         {product?.images?.nodes[1]?.url && (
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-0 group-hover:opacity-100 transition-all duration-500 flex justify-center">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-0 md:group-hover:opacity-100 transition-all duration-500 flex justify-center">
             <Image
               data={product?.images?.nodes[1]}
               className="w-full h-full object-scale-down"
