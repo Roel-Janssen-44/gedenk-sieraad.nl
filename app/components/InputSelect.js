@@ -36,7 +36,7 @@ export default function InputSelect({
                 <MenuItem key={title + "-" + option.value} value={option.value}>
                   <Checkbox checked={value.indexOf(option.value) > -1} />
                   {option.value}{" "}
-                  {option.price !== 0 && `(+ €${option.price || ""})`}
+                  {option.price !== 0 && `(€${option.price || ""})`}
                 </MenuItem>
               );
             })}
@@ -59,7 +59,7 @@ export default function InputSelect({
           {options.map((option) => {
             let price = option.price;
             if (price != 0) {
-              price = `(+ €${option.price || ""}`;
+              price = `(€${option.price || ""}`;
               if (price.includes("(") && !price.includes(".")) {
                 price += ",-)";
               } else {
